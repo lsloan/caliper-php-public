@@ -1,0 +1,24 @@
+{
+  "name": "caliper-php",
+  "description": "Caliper PHP Library",
+  "keywords": [
+    "caliper"
+  ],
+  "homepage": "http://www.imsglobal.org",
+  "license": "IMS",
+  "authors": [
+    {
+      "name": "Prashant Nayak <prashant@intellifylearning.com",
+      "homepage": "http://www.intellifylearning.com/"
+    }
+  ],
+  "require": {
+    "php": ">=5.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.*"
+  },
+  "autoload": {
+    "files": ["lib/Caliper.php"]
+  }
+}
