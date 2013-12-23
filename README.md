@@ -5,15 +5,20 @@ caliper-php is a php client for [Caliper](http://www.imsglobal.org) that provide
 
 ## Documentation
 
-### Getting Started
+## Getting Started
 
-Pre-requisites:  Ensure you have php5 and php5-json installed
+### Pre-requisites for development:  
 
-e.g. sudo apt-get install php5 php5-json
+* Ensure you have php5 and php5-json installed.  E.g. sudo apt-get install php5 php5-json
+* Install Composer (for dependency management) - curl -sS https://getcomposer.org/installer | php 
+* Install dependencies - php composer.phar install
+* Run tests using the Makefile
+
+### Installing and using the Library:
 
 To install the library, clone the repository from github into your desired application directory.
 
-git clone https://github.com/TBD
+git clone https://github.com/IMSGlobal/caliper-php.git
 
 Then, add the following to your PHP script:
 
