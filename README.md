@@ -5,6 +5,9 @@ caliper-php is a php client for [Caliper](http://www.imsglobal.org) that provide
 
 ## Documentation
 
+## IMPORTANT INFORMATION:
+Access to this code is reserved for IMS Contributing Members who are active participants of the IMS Learning Analytics Task Force.  Dissemination of this code to outside parties is strictly prohibited. By accessing these materials you agree to abide by these rules.
+
 ## Getting Started
 
 ### Pre-requisites for development:  
