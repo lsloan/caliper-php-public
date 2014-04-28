@@ -51,7 +51,8 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
       "entityId"   => $entity_id,
       "properties" => $properties,
       "timestamp"  => $timestamp,
-      "__action"   => "describe"
+      "__action"   => "describe",
+      "il_sensorId" => $this->options["sensor_id"]
     );
 
     return $this->enqueue($body);
@@ -73,7 +74,8 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
       "learningContext"  => $learning_context,
       "activityContext"  => $activity_context,
       "timestamp"         => $timestamp,
-      "__action"          => "measure"
+      "__action"          => "measure",
+      "il_sensorId" => $this->options["sensor_id"]
     );
 
     return $this->enqueue($body);
