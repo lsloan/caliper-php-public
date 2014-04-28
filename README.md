@@ -25,11 +25,18 @@ git clone https://github.com/IMSGlobal/caliper-php.git
 
 Then, add the following to your PHP script:
 
+```
 require_once("/path/to/caliper-php/lib/Caliper.php");
+```
 
 Now, you're ready to initialize the Caliper module as follows:
 
-Caliper::init("SOME_API_KEY");
+```
+$options = array();
+$options["host"] = 'acme.caliperstore.com';
+$options["sensor_id"] = 'com.acme.sensor1';
+Caliper::init('com.acme.apikey', $options);
+```
 
 You only need to call init once when your php file is requested. All of your files will then have access to the same Caliper client.
 
