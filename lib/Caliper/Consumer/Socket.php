@@ -25,7 +25,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
       $options["timeout"] = 0.5;
 
     if (!isset($options["host"]))
-      $options["host"] = "intellifylearning.com";
+      $options["host"] = "localhost";
 
     parent::__construct($apiKey, $options);
   }

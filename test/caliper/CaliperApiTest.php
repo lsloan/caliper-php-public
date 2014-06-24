@@ -7,38 +7,49 @@
  */
 
 require_once(dirname(__FILE__) . "/../../lib/Caliper.php");
+require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/CaliperEntity.php");
+require_once(dirname(__FILE__) . "/../../lib/Caliper/events/CaliperEvent.php");
 
 class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
 
-  function setUp() {
-    // $options["host"] = "localhost:8000";
-    // Caliper::init("testapiKey", $options);
-    Caliper::init("testapiKey");
-  }
+    function setUp() {
+        // $options["host"] = "localhost:8000";
+        // Caliper::init("testapiKey", $options);
+        Caliper::init("testapiKey");
+    }
 
-  /**
-   * @group caliper
-  */
-  function testDescribe() {
-    $described = Caliper::describe("Course", "course-1234", array(
-                    "program"    => "Engineering",
-                    "start-date" => time(),
-                    ));
-    $this->assertTrue($described);
-  }
+    /**
+     * @group caliper
+     */
+    function testDescribe() {
+        $caliperEntity = new CaliperEntity();
+        $caliperEntity->setId("course-1234");
+        $caliperEntity->setType("course");
+        $caliperEntity->setProperties(array(
+            "program" => "Engineering",
+            "start-date" => time(),
+        ));
 
-  /**
-   * @group caliper
-  */
-  function testMeasure() {
-    $described = Caliper::measure("HILIGHT", array(
-                    "courseId" => "course-1234",
-                    "userId"   => "user-1234",
-                    ), array(
-                    "activityId" => "reading-1234",
-                    "pageId"     => "page-1234",
-                    ));
-    $this->assertTrue($described);
-  }
+        $described = Caliper::describe($caliperEntity);
+        $this->assertTrue($described);
+    }
+
+    /**
+     * @group caliper
+     */
+    function testMeasure() {
+        $caliperEvent = new CaliperEvent();
+        $caliperEvent->setAction("HILIGHT");
+        $caliperEvent->setLearningContext(array(
+            "courseId" => "course-1234",
+            "userId" => "user-1234",
+        ));
+        $caliperEvent->setActivityContext(array(
+            "activityId" => "reading-1234",
+            "pageId" => "page-1234",
+        ));
+
+        $measured = Caliper::measure($caliperEvent);
+        $this->assertTrue($measured);
+    }
 }
-?>
