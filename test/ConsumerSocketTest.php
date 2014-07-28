@@ -11,21 +11,34 @@ require_once(dirname(__FILE__) . "/../lib/Caliper/Client.php");
 class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
 
   private $client;
+  
+  private $caliperEntity;
 
   function setUp() {
     $this->client = new Caliper_Client("testApiKey",
                                           array("consumer" => "socket"));
+    
+    $this->caliperEntity = new CaliperEntity();
+    $this->caliperEntity->setId("course-1234");
+    $this->caliperEntity->setType("course");
+    $this->caliperEntity->setProperties(array(
+    		"program" => "Engineering",
+    		"start-date" => time()
+    ));
   }
 
   function testTimeout() {
     $client = new Caliper_Client("testApiKey",
                                    array( "timeout"  => 0.01,
                                           "consumer" => "socket" ));
+    
+   
+    
 
-    $described = $client->describe("Course", "course-1234", array(
-                    "program"    => "Engineering",
-                    "start-date" => time(),
-                    ));
+    $described = $client->describe($this->caliperEntity);
+    echo "**********************************";
+    echo $described;
+    echo "**********************************";
     $this->assertTrue($described);
 
     $client->__destruct();
@@ -37,10 +50,7 @@ class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
         "error_handler" => function () { throw new Exception("Was called"); }));
 
     # Shouldn't error out without debug on.
-    $client->describe("Course", "course-1234", array(
-                    "program"    => "Engineering",
-                    "start-date" => time(),
-                    ));
+    $client->describe($this->caliperEntity);
     $client->__destruct();
   }
 
@@ -79,12 +89,17 @@ class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
     for ($i = 0; $i < 10000; $i++) {
       $large_message_body .= "a";
     }
+    
+    $ce = new CaliperEntity();
+    $ce->setId("course-1234");
+    $ce->setType("course");
+    $ce->setProperties(array(
+    		"program" => "Engineering",
+    		"start-date" => time(),
+    		"big_property" => $large_message_body
+    ));
 
-    $client->describe("Course", "course-1234", array(
-                    "program"    => "Engineering",
-                    "start-date" => time(),
-                    "big_property" => $large_message_body
-                    ));
+    $client->describe($ce);
 
     $client->__destruct();
   }

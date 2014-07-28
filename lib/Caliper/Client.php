@@ -49,9 +49,9 @@ class Caliper_Client {
     public function measure($caliperEvent, $timestamp=null) {
 
         $timestamp = $this->formatTime($caliperEvent->getStartedAt());
-        $action = $caliperEvent->getAction();
-        $learning_context = $caliperEvent->getLearningContext();
-        $activity_context = $caliperEvent->getActivityContext();
+         $action = $caliperEvent->getAction();
+        $learning_context = $caliperEvent->getObject();
+        $activity_context = $caliperEvent->getEdApp();
 
         // json_encode will serialize as []
         if (count($learning_context) == 0) {
@@ -61,7 +61,7 @@ class Caliper_Client {
             $activity_context = null;
         }
 
-        return $this->consumer->measure($action, $learning_context, $activity_context, $timestamp);
+        return $this->consumer->measure($action, $learning_context, $activity_context, $timestamp,$caliperEvent);
     }
 
     /**

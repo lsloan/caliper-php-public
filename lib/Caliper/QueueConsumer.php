@@ -65,16 +65,19 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * @param  number $timestamp         unix seconds since epoch (time()) [optional]
    * @return boolean                   whether the measure call succeeded
    */
-  public function measure($action, $learning_context, $activity_context, $timestamp) {
+  public function measure($action, $learning_context, $activity_context, $timestamp,$caliperEvent) {
 
-    $body = array(
+  /*  $body = array(
       "apiKey"            => $this->apiKey,
       "action"            => $action,
       "learningContext"  => $learning_context,
       "activityContext"  => $activity_context,
       "timestamp"         => $timestamp,
       "__action"          => "measure"
-    );
+    );*/
+    
+    $body = array('_id'=>$this->apiKey,'t'=>$timestamp,'d'=>$caliperEvent,"__action"=> "measure");
+    
 
     return $this->enqueue($body);
   }

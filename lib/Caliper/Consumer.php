@@ -41,7 +41,7 @@ abstract class Caliper_Consumer {
    * @param  number $timestamp         unix seconds since epoch (time()) [optional]
    * @return boolean                   whether the measure call succeeded
    */
-  abstract public function measure($action, $learning_context, $activity_context, $timestamp);
+  abstract public function measure($action, $learning_context, $activity_context, $timestamp,$caliperEvent);
 
   /**
    * Check whether debug mode is enabled

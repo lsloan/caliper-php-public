@@ -1,40 +1,47 @@
 <?php
 
 /**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
+ * 
+ * @author 
+ *
  */
-class CaliperEntity {
+class CaliperEntity implements JsonSerializable{
 
-    private $id;
-    private $type;
-    private $lastModifiedAt;
-    private $properties;
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id) {
-        $this->id = $id;
-    }
+    protected  $id;
+    public  $type;
+    private $lastModifiedAt =0;
+    private $properties ;
+    
+    public function __construct()
+    {
+    	
+    }   
 
     /**
-     * @return mixed
+     * @return the id
      */
     public function getId() {
         return $this->id;
     }
-
+    
+    /**
+     * @param mixed $id
+     * 				the id to set
+     */
+    public function setId($id) {
+    	$this->id = $id;
+    }
+    
     /**
      * @param mixed $lastModifiedAt
+     *  					the lastModifiedAt to set
      */
     public function setLastModifiedAt($lastModifiedAt) {
         $this->lastModifiedAt = $lastModifiedAt;
     }
 
     /**
-     * @return mixed
+     * @return the lastModifiedAt
      */
     public function getLastModifiedAt() {
         return $this->lastModifiedAt;
@@ -42,13 +49,14 @@ class CaliperEntity {
 
     /**
      * @param mixed $properties
+     * 						the properties to set
      */
     public function setProperties($properties) {
         $this->properties = $properties;
     }
 
     /**
-     * @return mixed
+     * @return the properties
      */
     public function getProperties() {
         return $this->properties;
@@ -56,15 +64,30 @@ class CaliperEntity {
 
     /**
      * @param mixed $type
+     * 				the type to set
      */
     public function setType($type) {
         $this->type = $type;
     }
 
     /**
-     * @return mixed
+     * @return the type
+     * 			
      */
     public function getType() {
         return $this->type;
+    }
+    
+    /**
+     ** @see JsonSerializable::jsonSerialize()
+     *to implement jsonLD
+     */
+    public function jsonSerialize( ){
+    	
+    	return ['@id'=>$this->getId(),
+		    	'@type'=>$this->getType(),
+		    	'lastModifiedTime'=>$this->getLastModifiedAt(),
+		    	'properties'=>(object) $this->getProperties()
+				];
     }
 } 
