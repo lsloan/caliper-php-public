@@ -25,23 +25,15 @@ abstract class Caliper_Consumer {
 
   /**
    * Describe an entity 
-   * @param  string $type       the type of the entity (e.g. Course, Person)
-   * @param  string $entity_id  id of the entity as known by the source system
-   * @param  array  $properties properties associated with the entity 
-   * @param  number $timestamp  unix seconds since epoch (time()) [optional]
    * @return boolean            whether the track call succeeded
    */
-  abstract public function describe($type, $entity_id, $properties, $timestamp);
+  abstract public function describe($caliperEvent);
 
   /**
    * Send learning events
-   * @param  string $action            the action (from an Activity metric profile)
-   * @param  string $learning_context  the learning context for the event
-   * @param  array  $activity_context  the activity context for the event 
-   * @param  number $timestamp         unix seconds since epoch (time()) [optional]
    * @return boolean                   whether the measure call succeeded
    */
-  abstract public function measure($action, $learning_context, $activity_context, $timestamp);
+  abstract public function measure($caliperEvent);
 
   /**
    * Check whether debug mode is enabled

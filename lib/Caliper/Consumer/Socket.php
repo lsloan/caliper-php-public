@@ -35,7 +35,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
 
     if (!$socket)
       return;
-
+    unset($item['__action']);
     $payload = $item;
 
     $payload = json_encode($payload);
@@ -52,11 +52,14 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
 
     if (!$socket)
       return;
-
-    $payload = $item;
-
-    $payload = json_encode($payload);
-
+    
+    unset($item['__action']);
+    $payload = $item;    
+    
+    echo '<pre>';print_r($payload);echo '</pre>';    
+    $payload = json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);    
+    echo '<pre>'.$payload.'</pre>';
+    
     $body = $this->createMeasureBody($this->options["host"], $payload);
 
     print ("Sending MEASURE: ".$body);
