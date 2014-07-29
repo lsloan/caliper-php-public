@@ -37,47 +37,22 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
 
   /**
    * Describe an entity 
-   * @param  string $type       the type of the entity (e.g. Course, Person)
-   * @param  string $entity_id  id of the entity as known by the source system
-   * @param  array  $properties properties associated with the entity 
-   * @param  number $timestamp  unix seconds since epoch (time()) [optional]
    * @return boolean whether the track call succeeded
    */
-  public function describe($type, $entity_id, $properties, $timestamp) {
+  public function describe($caliperEvent) {
 
-    $body = array(
-      "apiKey"     => $this->apiKey,
-      "type"       => $type,
-      "entityId"   => $entity_id,
-      "properties" => $properties,
-      "timestamp"  => $timestamp,
-      "__action"   => "describe"
-    );
+  	$body = array('d'=>$caliperEvent,"__action"=> "measure");
 
     return $this->enqueue($body);
   }
 
   /**
    * Send learning events
-   * @param  string $action            the action (from an Activity metric profile)
-   * @param  string $learning_context  the learning context for the event
-   * @param  array  $activity_context  the activity context for the event 
-   * @param  number $timestamp         unix seconds since epoch (time()) [optional]
    * @return boolean                   whether the measure call succeeded
    */
-  public function measure($action, $learning_context, $activity_context, $timestamp,$caliperEvent) {
-
-  /*  $body = array(
-      "apiKey"            => $this->apiKey,
-      "action"            => $action,
-      "learningContext"  => $learning_context,
-      "activityContext"  => $activity_context,
-      "timestamp"         => $timestamp,
-      "__action"          => "measure"
-    );*/
+  public function measure($caliperEvent) {
     
-    $body = array('_id'=>$this->apiKey,'t'=>$timestamp,'d'=>$caliperEvent,"__action"=> "measure");
-    
+    $body = array('d'=>$caliperEvent,"__action"=> "measure");    
 
     return $this->enqueue($body);
   }

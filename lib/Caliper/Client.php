@@ -48,20 +48,7 @@ class Caliper_Client {
      */
     public function measure($caliperEvent, $timestamp=null) {
 
-        $timestamp = $this->formatTime($caliperEvent->getStartedAt());
-         $action = $caliperEvent->getAction();
-        $learning_context = $caliperEvent->getObject();
-        $activity_context = $caliperEvent->getEdApp();
-
-        // json_encode will serialize as []
-        if (count($learning_context) == 0) {
-            $learning_context = null;
-        }
-        if (count($activity_context) == 0) {
-            $activity_context = null;
-        }
-
-        return $this->consumer->measure($action, $learning_context, $activity_context, $timestamp,$caliperEvent);
+        return $this->consumer->measure($caliperEvent);
     }
 
     /**
@@ -71,17 +58,7 @@ class Caliper_Client {
      */
     public function describe($caliperEntity, $timestamp = null) {
 
-        $timestamp = $this->formatTime($timestamp);
-        $entity_id = $caliperEntity->getId();
-        $type = $caliperEntity->getType();
-        $properties = $caliperEntity->getProperties();
-
-        // json_encode will serialize as []
-        if (count($properties) == 0) {
-            $properties = null;
-        }
-
-        return $this->consumer->describe($type, $entity_id, $properties, $timestamp);
+       return $this->consumer->describe($caliperEntity);
     }
 
     /**
