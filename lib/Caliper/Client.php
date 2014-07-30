@@ -48,7 +48,7 @@ class Caliper_Client {
      */
     public function measure($caliperEvent, $timestamp=null) {
 
-        return $this->consumer->measure($caliperEvent);
+        return $this->consumer->measure($caliperEvent,$this->formatTime($timestamp));
     }
 
     /**
@@ -58,7 +58,7 @@ class Caliper_Client {
      */
     public function describe($caliperEntity, $timestamp = null) {
 
-       return $this->consumer->describe($caliperEntity);
+       return $this->consumer->describe($caliperEntity,$this->formatTime($timestamp));
     }
 
     /**

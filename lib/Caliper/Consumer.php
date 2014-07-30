@@ -27,13 +27,13 @@ abstract class Caliper_Consumer {
    * Describe an entity 
    * @return boolean            whether the track call succeeded
    */
-  abstract public function describe($caliperEvent);
+  abstract public function describe($caliperEntity,$timestamp);
 
   /**
    * Send learning events
    * @return boolean                   whether the measure call succeeded
    */
-  abstract public function measure($caliperEvent);
+  abstract public function measure($caliperEvent,$timestamp);
 
   /**
    * Check whether debug mode is enabled

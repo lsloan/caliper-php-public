@@ -5,7 +5,7 @@ require_once (dirname(dirname(__FILE__)).'/CaliperDigitalResource.php');
 require_once (dirname(dirname(__FILE__)).'/schemadotorg/CreativeWork.php');
 
 /**
- * 
+ * @author balachandiran.v
  *
  *         Representation of an EPUB 3 Volume
  *

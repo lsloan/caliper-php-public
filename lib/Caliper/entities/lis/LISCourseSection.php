@@ -1,9 +1,10 @@
 <?php
-/**
- *
- */
+
 require_once 'LISOrganization.php';
 
+/**
+ * @author balachandiran.v
+ */
 class LISCourseSection extends LISOrganization implements JsonSerializable {
 
 	private $label;
@@ -67,9 +68,17 @@ class LISCourseSection extends LISOrganization implements JsonSerializable {
 	}
 	
 	public  function jsonSerialize(){
-		$parentProperties =parent::jsonSerialize();
-		$lisCourseSectionProperties =['label'=>$this->getLabel(),'courseNumber' => $this->getCourseNumber(),'semester'=>$this->getSemester()];
-		return array_merge($parentProperties,$lisCourseSectionProperties);
+
+		return ['@id'=>$this->getId(),
+				'@type'=>$this->getType(),
+				'lastModifiedTime'=>$this->getLastModifiedAt(),
+				'properties'=>(object) $this->getProperties(),
+				'title'=>$this->getTitle(),
+				'label'=>$this->getLabel(),
+				'courseNumber' => $this->getCourseNumber(),
+				'semester'=>$this->getSemester()
+				];
+	
 	}
 
 }

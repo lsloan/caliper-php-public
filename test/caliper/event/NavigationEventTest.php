@@ -13,7 +13,7 @@ require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/schemadotorg/We
 
 
 /**
- * 
+ * @author balachandiran.v
  *
  */
 class NavigationEventTest extends PHPUnit_Framework_TestCase {
@@ -61,7 +61,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 	
 	 function testNavigationEventSerializesToJSON(){	
 		
-	 	$this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/resources/fixtures/NavigationEvent.json',json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+	 	$this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/NavigationEvent.json',json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
 			
 	 }
 }

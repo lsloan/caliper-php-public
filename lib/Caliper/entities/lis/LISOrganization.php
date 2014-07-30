@@ -1,8 +1,10 @@
 <?php
-/**
- *
- */
 
+require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
+
+/**
+ * @author balachandiran.v
+ */
 require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
 
 
@@ -39,8 +41,12 @@ class LISOrganization extends CaliperEntity implements JsonSerializable{
 	
 	public  function jsonSerialize()
 	{
-		$parentProperties =parent::jsonSerialize();
-		$lisorganizationProperties =['title'=>$this->getTitle()];
-		 return array_merge($parentProperties,$lisorganizationProperties);
+		return ['@id'=>$this->getId(),
+				'@type'=>$this->getType(),
+				'lastModifiedTime'=>$this->getLastModifiedAt(),
+				'properties'=>(object) $this->getProperties(),
+				'title'=>$this->getTitle()
+				];
+	
 	}
 }

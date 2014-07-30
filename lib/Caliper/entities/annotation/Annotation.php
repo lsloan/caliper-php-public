@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../CaliperEntity.php';
 require_once dirname(__FILE__).'/../schemadotorg/Thing.php';
 
 /**
- * 
+ * @author balachandiran.v
  *
  *         The super-class of all Annotation types.
  *
@@ -12,7 +12,7 @@ require_once dirname(__FILE__).'/../schemadotorg/Thing.php';
  *         which are specified in the Caliper Annotation Metric Profile
  *
  */
-class Annotation extends CaliperEntity implements Thing {
+class Annotation extends CaliperEntity implements Thing,JsonSerializable {
 
 	private $target;
 
@@ -34,5 +34,13 @@ class Annotation extends CaliperEntity implements Thing {
 	 */
 	public function setTarget($target) {
 		$this->target = $target;
+	}
+	public function jsonSerialize(){
+		return ['@id'=>$this->getId(),
+				'@type'=>$this->getType(),
+				'lastModifiedTime'=>$this->getLastModifiedAt(),
+				'properties'=>(object) $this->getProperties(),
+				'target'=> $this->getTarget(),
+				];
 	}
 }

@@ -1,19 +1,19 @@
 {
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/ViewedEvent",
-    "@type": "http://purl.imsglobal.org/caliper/v1/ViewedEvent",
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/AnnotationEvent",
+    "@type": "http://purl.imsglobal.org/caliper/v1/AnnotationEvent",
     "actor": {
         "@id": "https://some-university.edu/students/jones-alice-554433",
         "@type": "http://purl.imsglobal.org/caliper/v1/LISPerson",
         "lastModifiedTime": 1401216031920,
         "properties": {}
     },
-    "action": "viewed",
+    "action": "bookmarked",
     "object": {
-        "@id": "https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/1",
+        "@id": "https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/3",
         "@type": "http://www.idpf.org/epub/vocab/structure/#subchapter",
         "lastModifiedTime": 1401216031920,
         "properties": {},
-        "name": "Key Figures: George Washington)",
+        "name": "Key Figures: Paul Revere)",
         "alignedLearningObjectives": [],
         "keywords": [],
         "about": null,
@@ -32,6 +32,36 @@
         }
     },
     "target": null,
+    "generated": {
+        "@id": "https://someEduApp.edu/bookmarks/2bb58ace-12fe-4e8b-b783-5733b87f9a16",
+        "@type": "http://purl.imsglobal.org/caliper/v1/BookmarkAnnotation",
+        "lastModifiedTime": 0,
+        "properties": {},
+        "target": {
+            "@id": "https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/3",
+            "@type": "http://www.idpf.org/epub/vocab/structure/#subchapter",
+            "lastModifiedTime": 1401216031920,
+            "properties": {},
+            "name": "Key Figures: Paul Revere)",
+            "alignedLearningObjectives": [],
+            "keywords": [],
+            "about": null,
+            "language": null,
+            "partOf": {
+                "@id": "https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)",
+                "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
+                "lastModifiedTime": 1401216031920,
+                "properties": {},
+                "name": "The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)",
+                "alignedLearningObjectives": [],
+                "keywords": [],
+                "about": null,
+                "language": "English",
+                "partOf": null
+            }
+        },
+        "bookmarkNotes": null
+    },
     "startedAtTime": 1401216031920,
     "endedAtTime": 0,
     "edApp": {

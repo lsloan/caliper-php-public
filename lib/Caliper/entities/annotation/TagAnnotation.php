@@ -1,7 +1,9 @@
 <?php
 
 require_once 'Annotation.php';
+
 /**
+ * @author balachandiran.v
  *
  *
  */
@@ -27,6 +29,15 @@ class TagAnnotation extends Annotation {
 	 */
 	public function  setTags($tags) {
 		$this->tags = $tags;
+	}
+	public function jsonSerialize(){
+		return ['@id'=>$this->getId(),
+		'@type'=>$this->getType(),
+		'lastModifiedTime'=>$this->getLastModifiedAt(),
+		'properties'=>(object) $this->getProperties(),
+		'target'=> $this->getTarget(),
+		'tags'=>$this->getTags(),
+		];
 	}
 
 }

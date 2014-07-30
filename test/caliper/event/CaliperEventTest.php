@@ -8,6 +8,12 @@ require_once dirname(__FILE__).'/../../../lib/Caliper/entities/reading/EPubVolum
 require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/lis/LISPerson.php');
 require_once dirname(__FILE__).'/../../../lib/Caliper/entities/ActivityContext.php';
 
+
+/**
+ * 
+ * @author balachandiran.v
+ *
+ */
 class CaliperEventTest extends PHPUnit_Framework_TestCase {
 
 	private $caliperEvent;
@@ -44,6 +50,6 @@ class CaliperEventTest extends PHPUnit_Framework_TestCase {
 
 	public function testcaliperEventSerializesToJSON(){
 
-		 $this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/resources/fixtures/CaliperEvent.json',json_encode($this->caliperEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+		 $this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/CaliperEvent.json',json_encode($this->caliperEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
 	}
 }

@@ -1,0 +1,87 @@
+{
+    "@context": "http://purl.imsglobal.org/ctx/caliper/v1/AnnotationEvent",
+    "@type": "http://purl.imsglobal.org/caliper/v1/AnnotationEvent",
+    "actor": {
+        "@id": "https://some-university.edu/students/jones-alice-554433",
+        "@type": "http://purl.imsglobal.org/caliper/v1/LISPerson",
+        "lastModifiedTime": 1401216031920,
+        "properties": {}
+    },
+    "action": "tagged",
+    "object": {
+        "@id": "http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322/aXfsadf12",
+        "@type": "http://www.idpf.org/epub/vocab/structure/#subchapter",
+        "lastModifiedTime": 0,
+        "properties": {},
+        "name": "The Boston Tea Party",
+        "alignedLearningObjectives": [],
+        "keywords": [],
+        "about": null,
+        "language": "English",
+        "partOf": {
+            "@id": "http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322",
+            "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
+            "lastModifiedTime": 1401216031920,
+            "properties": {},
+            "name": "The American Revolution: A Concise History | 978-0-19-531295-9",
+            "alignedLearningObjectives": [],
+            "keywords": [],
+            "about": null,
+            "language": "English",
+            "partOf": null
+        }
+    },
+    "target": null,
+    "generated": {
+        "@id": "https://someEduApp.edu/tags/822f7272-7501-49ae-b537-f27c98145906",
+        "@type": "http://purl.imsglobal.org/caliper/v1/TagAnnotation",
+        "lastModifiedTime": 0,
+        "properties": {},
+        "target": {
+            "@id": "http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322/aXfsadf12",
+            "@type": "http://www.idpf.org/epub/vocab/structure/#subchapter",
+            "lastModifiedTime": 0,
+            "properties": {},
+            "name": "The Boston Tea Party",
+            "alignedLearningObjectives": [],
+            "keywords": [],
+            "about": null,
+            "language": "English",
+            "partOf": {
+                "@id": "http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322",
+                "@type": "http://www.idpf.org/epub/vocab/structure/#volume",
+                "lastModifiedTime": 1401216031920,
+                "properties": {},
+                "name": "The American Revolution: A Concise History | 978-0-19-531295-9",
+                "alignedLearningObjectives": [],
+                "keywords": [],
+                "about": null,
+                "language": "English",
+                "partOf": null
+            }
+        },
+        "tags": [
+            "to-read",
+            "1776",
+            "shared-with-project-team"
+        ]
+    },
+    "startedAtTime": 1401216031920,
+    "endedAtTime": 0,
+    "edApp": {
+        "@id": "http://www.coursesmart.com/reader",
+        "@type": "http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader",
+        "lastModifiedTime": 1401216031920,
+        "properties": {}
+    },
+    "group": {
+        "@id": "https://some-university.edu/politicalScience/2014/american-revolution-101",
+        "@type": "http://purl.imsglobal.org/caliper/v1/LISCourseSection",
+        "lastModifiedTime": 1401216031920,
+        "properties": {},
+        "title": null,
+        "label": "American Revolution 101",
+        "courseNumber": "AmRev-101",
+        "semester": "Spring-2014"
+    }
+}
