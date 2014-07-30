@@ -5,9 +5,9 @@ require_once (dirname(dirname(__FILE__)).'/CaliperEvent.php');
 require_once (dirname(dirname(dirname(__FILE__))).'/entities/CaliperDigitalResource.php');
 
 /**
- * 
+ * @author balachandiran.v
  *
-*/
+ */
 class ViewedEvent extends CaliperEvent {
 
 	public function __construct(){

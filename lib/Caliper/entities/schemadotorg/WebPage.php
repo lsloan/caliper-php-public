@@ -3,7 +3,11 @@
 require_once (dirname(dirname(__FILE__)).'/CaliperDigitalResource.php');
 require_once 'CreativeWork.php';
 
-
+/**
+ * 
+ * @author balachandiran.v
+ *
+ */
 class WebPage extends CaliperDigitalResource implements CreativeWork {
 
 	public function  __construct($id) {

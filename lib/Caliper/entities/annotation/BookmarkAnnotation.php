@@ -1,11 +1,12 @@
 <?php
 
 require_once 'Annotation.php';
+
 /**
- * 
+ *  @author balachandiran.v
  *
  */
-class BookmarkAnnotation extends Annotation {
+class BookmarkAnnotation extends Annotation implements JsonSerializable {
 
 	private $bookmarkNotes;
 
@@ -27,5 +28,15 @@ class BookmarkAnnotation extends Annotation {
 	 */
 	public function  setBookmarkNotes($bookmarkNotes) {
 		$this->bookmarkNotes = $bookmarkNotes;
+	}
+	
+	public function jsonSerialize(){
+		return ['@id'=>$this->getId(),
+				'@type'=>$this->getType(),
+				'lastModifiedTime'=>$this->getLastModifiedAt(),
+				'properties'=>(object) $this->getProperties(),
+				'target'=> $this->getTarget(),
+				'bookmarkNotes'=>$this->getBookmarkNotes(),
+				];
 	}
 }

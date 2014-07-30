@@ -2,11 +2,12 @@
 
 require_once 'Annotation.php';
 require_once 'TextPositionSelector.php';
+
 /**
- * 
+ *  @author balachandiran.v
  *
  */
-class HighlightAnnotation extends Annotation {
+class HighlightAnnotation extends Annotation implements JsonSerializable {
 
 	private $selection;
 	private $selectionText;
@@ -45,6 +46,16 @@ class HighlightAnnotation extends Annotation {
 	 */
 	public function setSelectionText($selectionText) {
 		$this->selectionText = $selectionText;
+	}
+	public function jsonSerialize(){
+		return ['@id'=>$this->getId(),
+				'@type'=>$this->getType(),
+				'lastModifiedTime'=>$this->getLastModifiedAt(),
+				'properties'=>(object) $this->getProperties(),
+				'target' => $this->getTarget(),
+				'selection'=>$this->getSelection(),
+				'selectionText'=>$this->getSelectionText()
+				];
 	}
 
 }

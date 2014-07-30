@@ -17,6 +17,7 @@ class CaliperEvent implements JsonSerializable {
     private $endedAt =0; 
     private $edApp;
     private $lisOrganization;
+    private $generated;
     
     /*
     private $agent;
@@ -182,7 +183,22 @@ class CaliperEvent implements JsonSerializable {
    	return $this->target;
    }
    
- 
+
+   /**
+    * @return the generated
+    */
+   public function  getGenerated() {
+   	return $this->generated;
+   }
+   
+   
+   /**
+    * @param generated
+    *            the generated to set
+    */
+   public function  setGenerated($generated) {
+   	$this->generated = $generated;
+   }
   
     /**
      * 
@@ -197,6 +213,7 @@ class CaliperEvent implements JsonSerializable {
 			'action'=>$this->getAction(),
 			'object'=>$this->getObject(),
 			'target'=>$this->getTarget(),
+			'generated'=>$this->getGenerated(),
 			'startedAtTime'=>$this->getStartedAt(),
 			'endedAtTime'=>$this->getEndedAt(),
     		'edApp'=>$this->getEdApp(),

@@ -39,9 +39,13 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * Describe an entity 
    * @return boolean whether the track call succeeded
    */
-  public function describe($caliperEvent) {
+  public function describe($caliperEntity,$timestamp) {
 
-  	$body = array('d'=>$caliperEvent,"__action"=> "measure");
+  	  $body = array('id'=>uniqid(uniqid(),true),
+		  			'type'=>'caliperEntity',
+		  			'time'=>$timestamp,
+		  			'data'=>$caliperEntity,
+		  			"__action"=> "describe");
 
     return $this->enqueue($body);
   }
@@ -50,9 +54,13 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * Send learning events
    * @return boolean                   whether the measure call succeeded
    */
-  public function measure($caliperEvent) {
+  public function measure($caliperEvent,$timestamp) {
     
-    $body = array('d'=>$caliperEvent,"__action"=> "measure");    
+      $body = array("id"=>uniqid(uniqid(),true),
+		    		'type'=>'caliperEvent',
+		    		'time'=>$timestamp,
+		    		'data'=>$caliperEvent,
+		    		"__action"=> "measure");    
 
     return $this->enqueue($body);
   }
@@ -69,6 +77,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
     $is_describe = $item["__action"];
     if (isset($is_describe) && $is_describe == "describe") {
       //print("processing DESCRIBE");
+      unset($item["__action"]);
       $this->flushSingleDescribe($item);
       return true;
     }
@@ -76,6 +85,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
     $is_measure = $item["__action"];
     if (isset($is_measure) && $is_measure == "measure") {
       //print("processing MEASURE");
+    	unset($item["__action"]);
       $this->flushSingleMeasure($item);
       return true;
     }

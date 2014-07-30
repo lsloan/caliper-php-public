@@ -1,11 +1,12 @@
 <?php
-/**
- *
- */
 require_once (dirname(dirname(__FILE__)).'/CaliperEvent.php');
 require_once (dirname(dirname(dirname(__FILE__))).'/entities/CaliperDigitalResource.php');
 
 
+/**
+ *@author balachandiran.v
+ *
+ */
 class NavigationEvent extends CaliperEvent implements JsonSerializable {
 
 	

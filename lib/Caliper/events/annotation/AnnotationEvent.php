@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/../CaliperEvent.php';
 
 /**
- * 
+ * @author balachandiran.v
  *
  */
 class AnnotationEvent extends CaliperEvent {

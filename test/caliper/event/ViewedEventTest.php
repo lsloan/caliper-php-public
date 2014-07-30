@@ -11,7 +11,11 @@ require_once (dirname(__FILE__) .'/../../../lib/Caliper/events/reading/ViewedEve
 require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/schemadotorg/WebPage.php');
 
 
-
+/**
+ * 
+ * @author balachandiran.v
+ *
+ */
 
 class ViewedEventTest extends PHPUnit_Framework_TestCase {
 	
@@ -60,7 +64,7 @@ class ViewedEventTest extends PHPUnit_Framework_TestCase {
 	
 	 function testViewedEventSerializesToJSON(){	
 		
-	 	$this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/resources/fixtures/ViewedEvent.json',json_encode($this->viewedEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+	 	$this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/ViewedEvent.json',json_encode($this->viewedEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
 			
 	 }
 }
