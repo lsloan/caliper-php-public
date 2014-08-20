@@ -27,7 +27,7 @@ class EventStoreEnvelope implements JsonSerializable {
     	// Note: this is not the CaliperEvent timestamp
     	$this->setId($this->getNewGUID());
     	$this->setType("caliperEvent");
-    	$this->setTime(time());
+    	$this->setTime(time()*1000);
     }
 	
 	
