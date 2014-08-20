@@ -26,6 +26,12 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
 
     if (!isset($options["host"]))
       $options["host"] = "localhost";
+    
+    if (!isset($options["describeURI"]))
+      $options["describeURI"] = "/v1/describe";
+
+    if (!isset($options["measureURI"]))
+      $options["measureURI"] = "/v1/measure";
 
     parent::__construct($apiKey, $options);
   }
@@ -36,7 +42,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     if (!$socket)
       return;    
 
-    $payload = $item;
+    $payload = new EventStoreEnvelope($item);
 
     $payload = json_encode($payload);
 
@@ -53,10 +59,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     if (!$socket)
       return;    
   
-    $payload = $item;     
+    $payload = new EventStoreEnvelope($item);     
    
     $payload = json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);   
-    echo '<pre>'.$payload.'</pre>';
     
     $body = $this->createMeasureBody($this->options["host"], $payload);
 
@@ -72,7 +77,11 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
 
     $protocol = $this->ssl() ? "ssl" : "tcp";
     $host = $this->options["host"];
-    $port = $this->ssl() ? 443 : 80;
+    if ($this->options["port"]) {
+        $port = $this->options["port"];
+    } else {
+        $port = $this->ssl() ? 443 : 80;
+    }
     $timeout = $this->options["timeout"];
 
     try {
@@ -86,6 +95,8 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
         $this->socket_failed = true;
         return false;
       }
+
+      echo '<pre>[DEBUG] Connected to event store : '.$protocol . "://" . $host.':'.$port.'</pre>';
 
       return $socket;
 
@@ -110,6 +121,8 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $bytes_total = strlen($req);
     $closed = false;
 
+    echo '<pre>[DEBUG] Making request : '.$req.'</pre>';
+
     # Write the request
     while (!$closed && $bytes_written < $bytes_total) {
       try {
@@ -120,8 +133,10 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
       }
       if (!isset($written) || !$written) {
         $closed = true;
+        echo '<pre>[DEBUG] Socket was in closed state... retrying : '.$retry.'</pre>';
       } else {
         $bytes_written += $written;
+        echo '<pre>[DEBUG] Bytes written: '.$written.'</pre>';
       }
     }
 
@@ -140,13 +155,33 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $success = true;
 
     if ($this->debug()) {
+    // if (true) {
       $res = $this->parseResponse(fread($socket, 2048));
-
+      echo '<pre>[DEBUG] Response: '.$res.'</pre>';
       if ($res["status"] != "200") {
         $this->handleError($res["status"], $res["message"]);
         $success = false;
       }
     }
+
+    // while (!feof($socket)) { 
+    //   echo '<pre>[DEBUG] Response: '.fgets($socket, 128).'</pre>';
+    // } 
+
+    // while (!feof($socket)) {
+
+    //   if($lineBreak == 0)
+    //   while(trim(fgets($socket, 2014)) != "") {
+    //     $lineBreak = 1;
+    //     continue;
+    //   }
+  
+    //   $line = fgets($socket, 1024);
+    //   $response .= "$line";
+    // } 
+    // echo '<pre>[DEBUG] Response: '.$response.'</pre>';
+
+    fclose($socket);
 
     return $success;
   }
@@ -160,11 +195,12 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
   private function createDescribeBody($host, $content) {
 
     $req = "";
-    $req.= "PUT /v1/describe HTTP/1.1\r\n";
+    $req.= "POST " . $this->options["describeURI"] . " HTTP/1.1\r\n";
     $req.= "Host: " . $host . "\r\n";
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";
+    // $req.= "Connection: Close\r\n\r\n";
     $req.= "\r\n";
     $req.= $content;
 
@@ -180,11 +216,12 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
   private function createMeasureBody($host, $content) {
 
     $req = "";
-    $req.= "PUT /v1/learningevent HTTP/1.1\r\n";
+    $req.= "POST " . $this->options["measureURI"] . " HTTP/1.1\r\n";
     $req.= "Host: " . $host . "\r\n";
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";
+    // $req.= "Connection: Close\r\n\r\n";
     $req.= "\r\n";
     $req.= $content;
 
