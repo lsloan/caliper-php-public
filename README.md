@@ -1,6 +1,6 @@
 caliper-php
 ================
-
+NOTE: THESE MATERIALS ARE FOR IMS CONTRIBUTING MEMBERS ONLY.
 caliper-php is a php client for [Caliper](http://www.imsglobal.org) that provides an implementation of the Caliper Sensor API.
 
 ## Documentation
@@ -40,6 +40,8 @@ Caliper::init('com.acme.apikey', $options);
 
 You only need to call init once when your php file is requested. All of your files will then have access to the same Caliper client.
 
-©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
+©2014 IMS Global Learning Consortium, Inc. All Rights Reserved.
+Trademark Information- http://www.imsglobal.org/copyright.html
+
 For license information contact, info@imsglobal.org
 
