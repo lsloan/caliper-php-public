@@ -21,125 +21,90 @@
  *         as Scheme and Lisp
  *
  */
-
-
 class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
 
-	public  function __construct(){
-	
-	}
-	private $name;
-	private $parentRef;	
-	private $alignedLearningObjectives = array();	
-	private $keywords = array();	
-	private $about;
-	private $language;
+    private $objectType;
+    private $parentRef;
+    private $alignedLearningObjectives = array();
+    private $keywords = array();
 
-	/**
-	 * @return the name
-	 */
-	public function  getName(){
-		return $this->name;
-	}
+    public function __construct() {
+        parent::__construct();
+    }
 
-	/**
-	 * @param name
-	 *            the name to set
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
-	/**
-	 * @return the parentRef
-	 */
-	public function getParentRef() {
-		return $this->parentRef;
-	}
-	
-	/**
-	 * @param parentRef the parentRef to set
-	 */
-	public function setParentRef($parentRef) {
-		$this->parentRef = $parentRef;
-	}
-	
-	/**
-	 * @return the alignedLearningObjectives
-	 */
-	public function  getAlignedLearningObjectives() {
-		return $this->alignedLearningObjectives;
-	}
-	
-	/**
-	 * @param alignedLearningObjectives the alignedLearningObjectives to set
-	 */
-	public function setAlignedLearningObjectives($alignedLearningObjectives) {
-		$this->alignedLearningObjectives = $alignedLearningObjectives;
-	}
-	
-	/**
-	 * @return the keywords
-	 */
-	public function  getKeywords() {
-		return $this->keywords;
-	}
-	
-	/**
-	 * @param keywords the keywords to set
-	 */
-	public function setKeywords($keywords) {
-		$this->keywords = $keywords;
-	}
-	
-	/**
-	 * @return the about
-	 */
-	public function  getAbout() {
-		return $this->about;
-	}
-	
-	/**
-	 * @param about the about to set
-	 */
-	public function  setAbout($about) {
-		$this->about = $about;
-	}
-	
-	/**
-	 * @return the language
-	 */
-	public function  getLanguage() {
-		return $this->language;
-	}
-	
-	/**
-	 * @param language the language to set
-	 */
-	public function  setLanguage($language) {
-		$this->language = $language;
-	}
+    /**
+     ** @see JsonSerializable::jsonSerialize()
+     *to implement jsonLD
+     */
 
-	/**
-	 ** @see JsonSerializable::jsonSerialize()
-	 *to implement jsonLD
-	 */
-	
-	public  function jsonSerialize()
-	{
-		
-		return  ['@id'=>$this->getId(),
-					'@type'=>$this->getType(),
-					'lastModifiedTime'=>$this->getLastModifiedAt(),
-					'properties'=>(object) $this->getProperties(),
-					"name"=>$this->getName(),
-					'alignedLearningObjectives'=>$this->getAlignedLearningObjectives(),
-					'keywords'=>$this->keywords,
-					"about"=>$this->getAbout(),
-					'language'=>$this->getLanguage(),
-					'partOf'=>$this->getParentRef()
-				];
-		
-	}
+    public function jsonSerialize() {
+
+        return ['@id' => $this->getId(),
+            '@type' => $this->getType(),
+            'name' => $this->getName(),
+            'objectType' => $this->getObjectType(),
+            'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
+            'keyword' => $this->getKeywords(),
+            'partOf' => $this->getParentRef(),
+            'lastModifiedTime' => $this->getLastModifiedAt()
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getObjectType() {
+        return $this->objectType;
+    }
+
+    /**
+     * @param mixed $objectType
+     */
+    public function setObjectType($objectType) {
+        $this->objectType = $objectType;
+    }
+
+    /**
+     * @return the alignedLearningObjectives
+     */
+    public function  getAlignedLearningObjectives() {
+        return $this->alignedLearningObjectives;
+    }
+
+    /**
+     * @param alignedLearningObjectives the alignedLearningObjectives to set
+     */
+    public function setAlignedLearningObjectives($alignedLearningObjectives) {
+        $this->alignedLearningObjectives = $alignedLearningObjectives;
+    }
+
+    /**
+     * @return the keywords
+     */
+    public function  getKeywords() {
+        return $this->keywords;
+    }
+
+    /**
+     * @param keywords the keywords to set
+     */
+    public function setKeywords($keywords) {
+        $this->keywords = $keywords;
+    }
+
+    /**
+     * @return the parentRef
+     */
+    public function getParentRef() {
+        return $this->parentRef;
+    }
+
+    /**
+     * @param parentRef the parentRef to set
+     */
+    public function setParentRef($parentRef) {
+        $this->parentRef = $parentRef;
+    }
 
 
 }

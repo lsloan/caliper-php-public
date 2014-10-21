@@ -1,93 +1,118 @@
 <?php
 
 /**
- * 
- * @author balachandiran.v 
+ *
+ * @author balachandiran.v
  *
  */
-class CaliperEntity implements JsonSerializable{
+class CaliperEntity implements JsonSerializable {
 
-    protected  $id;
-    public  $type;
-    private $lastModifiedAt =0;
-    private $properties ;
-    
-    public function __construct()
-    {
-    	
-    }   
+    public $type;
+    public $name;
+    protected $id;
+    private $lastModifiedAt = 0;
+    private $properties;
+
+    function __construct() {
+    }
 
     /**
-     * @return the id
+     * It is preferred to call NutritionalFacts::createBuilder
+     * to calling this constructor directly.
+     */
+//    function __construct(CaliperEntityBuilder $b) {
+//        $this->type = $b->getType();
+//        $this->name = $b->getName();
+//        $this->id = $b->getId();
+//        $this->lastModifiedAt = $b->getLastModifiedAt();
+//        $this->properties = $b->getProperties();
+//    }
+//
+//    static function builder($s) {
+//        return new CaliperEntityBuilder();
+//    }
+
+    /**
+     ** @see JsonSerializable::jsonSerialize()
+     *to implement jsonLD
+     */
+    public function jsonSerialize() {
+
+        return ['@id' => $this->getId(),
+            '@type' => $this->getType(),
+            'name' => $this->getName(),
+            'lastModifiedTime' => $this->getLastModifiedAt()
+        ];
+    }
+
+    /**
+     * @return mixed
      */
     public function getId() {
         return $this->id;
     }
-    
+
     /**
      * @param mixed $id
-     * 				the id to set
      */
     public function setId($id) {
-    	$this->id = $id;
-    }
-    
-    /**
-     * @param mixed $lastModifiedAt
-     *  					the lastModifiedAt to set
-     */
-    public function setLastModifiedAt($lastModifiedAt) {
-        $this->lastModifiedAt = $lastModifiedAt;
+        $this->id = $id;
     }
 
     /**
-     * @return the lastModifiedAt
+     * @return mixed
      */
-    public function getLastModifiedAt() {
-        return $this->lastModifiedAt;
-    }
-
-    /**
-     * @param mixed $properties
-     * 						the properties to set
-     */
-    public function setProperties($properties) {
-        $this->properties = $properties;
-    }
-
-    /**
-     * @return the properties
-     */
-    public function getProperties() {
-        return $this->properties;
+    public function getType() {
+        return $this->type;
     }
 
     /**
      * @param mixed $type
-     * 				the type to set
      */
     public function setType($type) {
         $this->type = $type;
     }
 
     /**
-     * @return the type
-     * 			
+     * @return mixed
      */
-    public function getType() {
-        return $this->type;
+    public function getName() {
+        return $this->name;
     }
-    
+
     /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
+     * @param mixed $name
      */
-    public function jsonSerialize( ){
-    	
-    	return ['@id'=>$this->getId(),
-		    	'@type'=>$this->getType(),
-		    	'lastModifiedTime'=>$this->getLastModifiedAt(),
-		    	'properties'=>(object) $this->getProperties()
-				];
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastModifiedAt() {
+        return $this->lastModifiedAt;
+    }
+
+    /**
+     * @param int $lastModifiedAt
+     */
+    public function setLastModifiedAt($lastModifiedAt) {
+        $this->lastModifiedAt = $lastModifiedAt;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getProperties() {
+        return $this->properties;
+    }
+
+    /**
+     * @param mixed $properties
+     */
+    public function setProperties($properties) {
+        $this->properties = $properties;
     }
 } 
