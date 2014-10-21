@@ -1,6 +1,7 @@
 <?php
 require_once (dirname(dirname(__FILE__)).'/CaliperEvent.php');
 require_once (dirname(dirname(dirname(__FILE__))).'/entities/CaliperDigitalResource.php');
+require_once (dirname(dirname(dirname(__FILE__))).'/actions/ReadingActions.php');
 
 
 /**
@@ -12,9 +13,9 @@ class NavigationEvent extends CaliperEvent implements JsonSerializable {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->setContext("http://purl.imsglobal.org/ctx/caliper/v1/NavigationEvent");
-		$this->setType("http://purl.imsglobal.org/caliper/v1/NavigationEvent");
-		$this->setAction("navigatedTo");
+		$this->setContext(CaliperEventContexts::NAVIGATION);
+		$this->setType(CaliperEventTypes::NAVIGATION);
+		$this->setAction(ReadingActions::NAVIGATED_TO);
 	}
 	
 	
@@ -52,11 +53,11 @@ class NavigationEvent extends CaliperEvent implements JsonSerializable {
 				'target'=>$this->getTarget(),
 				'startedAtTime'=>$this->getStartedAt(),
 				'endedAtTime'=>$this->getEndedAt(),
+                'duration' => $this->getDuration(),
 				'edApp'=>$this->getEdApp(),
 				'group'=>$this->getLisOrganization(),
-				'navigatedFrom'=>$this->getFromResource()
+				'navigatedFrom'=>$this->getFromResource(),
 			  ];
-		
 	}
 }
 

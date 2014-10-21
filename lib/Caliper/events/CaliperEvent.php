@@ -49,8 +49,6 @@ class CaliperEvent implements JsonSerializable {
 
         return ['@context' => $this->getContext(),
             '@type' => $this->getType(),
-            'edApp' => $this->getEdApp(),
-            'group' => $this->getLisOrganization(),
             'actor' => $this->getActor(),
             'action' => $this->getAction(),
             'object' => $this->getObject(),
@@ -58,7 +56,9 @@ class CaliperEvent implements JsonSerializable {
             'generated' => $this->getGenerated(),
             'startedAtTime' => $this->getStartedAt(),
             'endedAtTime' => $this->getEndedAt(),
-            'duration' => $this->getDuration()
+            'duration' => $this->getDuration(),
+            'edApp' => $this->getEdApp(),
+            'group' => $this->getLisOrganization()
         ];
     }
 
