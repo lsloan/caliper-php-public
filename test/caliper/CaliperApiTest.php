@@ -6,7 +6,7 @@
  *  For license information contact, info@imsglobal.org
  */
 
-require_once(dirname(__FILE__) . "/../../lib/Caliper.php");
+require_once(dirname(__FILE__) . "/../../lib/CaliperSensor.php");
 require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/CaliperEntity.php");
 require_once(dirname(__FILE__) . "/../../lib/Caliper/events/CaliperEvent.php");
 

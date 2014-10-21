@@ -1,6 +1,6 @@
 <?php
 
-require_once  (dirname(__FILE__).'/../../../lib/Caliper.php');
+require_once(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
 require_once dirname(__FILE__).'/../../../lib/Caliper/entities/reading/EPubVolume.php';
 require_once dirname(__FILE__) . '/../../../lib/Caliper/entities/reading/EPubSubChapter.php';
 require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/lis/LISPerson.php');

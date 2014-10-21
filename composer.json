@@ -19,6 +19,6 @@
     "phpunit/phpunit": "3.7.*"
   },
   "autoload": {
-    "files": ["lib/Caliper.php"]
+    "files": ["lib/CaliperSensor.php"]
   }
 }
