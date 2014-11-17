@@ -22,7 +22,7 @@ class AnnotationEvent extends CaliperEvent {
 
         // Add check to see if $action exists in AnnotationActions enum
 		$event->setAction($action);
-        
+
 		return $event;
 	}
 }

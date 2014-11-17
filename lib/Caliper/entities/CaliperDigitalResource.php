@@ -105,6 +105,4 @@ class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
     public function setParentRef($parentRef) {
         $this->parentRef = $parentRef;
     }
-
-
 }
