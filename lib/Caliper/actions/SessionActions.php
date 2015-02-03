@@ -1,8 +1,7 @@
 <?php
-$caliperDir = '/Users/lsloan/Projects/caliper-php-lsloan/lib/Caliper';
-//$caliperDir = dirname(dirname(dirname(__FILE__)));
+$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . '/lib/';
 
-require_once(dirname($caliperDir) . '/util/SplEnumPlus.php');
+require_once($caliperLibDir . 'util/SplEnumPlus.php');
 
 class SessionActions extends \SplEnumPlus {
     const
