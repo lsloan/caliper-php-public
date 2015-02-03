@@ -1,10 +1,6 @@
 <?php
+require_once('CaliperAgent.php');
 
-/**
- *@author balachandiran.v
- *
- *CaliperLearningContext
- */
 class SoftwareApplication extends CaliperAgent{
 
 	public function __construct($id) {
