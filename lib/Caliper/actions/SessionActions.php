@@ -6,8 +6,8 @@ require_once($caliperLibDir . 'util/SplEnumPlus.php');
 class SessionActions extends \SplEnumPlus {
     const
         __default = '',
-        LOGGED_IN = 'session.loggedIn',
-        LOGGED_OUT = 'session.loggedOut',
-        TIMED_OUT = 'session.timedOut';
+        LOGGED_IN = 'loggedIn',
+        LOGGED_OUT = 'loggedOut',
+        TIMED_OUT = 'timedOut';
 }
 
