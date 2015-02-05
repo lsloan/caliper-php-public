@@ -1,5 +1,7 @@
 <?php
-require_once 'CaliperEntity.php';
+$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+
+require_once($caliperLibDir . 'Caliper/entities/CaliperEntity.php');
 
 /**
  *         Caliper representation of a CreativeWork
@@ -22,7 +24,7 @@ require_once 'CaliperEntity.php';
  */
 class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
 
-    private $objectType;
+    private $objectType = [];
     private $parentRef;
     private $alignedLearningObjectives = array();
     private $keywords = array();
@@ -42,6 +44,7 @@ class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'objectType' => $this->getObjectType(),
+            'properties'=>(object) $this->getProperties(),
             'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
             'keyword' => $this->getKeywords(),
             'partOf' => $this->getParentRef(),

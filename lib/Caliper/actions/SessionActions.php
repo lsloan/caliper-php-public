@@ -1,5 +1,5 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . '/lib/';
+$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
 
 require_once($caliperLibDir . 'util/SplEnumPlus.php');
 

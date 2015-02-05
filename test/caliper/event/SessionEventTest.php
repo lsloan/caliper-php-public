@@ -1,17 +1,14 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . '/lib/';
+$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
 
 require_once($caliperLibDir . 'CaliperSensor.php');
-require_once($caliperLibDir . 'Caliper/entities/CaliperDigitalResource.php');
 require_once($caliperLibDir . 'Caliper/entities/reading/EPubVolume.php');
 require_once($caliperLibDir . 'Caliper/entities/reading/EPubSubChapter.php');
-require_once($caliperLibDir . 'Caliper/entities/lis/LISCourseSection.php');
-require_once($caliperLibDir . 'Caliper/entities/lis/LISOrganization.php');
 require_once($caliperLibDir . 'Caliper/entities/lis/LISPerson.php');
 require_once($caliperLibDir . 'Caliper/entities/SoftwareApplication.php');
+require_once($caliperLibDir . 'Caliper/entities/Session.php');
 require_once($caliperLibDir . 'Caliper/events/reading/SessionEvent.php');
-require_once($caliperLibDir . 'Caliper/entities/schemadotorg/WebPage.php');
-
+require_once($caliperLibDir . 'Caliper/actions/SessionActions.php');
 
 class SessionEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
@@ -22,38 +19,33 @@ class SessionEventTest extends PHPUnit_Framework_TestCase {
 		$actor = new LISPerson('https://some-university.edu/user/554433');
 		$actor->setLastModifiedAt($testTime);
 
-		// TODO replace with value from SessionProfile::Actions
-		$action = 'session.loggedIn';
+		$action = SessionActions::LOGGED_IN;
 
 		$eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
 		$eventObj->setName('Readium');
 		// TODO remove this setType?  it's from original ViewedEventTest.php
-		$eventObj->setType('http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader');
+		$eventObj->setType('http://purl.imsglobal.org/caliper/v1/SoftwareApplication');
 		$eventObj->setLastModifiedAt($testTime);
 
 		$ePubVolume = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');	
-		$ePubVolume->setResourceType('EPUB_VOLUME');
+		$ePubVolume->setType('http://www.idpf.org/epub/vocab/structure/#volume');
 		$ePubVolume->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
 		$ePubVolume->setLastModifiedAt($testTime);
-		// TODO remove this setLanguage?  it's from original ViewedEventTest.php
-		$ePubVolume->setLanguage('English');
 
 		// TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
 		$targetObj = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-		$targetObj->setResourceType('FRAME');
-		$targetObj->setName('Key Figures: George Washington)');
+		$targetObj->setType('http://purl.imsglobal.org/caliper/v1/Frame');
+		$targetObj->setName('Key Figures: George Washington');
 		$targetObj->setLastModifiedAt($testTime);
-		// TODO remove this setLanguage?  it's from original ViewedEventTest.php
-		$targetObj->setLanguage('English');
+		$targetObj->setParentRef($ePubVolume);
 		$targetObj->setIndex(1);
-		$targetObj->setPartOf($ePubVolume); // $targetObj->setParentRef($ePubVolume);
 
 		$generatedObj = new Session('https://github.com/readium/session-123456789');
 		$generatedObj->setName('session-123456789');
 		$generatedObj->setStartedAtTime($testTime);
 		$generatedObj->setEndedAtTime(0);
 		$generatedObj->setDuration(null);
-		$generatedObj->setLastModifiedTime($testTime);
+		$generatedObj->setLastModifiedAt($testTime);
 
 		$edApp = null;
 		$org = null;

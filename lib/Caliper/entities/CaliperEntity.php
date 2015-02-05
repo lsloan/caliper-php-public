@@ -1,10 +1,4 @@
 <?php
-
-/**
- *
- * @author balachandiran.v
- *
- */
 class CaliperEntity implements JsonSerializable {
 
     public $type;
@@ -41,6 +35,7 @@ class CaliperEntity implements JsonSerializable {
         return ['@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
+            'properties'=>(object) $this->getProperties(),
             'lastModifiedTime' => $this->getLastModifiedAt()
         ];
     }

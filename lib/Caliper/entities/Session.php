@@ -1,4 +1,7 @@
 <?php
+$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+
+require_once($caliperLibDir . 'Caliper/entities/CaliperEntity.php');
 
 class Session extends CaliperEntity {
 
@@ -7,25 +10,27 @@ class Session extends CaliperEntity {
     public $endedAtTime;
     public $duration;
 
-
-    function __construct() {
-        parent::__construct();
+    public function __construct($id) {
+		parent::__construct();
+		$this->setId($id);
+		$this->setType('http://purl.imsglobal.org/caliper/v1/Session');
     }
-
+    
     /**
      ** @see JsonSerializable::jsonSerialize()
      *to implement jsonLD
      */
 
     public function jsonSerialize() {
-
         return [
             '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
+            'properties'=>(object) $this->getProperties(),
             'lastModifiedTime' => $this->getLastModifiedAt(),
 
-            'actor' => $this->getActor(),
+            // JS code had an actor here, but this JSON doesn't match test fixture
+            //'actor' => $this->getActor(),
             'startedAtTime' => $this->getStartedAtTime(),
             'endedAtTime' => $this->getEndedAtTime(),
             'duration' => $this->getDuration(),

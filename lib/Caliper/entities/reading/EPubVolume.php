@@ -1,12 +1,10 @@
 <?php
+$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR;
 
-
-require_once (dirname(dirname(__FILE__)).'/CaliperDigitalResource.php');
-require_once (dirname(dirname(__FILE__)).'/schemadotorg/CreativeWork.php');
+require_once ($caliperLibDir . 'Caliper/entities/CaliperDigitalResource.php');
+require_once ($caliperLibDir . 'Caliper/entities/schemadotorg/CreativeWork.php');
 
 /**
- *@author balachandiran.v 
- *
  *         Representation of an EPUB 3 Volume
  *
  *         A component of a collection
