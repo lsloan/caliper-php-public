@@ -1,6 +1,7 @@
 <?php
+$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR;
 
-require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
+require_once ($caliperLibDir . 'Caliper/entities/CaliperEntity.php');
 
 class LISPerson extends CaliperEntity {
 

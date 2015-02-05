@@ -1,6 +1,10 @@
 <?php
 namespace profiles;
-require_once '../../util/SplEnumPlus.php';
+$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+
+require_once($caliperLibDir . 'util/SplEnumPlus.php');
+require_once($caliperLibDir . 'Caliper/entities/CaliperDigitalResource.php');
+require_once($caliperLibDir . 'Caliper/entities/schemadotorg/CreativeWork.php');
 
 class Actions extends \SplEnumPlus {
     const

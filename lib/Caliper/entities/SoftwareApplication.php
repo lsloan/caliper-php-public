@@ -1,5 +1,7 @@
 <?php
-require_once('CaliperAgent.php');
+$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+
+require_once($caliperLibDir . 'Caliper/entities/CaliperAgent.php');
 
 class SoftwareApplication extends CaliperAgent{
 
