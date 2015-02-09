@@ -7,10 +7,10 @@ require_once 'Caliper/entities/CaliperEntity.php';
 
 class Session extends CaliperEntity {
 
-    public $actor;
-    public $startedAtTime;
-    public $endedAtTime;
-    public $duration;
+    private $actor;
+    private $startedAtTime;
+    private $endedAtTime;
+    private $duration;
 
     public function __construct($id) {
 		parent::__construct();
