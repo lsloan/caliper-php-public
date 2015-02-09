@@ -1,10 +1,10 @@
 <?php
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
 require_once 'LISOrganization.php';
 
-/**
- * @author balachandiran.v
- */
 class LISCourseSection extends LISOrganization implements JsonSerializable {
 
 	private $label;
@@ -16,11 +16,10 @@ class LISCourseSection extends LISOrganization implements JsonSerializable {
 	 * @param id
 	 * @param parentOrg	
 	 */
-	
-	 public function __construct($id=NULL,$parentOrg=NULL) {
-	 parent::__construct($id,$parentOrg);
-	 $this->setType("http://purl.imsglobal.org/caliper/v1/LISCourseSection");
-	 }
+	public function __construct($id = NULL, $parentOrg = NULL) {
+		parent::__construct($id, $parentOrg);
+		$this->setType('http://purl.imsglobal.org/caliper/v1/lis/CourseSection');
+	}
 	
 	/**
 	 * @return the label
@@ -67,19 +66,20 @@ class LISCourseSection extends LISOrganization implements JsonSerializable {
 		$this->semester = $semester;
 	}
 	
-	public  function jsonSerialize(){
-
-		return ['@id'=>$this->getId(),
-				'@type'=>$this->getType(),
-				'lastModifiedTime'=>$this->getLastModifiedAt(),
-				'properties'=>(object) $this->getProperties(),
-				'title'=>$this->getTitle(),
-				'label'=>$this->getLabel(),
-				'courseNumber' => $this->getCourseNumber(),
-				'semester'=>$this->getSemester()
-				];
-	
+	public function jsonSerialize(){
+		return [
+			'@id'=>$this->getId(),
+			'@type'=>$this->getType(),
+			'semester'=>$this->getSemester(),
+			'courseNumber' => $this->getCourseNumber(),
+			'label'=>$this->getLabel(),
+			'name'=>$this->getName(),
+			'description' => $this->getDescription(),
+			'parentOrg'=>$this->getParentOrg(),
+			'properties' => (object) $this->getProperties(),
+			'dateCreated' => $this->getDateCreated(),
+			'dateModified' => $this->getDateModified(),
+		];
 	}
-
 }
 

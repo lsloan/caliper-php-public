@@ -1,11 +1,13 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR;
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
-require_once($caliperLibDir . 'Caliper/events/CaliperEvent.php');
-require_once($caliperLibDir . 'Caliper/events/CaliperEventContexts.php');
-require_once($caliperLibDir . 'Caliper/events/CaliperEventTypes.php');
-require_once($caliperLibDir . 'Caliper/entities/CaliperDigitalResource.php');
-require_once($caliperLibDir . 'Caliper/actions/SessionActions.php');
+require_once 'Caliper/events/CaliperEvent.php';
+require_once 'Caliper/events/CaliperEventContexts.php';
+require_once 'Caliper/events/CaliperEventTypes.php';
+require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/actions/SessionActions.php';
 
 class SessionEvent extends CaliperEvent {
 
@@ -14,8 +16,5 @@ class SessionEvent extends CaliperEvent {
 
 		$this->setContext(CaliperEventContexts::SESSION);
 		$this->setType(CaliperEventTypes::SESSION);
-		/*
-		$this->setAction(ReadingActions::VIEWED);
-		*/
 	}
 }

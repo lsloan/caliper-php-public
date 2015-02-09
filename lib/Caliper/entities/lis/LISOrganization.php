@@ -1,13 +1,9 @@
 <?php
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
-require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
-
-/**
- * @author balachandiran.v
- */
-require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
-
-
+require_once 'Caliper/entities/CaliperEntity.php';
 
 class LISOrganization extends CaliperEntity implements JsonSerializable{
 	/**
@@ -37,6 +33,14 @@ class LISOrganization extends CaliperEntity implements JsonSerializable{
 	 */
 	public function  setTitle($title) {
 		$this->title = $title;
+	}
+	
+	public function  getParentOrg() {
+		return $this->parentOrg;
+	}
+
+	public function  setParentOrg($parentOrg) {
+		$this->parentOrg = $parentOrg;
 	}
 	
 	public  function jsonSerialize()

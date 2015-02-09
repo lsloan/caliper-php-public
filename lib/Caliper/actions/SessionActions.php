@@ -1,13 +1,15 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
-require_once($caliperLibDir . 'util/SplEnumPlus.php');
+require_once 'util/SplEnumPlus.php';
 
 class SessionActions extends \SplEnumPlus {
     const
         __default = '',
-        LOGGED_IN = 'loggedIn',
-        LOGGED_OUT = 'loggedOut',
-        TIMED_OUT = 'timedOut';
+        LOGGED_IN = 'logged in',
+        LOGGED_OUT = 'logged out',
+        TIMED_OUT = 'timed out';
 }
 

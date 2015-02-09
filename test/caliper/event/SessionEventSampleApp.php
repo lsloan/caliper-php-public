@@ -1,14 +1,12 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR;
-
-require_once($caliperLibDir . 'CaliperSensor.php');
-require_once($caliperLibDir . 'Caliper/entities/reading/EPubVolume.php');
-require_once($caliperLibDir . 'Caliper/entities/reading/EPubSubChapter.php');
-require_once($caliperLibDir . 'Caliper/entities/lis/LISPerson.php');
-require_once($caliperLibDir . 'Caliper/entities/SoftwareApplication.php');
-require_once($caliperLibDir . 'Caliper/entities/Session.php');
-require_once($caliperLibDir . 'Caliper/events/reading/SessionEvent.php');
-require_once($caliperLibDir . 'Caliper/actions/SessionActions.php');
+require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once 'Caliper/entities/reading/EPubVolume.php';
+require_once 'Caliper/entities/reading/EPubSubChapter.php';
+require_once 'Caliper/entities/lis/LISPerson.php';
+require_once 'Caliper/entities/SoftwareApplication.php';
+require_once 'Caliper/entities/Session.php';
+require_once 'Caliper/events/reading/SessionEvent.php';
+require_once 'Caliper/actions/SessionActions.php';
 
 class SessionEventSampleApp {
 	private $sessionEvent;

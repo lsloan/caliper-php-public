@@ -1,7 +1,9 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
-require_once($caliperLibDir . 'Caliper/entities/CaliperEntity.php');
+require_once 'Caliper/entities/CaliperEntity.php';
 
 class Session extends CaliperEntity {
 
@@ -26,11 +28,12 @@ class Session extends CaliperEntity {
             '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
-            'properties'=>(object) $this->getProperties(),
-            'lastModifiedTime' => $this->getLastModifiedAt(),
+            'description' => $this->getDescription(),
+            'properties' => (object) $this->getProperties(),
+            'dateCreated' => $this->getDateCreated(),
+            'dateModified' => $this->getDateModified(),
 
-            // JS code had an actor here, but this JSON doesn't match test fixture
-            //'actor' => $this->getActor(),
+            'actor' => $this->getActor(),
             'startedAtTime' => $this->getStartedAtTime(),
             'endedAtTime' => $this->getEndedAtTime(),
             'duration' => $this->getDuration(),

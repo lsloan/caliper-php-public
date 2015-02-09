@@ -1,14 +1,16 @@
 <?php
-$caliperLibDir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR;
+if (!defined('CALIPER_LIB_PATH')) {
+    throw new Exception('Please require CaliperSensor first.');
+}
 
-require_once($caliperLibDir . 'Caliper/entities/CaliperAgent.php');
+require_once 'Caliper/entities/CaliperAgent.php';
 
 class SoftwareApplication extends CaliperAgent{
 
 	public function __construct($id) {
         parent::__construct();
 		$this->setId($id);
-		$this->setType("http://purl.imsglobal.org/caliper/v1/SoftwareApplication");
+		$this->setType('http://purl.imsglobal.org/caliper/v1/SoftwareApplication');
 	}
 
 }
