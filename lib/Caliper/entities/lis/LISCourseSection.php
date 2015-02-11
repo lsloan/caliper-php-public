@@ -5,7 +5,7 @@ if (!defined('CALIPER_LIB_PATH')) {
 
 require_once 'LISOrganization.php';
 
-class LISCourseSection extends LISOrganization implements JsonSerializable {
+class LISCourseSection extends LISOrganization {
 
 	private $label;
 	private $courseNumber;

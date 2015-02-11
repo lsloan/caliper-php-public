@@ -4,6 +4,7 @@ if (!defined('CALIPER_LIB_PATH')) {
 }
 
 require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
 /**
  *         Caliper representation of a CreativeWork
@@ -24,7 +25,7 @@ require_once 'Caliper/entities/CaliperEntity.php';
  *         as Scheme and Lisp
  *
  */
-class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
+class CaliperDigitalResource extends CaliperEntity implements CreativeWork {
 
     private $objectTypes = [];
     private $alignedLearningObjectives = [];

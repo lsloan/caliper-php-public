@@ -5,7 +5,7 @@ if (!defined('CALIPER_LIB_PATH')) {
 
 require_once 'Caliper/entities/CaliperEntity.php';
 
-class LISOrganization extends CaliperEntity implements JsonSerializable{
+class LISOrganization extends CaliperEntity {
 	/**
 	 * 
 	 * @param string $id
