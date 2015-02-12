@@ -1,8 +1,5 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
-
+require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
@@ -12,7 +9,7 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
  *         A major sub-division of a chapter
  *         http://www.idpf.org/epub/vocab/structure/#subchapter
  */
-class EPubSubChapter extends CaliperDigitalResource {
+class EPubSubChapter extends CaliperDigitalResource implements CreativeWork {
       private $index;
 
       public function __construct($id) {

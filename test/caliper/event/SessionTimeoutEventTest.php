@@ -6,7 +6,7 @@ require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
-require_once 'Caliper/events/reading/SessionEvent.php';
+require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/actions/SessionActions.php';
 
 class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {

@@ -1,12 +1,10 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
-
+require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/Generatable.php';
+require_once 'Caliper/entities/Targetable.php';
 
-class Session extends CaliperEntity {
-
+class Session extends CaliperEntity implements Generatable, Targetable {
     private $actor;
     private $startedAtTime;
     private $endedAtTime;

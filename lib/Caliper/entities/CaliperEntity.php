@@ -1,9 +1,8 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/schemadotorg/Thing.php';
 
-class CaliperEntity implements JsonSerializable {
+class CaliperEntity implements JsonSerializable, Thing {
 
     protected $id;
     public $type;

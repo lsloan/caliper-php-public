@@ -1,8 +1,5 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
-
+require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
@@ -14,7 +11,7 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
  *         http://www.idpf.org/epub/vocab/structure/#part
  *
  */
-class EPubPart extends CaliperDigitalResource {
+class EPubPart extends CaliperDigitalResource implements CreativeWork {
 	public function __construct($id) {
 		parent::__construct();
 		$this->setId($id);

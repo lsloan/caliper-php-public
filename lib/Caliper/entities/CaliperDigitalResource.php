@@ -1,10 +1,8 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
-
+require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperEntity.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
+require_once 'Caliper/entities/Targetable.php';
 
 /**
  *         Caliper representation of a CreativeWork
@@ -25,7 +23,7 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
  *         as Scheme and Lisp
  *
  */
-class CaliperDigitalResource extends CaliperEntity implements CreativeWork {
+class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targetable {
 
     private $objectTypes = [];
     private $alignedLearningObjectives = [];
