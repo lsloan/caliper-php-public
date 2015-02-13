@@ -1,17 +1,16 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/schemadotorg/Thing.php';
 
-/**
- *
- * @author balachandiran.v
- *
- */
-class CaliperEntity implements JsonSerializable {
+class CaliperEntity implements JsonSerializable, Thing {
 
+    protected $id;
     public $type;
     public $name;
-    protected $id;
-    private $lastModifiedAt = 0;
+    private $description;
     private $properties;
+    private $dateCreated;
+    private $dateModified;
 
     function __construct() {
     }
@@ -24,7 +23,7 @@ class CaliperEntity implements JsonSerializable {
 //        $this->type = $b->getType();
 //        $this->name = $b->getName();
 //        $this->id = $b->getId();
-//        $this->lastModifiedAt = $b->getLastModifiedAt();
+//        $this->dateModified = $b->getDateModified();
 //        $this->properties = $b->getProperties();
 //    }
 //
@@ -37,11 +36,14 @@ class CaliperEntity implements JsonSerializable {
      *to implement jsonLD
      */
     public function jsonSerialize() {
-
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
-            'lastModifiedTime' => $this->getLastModifiedAt()
+            'description' => $this->getDescription(),
+            'properties' => (object) $this->getProperties(),
+            'dateCreated' => $this->getDateCreated(),
+            'dateModified' => $this->getDateModified(),
         ];
     }
 
@@ -88,19 +90,20 @@ class CaliperEntity implements JsonSerializable {
     }
 
     /**
-     * @return int
+     * @param mixed $value
+     * @return $this
      */
-    public function getLastModifiedAt() {
-        return $this->lastModifiedAt;
+    public function setDescription($value) {
+        $this->description = $value;
+        return $this;
     }
-
+    
     /**
-     * @param int $lastModifiedAt
+     * @return string
      */
-    public function setLastModifiedAt($lastModifiedAt) {
-        $this->lastModifiedAt = $lastModifiedAt;
+    public function getDescription() {
+        return $this->description;
     }
-
 
     /**
      * @return mixed
@@ -114,5 +117,33 @@ class CaliperEntity implements JsonSerializable {
      */
     public function setProperties($properties) {
         $this->properties = $properties;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getDateCreated() {
+        return $this->dateCreated;
+    }
+
+    /**
+     * @param int $dateCreated
+     */
+    public function setDateCreated($dateCreated) {
+        $this->dateCreated = $dateCreated;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDateModified() {
+        return $this->dateModified;
+    }
+
+    /**
+     * @param int $dateModified
+     */
+    public function setDateModified($dateModified) {
+        $this->dateModified = $dateModified;
     }
 } 

@@ -6,7 +6,7 @@
  * Date: 10/21/14
  * Time: 1:28 PM
  */
-class AnnotationActions extends SplEnum {
+class ReadingActions extends SplEnum {
 
     const
         __default = "",
