@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 10/21/14
- * Time: 1:28 PM
- */
 class CaliperEventTypes extends SplEnum {
 
     const
@@ -18,6 +12,7 @@ class CaliperEventTypes extends SplEnum {
         MEDIA = "http://purl.imsglobal.org/caliper/v1/MediaEvent",
         NAVIGATION = "http://purl.imsglobal.org/caliper/v1/NavigationEvent",
         OUTCOME = "http://purl.imsglobal.org/caliper/v1/OutcomeEvent",
+        SESSION = "http://purl.imsglobal.org/caliper/v1/SessionEvent",
         VIEWED = "http://purl.imsglobal.org/caliper/v1/ViewedEvent";
 }
 

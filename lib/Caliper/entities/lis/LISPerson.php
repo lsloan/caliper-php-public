@@ -1,16 +1,11 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/foaf/Agent.php';
 
-require_once (dirname(dirname(__FILE__)).'/CaliperEntity.php');
-
-
-/**
- * @author balachandiran.v
- */
-class LISPerson extends CaliperEntity {
-
+class LISPerson extends CaliperEntity implements Agent {
 	public function __construct($id) {
 		$this->setId($id);
-		$this->setType("http://purl.imsglobal.org/caliper/v1/LISPerson");
+		$this->setType("http://purl.imsglobal.org/caliper/v1/lis/Person");
 	}
-
 }

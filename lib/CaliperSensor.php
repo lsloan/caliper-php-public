@@ -1,7 +1,6 @@
 <?php
 
 /**
- *  author: Prashant Nayak
  *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
  *  For license information contact, info@imsglobal.org
  */
@@ -10,9 +9,12 @@ if (!function_exists('json_encode')) {
     throw new Exception('Caliper needs the JSON PHP extension.');
 }
 
-require_once(dirname(__FILE__) . '/Caliper/Client.php');
-require_once(dirname(__FILE__) . '/Caliper/events/CaliperEvent.php');
-require_once(dirname(__FILE__) . '/Caliper/entities/CaliperEntity.php');
+define('CALIPER_LIB_PATH', realpath(dirname(__FILE__)));
+set_include_path(get_include_path() . PATH_SEPARATOR . CALIPER_LIB_PATH);
+
+require_once 'Caliper/Client.php';
+require_once 'Caliper/events/CaliperEvent.php';
+require_once 'Caliper/entities/CaliperEntity.php';
 
 class Caliper {
 

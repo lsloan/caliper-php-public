@@ -1,33 +1,14 @@
 <?php
-
-/**
- * @author balachandiran.v
- *
- */
-class LearningContext extends CaliperEntity {
-
+class LearningContext {
     public $edApp;
     public $lisOrganization;
     protected $agent;
 
-    function __construct() {
-        parent::__construct();
-    }
-
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
-
     public function jsonSerialize() {
-
-        return ['@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'name' => $this->getName(),
+        return [
             'edApp' => $this->getEdApp(),
             'lisOrganization' => $this->getLisOrganization(),
             'agent' => $this->getAgent(),
-            'lastModifiedTime' => $this->getLastModifiedAt()
         ];
     }
 

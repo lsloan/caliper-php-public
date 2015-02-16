@@ -1,20 +1,13 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
 class CaliperEvent implements JsonSerializable {
-
     private $context;
     private $type;
     private $actor;
     private $action;
     private $object;
     private $target;
-    private $startedAt;
-    private $endedAt = 0;
+    private $startedAtTime;
+    private $endedAtTime;
     private $edApp;
     private $lisOrganization;
     private $generated;
@@ -54,8 +47,8 @@ class CaliperEvent implements JsonSerializable {
             'object' => $this->getObject(),
             'target' => $this->getTarget(),
             'generated' => $this->getGenerated(),
-            'startedAtTime' => $this->getStartedAt(),
-            'endedAtTime' => $this->getEndedAt(),
+            'startedAtTime' => $this->getStartedAtTime(),
+            'endedAtTime' => $this->getEndedAtTime(),
             'duration' => $this->getDuration(),
             'edApp' => $this->getEdApp(),
             'group' => $this->getLisOrganization()
@@ -192,29 +185,29 @@ class CaliperEvent implements JsonSerializable {
     /**
      * @return mixed
      */
-    public function getStartedAt() {
-        return $this->startedAt;
+    public function getStartedAtTime() {
+        return $this->startedAtTime;
     }
 
     /**
-     * @param mixed $startedAtTime
+     * @param mixed $startedAt
      */
-    public function setStartedAt($startedAt) {
-        $this->startedAt = $startedAt;
+    public function setStartedAtTime($startedAtTime) {
+        $this->startedAtTime = $startedAtTime;
     }
 
     /**
      * @return mixed
      */
-    public function getEndedAt() {
-        return $this->endedAt;
+    public function getEndedAtTime() {
+        return $this->endedAtTime;
     }
 
     /**
-     * @param mixed $startedAtTime
+     * @param mixed $startedAt
      */
-    public function setEndedAt($EndedAt) {
-        $this->endedAt = $EndedAt;
+    public function setEndedAtTime($endedAtTime) {
+        $this->endedAtTime = $endedAtTime;
     }
 
     /**

@@ -1,8 +1,10 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
+require_once 'Caliper/entities/Targetable.php';
 
 /**
- * @author balachandiran.v
- *
  *         Caliper representation of a CreativeWork
  *         (https://schema.org/CreativeWork)
  *
@@ -21,12 +23,13 @@
  *         as Scheme and Lisp
  *
  */
-class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
+class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targetable {
 
-    private $objectType;
-    private $parentRef;
-    private $alignedLearningObjectives = array();
-    private $keywords = array();
+    private $objectTypes = [];
+    private $alignedLearningObjectives = [];
+    private $keywords = [];
+    private $isPartOf;
+    private $datePublished;
 
     public function __construct() {
         parent::__construct();
@@ -38,30 +41,35 @@ class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
      */
 
     public function jsonSerialize() {
-
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
-            'objectType' => $this->getObjectType(),
+            'description' => $this->getDescription(),
+            
+            'objectType' => $this->getObjectTypes(),
             'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
-            'keyword' => $this->getKeywords(),
-            'partOf' => $this->getParentRef(),
-            'lastModifiedTime' => $this->getLastModifiedAt()
+            'keywords' => $this->getKeywords(),
+            'isPartOf' => $this->getIsPartOf(),
+            'properties' => (object) $this->getProperties(),
+            'dateCreated' => $this->getDateCreated(),
+            'dateModified' => $this->getDateModified(),
+            'datePublished' => $this->getDatePublished(),
         ];
     }
 
     /**
      * @return mixed
      */
-    public function getObjectType() {
-        return $this->objectType;
+    public function getObjectTypes() {
+        return $this->objectTypes;
     }
 
     /**
-     * @param mixed $objectType
+     * @param mixed $objectTypes
      */
-    public function setObjectType($objectType) {
-        $this->objectType = $objectType;
+    public function setObjectTypes($objectTypes) {
+        $this->objectType = $objectTypes;
     }
 
     /**
@@ -93,16 +101,30 @@ class CaliperDigitalResource extends CaliperEntity implements JsonSerializable {
     }
 
     /**
-     * @return the parentRef
+     * @return the isPartOf
      */
-    public function getParentRef() {
-        return $this->parentRef;
+    public function getIsPartOf() {
+        return $this->isPartOf;
     }
 
     /**
-     * @param parentRef the parentRef to set
+     * @param isPartOf the isPartOf to set
      */
-    public function setParentRef($parentRef) {
-        $this->parentRef = $parentRef;
+    public function setIsPartOf($isPartOf) {
+        $this->isPartOf = $isPartOf;
+    }
+    
+    /**
+     * @return the datePublished
+     */
+    public function getDatePublished() {
+        return $this->datePublished;
+    }
+
+    /**
+     * @param datePublished the datePublished to set
+     */
+    public function setDatePublished($datePublished) {
+        $this->datePublished = $datePublished;
     }
 }
