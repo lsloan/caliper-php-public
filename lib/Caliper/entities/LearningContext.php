@@ -4,10 +4,6 @@ class LearningContext {
     public $lisOrganization;
     protected $agent;
 
-    function __construct() {
-        parent::__construct();
-    }
-
     public function jsonSerialize() {
         return [
             'edApp' => $this->getEdApp(),
