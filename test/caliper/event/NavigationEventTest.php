@@ -1,67 +1,78 @@
 <?php
+require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once 'Caliper/entities/reading/EPubVolume.php';
+require_once 'Caliper/entities/reading/EPubSubChapter.php';
+require_once 'Caliper/entities/lis/LISPerson.php';
+require_once 'Caliper/entities/lis/LISCourseSection.php';
+require_once 'Caliper/entities/SoftwareApplication.php';
+require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/lis/LISOrganization.php';
+require_once 'Caliper/events/NavigationEvent.php';
+require_once 'Caliper/entities/schemadotorg/WebPage.php';
 
-require_once(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once (dirname(__FILE__) . '/../../../lib/Caliper/entities/CaliperDigitalResource.php');
-require_once dirname(__FILE__) . '/../../../lib/Caliper/entities/reading/EPubVolume.php';
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/lis/LISCourseSection.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/lis/LISOrganization.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/lis/LISPerson.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/SoftwareApplication.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/events/reading/NavigationEvent.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/schemadotorg/WebPage.php');
-
-
-
-/**
- * @author balachandiran.v
- *
- */
 class NavigationEventTest extends PHPUnit_Framework_TestCase {
-	
 	private $navigationEvent;
 	
-    function  setUp()
-	{
-		
-		$now = 1401216031920;
-		$americanHistoryCourse = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
-		$americanHistoryCourse->setCourseNumber("AmRev-101");
-		$americanHistoryCourse->setLabel("American Revolution 101");
-		$americanHistoryCourse->setSemester("Spring-2014");
-		$americanHistoryCourse->setLastModifiedAt($now);
-		
-		$courseWebPage = new WebPage('AmRev-101-landingPage');
-		$courseWebPage->setName("American Revolution 101 Landing Page");
-		$courseWebPage->setParentRef($americanHistoryCourse);
+    function  setUp() {
+        $createdTime = '2015-01-01T06:00:00Z';
+        $modifiedTime = '2015-02-02T11:30:00Z';
 
-		$readium = new SoftwareApplication("https://github.com/readium/readium-js-viewer");
-		$readium->setType("http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader");
-		$readium->setLastModifiedAt($now);
-	
-		$alice = new LISPerson("https://some-university.edu/students/jones-alice-554433");
-		$alice->setLastModifiedAt($now);
-		
-		$readiumReading = new EPubVolume("https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)");	
-		$readiumReading->setName("The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)");
-		$readiumReading->setLastModifiedAt($now);
-		$readiumReading->setLanguage('English');
+        $testPerson = new LISPerson('https://some-university.edu/user/554433');
+        $testPerson->setDateCreated($createdTime);
+        $testPerson->setDateModified($modifiedTime);
 
-		$navEvent = new NavigationEvent();	
-		$navEvent->setActor( $alice);
-		$navEvent->setObject($readiumReading);
-		$navEvent->setFromResource($courseWebPage);
-		$navEvent->setEdApp($readium);
-		$navEvent->setLisOrganization($americanHistoryCourse);
-		$navEvent->setStartedAt($now);		
-	    
-		$this->navigationEvent = $navEvent;
+		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
+		$organization->setCourseNumber('AmRev-101');
+        $organization->setLabel('Am Rev 101');
+		$organization->setName('American Revolution 101');
+		$organization->setSemester('Spring-2014');
+        $organization->setDateCreated($createdTime);
+        $organization->setDateModified($modifiedTime);
 		
-		
-	}
+		$fromResource = new WebPage('AmRev-101-landingPage');
+		$fromResource->setName('American Revolution 101 Landing Page');
+		$fromResource->setIsPartOf($organization);
+        $fromResource->setDateCreated($createdTime);
+        $fromResource->setDateModified($modifiedTime);
+
+		$edApp = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
+        $edApp->setName('Readium');
+        $edApp->setDateCreated($createdTime);
+        $edApp->setDateModified($modifiedTime);
+
+		$object = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
+		$object->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
+        $object->setDateCreated($createdTime);
+        $object->setDateModified($modifiedTime);
+
+        // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
+        $target = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
+        // TODO remove this setType.  caliper-php doesn't implement Frame, but test fixture requires this value
+        $target->setType('http://purl.imsglobal.org/caliper/v1/Frame');
+        $target->setName('Key Figures: George Washington');
+        $target->setDateCreated($createdTime);
+        $target->setDateModified($modifiedTime);
+        $target->setIsPartOf($object);
+        $target->setIndex(1);
+
+        $navigationEvent = new NavigationEvent();
+		$navigationEvent->setActor($testPerson);
+		$navigationEvent->setObject($object);
+		$navigationEvent->setFromResource($fromResource);
+		$navigationEvent->setEdApp($edApp);
+        $navigationEvent->setTarget($target);
+		$navigationEvent->setLisOrganization($organization);
+        $navigationEvent->setStartedAtTime($modifiedTime);
+
+        $this->navigationEvent = $navigationEvent;
+    }
 	
-	 function testNavigationEventSerializesToJSON(){	
-		
-	 	$this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/NavigationEvent.json',json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
-			
+	 function testNavigationEventSerializesToJSON(){
+         $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
+
+         file_put_contents('/tmp/' . __CLASS__ . '.json', $navigationEventJson);
+
+         $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $navigationEventJson);
 	 }
 }
