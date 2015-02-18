@@ -67,12 +67,14 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $this->navigationEvent = $navigationEvent;
     }
 	
-	 function testNavigationEventSerializesToJSON(){
-         $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
-         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
+    function testNavigationEventSerializesToJSON(){
+        $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
 
-         file_put_contents('/tmp/' . __CLASS__ . '.json', $navigationEventJson);
+        if (array_key_exists('PHPUNIT_OUTPUT_DIR', $_SERVER)) {
+            file_put_contents(realpath($_SERVER['PHPUNIT_OUTPUT_DIR']) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $navigationEventJson);
+        }
 
-         $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $navigationEventJson);
-	 }
+        $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $navigationEventJson);
+    }
 }
