@@ -1,24 +1,21 @@
 <?php
-require_once (dirname(dirname(__FILE__)).'/CaliperEvent.php');
-require_once (dirname(dirname(dirname(__FILE__))).'/entities/CaliperDigitalResource.php');
-require_once (dirname(dirname(dirname(__FILE__))).'/actions/ReadingActions.php');
+require_once 'CaliperSensor.php';
+require_once 'Caliper/events/CaliperEvent.php';
+require_once 'Caliper/events/CaliperEventContexts.php';
+require_once 'Caliper/events/CaliperEventTypes.php';
+require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/actions/ReadingActions.php';
 
+class NavigationEvent extends CaliperEvent {
 
-/**
- *@author balachandiran.v
- *
- */
-class NavigationEvent extends CaliperEvent implements JsonSerializable {
-
-	
 	public function __construct() {
 		parent::__construct();
+
 		$this->setContext(CaliperEventContexts::NAVIGATION);
 		$this->setType(CaliperEventTypes::NAVIGATION);
 		$this->setAction(ReadingActions::NAVIGATED_TO);
 	}
-	
-	
+
 	/**
 	 * Describes the resource from which the navigation starts
 	 */	
@@ -38,29 +35,11 @@ class NavigationEvent extends CaliperEvent implements JsonSerializable {
 	public function setFromResource($fromResource) {
 		$this->fromResource = $fromResource;
 	}
-	
-	/**
-	 * 
-	 * @see CaliperEvent::jsonSerialize()
-	 * to implement jsonLD
-	 */
-	public function jsonSerialize(){
-		return ['@context'=>$this->getContext(),
-				'@type'=>$this->getType(),
-				'actor'=>$this->getActor(),
-				'action'=>$this->getAction(),
-				'object'=>$this->getObject(),
-				'target'=>$this->getTarget(),
-				'startedAtTime'=>$this->getStartedAt(),
-				'endedAtTime'=>$this->getEndedAt(),
-                'duration' => $this->getDuration(),
-				'edApp'=>$this->getEdApp(),
-				'group'=>$this->getLisOrganization(),
-				'navigatedFrom'=>$this->getFromResource(),
-			  ];
-	}
+
+    public function jsonSerialize() {
+        return array_merge(parent::jsonSerialize(), [
+            'navigatedFrom' => $this->getFromResource(),
+        ]);
+    }
+
 }
-
-
-
-

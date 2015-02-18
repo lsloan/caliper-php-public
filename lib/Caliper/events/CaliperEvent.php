@@ -39,11 +39,23 @@ class CaliperEvent implements JsonSerializable {
      * to implement jsonLD
      */
     public function jsonSerialize() {
+        function getLocalizedAction($action) {
+            $actionStrings = parse_ini_file(CALIPER_LIB_PATH . DIRECTORY_SEPARATOR . 'actions_en_US.ini');
 
-        return ['@context' => $this->getContext(),
+            if (array_key_exists($action, $actionStrings)) {
+                $localizedAction = $actionStrings[$action];
+            } else {
+                $localizedAction = $action;
+            }
+
+            return $localizedAction;
+        }
+
+        return [
+            '@context' => $this->getContext(),
             '@type' => $this->getType(),
             'actor' => $this->getActor(),
-            'action' => $this->getAction(),
+            'action' => getLocalizedAction($this->getAction()),
             'object' => $this->getObject(),
             'target' => $this->getTarget(),
             'generated' => $this->getGenerated(),

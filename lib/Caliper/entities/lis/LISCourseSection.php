@@ -1,8 +1,5 @@
 <?php
-if (!defined('CALIPER_LIB_PATH')) {
-    throw new Exception('Please require CaliperSensor first.');
-}
-
+require_once 'CaliperSensor.php';
 require_once 'LISOrganization.php';
 
 class LISCourseSection extends LISOrganization {
