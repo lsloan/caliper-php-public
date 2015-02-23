@@ -13,8 +13,12 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
 	
 	function setUp() {
-		$createdTime = '2015-01-01T06:00:00Z';
-		$modifiedTime = '2015-02-02T11:30:00Z';
+		$createdTime = '2015-01-01T06:00:00.000Z';
+		$modifiedTime = '2015-02-02T11:30:00.000Z';
+
+        $sessionStartTime = '2015-02-15T10:15:00.000Z';
+        $sessionEndTime = '2015-02-15T11:05:00.000Z';
+        $sessionDuration = 'PT3000S';
 
 		$testPerson = new LISPerson('https://some-university.edu/user/554433');
 		$testPerson->setDateCreated($createdTime);
@@ -36,8 +40,9 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setDateCreated($createdTime);
 		$targetObj->setDateModified($modifiedTime);
 		$targetObj->setActor($testPerson);
-		$targetObj->setStartedAtTime($modifiedTime);
-		$targetObj->setEndedAtTime($modifiedTime);
+		$targetObj->setStartedAtTime($sessionStartTime);
+		$targetObj->setEndedAtTime($sessionEndTime);
+        $targetObj->setDuration($sessionDuration);
 
 		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
 		$organization->setSemester('Spring-2014');
@@ -54,10 +59,11 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEvent->setTarget($targetObj);
 		$sessionEvent->setEdApp($eventObj);
 		$sessionEvent->setLisOrganization($organization);
-		$sessionEvent->setStartedAtTime($modifiedTime);
-		$sessionEvent->setEndedAtTime($modifiedTime);
+        $sessionEvent->setStartedAtTime($sessionStartTime);
+        $sessionEvent->setEndedAtTime($sessionEndTime);
+        $sessionEvent->setDuration($sessionDuration);
 
-		$this->sessionEvent = $sessionEvent;
+        $this->sessionEvent = $sessionEvent;
 	}
 	
 	function testSessionEventSerializesToJSON() {
