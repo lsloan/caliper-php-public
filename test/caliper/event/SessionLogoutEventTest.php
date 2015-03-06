@@ -13,12 +13,12 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
 	
 	function setUp() {
-		$createdTime = '2015-01-01T06:00:00.000Z';
-		$modifiedTime = '2015-02-02T11:30:00.000Z';
+		$createdTime = new DateTime('2015-01-01T06:00:00.000Z');
+		$modifiedTime = new DateTime('2015-02-02T11:30:00.000Z');
 
-        $sessionStartTime = '2015-02-15T10:15:00.000Z';
-        $sessionEndTime = '2015-02-15T11:05:00.000Z';
-        $sessionDuration = 'PT3000S';
+        $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
+        $sessionEndTime = new DateTime('2015-02-15T11:05:00.000Z');
+        $sessionDurationSeconds = $sessionEndTime->getTimestamp() - $sessionStartTime->getTimestamp();
 
 		$testPerson = new LISPerson('https://some-university.edu/user/554433');
 		$testPerson->setDateCreated($createdTime);
@@ -42,7 +42,7 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setActor($testPerson);
 		$targetObj->setStartedAtTime($sessionStartTime);
 		$targetObj->setEndedAtTime($sessionEndTime);
-        $targetObj->setDuration($sessionDuration);
+        $targetObj->setDuration($sessionDurationSeconds);
 
 		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
 		$organization->setSemester('Spring-2014');
@@ -61,7 +61,7 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEvent->setLisOrganization($organization);
         $sessionEvent->setStartedAtTime($sessionStartTime);
         $sessionEvent->setEndedAtTime($sessionEndTime);
-        $sessionEvent->setDuration($sessionDuration);
+        $sessionEvent->setDuration($sessionDurationSeconds);
 
         $this->sessionEvent = $sessionEvent;
 	}
@@ -70,8 +70,11 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLogoutEvent.json');
 
-		file_put_contents('/tmp/' . __CLASS__ . '.json', $sessionEventJson);
+        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
+        if ($outputDir != FALSE) {
+            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $sessionEventJson);
+        }
 
-		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $sessionEventJson);
+        $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $sessionEventJson);
 	}
 }

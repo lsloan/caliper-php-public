@@ -14,8 +14,10 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 	private $navigationEvent;
 	
     function  setUp() {
-        $createdTime = '2015-01-01T06:00:00Z';
-        $modifiedTime = '2015-02-02T11:30:00Z';
+        $createdTime = new DateTime('2015-01-01T06:00:00Z');
+        $modifiedTime = new DateTime('2015-02-02T11:30:00Z');
+
+        $navigationStartTime = new DateTime('2015-02-15T10:15:00.000Z');
 
         $testPerson = new LISPerson('https://some-university.edu/user/554433');
         $testPerson->setDateCreated($createdTime);
@@ -29,7 +31,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $organization->setDateCreated($createdTime);
         $organization->setDateModified($modifiedTime);
 		
-		$fromResource = new WebPage('AmRev-101-landingPage');
+		$fromResource = new WebPage('https://some-university.edu/politicalScience/2014/american-revolution-101/index.html');
 		$fromResource->setName('American Revolution 101 Landing Page');
 		$fromResource->setIsPartOf($organization);
         $fromResource->setDateCreated($createdTime);
@@ -62,7 +64,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 		$navigationEvent->setEdApp($edApp);
         $navigationEvent->setTarget($target);
 		$navigationEvent->setLisOrganization($organization);
-        $navigationEvent->setStartedAtTime($modifiedTime);
+        $navigationEvent->setStartedAtTime($navigationStartTime);
 
         $this->navigationEvent = $navigationEvent;
     }
@@ -71,8 +73,9 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
 
-        if (array_key_exists('PHPUNIT_OUTPUT_DIR', $_SERVER)) {
-            file_put_contents(realpath($_SERVER['PHPUNIT_OUTPUT_DIR']) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $navigationEventJson);
+        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
+        if ($outputDir != FALSE) {
+            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $navigationEventJson);
         }
 
         $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $navigationEventJson);

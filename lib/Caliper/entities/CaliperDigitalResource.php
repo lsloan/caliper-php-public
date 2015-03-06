@@ -41,21 +41,13 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
      */
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'name' => $this->getName(),
-            'description' => $this->getDescription(),
-            
+        return array_merge(parent::jsonSerialize(), [
             'objectType' => $this->getObjectTypes(),
             'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
             'keywords' => $this->getKeywords(),
             'isPartOf' => $this->getIsPartOf(),
-            'properties' => (object) $this->getProperties(),
-            'dateCreated' => $this->getDateCreated(),
-            'dateModified' => $this->getDateModified(),
             'datePublished' => $this->getDatePublished(),
-        ];
+        ]);
     }
 
     /**

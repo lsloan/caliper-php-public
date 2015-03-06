@@ -13,10 +13,14 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
 	
 	function setUp() {
-		$createdTime = '2015-01-01T06:00:00Z';
-		$modifiedTime = '2015-02-02T11:30:00Z';
+		$createdTime = new DateTime('2015-01-01T06:00:00Z');
+		$modifiedTime = new DateTime('2015-02-02T11:30:00Z');
 
-		$testPerson = new LISPerson('https://some-university.edu/user/554433');
+        $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
+        $sessionEndTime = new DateTime('2015-02-15T11:05:00.000Z');
+        $sessionDurationSeconds = $sessionEndTime->getTimestamp() - $sessionStartTime->getTimestamp();
+
+        $testPerson = new LISPerson('https://some-university.edu/user/554433');
 		$testPerson->setDateCreated($createdTime);
 		$testPerson->setDateModified($modifiedTime);
 
@@ -36,8 +40,9 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setDateCreated($createdTime);
 		$targetObj->setDateModified($modifiedTime);
 		$targetObj->setActor($testPerson);
-		$targetObj->setStartedAtTime($modifiedTime);
-		$targetObj->setEndedAtTime($modifiedTime);
+		$targetObj->setStartedAtTime($sessionStartTime);
+		$targetObj->setEndedAtTime($sessionEndTime);
+        $targetObj->setDuration($sessionDurationSeconds);
 
 		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
 		$organization->setSemester('Spring-2014');
@@ -54,8 +59,9 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEvent->setTarget($targetObj);
 		$sessionEvent->setEdApp($eventObj);
 		$sessionEvent->setLisOrganization($organization);
-		$sessionEvent->setStartedAtTime($modifiedTime);		
-		$sessionEvent->setEndedAtTime($modifiedTime);
+		$sessionEvent->setStartedAtTime($sessionStartTime);
+		$sessionEvent->setEndedAtTime($sessionEndTime);
+        $sessionEvent->setDuration($sessionDurationSeconds);
 
 		$this->sessionEvent = $sessionEvent;
 	}
@@ -64,7 +70,10 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionTimeoutEvent.json');
 
-		file_put_contents('/tmp/' . __CLASS__ . '.json', $sessionEventJson);
+        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
+        if ($outputDir != FALSE) {
+            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $sessionEventJson);
+        }
 
 		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $sessionEventJson);
 	}

@@ -26,11 +26,12 @@ class LISOrganization extends CaliperEntity implements Agent {
 	}
 	
 	public  function jsonSerialize() {
-		return [
-			'@id' => $this->getId(),
-			'@type' => $this->getType(),
-			'lastModifiedTime' => $this->getLastModifiedAt(),
-			'properties' => (object) $this->getProperties(),
-		];
+        $serializedParent = parent::jsonSerialize();
+
+        // This class doesn't use these properties, so unset them.
+        unset($serializedParent['name']);
+        unset($serializedParent['description']);
+
+        return $serializedParent;
 	}
 }

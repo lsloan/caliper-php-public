@@ -1,4 +1,6 @@
 <?php
+require_once 'util/TimestampUtil.php';
+
 class CaliperEvent implements JsonSerializable {
     private $context;
     private $type;
@@ -11,6 +13,9 @@ class CaliperEvent implements JsonSerializable {
     private $edApp;
     private $lisOrganization;
     private $generated;
+    /**
+     * @var int Duration in seconds
+     */
     private $duration;
 
     /*
@@ -59,9 +64,9 @@ class CaliperEvent implements JsonSerializable {
             'object' => $this->getObject(),
             'target' => $this->getTarget(),
             'generated' => $this->getGenerated(),
-            'startedAtTime' => $this->getStartedAtTime(),
-            'endedAtTime' => $this->getEndedAtTime(),
-            'duration' => $this->getDuration(),
+            'startedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getStartedAtTime()),
+            'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
+            'duration' => $this->getDurationFormatted(),
             'edApp' => $this->getEdApp(),
             'group' => $this->getLisOrganization()
         ];
@@ -223,16 +228,29 @@ class CaliperEvent implements JsonSerializable {
     }
 
     /**
-     * @return mixed
+     * @return int Duration in seconds
      */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param mixed $duration
+     * @param int $durationSeconds
+     * @return $this
      */
-    public function setDuration($duration) {
-        $this->duration = $duration;
+    public function setDuration($durationSeconds) {
+        $this->duration = $durationSeconds;
+        return $this;
+    }
+
+    /**
+     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
+     */
+    public function getDurationFormatted() {
+        if ($this->getDuration() === null) {
+            return null;
+        }
+
+        return 'PT' . $this->getDuration() . 'S';
     }
 }

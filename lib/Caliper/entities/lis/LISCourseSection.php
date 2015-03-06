@@ -64,19 +64,14 @@ class LISCourseSection extends LISOrganization {
 	}
 	
 	public function jsonSerialize(){
-		return [
-			'@id'=>$this->getId(),
-			'@type'=>$this->getType(),
-			'semester'=>$this->getSemester(),
-			'courseNumber' => $this->getCourseNumber(),
-			'label'=>$this->getLabel(),
-			'name'=>$this->getName(),
-			'description' => $this->getDescription(),
-			'parentOrg'=>$this->getParentOrg(),
-			'properties' => (object) $this->getProperties(),
-			'dateCreated' => $this->getDateCreated(),
-			'dateModified' => $this->getDateModified(),
-		];
+        return array_merge(parent::jsonSerialize(), [
+            'semester' => $this->getSemester(),
+            'courseNumber' => $this->getCourseNumber(),
+            'label' => $this->getLabel(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'parentOrg' => $this->getParentOrg(),
+        ]);
 	}
 }
 
