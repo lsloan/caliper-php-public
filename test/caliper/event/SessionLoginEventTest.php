@@ -13,8 +13,10 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
 	
 	function setUp() {
-		$createdTime = '2015-01-01T06:00:00Z';
-		$modifiedTime = '2015-02-02T11:30:00Z';
+		$createdTime = new DateTime('2015-01-01T06:00:00.000Z');
+		$modifiedTime = new DateTime('2015-02-02T11:30:00.000Z');
+
+        $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
 
 		$testPerson = new LISPerson('https://some-university.edu/user/554433');
 		$testPerson->setDateCreated($createdTime);
@@ -46,7 +48,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 		$generatedObj->setDateCreated($createdTime);
 		$generatedObj->setDateModified($modifiedTime);
 		$generatedObj->setActor($testPerson);
-		$generatedObj->setStartedAtTime($modifiedTime);
+		$generatedObj->setStartedAtTime($sessionStartTime);
 
 		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
 		$organization->setSemester('Spring-2014');
@@ -64,7 +66,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEvent->setGenerated($generatedObj);
 		$sessionEvent->setEdApp($eventObj);
 		$sessionEvent->setLisOrganization($organization);
-		$sessionEvent->setStartedAtTime($modifiedTime);		
+		$sessionEvent->setStartedAtTime($sessionStartTime);
 
 		$this->sessionEvent = $sessionEvent;
 	}
@@ -73,7 +75,10 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLoginEvent.json');
 
-		file_put_contents('/tmp/' . __CLASS__ . '.json', $sessionEventJson);
+        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
+        if ($outputDir != FALSE) {
+            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $sessionEventJson);
+        }
 
 		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $sessionEventJson);
 	}

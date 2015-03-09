@@ -41,8 +41,15 @@ Caliper::init('com.acme.apikey', $options);
 
 You only need to call init once when your php file is requested. All of your files will then have access to the same Caliper client.
 
+## Credits
+
+A very special thank you to each of the developers that contributed to this project:
+
+* Prashant Nayak, Intellify Learning
+* balachandiran.v / Yoganand-htc
+* Lance E Sloan (lsloan at umich dot edu), University of Michigan
+
 ©2014 IMS Global Learning Consortium, Inc. All Rights Reserved.
 Trademark Information- http://www.imsglobal.org/copyright.html
 
 For license information contact, info@imsglobal.org
-

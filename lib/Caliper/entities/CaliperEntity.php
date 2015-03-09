@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/schemadotorg/Thing.php';
+require_once 'util/TimestampUtil.php';
 
 class CaliperEntity implements JsonSerializable, Thing {
 
@@ -42,8 +43,8 @@ class CaliperEntity implements JsonSerializable, Thing {
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'properties' => (object) $this->getProperties(),
-            'dateCreated' => $this->getDateCreated(),
-            'dateModified' => $this->getDateModified(),
+            'dateCreated' => TimestampUtil::formatTimeISO8601MillisUTC($this->getDateCreated()),
+            'dateModified' => TimestampUtil::formatTimeISO8601MillisUTC($this->getDateModified()),
         ];
     }
 
