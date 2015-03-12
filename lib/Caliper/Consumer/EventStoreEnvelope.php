@@ -1,36 +1,22 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- *
- *  Envelope required for our reference event store
- */
+require_once 'util/TimestampUtil.php';
 
 class EventStoreEnvelope implements JsonSerializable {
-
 	private $id;
     private $type;
     private $time;
     private $data;
 
-
     /**
      * Create a new EventStoreEnvelope
      */
     public function __construct($data) {
-
     	$this->setData($data);
-
-    	// Autogenerate guid and timestamp for Envelope
-    	// Note: this is not the CaliperEvent timestamp
     	$this->setId($this->getNewGUID());
     	$this->setType("caliperEvent");
-    	$this->setTime(time()*1000);
+    	$this->setTime(TimestampUtil::formatTimeISO8601MillisUTC(new DateTime()));
     }
-	
-	
+
 	/*
 	 * 
 	 */
@@ -94,7 +80,6 @@ class EventStoreEnvelope implements JsonSerializable {
     }
 
     private function getNewGUID(){
-
 	    if (function_exists('com_create_guid')){
 	        return com_create_guid();
 	    }else{
