@@ -1,17 +1,10 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
-
-require(__DIR__ . '/Consumer.php');
-require(__DIR__ . '/QueueConsumer.php');
-require(__DIR__ . '/Consumer/EventStoreEnvelope.php');
-require(__DIR__ . '/Consumer/Socket.php');
-require(__DIR__ . '/events/CaliperEvent.php');
-require(__DIR__ . '/entities/CaliperEntity.php');
+require_once __DIR__ . '/Consumer.php';
+require_once __DIR__ . '/QueueConsumer.php';
+require_once __DIR__ . '/Consumer/EventStoreEnvelope.php';
+require_once __DIR__ . '/Consumer/Socket.php';
+require_once __DIR__ . '/events/CaliperEvent.php';
+require_once __DIR__ . '/entities/CaliperEntity.php';
 
 class Caliper_Client {
 
@@ -44,12 +37,11 @@ class Caliper_Client {
 
     /**
      * Send learning events
-     * @param  CaliperEvent $caliperEvent The Caliper Event
+     * @param  CaliperEvent $caliperEvent A Caliper event object
      * @return boolean whether the measure call succeeded
      */
-    public function measure($caliperEvent, $timestamp=null) {
-
-        return $this->consumer->measure($caliperEvent,$this->formatTime($timestamp));
+    public function measure($caliperEvent) {
+        return $this->consumer->measure($caliperEvent);
     }
 
     /**
@@ -57,22 +49,7 @@ class Caliper_Client {
      * @param  CaliperEntity $caliperEntity The Caliper Entity we are describing
      * @return boolean whether the describe call succeeded
      */
-    public function describe($caliperEntity, $timestamp = null) {
-
-       return $this->consumer->describe($caliperEntity,$this->formatTime($timestamp));
-    }
-
-    /**
-     * Formats a timestamp by making sure it is set, and then converting it to
-     * iso8601 format.
-     * @param  time $timestamp - time in seconds (time())
-     */
-    private function formatTime($timestamp) {
-
-        if ($timestamp == null) $timestamp = time();
-
-        # Format for iso8601
-        #return date("c", $timestamp);
-        return $timestamp;
+    public function describe($caliperEntity) {
+       return $this->consumer->describe($caliperEntity);
     }
 }
