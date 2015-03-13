@@ -24,9 +24,9 @@ abstract class Caliper_Consumer {
 
   /**
    * Send learning events
-   * @return boolean                   whether the measure call succeeded
+   * @return boolean success
    */
-  abstract public function measure($caliperEvent);
+  abstract public function send($caliperEvent);
 
   /**
    * Check whether debug mode is enabled

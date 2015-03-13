@@ -26,10 +26,10 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
 
   /**
    * Send learning events
-   * @return boolean                   whether the measure call succeeded
+   * @return boolean success
    */
-  public function measure($caliperEvent) {
-      $this->flushSingleMeasure($caliperEvent);
+  public function send($caliperEvent) {
+      $this->flushSingleSend($caliperEvent);
       return true;
   }
 
@@ -41,9 +41,9 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
   abstract function flushSingleDescribe($item);
 
   /**
-   * Flushes a single measure
+   * Flushes a single send
    * @param  [type] $item  [description]
    * @return [type]        [description]
    */
-  abstract function flushSingleMeasure($item);
+  abstract function flushSingleSend($item);
 }

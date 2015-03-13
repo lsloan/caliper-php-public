@@ -1,11 +1,4 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
-
 class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
 
   protected $type = "Socket";
@@ -53,7 +46,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     return $this->makeRequest($socket, $body);
   }
 
-  public function flushSingleMeasure($item) {
+  public function flushSingleSend($item) {
     $socket = $this->createSocket();
 
     if (!$socket)
@@ -63,9 +56,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
    
     $payload = json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);   
     
-    $body = $this->createMeasureBody($this->options["host"], $payload);
+    $body = $this->createSendBody($this->options["host"], $payload);
 
-    //print ("Sending MEASURE: ".$body);
+    //print ("Sending: ".$body);
 
     return $this->makeRequest($socket, $body);
   }
@@ -213,7 +206,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
    * @param  string $content
    * @return string body
    */
-  private function createMeasureBody($host, $content) {
+  private function createSendBody($host, $content) {
 
     $req = "";
     $req.= "POST " . $this->options["measureURI"] . " HTTP/1.1\r\n";

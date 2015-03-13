@@ -94,4 +94,4 @@ Caliper::init('org.imsglobal.caliper.php.apikey', [
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
 
-Caliper::measure($sessionTest->getSessionEvent());
+Caliper::send($sessionTest->getSessionEvent());

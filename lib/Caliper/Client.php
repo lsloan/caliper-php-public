@@ -38,10 +38,10 @@ class Caliper_Client {
     /**
      * Send learning events
      * @param  CaliperEvent $caliperEvent A Caliper event object
-     * @return boolean whether the measure call succeeded
+     * @return boolean success
      */
-    public function measure($caliperEvent) {
-        return $this->consumer->measure($caliperEvent);
+    public function send($caliperEvent) {
+        return $this->consumer->send($caliperEvent);
     }
 
     /**
