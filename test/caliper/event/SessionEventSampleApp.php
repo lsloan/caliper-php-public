@@ -80,16 +80,18 @@ class SessionEventSampleApp {
 	 }
 }
 
-$sensor = new Caliper();
-
-$sensor->init('org.imsglobal.caliper.php.apikey', [
+/*
+ * NOTE: Go to http://request.bin/, create a new RequestBin,
+ * copy the bin ID (the last part of the bin's URL, including
+ * the "/"), and put it in the 'measureURI' option below.
+ */
+Caliper::init('org.imsglobal.caliper.php.apikey', [
     'host' => 'requestb.in',
     'port' => 80,
-    'measureURI' => '/1213opq1',
+    'measureURI' => '/1234abc5',
 ]);
 
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
-//echo $sessionTest->getSessionEventJSON() . PHP_EOL;
 
-$sensor->measure($sessionTest->getSessionEvent());
+Caliper::measure($sessionTest->getSessionEvent());

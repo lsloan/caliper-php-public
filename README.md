@@ -27,19 +27,23 @@ git clone https://github.com/IMSGlobal/caliper-php.git
 Then, add the following to your PHP script:
 
 ```
-require_once("/path/to/caliper-php/lib/Caliper.php");
+require_once '/path/to/caliper-php/lib/CaliperSensor.php';
 ```
 
-Now, you're ready to initialize the Caliper module as follows:
+Now you're ready to initialize Caliper and send an event as follows:
 
 ```
-$options = array();
-$options["host"] = 'acme.caliperstore.com';
-$options["sensor_id"] = 'com.acme.sensor1';
-Caliper::init('com.acme.apikey', $options);
+Caliper::init('org.imsglobal.caliper.php.apikey', [
+       'host' => 'requestb.in',
+       'port' => 80,
+       'measureURI' => '/1234abc5',
+]);
+// TODO: Define $yourCaliperEventObject
+Caliper::measure($yourCaliperEventObject);
 ```
 
-You only need to call init once when your php file is requested. All of your files will then have access to the same Caliper client.
+Your PHP program should only call init() once, when it responds to a request.
+All parts of your program will then have access to the same Caliper client.
 
 ## Credits
 
