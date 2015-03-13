@@ -42,7 +42,16 @@ Caliper::init('org.imsglobal.caliper.php.apikey', [
 Caliper::measure($yourCaliperEventObject);
 ```
 
-Your PHP program should only call init() once, when it responds to a request.
+In this example, after you've defined a Caliper event object to be logged by the measure() method,
+the serialized object's JSON will be sent to a bin at:
+
+[http://requestb.in/1234abc5](http://requestb.in/1234abc5)
+
+To view the contents of the bin, go to:
+
+[http://requestb.in/1234abc5?inspect](http://requestb.in/1234abc5?inspect)
+
+Your PHP program should call init() only once, when it responds to a request.
 All parts of your program will then have access to the same Caliper client.
 
 ## Credits
