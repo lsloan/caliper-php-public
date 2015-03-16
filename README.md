@@ -36,13 +36,13 @@ Now you're ready to initialize Caliper and send an event as follows:
 Caliper::init('org.imsglobal.caliper.php.apikey', [
        'host' => 'requestb.in',
        'port' => 80,
-       'measureURI' => '/1234abc5',
+       'sendURI' => '/1234abc5',
 ]);
 // TODO: Define $yourCaliperEventObject
-Caliper::measure($yourCaliperEventObject);
+Caliper::send($yourCaliperEventObject);
 ```
 
-In this example, after you've defined a Caliper event object to be logged by the measure() method,
+In this example, after you've defined a Caliper event object to be logged by the send() method,
 the serialized object's JSON will be sent to a bin at:
 
 http://requestb.in/1234abc5

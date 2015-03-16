@@ -83,12 +83,12 @@ class SessionEventSampleApp {
 /*
  * NOTE: Go to http://request.bin/, create a new RequestBin,
  * copy the bin ID (the last part of the bin's URL, including
- * the "/"), and put it in the 'measureURI' option below.
+ * the "/"), and put it in the 'sendURI' option below.
  */
 Caliper::init('org.imsglobal.caliper.php.apikey', [
     'host' => 'requestb.in',
     'port' => 80,
-    'measureURI' => '/1234abc5',
+    'sendURI' => '/1234abc5',
 ]);
 
 $sessionTest = new SessionEventSampleApp();

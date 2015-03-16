@@ -23,8 +23,8 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     if (!isset($options["describeURI"]))
       $options["describeURI"] = "/v1/describe";
 
-    if (!isset($options["measureURI"]))
-      $options["measureURI"] = "/v1/measure";
+    if (!isset($options["sendURI"]))
+      $options["sendURI"] = "/v1/send";
 
     parent::__construct($apiKey, $options);
   }
@@ -209,7 +209,7 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
   private function createSendBody($host, $content) {
 
     $req = "";
-    $req.= "POST " . $this->options["measureURI"] . " HTTP/1.1\r\n";
+    $req.= "POST " . $this->options["sendURI"] . " HTTP/1.1\r\n";
     $req.= "Host: " . $host . "\r\n";
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
