@@ -1,11 +1,4 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
- 
 abstract class Caliper_Consumer {
 
   protected $type = "Consumer";
@@ -27,13 +20,13 @@ abstract class Caliper_Consumer {
    * Describe an entity 
    * @return boolean            whether the track call succeeded
    */
-  abstract public function describe($caliperEntity,$timestamp);
+  abstract public function describe($caliperEntity);
 
   /**
    * Send learning events
-   * @return boolean                   whether the measure call succeeded
+   * @return boolean success
    */
-  abstract public function measure($caliperEvent,$timestamp);
+  abstract public function send($caliperEvent);
 
   /**
    * Check whether debug mode is enabled

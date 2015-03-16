@@ -37,7 +37,7 @@ class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
     /**
      * @group caliper
      */
-    function testMeasure() {
+    function testSend() {
         $caliperEvent = new CaliperEvent();
         $caliperEvent->setAction("HILIGHT");
         $caliperEvent->setLearningContext(array(
@@ -49,7 +49,7 @@ class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
             "pageId" => "page-1234",
         ));
 
-        $measured = Caliper::measure($caliperEvent);
-        $this->assertTrue($measured);
+        $sent = Caliper::send($caliperEvent);
+        $this->assertTrue($sent);
     }
 }

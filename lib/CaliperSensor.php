@@ -37,11 +37,11 @@ class Caliper {
     /**
      * Send learning events
      * @param  CaliperEvent $caliperEvent The Caliper Event
-     * @return boolean                   whether the measure call succeeded
+     * @return boolean success
      */
-    public static function measure($caliperEvent) {
+    public static function send($caliperEvent) {
         self::check_client();
-        return self::$client->measure($caliperEvent);
+        return self::$client->send($caliperEvent);
     }
 
     /**
@@ -61,7 +61,7 @@ class Caliper {
 
         if (self::$client == null) {
             throw new Exception("Caliper::init must be called " .
-                "before describe, measure, track or identify");
+                "before describe, send, track or identify");
         }
     }
 }
