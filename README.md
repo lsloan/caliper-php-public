@@ -52,12 +52,12 @@ All parts of your program will then have access to the same Caliper client.
 
 A simple example program can be found in:
 
-  test/caliper/event/SessionEventSampleApp.php
+  examples/SessionEventSampleApp.php
 
 It will attempt to send an event to a data store listener on localhost:8000.  If you have a data store on some other host or port, you can edit the program to point to it.  If you don't have a data store, you can run a simple listener included in:
 
 ```
-test/util/testListener.sh [optional_port]
+examples/tools/testListener.sh [optional_port]
 ```
 
 That will start a simple PHP web server (on port 8000 by default) that listens for POST requests and dumps the raw contents to the terminal.  If you run this in one terminal window and the example program in another terminal window, you will see the request received in the first window.
