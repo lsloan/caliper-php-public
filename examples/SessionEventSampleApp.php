@@ -1,5 +1,5 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once realpath(dirname(__FILE__) . '/../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
@@ -80,15 +80,11 @@ class SessionEventSampleApp {
 	 }
 }
 
-/*
- * NOTE: Go to http://request.bin/, create a new RequestBin,
- * copy the bin ID (the last part of the bin's URL, including
- * the "/"), and put it in the 'sendURI' option below.
- */
 Caliper::init('org.imsglobal.caliper.php.apikey', [
-    'host' => 'requestb.in',
-    'port' => 80,
-    'sendURI' => '/1234abc5',
+    'debug' => true,
+    'host' => 'localhost',
+    'port' => 8000,
+    'sendURI' => '/',
 ]);
 
 $sessionTest = new SessionEventSampleApp();

@@ -58,8 +58,6 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     
     $body = $this->createSendBody($this->options["host"], $payload);
 
-    //print ("Sending: ".$body);
-
     return $this->makeRequest($socket, $body);
   }
 
@@ -89,7 +87,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
         return false;
       }
 
-      echo '<pre>[DEBUG] Connected to event store : '.$protocol . "://" . $host.':'.$port.'</pre>';
+        if ($this->debug()) {
+            echo "<pre>[DEBUG] Connected to event store: ${protocol}://${host}:${port}</pre>\n";
+        }
 
       return $socket;
 
@@ -114,7 +114,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $bytes_total = strlen($req);
     $closed = false;
 
-    echo '<pre>[DEBUG] Making request : '.$req.'</pre>';
+      if ($this->debug()) {
+          echo '<pre>[DEBUG] Making request: ' . $req . "</pre>\n";
+      }
 
     # Write the request
     while (!$closed && $bytes_written < $bytes_total) {
@@ -126,10 +128,14 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
       }
       if (!isset($written) || !$written) {
         $closed = true;
-        echo '<pre>[DEBUG] Socket was in closed state... retrying : '.$retry.'</pre>';
+          if ($this->debug()) {
+              echo '<pre>[DEBUG] Socket was in closed state... retrying: ' . $retry . "</pre>\n";
+          }
       } else {
         $bytes_written += $written;
-        echo '<pre>[DEBUG] Bytes written: '.$written.'</pre>';
+          if ($this->debug()) {
+              echo '<pre>[DEBUG] Bytes written: ' . $written . "</pre>\n";
+          }
       }
     }
 
@@ -148,31 +154,13 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $success = true;
 
     if ($this->debug()) {
-    // if (true) {
       $res = $this->parseResponse(fread($socket, 2048));
-      echo '<pre>[DEBUG] Response: '.$res.'</pre>';
+      echo '<pre>[DEBUG] Response: ' . print_r($res, true) . "</pre>\n";
       if ($res["status"] != "200") {
         $this->handleError($res["status"], $res["message"]);
         $success = false;
       }
     }
-
-    // while (!feof($socket)) { 
-    //   echo '<pre>[DEBUG] Response: '.fgets($socket, 128).'</pre>';
-    // } 
-
-    // while (!feof($socket)) {
-
-    //   if($lineBreak == 0)
-    //   while(trim(fgets($socket, 2014)) != "") {
-    //     $lineBreak = 1;
-    //     continue;
-    //   }
-  
-    //   $line = fgets($socket, 1024);
-    //   $response .= "$line";
-    // } 
-    // echo '<pre>[DEBUG] Response: '.$response.'</pre>';
 
     fclose($socket);
 
@@ -193,7 +181,6 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";
-    // $req.= "Connection: Close\r\n\r\n";
     $req.= "\r\n";
     $req.= $content;
 
@@ -214,7 +201,6 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";
-    // $req.= "Connection: Close\r\n\r\n";
     $req.= "\r\n";
     $req.= $content;
 
