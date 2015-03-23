@@ -13,16 +13,18 @@ Access to this draft code is reserved for IMS Contributing Members who are activ
 
 ### Pre-requisites for development:  
 
-* Ensure you have php5 and php5-json installed.  E.g. sudo apt-get install php5 php5-json
-* Install Composer (for dependency management) - curl -sS https://getcomposer.org/installer | php 
-* Install dependencies - php composer.phar install
+* Ensure you have php5 and php5-json installed:  ```sudo apt-get install php5 php5-json```
+* Install Composer (for dependency management):  ```curl -sS https://getcomposer.org/installer | php```
+* Install dependencies:  ```php composer.phar install```
 * Run tests using the Makefile
 
 ### Installing and using the Library:
 
-To install the library, clone the repository from github into your desired application directory.
+To install the library, clone the repository from GitHub into your desired application directory.
 
+```
 git clone https://github.com/IMSGlobal/caliper-php.git
+```
 
 Then, add the following to your PHP script:
 
@@ -34,25 +36,31 @@ Now you're ready to initialize Caliper and send an event as follows:
 
 ```
 Caliper::init('org.imsglobal.caliper.php.apikey', [
-       'host' => 'requestb.in',
+       'debug' => true,
+       'host' => 'example.org',
        'port' => 80,
-       'sendURI' => '/1234abc5',
+       'sendURI' => '/dataStoreURI',
 ]);
 // TODO: Define $yourCaliperEventObject
 Caliper::send($yourCaliperEventObject);
 ```
 
-In this example, after you've defined a Caliper event object to be logged by the send() method,
-the serialized object's JSON will be sent to a bin at:
-
-http://requestb.in/1234abc5
-
-To view the contents of the bin, go to:
-
-http://requestb.in/1234abc5?inspect
-
 Your PHP program should call init() only once, when it responds to a request.
 All parts of your program will then have access to the same Caliper client.
+
+### Running an example:
+
+A simple example program can be found in:
+
+  test/caliper/event/SessionEventSampleApp.php
+
+It will attempt to send an event to a data store listener on localhost:8000.  If you have a data store on some other host or port, you can edit the program to point to it.  If you don't have a data store, you can run a simple listener included in:
+
+```
+test/util/testListener.sh [optional_port]
+```
+
+That will start a simple PHP web server (on port 8000 by default) that listens for POST requests and dumps the raw contents to the terminal.  If you run this in one terminal window and the example program in another terminal window, you will see the request received in the first window.
 
 ## Credits
 
