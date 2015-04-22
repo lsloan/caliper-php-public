@@ -9,28 +9,12 @@ class CaliperEntity implements JsonSerializable, Thing {
     public $type;
     public $name;
     private $description;
-    private $properties;
+    private $extensions;
     private $dateCreated;
     private $dateModified;
 
     function __construct() {
     }
-
-    /**
-     * It is preferred to call NutritionalFacts::createBuilder
-     * to calling this constructor directly.
-     */
-//    function __construct(CaliperEntityBuilder $b) {
-//        $this->type = $b->getType();
-//        $this->name = $b->getName();
-//        $this->id = $b->getId();
-//        $this->dateModified = $b->getDateModified();
-//        $this->properties = $b->getProperties();
-//    }
-//
-//    static function builder($s) {
-//        return new CaliperEntityBuilder();
-//    }
 
     /**
      ** @see JsonSerializable::jsonSerialize()
@@ -42,7 +26,7 @@ class CaliperEntity implements JsonSerializable, Thing {
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'properties' => (object) $this->getProperties(),
+            'extensions' => (object) $this->getExtensions(),
             'dateCreated' => TimestampUtil::formatTimeISO8601MillisUTC($this->getDateCreated()),
             'dateModified' => TimestampUtil::formatTimeISO8601MillisUTC($this->getDateModified()),
         ];
@@ -109,15 +93,15 @@ class CaliperEntity implements JsonSerializable, Thing {
     /**
      * @return mixed
      */
-    public function getProperties() {
-        return $this->properties;
+    public function getExtensions() {
+        return $this->extensions;
     }
 
     /**
-     * @param mixed $properties
+     * @param mixed $extensions
      */
-    public function setProperties($properties) {
-        $this->properties = $properties;
+    public function setExtensions($extensions) {
+        $this->extensions = $extensions;
     }
     
     /**
