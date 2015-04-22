@@ -1,8 +1,8 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'util/SplEnumPlus.php';
+require_once 'util/BasicEnum.php';
 
-class SessionActions extends \SplEnumPlus {
+class SessionActions extends \BasicEnum {
     const
         __default = '',
         LOGGED_IN = 'session.loggedIn',
