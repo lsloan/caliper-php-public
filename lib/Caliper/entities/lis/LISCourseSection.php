@@ -1,77 +1,56 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'LISOrganization.php';
+require_once 'CourseOffering.php';
 
-class LISCourseSection extends LISOrganization {
-
-	private $label;
-	private $courseNumber;
-	private $semester; // TODO - check agains LIS LISOrganization
-
+class LISCourseSection extends CourseOffering {
+	private $category;
+	private $academicSession;
 	
 	/**
 	 * @param id
 	 * @param parentOrg	
 	 */
-	public function __construct($id = NULL, $parentOrg = NULL) {
-		parent::__construct($id, $parentOrg);
+	public function __construct($id) {
+		parent::__construct($id);
 		$this->setType('http://purl.imsglobal.org/caliper/v1/lis/CourseSection');
 	}
-	
-	/**
-	 * @return the label
-	 */
-	public function getLabel() {
-		return $this->label;
-	}
 
-	/**
-	 * @param label
-	 *            the label to set
-	 */
-	public function setLabel($label) {
-		$this->label = $label;
-	}
-
-	/**
-	 * @return the courseNumber
-	 */
-	public function getCourseNumber() {
-		return $this->courseNumber;
-	}
-
-	/**
-	 * @param courseNumber
-	 *            the courseNumber to set
-	 */
-	public function setCourseNumber($courseNumber) {
-		$this->courseNumber = $courseNumber;
-	}
-
-	/**
-	 * @return the semester
-	 */
-	public function getSemester() {
-		return $this->semester;
-	}
-
-	/**
-	 * @param semester
-	 *            the semester to set
-	 */
-	public function setSemester($semester) {
-		$this->semester = $semester;
-	}
-	
-	public function jsonSerialize(){
+    public function jsonSerialize(){
         return array_merge(parent::jsonSerialize(), [
-            'semester' => $this->getSemester(),
-            'courseNumber' => $this->getCourseNumber(),
-            'label' => $this->getLabel(),
-            'name' => $this->getName(),
-            'description' => $this->getDescription(),
-            'parentOrg' => $this->getParentOrg(),
+            'academicSession' => $this->getAcademicSession(),
+            'category' => $this->getCategory(),
         ]);
+    }
+	/**
+	 * @return the category
+	 */
+	public function getCategory() {
+		return $this->category;
 	}
+
+	/**
+	 * @param category
+	 *            the category to set
+	 */
+	public function setCategory($category) {
+		$this->category = $category;
+	}
+
+	/**
+	 * @return the academicSession
+	 */
+	public function getAcademicSession() {
+		return $this->academicSession;
+	}
+
+	/**
+	 * @param academicSession
+	 *            the academicSession to set
+	 */
+	public function setAcademicSession($academicSession) {
+		$this->academicSession = $academicSession;
+        return $this;
+	}
+	
 }
 

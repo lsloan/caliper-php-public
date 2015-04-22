@@ -4,6 +4,8 @@ require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
+require_once 'Caliper/entities/lis/Group.php';
+require_once 'Caliper/entities/lis/Membership.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
@@ -13,14 +15,39 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
 	
 	function setUp() {
-		$createdTime = new DateTime('2015-01-01T06:00:00Z');
-		$modifiedTime = new DateTime('2015-02-02T11:30:00Z');
+        $createdTime = new DateTime('2015-08-01T06:00:00.000Z');
+        $modifiedTime = new DateTime('2015-09-02T11:30:00.000Z');
 
-        $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
-        $sessionEndTime = new DateTime('2015-02-15T11:05:00.000Z');
+        $sessionStartTime = new DateTime('2015-09-15T10:15:00.000Z');
+        $sessionEndTime = new DateTime('2015-09-15T11:05:00.000Z');
         $sessionDurationSeconds = $sessionEndTime->getTimestamp() - $sessionStartTime->getTimestamp();
 
-        $testPerson = new LISPerson('https://some-university.edu/user/554433');
+        $testPersonId = 'https://some-university.edu/user/554433';
+        $testRole = 'http://purl.imsglobal.org/vocab/lis/v2/membership#Learner';
+
+        $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
+        $courseMembership = new Membership('https://some-university.edu/membership/001');
+        $courseMembership->setMember($testPersonId);
+        $courseMembership->setOrganization($courseOrganizationUrl);
+        $courseMembership->setRoles([$testRole]);
+        $courseMembership->setDateCreated($createdTime);
+
+        $sectionOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001';
+        $sectionMembership = new Membership('https://some-university.edu/membership/002');
+        $sectionMembership->setMember($testPersonId);
+        $sectionMembership->setOrganization($sectionOrganizationUrl);
+        $sectionMembership->setRoles([$testRole]);
+        $sectionMembership->setDateCreated($createdTime);
+
+        $groupOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001/group/001';
+        $groupMembership = new Membership('https://some-university.edu/membership/003');
+        $groupMembership->setMember($testPersonId);
+        $groupMembership->setOrganization($groupOrganizationUrl);
+        $groupMembership->setRoles([$testRole]);
+        $groupMembership->setDateCreated($createdTime);
+
+        $testPerson = new LISPerson($testPersonId);
+        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
 		$testPerson->setDateCreated($createdTime);
 		$testPerson->setDateModified($modifiedTime);
 
@@ -44,21 +71,35 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setEndedAtTime($sessionEndTime);
         $targetObj->setDuration($sessionDurationSeconds);
 
-		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
-		$organization->setSemester('Spring-2014');
-		$organization->setCourseNumber('AmRev-101');
-		$organization->setLabel('Am Rev 101');
-		$organization->setName('American Revolution 101');
-		$organization->setDateCreated($createdTime);
-		$organization->setDateModified($modifiedTime);
+        $courseOffering = new CourseOffering($courseOrganizationUrl);
+        $courseOffering->setCourseNumber('POL101');
+        $courseOffering->setName('Political Science 101: The American Revolution');
+        $courseOffering->setAcademicSession('Fall-2015');
+        $courseOffering->setDateCreated($createdTime);
+        $courseOffering->setDateModified($modifiedTime);
 
-		$sessionEvent = new SessionEvent();	
+        $courseSection = new LISCourseSection($sectionOrganizationUrl);
+        $courseSection->setCourseNumber('POL101');
+        $courseSection->setName('American Revolution 101');
+        $courseSection->setAcademicSession('Fall-2015');
+        $courseSection->setMembership([$sectionMembership]);
+        $courseSection->setSubOrganizationOf($courseOffering);
+        $courseSection->setDateCreated($createdTime);
+        $courseSection->setDateModified($modifiedTime);
+
+        $group = new Group($groupOrganizationUrl);
+        $group->setName('Discussion Group 001');
+        $group->setMembership([$groupMembership]);
+        $group->setSubOrganizationOf($courseSection);
+        $group->setDateCreated($createdTime);
+
+        $sessionEvent = new SessionEvent();
 		$sessionEvent->setActor($eventObj);
 		$sessionEvent->setAction(SessionActions::TIMED_OUT);
 		$sessionEvent->setObject($eventObj);
 		$sessionEvent->setTarget($targetObj);
 		$sessionEvent->setEdApp($eventObj);
-		$sessionEvent->setLisOrganization($organization);
+		$sessionEvent->setGroup($group);
 		$sessionEvent->setStartedAtTime($sessionStartTime);
 		$sessionEvent->setEndedAtTime($sessionEndTime);
         $sessionEvent->setDuration($sessionDurationSeconds);

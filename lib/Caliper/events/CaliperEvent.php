@@ -11,7 +11,7 @@ class CaliperEvent implements JsonSerializable {
     private $startedAtTime;
     private $endedAtTime;
     private $edApp;
-    private $lisOrganization;
+    private $group;
     private $generated;
     /**
      * @var int Duration in seconds
@@ -60,7 +60,7 @@ class CaliperEvent implements JsonSerializable {
             '@context' => $this->getContext(),
             '@type' => $this->getType(),
             'actor' => $this->getActor(),
-            'action' => self::getLocalizedAction($this->getAction()),
+            'action' => $this->getAction(),
             'object' => $this->getObject(),
             'target' => $this->getTarget(),
             'generated' => $this->getGenerated(),
@@ -68,7 +68,7 @@ class CaliperEvent implements JsonSerializable {
             'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
             'duration' => $this->getDurationFormatted(),
             'edApp' => $this->getEdApp(),
-            'group' => $this->getLisOrganization()
+            'group' => $this->getGroup()
         ];
     }
 
@@ -117,15 +117,16 @@ class CaliperEvent implements JsonSerializable {
     /**
      * @return mixed
      */
-    public function getLisOrganization() {
-        return $this->lisOrganization;
+    public function getGroup() {
+        return $this->group;
     }
 
     /**
      * @param mixed $lisOrganization
      */
-    public function setLisOrganization($lisOrganization) {
-        $this->lisOrganization = $lisOrganization;
+    public function setGroup($group) {
+        $this->group = $group;
+        return $this;
     }
 
     /**

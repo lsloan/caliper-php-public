@@ -12,7 +12,7 @@ class ReadingActions extends SplEnum {
         __default = "",
         SEARCHED = "reading.searched",
 
-        NAVIGATED_TO = "navigation.navigatedTo",
-        VIEWED = "navigation.viewed";
+        NAVIGATED_TO = "http://purl.imsglobal.org/vocab/caliper/v1/action#NavigatedTo",
+        VIEWED = "http://purl.imsglobal.org/vocab/caliper/v1/action#Viewed";
 }
 
