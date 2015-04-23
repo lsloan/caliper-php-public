@@ -5,6 +5,7 @@ require_once 'Caliper/entities/Targetable.php';
 
 class MediaLocation extends CaliperDigitalResource implements Targetable {
     private $currentTime;
+    private $version;
 
     public function __construct($id) {
 		parent::__construct();
@@ -19,6 +20,7 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'currentTime' => $this->getCurrentTime(),
+            'version' => $this->getVersion(),
         ]);
     }
 
@@ -36,5 +38,20 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
      */
     public function getCurrentTime() {
         return $this->currentTime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVersion() {
+        return $this->version;
+    }
+
+    /**
+     * @param mixed $version
+     */
+    public function setVersion($version) {
+        $this->version = $version;
+        return $this;
     }
 }

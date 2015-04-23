@@ -3,28 +3,29 @@ require_once 'CaliperSensor.php';
 require_once 'util/BasicEnum.php';
 
 class MediaActions extends \BasicEnum {
+    //http://purl.imsglobal.org/vocab/caliper/v1/action#Paused
     const
         __default = '',
-        ENABLEDCLOSECAPTIONING = 'media.accessibility.enabledCloseCaptioning',
-        DISABLEDCLOSEDCAPTIONING = 'media.accessibility.disabledCloseCaptioning',
+        ENABLEDCLOSECAPTIONING = 'http://purl.imsglobal.org/vocab/caliper/v1/action#EnabledCloseCaptioning',
+        DISABLEDCLOSEDCAPTIONING = 'http://purl.imsglobal.org/vocab/caliper/v1/action#DisabledCloseCaptioning',
 
-        CHANGEDVOLUME = 'media.audio.changedVolume',
-        MUTED = 'media.audio.muted',
-        UNMUTED = 'media.audio.unmuted',
+        CHANGEDVOLUME = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ChangedVolume',
+        MUTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Muted',
+        UNMUTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Unmuted',
 
-        CHANGEDSPEED = 'media.playback.changedSpeed',
-        ENDED = 'media.playback.ended',
-        JUMPEDTO = 'media.playback.jumpedTo',
-        FORWARDEDTO = 'media.playback.forwardedTo',
-        PAUSED = 'media.playback.paused',
-        RESUMED = 'media.playback.resumed',
-        REWINDED = 'media.playback.rewindedTo',
-        STARTED = 'media.playback.started',
+        CHANGEDSPEED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ChangedSpeed',
+        ENDED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Ended',
+        JUMPEDTO = 'http://purl.imsglobal.org/vocab/caliper/v1/action#JumpedTo',
+        FORWARDEDTO = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ForwardedTo',
+        PAUSED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Paused',
+        RESUMED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Resumed',
+        REWINDED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#RewindedTo',
+        STARTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Started',
 
-        CHANGEDRESOLUTION = 'media.viewer.changedResolution',
-        CHANGEDVIEWERSIZE = 'media.viewer.changedViewerSize',
-        CLOSEDPOPOUT = 'media.viewer.closedPopout',
-        ENTEREDFULLSCREEN = 'media.viewer.enteredFullScreen',
-        EXITEDFULLSCREEN = 'media.viewer.exitedFullScreen',
-        OPENEDPOPOUT = 'media.viewer.openedPopout';
+        CHANGEDRESOLUTION = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ChangedResolution',
+        CHANGEDVIEWERSIZE = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ChangedViewerSize',
+        CLOSEDPOPOUT = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ClosedPopout',
+        ENTEREDFULLSCREEN = 'http://purl.imsglobal.org/vocab/caliper/v1/action#EnteredFullScreen',
+        EXITEDFULLSCREEN = 'http://purl.imsglobal.org/vocab/caliper/v1/action#ExitedFullScreen',
+        OPENEDPOPOUT = 'http://purl.imsglobal.org/vocab/caliper/v1/action#OpenedPopout';
 }
