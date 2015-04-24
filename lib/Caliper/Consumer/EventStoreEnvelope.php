@@ -2,6 +2,8 @@
 require_once 'util/TimestampUtil.php';
 
 class EventStoreEnvelope implements JsonSerializable {
+    private $apiKey;
+    private $sensorId;
 	private $id;
     private $type;
     private $time;
@@ -10,7 +12,9 @@ class EventStoreEnvelope implements JsonSerializable {
     /**
      * Create a new EventStoreEnvelope
      */
-    public function __construct($data) {
+    public function __construct($data, $apiKey, $sensorId) {
+        $this->setApiKey($apiKey);
+        $this->setSensorId($sensorId);
     	$this->setData($data);
     	$this->setId($this->getNewGUID());
     	$this->setType("caliperEvent");
@@ -22,7 +26,39 @@ class EventStoreEnvelope implements JsonSerializable {
 	 */
 	public function __destruct() {
     }
-    
+
+    /**
+     * @return mixed
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * @param mixed $apiKey
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSensorId()
+    {
+        return $this->sensorId;
+    }
+
+    /**
+     * @param mixed $sensorId
+     */
+    public function setSensorId($sensorId)
+    {
+        $this->sensorId = $sensorId;
+    }
+
     /**
      * @param mixed $id
      */
@@ -102,12 +138,14 @@ class EventStoreEnvelope implements JsonSerializable {
      * @see JsonSerializable::jsonSerialize()
      *  
      */
-    public  function jsonSerialize(){
-    	
-	    return [['id'=>$this->getId(),
-	    		'type'=>$this->getType(),
-	    		'time'=>$this->getTime(),
-				'data'=>$this->getData()
-				]];    
+    public  function jsonSerialize() {
+	    return [
+            'apiKey' => $this->getApiKey(),
+            'sensorId' => $this->getSensorId(),
+            'id' => $this->getId(),
+            'type' => $this->getType(),
+            'time' => $this->getTime(),
+            'event' => $this->getData(),
+        ];
     }
 }
