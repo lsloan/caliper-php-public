@@ -46,13 +46,13 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     return $this->makeRequest($socket, $body);
   }
 
-  public function flushSingleSend($item) {
+  public function flushSingleSend($item, $apiKey, $sensorId) {
     $socket = $this->createSocket();
 
     if (!$socket)
       return;    
   
-    $payload = new EventStoreEnvelope($item);     
+    $payload = new EventStoreEnvelope($item, $apiKey, $sensorId);
    
     $payload = json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);   
     
