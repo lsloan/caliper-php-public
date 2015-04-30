@@ -68,7 +68,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $target->setName('Key Figures: George Washington');
         $target->setDateCreated($createdTime);
         $target->setDateModified($modifiedTime);
-        $target->setIsPartOf($object);
+        $target->setIsPartOf('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
         $target->setVersion('2nd ed.');
         $target->setIndex(1);
 
@@ -96,7 +96,6 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 
         $fromResource = new WebPage('https://some-university.edu/politicalScience/2015/american-revolution-101/index.html');
         $fromResource->setName('American Revolution 101 Landing Page');
-        $fromResource->setIsPartOf($courseOffering);
         $fromResource->setDateCreated($createdTime);
         $fromResource->setDateModified($modifiedTime);
         $fromResource->setVersion('1.0');
