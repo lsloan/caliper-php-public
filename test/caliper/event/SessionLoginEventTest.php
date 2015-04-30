@@ -54,13 +54,6 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 		$eventObj->setDateCreated($createdTime);
 		$eventObj->setDateModified($modifiedTime);
 
-		$ePubVolume = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');	
-		$ePubVolume->setType('http://www.idpf.org/epub/vocab/structure/#volume');
-		$ePubVolume->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
-		$ePubVolume->setDateCreated($createdTime);
-		$ePubVolume->setDateModified($modifiedTime);
-        $ePubVolume->setVersion('2nd ed.');
-
 		// TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
 		$targetObj = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
 		// TODO remove this setType.  caliper-php doesn't implement Frame, but test fixture requires this value
@@ -68,7 +61,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setName('Key Figures: George Washington');
 		$targetObj->setDateCreated($createdTime);
 		$targetObj->setDateModified($modifiedTime);
-		$targetObj->setIsPartOf($ePubVolume);
+		$targetObj->setIsPartOf('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
 		$targetObj->setIndex(1);
         $targetObj->setVersion('2nd ed.');
 
