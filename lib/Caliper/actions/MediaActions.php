@@ -1,9 +1,7 @@
 <?php
-require_once 'CaliperSensor.php';
 require_once 'util/BasicEnum.php';
 
 class MediaActions extends \BasicEnum {
-    //http://purl.imsglobal.org/vocab/caliper/v1/action#Paused
     const
         __default = '',
         ENABLEDCLOSECAPTIONING = 'http://purl.imsglobal.org/vocab/caliper/v1/action#EnabledCloseCaptioning',
