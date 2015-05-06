@@ -1,32 +1,24 @@
 <?php
+require_once 'util/BasicEnum.php';
 
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 10/21/14
- * Time: 1:28 PM
- */
-class AnnotationActions extends SplEnum {
-
+class AnnotationActions extends BasicEnum {
     const
-        __default = "",
-        ATTACHED = "annotation.attached",
-        BOOKMARKED = "annotation.bookmarked",
-        CLASSIFIED = "annotation.classified",
-        COMMENTED = "annotation.commented",
-        DESCRIBED = "annotation.described",
-        HIGHLIGHTED = "annotation.highlighted",
-        IDENTIFIED = "annotation.identified",
-        LIKED = "annotation.liked",
-        LINKED = "annotation.linked",
-        RANKED = "annotation.ranked",
-        QUESTIONED = "annotation.questioned",
-        RECOMMENDED = "annotation.recommended",
-        REPLIED = "annotation.replied",
-        SHARED = "annotation.shared",
-        SUBSCRIBED = "annotation.subscribed",
-        TAGGED = "annotation.tagged",
-        NAVIGATED_TO = "navigation.navigatedTo",
-        VIEWED = "navigation.viewed";
+        __default = '',
+        ATTACHED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Attached',
+        BOOKMARKED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Bookmarked',
+        CLASSIFIED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Classified',
+        COMMENTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Commented',
+        DESCRIBED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Described',
+        HIGHLIGHTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Highlighted',
+        IDENTIFIED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Identified',
+        LIKED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Liked',
+        LINKED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Linked',
+        RANKED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Ranked',
+        QUESTIONED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Questioned',
+        RECOMMENDED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Recommended',
+        REPLIED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Replied',
+        SHARED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Shared',
+        SUBSCRIBED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Subscribed',
+        TAGGED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Tagged';
 }
 
