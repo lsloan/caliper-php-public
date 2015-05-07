@@ -1,20 +1,9 @@
 <?php
+require_once 'util/BasicEnum.php';
 
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 10/21/14
- * Time: 1:28 PM
- */
-class AnnotationActions extends SplEnum {
-
+class OutcomeActions extends BasicEnum {
     const
-        __default = "",
-        GRADED = "outcome.graded",
-        // POSTED = "outcome.posted");
-        // REPORTED = "outcome.reported");
-
-        NAVIGATED_TO = "navigation.navigatedTo",
-        VIEWED = "navigation.viewed";
+        __default = '',
+        GRADED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Graded';
 }
 
