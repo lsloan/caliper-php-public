@@ -9,7 +9,7 @@ require_once 'Caliper/entities/lis/Membership.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
-require_once 'Caliper/actions/SessionActions.php';
+require_once 'Caliper/actions/Action.php';
 
 class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
@@ -96,7 +96,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 
 		$sessionEvent = new SessionEvent();	
 		$sessionEvent->setActor($testPerson);
-		$sessionEvent->setAction(SessionActions::LOGGED_IN);
+		$sessionEvent->setAction(Action::LOGGED_IN);
 		$sessionEvent->setObject($eventObj);
 		$sessionEvent->setTarget($targetObj);
 		$sessionEvent->setGenerated($generatedObj);

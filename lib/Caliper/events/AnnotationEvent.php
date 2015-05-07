@@ -1,12 +1,8 @@
 <?php
 
 require_once dirname(__FILE__).'/../CaliperEvent.php';
-require_once (dirname(dirname(dirname(__FILE__))).'/actions/AnnotationActions.php');
+require_once (dirname(dirname(dirname(__FILE__))).'/actions/Action.php');
 
-/**
- * @author balachandiran.v
- *
- */
 class AnnotationEvent extends CaliperEvent {
 	
 	public function __construct(){
@@ -20,7 +16,7 @@ class AnnotationEvent extends CaliperEvent {
 
 		$event = new AnnotationEvent();
 
-        // Add check to see if $action exists in AnnotationActions enum
+        // Add check to see if $action exists in Action enum
 		$event->setAction($action);
 
 		return $event;

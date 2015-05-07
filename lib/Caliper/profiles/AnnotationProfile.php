@@ -1,44 +1,8 @@
 <?php
 namespace profiles;
 require 'Profile.php';
-require_once '../../util/BasicEnum.php.php';
-
-class AnnotationActions extends \BasicEnum {
-    const
-        __default = '',
-        ATTACHED = 'annotation.attached',
-        BOOKMARKED = 'annotation.bookmarked',
-        CLASSIFIED = 'annotation.classified',
-        COMMENTED = 'annotation.commented',
-        DESCRIBED = 'annotation.described',
-        HIGHLIGHTED = 'annotation.highlighted',
-        IDENTIFIED = 'annotation.identified',
-        LIKED = 'annotation.liked',
-        LINKED = 'annotation.linked',
-        RANKED = 'annotation.ranked',
-        QUESTIONED = 'annotation.questioned',
-        RECOMMENDED = 'annotation.recommended',
-        REPLIED = 'annotation.replied',
-        SHARED = 'annotation.shared',
-        SUBSCRIBED = 'annotation.subscribed',
-        TAGGED = 'annotation.tagged';
-}
 
 class AnnotationProfile extends Profile {
-    
-    /**
-     * @param key
-     * @return localized action string.
-     */
-    public static function getActionFromBundle($key) {
-        if (AnnotationActions::hasKey($key) || Actions::hasKey($key)) {
-            $actionStrings = parse_ini_file('actions_en_US.ini');
-            return $actionStrings[$key];
-        } else {
-            throw new \UnexpectedValueException('Unrecognized key: ' . $key);
-        }
-    }
-
     /**
      * @param object
      * @return activityContext object.
@@ -80,10 +44,3 @@ class AnnotationProfile extends Profile {
         }
     }
 }
-
-echo (AnnotationActions::hasKey('annotation.tagged') ? 'true' : 'false') . PHP_EOL;
-
-$x = new AnnotationProfile();
-echo $x->getActionFromBundle(Actions::UPLOADED) . PHP_EOL;
-echo AnnotationProfile::getActionFromBundle('annotation.liked') . PHP_EOL;
-

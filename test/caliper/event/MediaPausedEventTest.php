@@ -1,6 +1,6 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once 'Caliper/actions/MediaActions.php';
+require_once 'Caliper/actions/Action.php';
 require_once 'Caliper/events/MediaEvent.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
@@ -103,7 +103,7 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
 
 		$mediaEvent = new MediaEvent();
 		$mediaEvent->setActor($testPerson);
-		$mediaEvent->setAction(MediaActions::PAUSED);
+		$mediaEvent->setAction(Action::PAUSED);
 		$mediaEvent->setObject($eventObj);
 		$mediaEvent->setTarget($targetObj);
 		$mediaEvent->setEdApp($application);
