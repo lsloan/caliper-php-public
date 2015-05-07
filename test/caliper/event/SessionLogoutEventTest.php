@@ -119,7 +119,10 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 
         $this->sessionEvent = $sessionEvent;
 	}
-	
+
+    /**
+     * @group passes
+     */
 	function testSessionEventSerializesToJSON() {
 		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLogoutEvent.json');

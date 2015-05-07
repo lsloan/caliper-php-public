@@ -113,7 +113,10 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
 
 		$this->mediaEvent = $mediaEvent;
 	}
-	
+
+    /**
+     * @group passes
+     */
 	function testSessionEventSerializesToJSON() {
 		$mediaEventJson = json_encode($this->mediaEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperMediaEvent.json');

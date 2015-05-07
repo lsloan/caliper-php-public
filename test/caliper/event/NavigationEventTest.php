@@ -112,7 +112,10 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 
         $this->navigationEvent = $navigationEvent;
     }
-	
+
+    /**
+     * @group passes
+     */
     function testNavigationEventSerializesToJSON(){
         $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
