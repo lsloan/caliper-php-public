@@ -33,8 +33,8 @@ class TagAnnotation extends Annotation {
 	public function jsonSerialize(){
 		return ['@id'=>$this->getId(),
 		'@type'=>$this->getType(),
-		'lastModifiedTime'=>$this->getLastModifiedAt(),
-		'properties'=>(object) $this->getProperties(),
+        'lastModifiedTime' => $this->getDateModified(),
+        'properties' => (object)$this->getExtensions(),
 		'target'=> $this->getTarget(),
 		'tags'=>$this->getTags(),
 		];
