@@ -9,7 +9,8 @@ require_once 'Caliper/entities/lis/Membership.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
-require_once 'Caliper/actions/SessionActions.php';
+require_once 'Caliper/entities/lis/Role.php';
+require_once 'Caliper/actions/Action.php';
 
 class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
@@ -23,7 +24,7 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
         $sessionDurationSeconds = $sessionEndTime->getTimestamp() - $sessionStartTime->getTimestamp();
 
         $testPersonId = 'https://some-university.edu/user/554433';
-        $testRole = 'http://purl.imsglobal.org/vocab/lis/v2/membership#Learner';
+        $testRole = Role::LEARNER;
 
         $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
         $courseMembership = new Membership('https://some-university.edu/membership/001');
@@ -107,7 +108,7 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 
         $sessionEvent = new SessionEvent();
 		$sessionEvent->setActor($testPerson);
-		$sessionEvent->setAction(SessionActions::LOGGED_OUT);
+		$sessionEvent->setAction(Action::LOGGED_OUT);
 		$sessionEvent->setObject($eventObj);
 		$sessionEvent->setTarget($targetObj);
 		$sessionEvent->setEdApp($eventObj);

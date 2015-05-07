@@ -6,7 +6,7 @@ require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
-require_once 'Caliper/actions/SessionActions.php';
+require_once 'Caliper/actions/Action.php';
 
 class SessionEventSampleApp {
 	private $sessionEvent;
@@ -28,7 +28,7 @@ class SessionEventSampleApp {
         $actor->setDateCreated($createdTime);
         $actor->setDateModified($modifiedTime);
 
-        $action = SessionActions::LOGGED_IN;
+        $action = Action::LOGGED_IN;
 
 		$eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
 		$eventObj->setName('Readium');

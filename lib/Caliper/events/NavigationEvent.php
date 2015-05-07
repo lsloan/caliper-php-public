@@ -4,7 +4,7 @@ require_once 'Caliper/events/CaliperEvent.php';
 require_once 'Caliper/events/CaliperEventContexts.php';
 require_once 'Caliper/events/CaliperEventTypes.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
-require_once 'Caliper/actions/NavigationActions.php';
+require_once 'Caliper/actions/Action.php';
 
 class NavigationEvent extends CaliperEvent {
 
@@ -13,7 +13,7 @@ class NavigationEvent extends CaliperEvent {
 
 		$this->setContext(CaliperEventContexts::NAVIGATION);
 		$this->setType(CaliperEventTypes::NAVIGATION);
-		$this->setAction(NavigationActions::NAVIGATED_TO);
+		$this->setAction(Action::NAVIGATED_TO);
 	}
 
 	/**

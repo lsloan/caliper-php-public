@@ -1,14 +1,8 @@
 <?php
-
-
 require_once (dirname(dirname(__FILE__)).'/CaliperEvent.php');
 require_once (dirname(dirname(dirname(__FILE__))).'/entities/CaliperDigitalResource.php');
-require_once (dirname(dirname(dirname(__FILE__))).'/actions/ReadingActions.php');
+require_once (dirname(dirname(dirname(__FILE__))).'/actions/Action.php');
 
-/**
- * @author balachandiran.v
- *
- */
 class ViewedEvent extends CaliperEvent {
 
 	public function __construct(){
@@ -16,6 +10,6 @@ class ViewedEvent extends CaliperEvent {
 
         $this->setContext(CaliperEventContexts::VIEWED);
         $this->setType(CaliperEventTypes::VIEWED);
-        $this->setAction(ReadingActions::VIEWED);
+        $this->setAction(Action::VIEWED);
 	}
 }

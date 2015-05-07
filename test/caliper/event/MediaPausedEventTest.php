@@ -1,6 +1,7 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once 'Caliper/actions/MediaActions.php';
+require_once 'Caliper/actions/Action.php';
+require_once 'Caliper/entities/lis/Role.php';
 require_once 'Caliper/events/MediaEvent.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
@@ -21,7 +22,7 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
         $startedAtTime = new DateTime('2015-09-15T10:15:00.000Z');
 
         $testPersonId = 'https://some-university.edu/user/554433';
-        $testRole = 'http://purl.imsglobal.org/vocab/lis/v2/membership#Learner';
+        $testRole = Role::LEARNER;
 
         $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
         $courseMembership = new Membership('https://some-university.edu/membership/001');
@@ -103,7 +104,7 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
 
 		$mediaEvent = new MediaEvent();
 		$mediaEvent->setActor($testPerson);
-		$mediaEvent->setAction(MediaActions::PAUSED);
+		$mediaEvent->setAction(Action::PAUSED);
 		$mediaEvent->setObject($eventObj);
 		$mediaEvent->setTarget($targetObj);
 		$mediaEvent->setEdApp($application);
