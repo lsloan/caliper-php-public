@@ -11,6 +11,7 @@ require_once 'Caliper/entities/CaliperDigitalResource.php';
 require_once 'Caliper/entities/lis/LISOrganization.php';
 require_once 'Caliper/events/NavigationEvent.php';
 require_once 'Caliper/entities/schemadotorg/WebPage.php';
+require_once 'Caliper/entities/lis/Role.php';
 
 class NavigationEventTest extends PHPUnit_Framework_TestCase {
 	private $navigationEvent;
@@ -22,7 +23,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $navigationStartTime = new DateTime('2015-09-15T10:15:00.000Z');
 
         $testPersonId = 'https://some-university.edu/user/554433';
-        $testRole = 'http://purl.imsglobal.org/vocab/lis/v2/membership#Learner';
+        $testRole = Role::LEARNER;
 
         $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
         $courseMembership = new Membership('https://some-university.edu/membership/001');
