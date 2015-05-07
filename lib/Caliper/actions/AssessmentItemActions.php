@@ -1,21 +1,13 @@
 <?php
+require_once 'util/BasicEnum.php';
 
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 10/21/14
- * Time: 1:28 PM
- */
-class AnnotationActions extends SplEnum {
-
+class AssessmentItemActions extends BasicEnum {
     const
-        __default = "",
-        STARTED = "assessment.item.started",
-        COMPLETED = "assessment.item.completed",
-        SKIPPED = "assessment.item.skipped",
-        REVIEWED = "assessment.item.reviewed",
-        VIEWED = "assessment.item.viewed",
-
-        NAVIGATED_TO = "navigation.navigatedTo";
+        __default = '',
+        STARTED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Started',
+        COMPLETED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Completed',
+        SKIPPED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Skipped',
+        REVIEWED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Reviewed',
+        VIEWED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Viewed';
 }
 

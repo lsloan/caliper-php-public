@@ -1,18 +1,9 @@
 <?php
+require_once 'util/BasicEnum.php';
 
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 10/21/14
- * Time: 1:28 PM
- */
-class ReadingActions extends SplEnum {
-
+class ReadingActions extends BasicEnum {
     const
-        __default = "",
-        SEARCHED = "reading.searched",
-
-        NAVIGATED_TO = "http://purl.imsglobal.org/vocab/caliper/v1/action#NavigatedTo",
-        VIEWED = "http://purl.imsglobal.org/vocab/caliper/v1/action#Viewed";
+        __default = '',
+        SEARCHED = 'http://purl.imsglobal.org/vocab/caliper/v1/action#Searched';
 }
 
