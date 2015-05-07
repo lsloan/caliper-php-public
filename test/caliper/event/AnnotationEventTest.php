@@ -1,22 +1,17 @@
 <?php
+require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once 'Caliper/entities/reading/EPubVolume.php';
+require_once 'Caliper/entities/reading/EPubSubChapter.php';
+require_once 'Caliper/entities/lis/LISPerson.php';
+require_once 'Caliper/entities/lis/LISCourseSection.php';
+require_once 'Caliper/entities/SoftwareApplication.php';
+require_once 'Caliper/entities/annotation/HighlightedAnnotation.php';
+require_once 'Caliper/entities/annotation/BookmarkAnnotation.php';
+require_once 'Caliper/entities/annotation/SharedAnnotation.php';
+require_once 'Caliper/entities/annotation/TagAnnotation.php';
+require_once 'Caliper/entities/annotation/TextPositionSelector.php';
+require_once 'Caliper/events/AnnotationEvent.php';
 
-require_once(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once dirname(__FILE__).'/../../../lib/Caliper/entities/reading/EPubVolume.php';
-require_once dirname(__FILE__) . '/../../../lib/Caliper/entities/reading/EPubSubChapter.php';
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/lis/LISPerson.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/lis/LISCourseSection.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/entities/SoftwareApplication.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/annotation/HighlightedAnnotation.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/annotation/BookmarkAnnotation.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/annotation/SharedAnnotation.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/annotation/TagAnnotation.php');
-require_once (dirname(__FILE__).'/../../../lib/Caliper/entities/annotation/TextPositionSelector.php');
-require_once (dirname(__FILE__) .'/../../../lib/Caliper/events/annotation/AnnotationEvent.php');
-
-/**
- *@author balachandiran.v
- *
- */
 class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 
 	private $highlightedAnnotationEvent;
@@ -27,31 +22,30 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 
 
 	public function setUp()  {
-				
+        $modifiedTime = new DateTime('2015-09-02T11:30:00.000Z');
 		$now=1401216031920;
 		
 		$americanHistoryCourse = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101',null);
 		$americanHistoryCourse->setCourseNumber("AmRev-101");
-		$americanHistoryCourse->setLabel("American Revolution 101");
-		$americanHistoryCourse->setSemester("Spring-2014");
-		$americanHistoryCourse->setLastModifiedAt($now);		
+        $americanHistoryCourse->setCategory("American Revolution 101");
+        $americanHistoryCourse->setAcademicSession("Spring-2014");
+        $americanHistoryCourse->setDateModified($modifiedTime);
 
-		
 		// edApp that provides the first reading
 		$readium = new SoftwareApplication(
 				"https://github.com/readium/readium-js-viewer");
 		$readium->setType("http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader");
-		$readium->setLastModifiedAt($now);
+		$readium->setDateModified($modifiedTime);
 		
 		// edApp that provides the second reading
 		$courseSmart = new SoftwareApplication(
 				"http://www.coursesmart.com/reader");
 		$courseSmart->setType("http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader");
-		$courseSmart->setLastModifiedAt($now);
+		$courseSmart->setDateModified($modifiedTime);
 		
 		// Student - performs interaction with reading activities
 		$alice = new LISPerson("https://some-university.edu/students/jones-alice-554433");
-		$alice->setLastModifiedAt($now);
+		$alice->setDateModified($modifiedTime);
 		
 		
 		
@@ -60,43 +54,41 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 		// ----------------------------------------------------------------
 		$readiumReading = new EPubVolume("https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)");
 		$readiumReading->setName("The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)");
-		$readiumReading->setLastModifiedAt($now);
-		$readiumReading->setLanguage('English');
-		
+		$readiumReading->setDateModified($modifiedTime);
+		//$readiumReading->setLanguage('English');
+
 		
 		$readiumReadingPage1 = new EPubSubChapter("https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/1");
 		$readiumReadingPage1->setName("Key Figures: George Washington)");
-		$readiumReadingPage1->setLastModifiedAt($now);
-		$readiumReading->setLanguage("English");
-		$readiumReadingPage1->setParentRef($readiumReading);
+		$readiumReadingPage1->setDateModified($modifiedTime);
+//		$readiumReading->setLanguage("English");
+//		$readiumReadingPage1->setParentRef($readiumReading);
 		
 		$readiumReadingPage2 = new EPubSubChapter("https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/2");
 		$readiumReadingPage2->setName("Key Figures: Lord Cornwalis)");
-		$readiumReadingPage2->setLastModifiedAt($now);
-		$readiumReading->setLanguage("English");
-		$readiumReadingPage2->setParentRef($readiumReading);
+		$readiumReadingPage2->setDateModified($modifiedTime);
+//		$readiumReading->setLanguage("English");
+//		$readiumReadingPage2->setParentRef($readiumReading);
 		
 		$readiumReadingPage3 = new EPubSubChapter("https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)/3");
 		$readiumReadingPage3->setName("Key Figures: Paul Revere)");
-		$readiumReadingPage3->setLastModifiedAt($now);
-		$readiumReading->setLanguage("English");
-		$readiumReadingPage3->setParentRef($readiumReading);
+		$readiumReadingPage3->setDateModified($modifiedTime);
+//		$readiumReading->setLanguage("English");
+//		$readiumReadingPage3->setParentRef($readiumReading);
 		
 		// ........................................................................
 		
 		$courseSmartReading = new EPubVolume("http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322");
 		$courseSmartReading->setName("The American Revolution: A Concise History | 978-0-19-531295-9");
-		$courseSmartReading->setLastModifiedAt($now);
-		$courseSmartReading->setLanguage("English");
+		$courseSmartReading->setDateModified($modifiedTime);
+//		$courseSmartReading->setLanguage("English");
 		
 		$courseSmartReadingPageaXfsadf12 = new EPubSubChapter("http://www.coursesmart.com/the-american-revolution-a-concise-history/robert-j-allison/dp/9780199347322/aXfsadf12");
 		$courseSmartReadingPageaXfsadf12->setName("The Boston Tea Party");
-		$courseSmartReading->setLastModifiedAt($now);
-		$courseSmartReadingPageaXfsadf12->setLanguage("English");
-		$courseSmartReadingPageaXfsadf12->setParentRef($courseSmartReading);
-		
-		echo ">> generated activity context data<br/>";
-		
+		$courseSmartReading->setDateModified($modifiedTime);
+//		$courseSmartReadingPageaXfsadf12->setLanguage("English");
+//		$courseSmartReadingPageaXfsadf12->setParentRef($courseSmartReading);
+        
 		// ----------------------------------------------------------------
 		// Step 3: Populate Global App State for Event Generator
 		// ----------------------------------------------------------------
@@ -163,10 +155,10 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 	
 		// add (learning) context for event
 		$hilightTermsEvent->setEdApp($globalAppState[$edApp."EdApp"]);
-		$hilightTermsEvent->setLisOrganization($globalAppState["currentCourse"]);
+//		$hilightTermsEvent->setLisOrganization($globalAppState["currentCourse"]);
 	
 		// set time and any event specific properties
-		$hilightTermsEvent->setStartedAt($now);
+//		$hilightTermsEvent->setStartedAt($now);
 		
 		return $hilightTermsEvent;
 	}
@@ -203,10 +195,10 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 	
 		// add (learning) context for event
 		$bookmarkPageEvent->setEdApp($globalAppState[$edApp."EdApp"]);
-		$bookmarkPageEvent->setLisOrganization($globalAppState["currentCourse"]);
+//		$bookmarkPageEvent->setLisOrganization($globalAppState["currentCourse"]);
 	
 		// set time and any event specific properties
-		$bookmarkPageEvent->setStartedAt($now);
+//		$bookmarkPageEvent->setStartedAt($now);
 	
 		return $bookmarkPageEvent;
 	}
@@ -238,10 +230,10 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 	
 		// add (learning) context for event
 		$tagPageEvent->setEdApp($globalAppState[$edApp."EdApp"]);
-		$tagPageEvent->setLisOrganization($globalAppState["currentCourse"]);
+//		$tagPageEvent->setLisOrganization($globalAppState["currentCourse"]);
 	
 		// set time and any event specific properties
-		$tagPageEvent->setStartedAt($now);
+//		$tagPageEvent->setStartedAt($now);
 	
 		return $tagPageEvent;
 	}
@@ -274,10 +266,10 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 	
 		// add (learning) context for event
 		$sharePageEvent->setEdApp($globalAppState[$edApp."EdApp"]);
-		$sharePageEvent->setLisOrganization($globalAppState["currentCourse"]);
+//		$sharePageEvent->setLisOrganization($globalAppState["currentCourse"]);
 	
 		// set time and any event specific properties
-		$sharePageEvent->setStartedAt($now);
+//		$sharePageEvent->setStartedAt($now);
 	
 		return $sharePageEvent;
 	}
