@@ -29,7 +29,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * @return boolean success
    */
   public function send($caliperEvent) {
-      $this->flushSingleSend($caliperEvent);
+      $this->flushSingleSend($caliperEvent, $this->apiKey, $this->options['sensorId']);
       return true;
   }
 
@@ -45,5 +45,5 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * @param  [type] $item  [description]
    * @return [type]        [description]
    */
-  abstract function flushSingleSend($item);
+  abstract function flushSingleSend($item, $apiKey, $sensorId);
 }

@@ -1,6 +1,7 @@
 <?php
+require_once 'util/BasicEnum.php';
 
-class CaliperEventContexts extends SplEnum {
+class CaliperEventContexts extends \BasicEnum {
 
     const
         __default = "",
