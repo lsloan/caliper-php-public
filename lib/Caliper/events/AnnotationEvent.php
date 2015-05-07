@@ -1,7 +1,9 @@
 <?php
-
-require_once dirname(__FILE__).'/../CaliperEvent.php';
-require_once (dirname(dirname(dirname(__FILE__))).'/actions/Action.php');
+require_once 'CaliperSensor.php';
+require_once 'Caliper/events/CaliperEvent.php';
+require_once 'Caliper/events/CaliperEventContexts.php';
+require_once 'Caliper/events/CaliperEventTypes.php';
+require_once 'Caliper/actions/Action.php';
 
 class AnnotationEvent extends CaliperEvent {
 	

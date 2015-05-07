@@ -33,8 +33,8 @@ class SharedAnnotation extends Annotation implements JsonSerializable{
 	public function jsonSerialize(){
 		return ['@id'=>$this->getId(),
 		'@type'=>$this->getType(),
-		'lastModifiedTime'=>$this->getLastModifiedAt(),
-		'properties'=>(object) $this->getProperties(),
+        'lastModifiedTime' => $this->getDateModified(),
+        'properties' => (object)$this->getExtensions(),
 		'target'=> $this->getTarget(),
 		'users'=>$this->getUsers(),
 		];
