@@ -47,7 +47,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $groupMembership->setDateCreated($createdTime);
 
         $testPerson = new LISPerson($testPersonId);
-        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
+        $testPerson->setRoles([$testRole]);
         $testPerson->setDateCreated($createdTime);
         $testPerson->setDateModified($modifiedTime);
 
@@ -69,7 +69,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $target->setName('Key Figures: George Washington');
         $target->setDateCreated($createdTime);
         $target->setDateModified($modifiedTime);
-        $target->setIsPartOf('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
+        $target->setIsPartOf($object);
         $target->setVersion('2nd ed.');
         $target->setIndex(1);
 

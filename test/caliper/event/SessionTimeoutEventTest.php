@@ -11,6 +11,7 @@ require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/entities/lis/Role.php';
 require_once 'Caliper/actions/Action.php';
+require_once 'util/Utility.php';
 
 class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
@@ -48,7 +49,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
         $groupMembership->setDateCreated($createdTime);
 
         $testPerson = new LISPerson($testPersonId);
-        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
+        $testPerson->setRoles([Role::LEARNER]);
 		$testPerson->setDateCreated($createdTime);
 		$testPerson->setDateModified($modifiedTime);
 
