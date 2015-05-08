@@ -5,7 +5,7 @@ require_once 'Caliper/entities/foaf/Agent.php';
 require_once 'Caliper/entities/schemadotorg/SoftwareApplication.php';
 
 class SoftwareApplication extends CaliperEntity implements Agent, schemadotorg\SoftwareApplication {
-    private $hasMembership = [];
+    private $roles = [];
 
 	public function __construct($id) {
 		parent::__construct();
@@ -15,16 +15,16 @@ class SoftwareApplication extends CaliperEntity implements Agent, schemadotorg\S
 
     public function jsonSerialize(){
         return array_merge(parent::jsonSerialize(), [
-            'hasMembership' => $this->getHasMembership(),
+            'roles' => $this->getRoles(),
         ]);
     }
 
-    public function  getHasMembership() {
-        return $this->hasMembership;
+    public function  getRoles() {
+        return $this->roles;
     }
 
-    public function  setHasMembership($hasMembership) {
-        $this->hasMembership = $hasMembership;
+    public function  setRoles($roles) {
+        $this->roles = $roles;
         return $this;
     }
 }

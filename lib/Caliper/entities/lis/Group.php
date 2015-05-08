@@ -12,7 +12,6 @@ class Group extends CaliperEntity implements w3c\Organization {
 
     public function jsonSerialize(){
         return array_merge(parent::jsonSerialize(), [
-            'membership' => $this->getMembership(),
             'subOrganizationOf' => $this->getSubOrganizationOf(),
         ]);
     }
