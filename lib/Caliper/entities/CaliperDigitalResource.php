@@ -35,11 +35,6 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
         parent::__construct();
     }
 
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
-
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'objectType' => $this->getObjectTypes(),

@@ -12,10 +12,6 @@ class VideoObject extends MediaObject implements schemadotorg\VideoObject {
 		$this->setType('http://purl.imsglobal.org/caliper/v1/VideoObject');
     }
 
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'version' => $this->getVersion(),
