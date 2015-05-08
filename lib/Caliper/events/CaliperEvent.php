@@ -50,11 +50,6 @@ class CaliperEvent implements JsonSerializable {
         return $localizedAction;
     }
 
-    /**
-     *
-     * @see JsonSerializable::jsonSerialize()
-     * to implement jsonLD
-     */
     public function jsonSerialize() {
         return [
             '@context' => $this->getContext(),

@@ -48,7 +48,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
         $groupMembership->setDateCreated($createdTime);
 
         $testPerson = new LISPerson($testPersonId);
-        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
+        $testPerson->setRoles([Role::LEARNER]);
 		$testPerson->setDateCreated($createdTime);
 		$testPerson->setDateModified($modifiedTime);
 

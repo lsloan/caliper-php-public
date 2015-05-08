@@ -46,7 +46,7 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
         $groupMembership->setDateCreated($createdTime);
 
         $testPerson = new LISPerson($testPersonId);
-        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
+        $testPerson->setRoles([$testRole]);
         $testPerson->setDateCreated($createdTime);
         $testPerson->setDateModified($modifiedTime);
 

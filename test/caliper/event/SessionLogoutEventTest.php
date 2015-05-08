@@ -48,7 +48,7 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
         $groupMembership->setDateCreated($createdTime);
 
 		$testPerson = new LISPerson($testPersonId);
-        $testPerson->setHasMembership([$courseMembership, $sectionMembership, $groupMembership]);
+        $testPerson->setRoles([$testRole]);
 		$testPerson->setDateCreated($createdTime);
 		$testPerson->setDateModified($modifiedTime);
 
@@ -56,14 +56,6 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$eventObj->setName('Readium');
 		$eventObj->setDateCreated($createdTime);
 		$eventObj->setDateModified($modifiedTime);
-
-		/*
-        $ePubVolume = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
-		$ePubVolume->setType('http://www.idpf.org/epub/vocab/structure/#volume');
-		$ePubVolume->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
-		$ePubVolume->setDateCreated($createdTime);
-		$ePubVolume->setDateModified($modifiedTime);
-		*/
 
 		$targetObj = new Session('https://github.com/readium/session-123456789');
 		$targetObj->setName('session-123456789');
@@ -73,16 +65,6 @@ class SessionLogoutEventTest extends PHPUnit_Framework_TestCase {
 		$targetObj->setStartedAtTime($sessionStartTime);
 		$targetObj->setEndedAtTime($sessionEndTime);
         $targetObj->setDuration($sessionDurationSeconds);
-
-        /*
-		$organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
-		$organization->setAcademicSession('Spring-2014');
-		$organization->setCourseNumber('AmRev-101');
-		$organization->setCategory('Am Rev 101');
-		$organization->setName('American Revolution 101');
-		$organization->setDateCreated($createdTime);
-		$organization->setDateModified($modifiedTime);
-        */
 
         $courseOffering = new CourseOffering($courseOrganizationUrl);
         $courseOffering->setCourseNumber('POL101');

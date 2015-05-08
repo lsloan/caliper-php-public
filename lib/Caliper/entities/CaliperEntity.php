@@ -16,10 +16,6 @@ class CaliperEntity implements JsonSerializable, Thing {
     function __construct() {
     }
 
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
     public function jsonSerialize() {
         return [
             '@id' => $this->getId(),

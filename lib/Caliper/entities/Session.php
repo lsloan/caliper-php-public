@@ -20,11 +20,6 @@ class Session extends CaliperEntity implements Generatable, Targetable {
 		$this->setType('http://purl.imsglobal.org/caliper/v1/Session');
     }
     
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
-
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'actor' => $this->getActor(),

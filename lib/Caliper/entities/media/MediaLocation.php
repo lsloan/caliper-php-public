@@ -13,10 +13,6 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
 		$this->setType('http://purl.imsglobal.org/caliper/v1/MediaLocation');
     }
     
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'currentTime' => $this->getCurrentTime(),

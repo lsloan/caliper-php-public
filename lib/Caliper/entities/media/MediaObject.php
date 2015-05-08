@@ -10,10 +10,6 @@ class MediaObject extends CaliperDigitalResource implements schemadotorg\MediaOb
 		parent::__construct();
     }
     
-    /**
-     ** @see JsonSerializable::jsonSerialize()
-     *to implement jsonLD
-     */
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'duration' => $this->getDuration(),

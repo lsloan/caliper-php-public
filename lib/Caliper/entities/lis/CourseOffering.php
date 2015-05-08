@@ -17,7 +17,6 @@ class CourseOffering extends CaliperEntity implements Course {
         return array_merge(parent::jsonSerialize(), [
             'courseNumber' => $this->getCourseNumber(),
             'academicSession' => $this->getAcademicSession(),
-            'membership' => $this->getMembership(),
             'subOrganizationOf' => $this->getSubOrganizationOf(),
         ]);
     }

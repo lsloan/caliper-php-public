@@ -1,28 +1,29 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/CaliperAgentTypes.php';
 require_once 'Caliper/entities/foaf/Agent.php';
 
 class LISPerson extends CaliperEntity implements Agent {
-    private $hasMembership = [];
+    private $roles = [];
 
     public function __construct($id) {
 		$this->setId($id);
-		$this->setType('http://purl.imsglobal.org/caliper/v1/lis/Person');
+		$this->setType(CaliperAgentTypes::LIS_PERSON);
 	}
 
-    public function jsonSerialize(){
+    public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'hasMembership' => $this->getHasMembership(),
+            'roles' => $this->getRoles(),
         ]);
     }
 
-    public function  getHasMembership() {
-        return $this->hasMembership;
+    public function  getRoles() {
+        return $this->roles;
     }
 
-    public function  setHasMembership($hasMembership) {
-        $this->hasMembership = $hasMembership;
+    public function  setRoles($roles) {
+        $this->roles = $roles;
         return $this;
     }
 }

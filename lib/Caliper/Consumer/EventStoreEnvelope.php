@@ -133,11 +133,6 @@ class EventStoreEnvelope implements JsonSerializable {
 	    }
 	}
 
-	/**
-     * 
-     * @see JsonSerializable::jsonSerialize()
-     *  
-     */
     public  function jsonSerialize() {
 	    return [
             'apiKey' => $this->getApiKey(),
