@@ -11,6 +11,7 @@ require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/media/MediaLocation.php';
 require_once 'Caliper/entities/media/VideoObject.php';
 require_once 'Caliper/entities/LearningObjective.php';
+require_once realpath(CALIPER_LIB_PATH . '/../test/util/TestUtilities.php');
 
 class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
 	private $mediaEvent;
@@ -118,13 +119,10 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
      * @group passes
      */
 	function testSessionEventSerializesToJSON() {
-		$mediaEventJson = json_encode($this->mediaEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        $mediaEventJson = json_encode($this->mediaEvent, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperMediaEvent.json');
 
-		$outputDir = getenv('PHPUNIT_OUTPUT_DIR');
-		if ($outputDir != FALSE) {
-		    file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $mediaEventJson);
-		}
+        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $mediaEventJson, __CLASS__);
 
 		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $mediaEventJson);
 	}
