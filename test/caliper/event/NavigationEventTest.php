@@ -105,7 +105,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $navigationEvent = new NavigationEvent();
 		$navigationEvent->setActor($testPerson);
 		$navigationEvent->setObject($object);
-		$navigationEvent->setFromResource($fromResource);
+		$navigationEvent->setNavigatedFrom($fromResource);
 		$navigationEvent->setEdApp($edApp);
         $navigationEvent->setTarget($target);
 		$navigationEvent->setGroup($group);
