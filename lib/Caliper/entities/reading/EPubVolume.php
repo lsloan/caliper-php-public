@@ -13,11 +13,11 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 class EPubVolume extends CaliperDigitalResource implements CreativeWork {
     private $version;
 
-       public function __construct($id) {
-	      parent::__construct();
-	      $this->setId($id);
-	      $this->setType("http://www.idpf.org/epub/vocab/structure/#volume");
-       }
+    public function __construct($id) {
+        parent::__construct();
+        $this->setId($id);
+        $this->setType('http://www.idpf.org/epub/vocab/structure/#volume');
+    }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [

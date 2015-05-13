@@ -5,9 +5,9 @@ require_once 'util/TimestampUtil.php';
 
 class CaliperEntity implements JsonSerializable, Thing {
 
-    protected $id;
     public $type;
     public $name;
+    protected $id;
     private $description;
     private $extensions;
     private $dateCreated;
@@ -40,6 +40,7 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setId($id) {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -54,6 +55,7 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setType($type) {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -68,22 +70,23 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setName($name) {
         $this->name = $name;
-    }
-
-    /**
-     * @param mixed $value
-     * @return $this
-     */
-    public function setDescription($value) {
-        $this->description = $value;
         return $this;
     }
-    
+
     /**
      * @return string
      */
     public function getDescription() {
         return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return $this
+     */
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
     }
 
     /**
@@ -98,8 +101,9 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setExtensions($extensions) {
         $this->extensions = $extensions;
+        return $this;
     }
-    
+
     /**
      * @return int
      */
@@ -112,6 +116,7 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setDateCreated($dateCreated) {
         $this->dateCreated = $dateCreated;
+        return $this;
     }
 
     /**
@@ -126,5 +131,6 @@ class CaliperEntity implements JsonSerializable, Thing {
      */
     public function setDateModified($dateModified) {
         $this->dateModified = $dateModified;
+        return $this;
     }
 } 

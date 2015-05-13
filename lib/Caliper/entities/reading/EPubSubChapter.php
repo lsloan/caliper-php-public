@@ -10,22 +10,22 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
  *         http://www.idpf.org/epub/vocab/structure/#subchapter
  */
 class EPubSubChapter extends CaliperDigitalResource implements CreativeWork {
-      private $index;
+    private $index;
     private $version;
 
 
-      public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
-		$this->setType("http://www.idpf.org/epub/vocab/structure/#subchapter");
-      }
+    public function __construct($id) {
+        parent::__construct();
+        $this->setId($id);
+        $this->setType('http://www.idpf.org/epub/vocab/structure/#subchapter');
+    }
 
-      public function jsonSerialize() {
-	    return array_merge(parent::jsonSerialize(), [
+    public function jsonSerialize() {
+        return array_merge(parent::jsonSerialize(), [
             'index' => $this->getIndex(),
-		  'version' => $this->getVersion(),
-	    ]);
-      }
+            'version' => $this->getVersion(),
+        ]);
+    }
 
     /**
      * @return mixed
@@ -39,6 +39,7 @@ class EPubSubChapter extends CaliperDigitalResource implements CreativeWork {
      */
     public function setIndex($index) {
         $this->index = $index;
+        return $this;
     }
 
     /**

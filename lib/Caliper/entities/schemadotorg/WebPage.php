@@ -5,11 +5,11 @@ require_once 'CreativeWork.php';
 class WebPage extends CaliperDigitalResource implements CreativeWork {
     private $version;
 
-	public function  __construct($id) {
+    public function  __construct($id) {
         parent::__construct();
-		$this->setId($id);
-		$this->setType("http://purl.imsglobal.org/caliper/v1/WebPage");
-	}
+        $this->setId($id);
+        $this->setType('http://purl.imsglobal.org/caliper/v1/WebPage');
+    }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [

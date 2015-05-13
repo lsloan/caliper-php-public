@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 11/7/14
- * Time: 5:56 PM
- */
 
 require_once '/CaliperDigitalResource.php';
 
@@ -27,7 +21,8 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
     }
 
     public function jsonSerialize() {
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'objectType' => $this->getObjectType(),
@@ -42,7 +37,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
             'dateToStartOn' => $this->getDateToStartOn(),
             'dateToSubmit' => $this->getDateToSubmit(),
             'maxAttempts' => $this->getMaxAttempts(),
-            'maxScore' => $this->getMaxScore()
+            'maxScore' => $this->getMaxScore(),
         ];
     }
 
@@ -58,6 +53,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDateCreated($dateCreated) {
         $this->dateCreated = $dateCreated;
+        return $this;
     }
 
     /**
@@ -72,6 +68,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDatePublished($datePublished) {
         $this->datePublished = $datePublished;
+        return $this;
     }
 
     /**
@@ -86,6 +83,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDateToActivate($dateToActivate) {
         $this->dateToActivate = $dateToActivate;
+        return $this;
     }
 
     /**
@@ -100,6 +98,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDateToShow($dateToShow) {
         $this->dateToShow = $dateToShow;
+        return $this;
     }
 
     /**
@@ -114,6 +113,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDateToStartOn($dateToStartOn) {
         $this->dateToStartOn = $dateToStartOn;
+        return $this;
     }
 
     /**
@@ -128,6 +128,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setDateToSubmit($dateToSubmit) {
         $this->dateToSubmit = $dateToSubmit;
+        return $this;
     }
 
     /**
@@ -142,6 +143,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setMaxAttempts($maxAttempts) {
         $this->maxAttempts = $maxAttempts;
+        return $this;
     }
 
     /**
@@ -156,6 +158,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setMaxScore($maxScore) {
         $this->maxScore = $maxScore;
+        return $this;
     }
 
     /**
@@ -170,5 +173,6 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
      */
     public function setMaxSubmits($maxSubmits) {
         $this->maxSubmits = $maxSubmits;
+        return $this;
     }
 } 
