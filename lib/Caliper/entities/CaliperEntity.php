@@ -105,14 +105,14 @@ class CaliperEntity implements JsonSerializable, Thing {
     }
 
     /**
-     * @return int
+     * @return DateTime
      */
     public function getDateCreated() {
         return $this->dateCreated;
     }
 
     /**
-     * @param int $dateCreated
+     * @param DateTime $dateCreated
      */
     public function setDateCreated($dateCreated) {
         $this->dateCreated = $dateCreated;
@@ -120,14 +120,14 @@ class CaliperEntity implements JsonSerializable, Thing {
     }
 
     /**
-     * @return int
+     * @return DateTime
      */
     public function getDateModified() {
         return $this->dateModified;
     }
 
     /**
-     * @param int $dateModified
+     * @param DateTime $dateModified
      */
     public function setDateModified($dateModified) {
         $this->dateModified = $dateModified;
