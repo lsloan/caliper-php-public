@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/CaliperAgentTypes.php';
 require_once 'Caliper/entities/foaf/Agent.php';
 require_once 'Caliper/entities/schemadotorg/SoftwareApplication.php';
 
@@ -10,7 +11,7 @@ class SoftwareApplication extends CaliperEntity implements Agent, schemadotorg\S
 	public function __construct($id) {
 		parent::__construct();
 		$this->setId($id);
-		$this->setType('http://purl.imsglobal.org/caliper/v1/SoftwareApplication');
+        $this->setType(CaliperAgentTypes::SOFTWARE_APPLICATION);
 	}
 
     public function jsonSerialize(){
