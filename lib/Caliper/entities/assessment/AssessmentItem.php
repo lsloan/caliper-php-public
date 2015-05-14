@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 11/1/14
- * Time: 6:27 PM
- */
-
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResource.php';
+require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResourceType.php.php';
 require_once dirname(__FILE__) . '/../qti/QTIAssessmentItem.php';
 
 
@@ -15,7 +9,7 @@ class AssessmentItem extends AssignableDigitalResource implements QTIAssessmentI
     public function __construct($id) {
         parent::__construct($id);
         $this->setId($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/AssessmentItem');
+        $this->setType(AssignableDigitalResourceType::ASSESSMENT_ITEM);
     }
 
     public function jsonSerialize() {

@@ -12,7 +12,7 @@ class LISOrganization extends CaliperEntity implements Agent {
 	public function __construct($id = NULL, $parentOrg = NULL) {
 		$this->id = $id;		
 		$this->parentOrg = $parentOrg;
-		$this->setType('http://purl.imsglobal.org/caliper/v1/LISOrganization');
+		$this->setType(EntityType::ORGANIZATION);
 	}
 	
 	private $parentOrg;

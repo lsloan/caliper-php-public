@@ -1,5 +1,7 @@
 <?php
 require_once 'Annotation.php';
+require_once 'AnnotationType.php';
+
 
 class BookmarkAnnotation extends Annotation implements JsonSerializable {
 
@@ -7,7 +9,7 @@ class BookmarkAnnotation extends Annotation implements JsonSerializable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/BookmarkAnnotation');
+        $this->setType(AnnotationType::BOOKMARK_ANNOTATION);
     }
 
     public function jsonSerialize() {

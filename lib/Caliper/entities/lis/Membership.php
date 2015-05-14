@@ -1,5 +1,6 @@
 <?php
 require_once 'Caliper/entities/w3c/Membership.php';
+require_once 'Caliper/entities/EntityType.php';
 
 class Membership extends CaliperEntity implements w3c\Membership {
     private $member;
@@ -9,7 +10,7 @@ class Membership extends CaliperEntity implements w3c\Membership {
 
     public function __construct($id) {
         $this->setId($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/lis/Membership');
+        $this->setType(EntityType::MEMBERSHIP);
     }
 
     public function jsonSerialize() {

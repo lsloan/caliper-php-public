@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResource.php';
+require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResourceType.php';
 require_once dirname(__FILE__) . '/../qti/QTIAssessment.php';
 
 
@@ -11,7 +12,7 @@ class Assessment extends AssignableDigitalResource implements QTIAssessment, Jso
     public function __construct($id) {
         parent::__construct($id);
         $this->setId($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/Assessment');
+        $this->setType(AssignableDigitalResourceType::ASSESSMENT);
     }
 
     public function jsonSerialize() {

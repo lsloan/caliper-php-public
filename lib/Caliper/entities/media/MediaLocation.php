@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/media/MediaObjectType.php';
 require_once 'Caliper/entities/Targetable.php';
 
 class MediaLocation extends CaliperDigitalResource implements Targetable {
@@ -8,7 +9,7 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/MediaLocation');
+        $this->setType(MediaObjectType::MEDIA_LOCATION);
     }
 
     public function jsonSerialize() {

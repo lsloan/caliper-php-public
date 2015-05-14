@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'CourseOffering.php';
+require_once 'Caliper/entities/EntityType.php';
 
 class LISCourseSection extends CourseOffering {
     private $category;
@@ -8,7 +9,7 @@ class LISCourseSection extends CourseOffering {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/lis/CourseSection');
+        $this->setType(EntityType::COURSE_SECTION);
     }
 
     public function jsonSerialize() {

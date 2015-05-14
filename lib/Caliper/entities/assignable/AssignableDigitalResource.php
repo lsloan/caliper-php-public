@@ -1,6 +1,7 @@
 <?php
 
 require_once '/CaliperDigitalResource.php';
+require_once '/CaliperDigitalResourceTypes.php';
 
 class AssignableDigitalResource extends CaliperDigitalResource implements JsonSerializable {
 
@@ -16,7 +17,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/AssignableDigitalResource');
+        $this->setType(CaliperDigitalResourceTypes::ASSIGNABLE_DIGITAL_RESOURCE);
     }
 
     public function jsonSerialize() {

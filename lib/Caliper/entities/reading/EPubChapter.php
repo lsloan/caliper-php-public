@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/CaliperDigitalResourceTypes.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
 /**
@@ -13,6 +14,6 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 class EPubChapter extends CaliperDigitalResource implements CreativeWork {
 	public function __construct($id) {
 		parent::__construct($id);
-		$this->setType("http://www.idpf.org/epub/vocab/structure/#chapter");
+		$this->setType(CaliperDigitalResourceTypes::EPUB_CHAPTER);
 	}
 }
