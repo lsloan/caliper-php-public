@@ -15,11 +15,11 @@ class Session extends CaliperEntity implements Generatable, Targetable {
     private $duration;
 
     public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
-		$this->setType('http://purl.imsglobal.org/caliper/v1/Session');
+        parent::__construct();
+        $this->setId($id);
+        $this->setType('http://purl.imsglobal.org/caliper/v1/Session');
     }
-    
+
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'actor' => $this->getActor(),
@@ -29,47 +29,31 @@ class Session extends CaliperEntity implements Generatable, Targetable {
         ]);
     }
 
+    public function getActor() {
+        return $this->actor;
+    }
+
     public function setActor($value) {
         $this->actor = $value;
         return $this;
     }
-    
-    public function getActor() {
-        return $this->actor;
+
+    public function getStartedAtTime() {
+        return $this->startedAtTime;
     }
-    
+
     public function setStartedAtTime($value) {
         $this->startedAtTime = $value;
         return $this;
     }
-    
-    public function getStartedAtTime() {
-        return $this->startedAtTime;
-    }
-    
-    public function setEndedAtTime($value) {
-        $this->endedAtTime = $value;
-        return $this;
-    }
-    
+
     public function getEndedAtTime() {
         return $this->endedAtTime;
     }
 
-    /**
-     * @param int $durationSeconds
-     * @return $this
-     */
-    public function setDuration($durationSeconds) {
-        $this->duration = $durationSeconds;
+    public function setEndedAtTime($value) {
+        $this->endedAtTime = $value;
         return $this;
-    }
-
-    /**
-     * @return int Duration in seconds
-     */
-    public function getDuration() {
-        return $this->duration;
     }
 
     /**
@@ -81,5 +65,21 @@ class Session extends CaliperEntity implements Generatable, Targetable {
         }
 
         return 'PT' . $this->getDuration() . 'S';
+    }
+
+    /**
+     * @return int Duration in seconds
+     */
+    public function getDuration() {
+        return $this->duration;
+    }
+
+    /**
+     * @param int $durationSeconds
+     * @return $this
+     */
+    public function setDuration($durationSeconds) {
+        $this->duration = $durationSeconds;
+        return $this;
     }
 }

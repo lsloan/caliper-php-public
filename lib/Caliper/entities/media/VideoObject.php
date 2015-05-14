@@ -7,9 +7,9 @@ class VideoObject extends MediaObject implements schemadotorg\VideoObject {
     private $version;
 
     public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
-		$this->setType('http://purl.imsglobal.org/caliper/v1/VideoObject');
+        parent::__construct();
+        $this->setId($id);
+        $this->setType('http://purl.imsglobal.org/caliper/v1/VideoObject');
     }
 
     public function jsonSerialize() {

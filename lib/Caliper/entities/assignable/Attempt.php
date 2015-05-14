@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 11/7/14
- * Time: 6:17 PM
- */
 require_once dirname(__FILE__) . '/../CaliperEntity.php';
 
 class Attempt extends CaliperEntity implements JsonSerializable {
@@ -19,29 +13,16 @@ class Attempt extends CaliperEntity implements JsonSerializable {
     }
 
     public function jsonSerialize() {
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'lastModifiedTime' => $this->getLastModifiedAt(),
-            'properties' => (object)$this->getProperties(),
+            'properties' => (object) $this->getProperties(),
             'target' => $this->getTarget(),
             'assignable' => $this->getAssignable(),
             'actor' => $this->getActor(),
-            'count' => $this->getCount()
+            'count' => $this->getCount(),
         ];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getActor() {
-        return $this->actor;
-    }
-
-    /**
-     * @param mixed $actor
-     */
-    public function setActor($actor) {
-        $this->actor = $actor;
     }
 
     /**
@@ -56,6 +37,22 @@ class Attempt extends CaliperEntity implements JsonSerializable {
      */
     public function setAssignable($assignable) {
         $this->assignable = $assignable;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActor() {
+        return $this->actor;
+    }
+
+    /**
+     * @param mixed $actor
+     */
+    public function setActor($actor) {
+        $this->actor = $actor;
+        return $this;
     }
 
     /**
@@ -70,5 +67,6 @@ class Attempt extends CaliperEntity implements JsonSerializable {
      */
     public function setCount($count) {
         $this->count = $count;
+        return $this;
     }
 } 

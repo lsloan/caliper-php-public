@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pnayak
- * Date: 11/1/14
- * Time: 6:24 PM
- */
 
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResource.php';
 require_once dirname(__FILE__) . '/../qti/QTIAssessment.php';
@@ -21,7 +15,8 @@ class Assessment extends AssignableDigitalResource implements QTIAssessment, Jso
     }
 
     public function jsonSerialize() {
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'objectType' => $this->getObjectType(),
@@ -37,7 +32,7 @@ class Assessment extends AssignableDigitalResource implements QTIAssessment, Jso
             'dateToSubmit' => $this->getDateToSubmit(),
             'maxAttempts' => $this->getMaxAttempts(),
             'maxScore' => $this->getMaxScore(),
-            'assessmentItems' => $this->getAssessmentItems()
+            'assessmentItems' => $this->getAssessmentItems(),
         ];
     }
 
@@ -53,5 +48,6 @@ class Assessment extends AssignableDigitalResource implements QTIAssessment, Jso
      */
     public function setAssessmentItems($assessmentItems) {
         $this->assessmentItems = $assessmentItems;
+        return $this;
     }
 }

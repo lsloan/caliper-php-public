@@ -18,24 +18,7 @@ class CaliperEvent implements JsonSerializable {
      */
     private $duration;
 
-    /*
-    private $agent;
-    private $activityContext;
-    private $learningContext;
-     */
-
-
-    /**
-     * Create a new CaliperEvent
-     */
     public function __construct() {
-    }
-
-
-    /*
-     *
-     */
-    public function __destruct() {
     }
 
     private static function getLocalizedAction($action) {
@@ -63,7 +46,7 @@ class CaliperEvent implements JsonSerializable {
             'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
             'duration' => $this->getDurationFormatted(),
             'edApp' => $this->getEdApp(),
-            'group' => $this->getGroup()
+            'group' => $this->getGroup(),
         ];
     }
 
@@ -79,6 +62,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setContext($context) {
         $this->context = $context;
+        return $this;
     }
 
     /**
@@ -93,34 +77,6 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setType($type) {
         $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEdApp() {
-        return $this->edApp;
-    }
-
-    /**
-     * @param mixed $edApp
-     */
-    public function setEdApp($edApp) {
-        $this->edApp = $edApp;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGroup() {
-        return $this->group;
-    }
-
-    /**
-     * @param mixed $lisOrganization
-     */
-    public function setGroup($group) {
-        $this->group = $group;
         return $this;
     }
 
@@ -136,6 +92,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setActor($actor) {
         $this->actor = $actor;
+        return $this;
     }
 
     /**
@@ -150,6 +107,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setAction($action) {
         $this->action = $action;
+        return $this;
     }
 
     /**
@@ -164,6 +122,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setObject($object) {
         $this->object = $object;
+        return $this;
     }
 
     /**
@@ -178,6 +137,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setTarget($target) {
         $this->target = $target;
+        return $this;
     }
 
     /**
@@ -193,6 +153,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function  setGenerated($generated) {
         $this->generated = $generated;
+        return $this;
     }
 
     /**
@@ -207,6 +168,7 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setStartedAtTime($startedAtTime) {
         $this->startedAtTime = $startedAtTime;
+        return $this;
     }
 
     /**
@@ -221,6 +183,18 @@ class CaliperEvent implements JsonSerializable {
      */
     public function setEndedAtTime($endedAtTime) {
         $this->endedAtTime = $endedAtTime;
+        return $this;
+    }
+
+    /**
+     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
+     */
+    public function getDurationFormatted() {
+        if ($this->getDuration() === null) {
+            return null;
+        }
+
+        return 'PT' . $this->getDuration() . 'S';
     }
 
     /**
@@ -240,13 +214,33 @@ class CaliperEvent implements JsonSerializable {
     }
 
     /**
-     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
+     * @return mixed
      */
-    public function getDurationFormatted() {
-        if ($this->getDuration() === null) {
-            return null;
-        }
+    public function getEdApp() {
+        return $this->edApp;
+    }
 
-        return 'PT' . $this->getDuration() . 'S';
+    /**
+     * @param mixed $edApp
+     */
+    public function setEdApp($edApp) {
+        $this->edApp = $edApp;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroup() {
+        return $this->group;
+    }
+
+    /**
+     * @param mixed $lisOrganization
+     */
+    public function setGroup($group) {
+        $this->group = $group;
+        return $this;
     }
 }
+

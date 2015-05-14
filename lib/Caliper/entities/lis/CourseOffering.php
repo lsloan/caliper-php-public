@@ -7,13 +7,13 @@ class CourseOffering extends CaliperEntity implements Course {
     private $membership = [];
     private $subOrganizationOf;
 
-    public function __construct($id){
+    public function __construct($id) {
         parent::__construct();
         $this->setId($id);
         $this->setType('http://purl.imsglobal.org/caliper/v1/lis/CourseOffering');
     }
 
-    public function jsonSerialize(){
+    public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'courseNumber' => $this->getCourseNumber(),
             'academicSession' => $this->getAcademicSession(),
@@ -52,21 +52,6 @@ class CourseOffering extends CaliperEntity implements Course {
     }
 
     /**
-     * @return array
-     */
-    public function getMembership() {
-        return $this->membership;
-    }
-
-    /**
-     * @param array $membership
-     */
-    public function setMembership($membership) {
-        $this->membership = $membership;
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getSubOrganizationOf() {
@@ -78,6 +63,21 @@ class CourseOffering extends CaliperEntity implements Course {
      */
     public function setSubOrganizationOf($subOrganizationOf) {
         $this->subOrganizationOf = $subOrganizationOf;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMembership() {
+        return $this->membership;
+    }
+
+    /**
+     * @param array $membership
+     */
+    public function setMembership($membership) {
+        $this->membership = $membership;
         return $this;
     }
 }
