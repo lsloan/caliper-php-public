@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResource.php';
-require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResourceType.php.php';
+require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResourceType.php';
 require_once dirname(__FILE__) . '/../qti/QTIAssessmentItem.php';
 
 
@@ -8,12 +8,12 @@ class AssessmentItem extends AssignableDigitalResource implements QTIAssessmentI
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setId($id);
         $this->setType(AssignableDigitalResourceType::ASSESSMENT_ITEM);
     }
 
     public function jsonSerialize() {
-        return ['@id' => $this->getId(),
+        return [
+            '@id' => $this->getId(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'objectType' => $this->getObjectType(),
@@ -28,6 +28,7 @@ class AssessmentItem extends AssignableDigitalResource implements QTIAssessmentI
             'dateToStartOn' => $this->getDateToStartOn(),
             'dateToSubmit' => $this->getDateToSubmit(),
             'maxAttempts' => $this->getMaxAttempts(),
-            'maxScore' => $this->getMaxScore()];
+            'maxScore' => $this->getMaxScore()
+        ];
     }
 }
