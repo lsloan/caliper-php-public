@@ -64,10 +64,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
         $ePubVolume->setVersion('2nd ed.');
 
 
-        // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
-		$targetObj = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-		// TODO remove this setType.  caliper-php doesn't implement Frame, but test fixture requires this value
-		$targetObj->setType('http://purl.imsglobal.org/caliper/v1/Frame');
+		$targetObj = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
 		$targetObj->setName('Key Figures: George Washington');
 		$targetObj->setDateCreated($createdTime);
 		$targetObj->setDateModified($modifiedTime);

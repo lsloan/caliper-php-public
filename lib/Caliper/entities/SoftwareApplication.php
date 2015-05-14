@@ -8,13 +8,12 @@ require_once 'Caliper/entities/schemadotorg/SoftwareApplication.php';
 class SoftwareApplication extends CaliperEntity implements Agent, schemadotorg\SoftwareApplication {
     private $roles = [];
 
-	public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
+    public function __construct($id) {
+        parent::__construct($id);
         $this->setType(CaliperAgentTypes::SOFTWARE_APPLICATION);
-	}
+    }
 
-    public function jsonSerialize(){
+    public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'roles' => $this->getRoles(),
         ]);

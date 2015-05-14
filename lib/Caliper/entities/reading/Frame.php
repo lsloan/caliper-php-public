@@ -1,20 +1,13 @@
 <?php
-require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperDigitalResource.php';
-require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
+require_once 'Caliper/entities/CaliperEntityTypes.php';
 
-/**
- *         Representation of an EPUB 3 Volume
- *
- *         A major sub-division of a chapter
- *         http://www.idpf.org/epub/vocab/structure/#subchapter
- */
-class EPubSubChapter extends CaliperDigitalResource implements CreativeWork {
+class Frame extends CaliperDigitalResource implements Targetable {
     private $index;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(CaliperDigitalResourceTypes::EPUB_SUB_CHAPTER);
+        $this->setType(CaliperEntityTypes::FRAME);
     }
 
     public function jsonSerialize() {
@@ -32,6 +25,7 @@ class EPubSubChapter extends CaliperDigitalResource implements CreativeWork {
 
     /**
      * @param mixed $index
+     * @return Frame
      */
     public function setIndex($index) {
         $this->index = $index;

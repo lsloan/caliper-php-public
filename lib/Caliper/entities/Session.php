@@ -15,8 +15,7 @@ class Session extends CaliperEntity implements Generatable, Targetable {
     private $duration;
 
     public function __construct($id) {
-        parent::__construct();
-        $this->setId($id);
+        parent::__construct($id);
         $this->setType('http://purl.imsglobal.org/caliper/v1/Session');
     }
 

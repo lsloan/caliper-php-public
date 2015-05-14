@@ -15,8 +15,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
     private $maxScore;
 
     public function __construct($id) {
-        parent::__construct();
-        $this->setId($id);
+        parent::__construct($id);
         $this->setType('http://purl.imsglobal.org/caliper/v1/AssignableDigitalResource');
     }
 

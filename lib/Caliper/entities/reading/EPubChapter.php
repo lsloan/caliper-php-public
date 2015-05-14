@@ -12,8 +12,7 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
  */
 class EPubChapter extends CaliperDigitalResource implements CreativeWork {
 	public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
+		parent::__construct($id);
 		$this->setType("http://www.idpf.org/epub/vocab/structure/#chapter");
 	}
 }

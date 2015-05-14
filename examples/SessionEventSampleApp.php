@@ -2,6 +2,7 @@
 require_once realpath(dirname(__FILE__) . '/../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
+require_once 'Caliper/entities/reading/Frame.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
 require_once 'Caliper/entities/Session.php';
@@ -39,9 +40,8 @@ class SessionEventSampleApp {
             ->setDateModified($modifiedTime);
 
         // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
-        $targetObj = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-        $targetObj->setType(CaliperEntityTypes::FRAME)
-            ->setName('Key Figures: George Washington')
+		$targetObj = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
+        $targetObj->setName('Key Figures: George Washington')
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime)
             ->setIsPartOf($ePubVolume)

@@ -2,6 +2,7 @@
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
+require_once 'Caliper/entities/reading/Frame.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
 require_once 'Caliper/entities/lis/Group.php';
@@ -63,10 +64,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
         $object->setDateModified($modifiedTime);
         $object->setVersion('2nd ed.');
 
-        // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
-        $target = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-        // TODO remove this setType.  caliper-php doesn't implement Frame, but test fixture requires this value
-        $target->setType('http://purl.imsglobal.org/caliper/v1/Frame');
+        $target = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
         $target->setName('Key Figures: George Washington');
         $target->setDateCreated($createdTime);
         $target->setDateModified($modifiedTime);
