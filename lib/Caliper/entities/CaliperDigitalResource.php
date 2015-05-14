@@ -30,9 +30,10 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
     private $keywords = [];
     private $isPartOf;
     private $datePublished;
+    private $version;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($id) {
+        parent::__construct($id);
     }
 
     public function jsonSerialize() {
@@ -42,6 +43,7 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
             'keywords' => $this->getKeywords(),
             'isPartOf' => $this->getIsPartOf(),
             'datePublished' => $this->getDatePublished(),
+            'version' => $this->getVersion(),
         ]);
     }
 
@@ -100,7 +102,7 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
     public function setIsPartOf($isPartOf) {
         $this->isPartOf = $isPartOf;
     }
-    
+
     /**
      * @return the datePublished
      */
@@ -113,5 +115,21 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
      */
     public function setDatePublished($datePublished) {
         $this->datePublished = $datePublished;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVersion() {
+        return $this->version;
+    }
+
+    /**
+     * @param mixed $version
+     * @return CaliperDigitalResource
+     */
+    public function setVersion($version) {
+        $this->version = $version;
+        return $this;
     }
 }
