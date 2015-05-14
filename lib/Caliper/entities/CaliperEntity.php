@@ -13,7 +13,8 @@ class CaliperEntity implements JsonSerializable, Thing {
     private $dateCreated;
     private $dateModified;
 
-    function __construct() {
+    function __construct($id) {
+        $this->setId($id);
     }
 
     public function jsonSerialize() {

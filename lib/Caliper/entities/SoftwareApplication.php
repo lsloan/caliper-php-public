@@ -8,8 +8,7 @@ class SoftwareApplication extends CaliperEntity implements Agent, schemadotorg\S
     private $roles = [];
 
 	public function __construct($id) {
-		parent::__construct();
-		$this->setId($id);
+		parent::__construct($id);
 		$this->setType('http://purl.imsglobal.org/caliper/v1/SoftwareApplication');
 	}
 

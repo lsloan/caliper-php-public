@@ -6,8 +6,8 @@ require_once 'Caliper/entities/schemadotorg/MediaObject.php';
 class MediaObject extends CaliperDigitalResource implements schemadotorg\MediaObject {
     private $duration;
 
-    public function __construct() {
-		parent::__construct();
+    public function __construct($id) {
+		parent::__construct($id);
     }
     
     public function jsonSerialize() {

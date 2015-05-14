@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @author balachandiran.v
  *
  */
 class ActivityContext extends CaliperEntity {
 
-    function __construct() {
-        parent::__construct();
+    function __construct($id) {
+        parent::__construct($id);
     }
 }
