@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '/../CaliperEntity.php';
+require_once 'Caliper/entities/EntityType.php';
 
 class Attempt extends CaliperEntity implements JsonSerializable {
 
@@ -9,7 +10,7 @@ class Attempt extends CaliperEntity implements JsonSerializable {
 
     public function  __construct($id) {
         $this->setId($id);
-        $this->setType("'http://purl.imsglobal.org/caliper/v1/Attempt");
+        $this->setType(EntityType::ATTEMPT);
     }
 
     public function jsonSerialize() {

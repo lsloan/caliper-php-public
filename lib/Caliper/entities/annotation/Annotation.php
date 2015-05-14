@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/../CaliperEntity.php';
 require_once dirname(__FILE__) . '/../schemadotorg/Thing.php';
+require_once 'Caliper/entities/EntityType.php';
 
 /**
  *         The super-class of all Annotation types.
@@ -16,7 +17,7 @@ class Annotation extends CaliperEntity implements Thing, JsonSerializable {
 
     public function  __construct($id) {
         $this->setId($id);
-        $this->setType("http://purl.imsglobal.org/caliper/v1/Annotation");
+        $this->setType(EntityType::ANNOTATION);
     }
 
     public function jsonSerialize() {

@@ -34,13 +34,11 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 		// edApp that provides the first reading
 		$readium = new SoftwareApplication(
 				"https://github.com/readium/readium-js-viewer");
-		$readium->setType("http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader");
 		$readium->setDateModified($modifiedTime);
 		
 		// edApp that provides the second reading
 		$courseSmart = new SoftwareApplication(
 				"http://www.coursesmart.com/reader");
-		$courseSmart->setType("http://purl.imsglobal.org/ctx/caliper/v1/edApp/epub-reader");
 		$courseSmart->setDateModified($modifiedTime);
 		
 		// Student - performs interaction with reading activities

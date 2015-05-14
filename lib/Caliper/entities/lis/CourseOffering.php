@@ -1,5 +1,6 @@
 <?php
 require_once 'Caliper/entities/lis/Course.php';
+require_once 'Caliper/entities/EntityType.php';
 
 class CourseOffering extends CaliperEntity implements Course {
     private $courseNumber;
@@ -9,7 +10,7 @@ class CourseOffering extends CaliperEntity implements Course {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/lis/CourseOffering');
+        $this->setType(EntityType::COURSE_OFFERING);
     }
 
     public function jsonSerialize() {

@@ -29,85 +29,85 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
 
         $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
         $courseMembership = new Membership('https://some-university.edu/membership/001');
-        $courseMembership->setMember($testPersonId);
-        $courseMembership->setOrganization($courseOrganizationUrl);
-        $courseMembership->setRoles([$testRole]);
-        $courseMembership->setDateCreated($createdTime);
+        $courseMembership->setMember($testPersonId)
+            ->setOrganization($courseOrganizationUrl)
+            ->setRoles([$testRole])
+            ->setDateCreated($createdTime);
 
         $sectionOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001';
         $sectionMembership = new Membership('https://some-university.edu/membership/002');
-        $sectionMembership->setMember($testPersonId);
-        $sectionMembership->setOrganization($sectionOrganizationUrl);
-        $sectionMembership->setRoles([$testRole]);
-        $sectionMembership->setDateCreated($createdTime);
+        $sectionMembership->setMember($testPersonId)
+            ->setOrganization($sectionOrganizationUrl)
+            ->setRoles([$testRole])
+            ->setDateCreated($createdTime);
 
         $groupOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001/group/001';
         $groupMembership = new Membership('https://some-university.edu/membership/003');
-        $groupMembership->setMember($testPersonId);
-        $groupMembership->setOrganization($groupOrganizationUrl);
-        $groupMembership->setRoles([$testRole]);
-        $groupMembership->setDateCreated($createdTime);
+        $groupMembership->setMember($testPersonId)
+            ->setOrganization($groupOrganizationUrl)
+            ->setRoles([$testRole])
+            ->setDateCreated($createdTime);
 
         $testPerson = new LISPerson($testPersonId);
-        $testPerson->setRoles([$testRole]);
-        $testPerson->setDateCreated($createdTime);
-        $testPerson->setDateModified($modifiedTime);
+        $testPerson->setRoles([$testRole])
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime);
 
 		$edApp = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
-        $edApp->setName('Readium');
-        $edApp->setDateCreated($createdTime);
-        $edApp->setDateModified($modifiedTime);
+        $edApp->setName('Readium')
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime);
 
 		$object = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
-		$object->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
-        $object->setDateCreated($createdTime);
-        $object->setDateModified($modifiedTime);
-        $object->setVersion('2nd ed.');
+		$object->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)')
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime)
+            ->setVersion('2nd ed.');
 
         $target = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-        $target->setName('Key Figures: George Washington');
-        $target->setDateCreated($createdTime);
-        $target->setDateModified($modifiedTime);
-        $target->setIsPartOf($object);
-        $target->setVersion('2nd ed.');
-        $target->setIndex(1);
+        $target->setName('Key Figures: George Washington')
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime)
+            ->setIsPartOf($object)
+            ->setVersion('2nd ed.')
+            ->setIndex(1);
 
         $courseOffering = new CourseOffering($courseOrganizationUrl);
-        $courseOffering->setCourseNumber('POL101');
-        $courseOffering->setName('Political Science 101: The American Revolution');
-        $courseOffering->setAcademicSession('Fall-2015');
-        $courseOffering->setDateCreated($createdTime);
-        $courseOffering->setDateModified($modifiedTime);
+        $courseOffering->setCourseNumber('POL101')
+            ->setName('Political Science 101: The American Revolution')
+            ->setAcademicSession('Fall-2015')
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime);
 
         $courseSection = new LISCourseSection($sectionOrganizationUrl);
-        $courseSection->setCourseNumber('POL101');
-        $courseSection->setName('American Revolution 101');
-        $courseSection->setAcademicSession('Fall-2015');
-        $courseSection->setMembership([$sectionMembership]);
-        $courseSection->setSubOrganizationOf($courseOffering);
-        $courseSection->setDateCreated($createdTime);
-        $courseSection->setDateModified($modifiedTime);
+        $courseSection->setCourseNumber('POL101')
+            ->setName('American Revolution 101')
+            ->setAcademicSession('Fall-2015')
+            ->setMembership([$sectionMembership])
+            ->setSubOrganizationOf($courseOffering)
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime);
 
         $group = new Group($groupOrganizationUrl);
-        $group->setName('Discussion Group 001');
-        $group->setMembership([$groupMembership]);
-        $group->setSubOrganizationOf($courseSection);
-        $group->setDateCreated($createdTime);
+        $group->setName('Discussion Group 001')
+            ->setMembership([$groupMembership])
+            ->setSubOrganizationOf($courseSection)
+            ->setDateCreated($createdTime);
 
         $fromResource = new WebPage('https://some-university.edu/politicalScience/2015/american-revolution-101/index.html');
-        $fromResource->setName('American Revolution 101 Landing Page');
-        $fromResource->setDateCreated($createdTime);
-        $fromResource->setDateModified($modifiedTime);
-        $fromResource->setVersion('1.0');
+        $fromResource->setName('American Revolution 101 Landing Page')
+            ->setDateCreated($createdTime)
+            ->setDateModified($modifiedTime)
+            ->setVersion('1.0');
 
         $navigationEvent = new NavigationEvent();
-		$navigationEvent->setActor($testPerson);
-		$navigationEvent->setObject($object);
-		$navigationEvent->setNavigatedFrom($fromResource);
-		$navigationEvent->setEdApp($edApp);
-        $navigationEvent->setTarget($target);
-		$navigationEvent->setGroup($group);
-        $navigationEvent->setStartedAtTime($navigationStartTime);
+		$navigationEvent->setActor($testPerson)
+		    ->setObject($object)
+		    ->setNavigatedFrom($fromResource)
+		    ->setEdApp($edApp)
+            ->setTarget($target)
+		    ->setGroup($group)
+            ->setStartedAtTime($navigationStartTime);
 
         $this->navigationEvent = $navigationEvent;
     }

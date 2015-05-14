@@ -1,6 +1,7 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 require_once 'Caliper/entities/Targetable.php';
 require_once 'util/TimestampUtil.php';
@@ -16,7 +17,7 @@ class Session extends CaliperEntity implements Generatable, Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/Session');
+        $this->setType(EntityType::SESSION);
     }
 
     public function jsonSerialize() {

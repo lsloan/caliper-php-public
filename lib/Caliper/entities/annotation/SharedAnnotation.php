@@ -1,5 +1,6 @@
 <?php
 require_once 'Annotation.php';
+require_once 'AnnotationType.php';
 
 class SharedAnnotation extends Annotation implements JsonSerializable {
 
@@ -8,7 +9,7 @@ class SharedAnnotation extends Annotation implements JsonSerializable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/SharedAnnotation');
+        $this->setType(AnnotationType::SHARED_ANNOTATION);
     }
 
     /**

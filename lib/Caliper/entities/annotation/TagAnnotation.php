@@ -1,5 +1,6 @@
 <?php
 require_once 'Annotation.php';
+require_once 'AnnotationType.php';
 
 class TagAnnotation extends Annotation {
 
@@ -7,7 +8,7 @@ class TagAnnotation extends Annotation {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType('http://purl.imsglobal.org/caliper/v1/TagAnnotation');
+        $this->setType(AnnotationType::TAG_ANNOTATION);
     }
 
     public function jsonSerialize() {
