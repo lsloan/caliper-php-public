@@ -12,6 +12,7 @@ require_once 'Caliper/entities/lis/LISOrganization.php';
 require_once 'Caliper/events/NavigationEvent.php';
 require_once 'Caliper/entities/schemadotorg/WebPage.php';
 require_once 'Caliper/entities/lis/Role.php';
+require_once realpath(CALIPER_LIB_PATH . '/../test/util/TestUtilities.php');
 
 class NavigationEventTest extends PHPUnit_Framework_TestCase {
 	private $navigationEvent;
@@ -117,13 +118,10 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
      * @group passes
      */
     function testNavigationEventSerializesToJSON(){
-        $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+        $navigationEventJson = json_encode($this->navigationEvent,JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperNavigationEvent.json');
 
-        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
-        if ($outputDir != FALSE) {
-            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $navigationEventJson);
-        }
+        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $navigationEventJson, __CLASS__);
 
         $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $navigationEventJson);
     }

@@ -29,34 +29,32 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
     parent::__construct($apiKey, $options);
   }
 
-  public function flushSingleDescribe($item) {
+  public function flushSingleDescribe($item, $apiKey, $sensor) {
     $socket = $this->createSocket();
 
     if (!$socket)
-      return;    
+        return;
 
-    $payload = new EventStoreEnvelope($item);
+    $envelope = new Envelope($sensor, $item);
 
-    $payload = json_encode($payload);
+    $payload = json_encode($envelope, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
-    $body = $this->createDescribeBody($this->options["host"], $payload);
-
-    print ("Sending DESCRIBE: ".$body);
+    $body = $this->createDescribeBody($this->options['host'], $apiKey, $payload);
 
     return $this->makeRequest($socket, $body);
   }
 
-  public function flushSingleSend($item, $apiKey, $sensorId) {
+  public function flushSingleSend($item, $apiKey, $sensor) {
     $socket = $this->createSocket();
 
     if (!$socket)
-      return;    
-  
-    $payload = new EventStoreEnvelope($item, $apiKey, $sensorId);
+        return;
+
+    $envelope = new Envelope($sensor, $item);
    
-    $payload = json_encode($payload,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);   
+    $payload = json_encode($envelope, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     
-    $body = $this->createSendBody($this->options["host"], $payload);
+    $body = $this->createSendBody($this->options['host'], $apiKey, $payload);
 
     return $this->makeRequest($socket, $body);
   }
@@ -173,11 +171,12 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
    * @param  string $content
    * @return string body
    */
-  private function createDescribeBody($host, $content) {
+  private function createDescribeBody($host, $apiKey, $content) {
 
     $req = "";
     $req.= "POST " . $this->options["describeURI"] . " HTTP/1.1\r\n";
     $req.= "Host: " . $host . "\r\n";
+    $req.= "Authorization: " . $apiKey . "\r\n";
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";
@@ -193,11 +192,12 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
    * @param  string $content
    * @return string body
    */
-  private function createSendBody($host, $content) {
+  private function createSendBody($host, $apiKey, $content) {
 
     $req = "";
     $req.= "POST " . $this->options["sendURI"] . " HTTP/1.1\r\n";
     $req.= "Host: " . $host . "\r\n";
+    $req.= "Authorization: " . $apiKey . "\r\n";
     $req.= "Content-Type: application/json\r\n";
     $req.= "Accept: application/json\r\n";
     $req.= "Content-length: " . strlen($content) . "\r\n";

@@ -38,12 +38,12 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * @param  [type] $item  [description]
    * @return [type]        [description]
    */
-  abstract function flushSingleDescribe($item);
+  abstract function flushSingleDescribe($item, $apiKey, $sensor);
 
   /**
    * Flushes a single send
    * @param  [type] $item  [description]
    * @return [type]        [description]
    */
-  abstract function flushSingleSend($item, $apiKey, $sensorId);
+  abstract function flushSingleSend($item, $apiKey, $sensor);
 }
