@@ -12,7 +12,7 @@ class Membership extends CaliperEntity implements w3c\Membership {
         $this->setType('http://purl.imsglobal.org/caliper/v1/lis/Membership');
     }
 
-    public function jsonSerialize(){
+    public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'member' => $this->getMember(),
             'organization' => $this->getOrganization(),

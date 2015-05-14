@@ -59,62 +59,67 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
      */
     public function setObjectTypes($objectTypes) {
         $this->objectType = $objectTypes;
+        return $this;
     }
 
     /**
-     * @return the alignedLearningObjectives
+     * @return object alignedLearningObjectives
      */
     public function  getAlignedLearningObjectives() {
         return $this->alignedLearningObjectives;
     }
 
     /**
-     * @param alignedLearningObjectives the alignedLearningObjectives to set
+     * @param alignedLearningObjectives object alignedLearningObjectives to set
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
         $this->alignedLearningObjectives = $alignedLearningObjectives;
+        return $this;
     }
 
     /**
-     * @return the keywords
+     * @return string the keywords
      */
     public function  getKeywords() {
         return $this->keywords;
     }
 
     /**
-     * @param keywords the keywords to set
+     * @param keywords string the keywords to set
      */
     public function setKeywords($keywords) {
         $this->keywords = $keywords;
+        return $this;
     }
 
     /**
-     * @return the isPartOf
+     * @return object isPartOf
      */
     public function getIsPartOf() {
         return $this->isPartOf;
     }
 
     /**
-     * @param isPartOf the isPartOf to set
+     * @param isPartOf object isPartOf to set
      */
     public function setIsPartOf($isPartOf) {
         $this->isPartOf = $isPartOf;
+        return $this;
     }
 
     /**
-     * @return the datePublished
+     * @return DateTime datePublished
      */
     public function getDatePublished() {
         return $this->datePublished;
     }
 
     /**
-     * @param datePublished the datePublished to set
+     * @param datePublished DateTime datePublished to set
      */
     public function setDatePublished($datePublished) {
         $this->datePublished = $datePublished;
+        return $this;
     }
 
     /**
@@ -133,3 +138,4 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
         return $this;
     }
 }
+

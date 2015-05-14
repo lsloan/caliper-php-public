@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @author balachandiran.v
- *
- */
 class ActivityContext extends CaliperEntity {
 
     function __construct($id) {

@@ -4,8 +4,8 @@ require_once 'CreativeWork.php';
 
 class WebPage extends CaliperDigitalResource implements CreativeWork {
 
-	public function  __construct($id) {
+    public function  __construct($id) {
         parent::__construct($id);
-		$this->setType("http://purl.imsglobal.org/caliper/v1/WebPage");
-	}
+        $this->setType("http://purl.imsglobal.org/caliper/v1/WebPage");
+    }
 }

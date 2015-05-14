@@ -7,14 +7,21 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
     private $currentTime;
 
     public function __construct($id) {
-		parent::__construct($id);
-		$this->setType('http://purl.imsglobal.org/caliper/v1/MediaLocation');
+        parent::__construct($id);
+        $this->setType('http://purl.imsglobal.org/caliper/v1/MediaLocation');
     }
-    
+
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
             'currentTime' => $this->getCurrentTime(),
         ]);
+    }
+
+    /**
+     * @return int Current time in seconds
+     */
+    public function getCurrentTime() {
+        return $this->currentTime;
     }
 
     /**
@@ -24,12 +31,5 @@ class MediaLocation extends CaliperDigitalResource implements Targetable {
     public function setCurrentTime($currentTimeSeconds) {
         $this->currentTime = $currentTimeSeconds;
         return $this;
-    }
-
-    /**
-     * @return int Current time in seconds
-     */
-    public function getCurrentTime() {
-        return $this->currentTime;
     }
 }

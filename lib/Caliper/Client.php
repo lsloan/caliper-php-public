@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/Consumer.php';
 require_once __DIR__ . '/QueueConsumer.php';
-require_once __DIR__ . '/Consumer/EventStoreEnvelope.php';
+require_once 'Caliper/request/Envelope.php';
 require_once __DIR__ . '/Consumer/Socket.php';
 require_once __DIR__ . '/events/CaliperEvent.php';
 require_once __DIR__ . '/entities/CaliperEntity.php';

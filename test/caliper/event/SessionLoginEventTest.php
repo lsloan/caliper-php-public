@@ -11,6 +11,7 @@ require_once 'Caliper/entities/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/entities/lis/Role.php';
 require_once 'Caliper/actions/Action.php';
+require_once realpath(CALIPER_LIB_PATH . '/../test/util/TestUtilities.php');
 
 class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 	private $sessionEvent;
@@ -117,13 +118,10 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
      * @group passes
      */
 	function testSessionEventSerializesToJSON() {
-		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+		$sessionEventJson = json_encode($this->sessionEvent, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLoginEvent.json');
 
-        $outputDir = getenv('PHPUNIT_OUTPUT_DIR');
-        if ($outputDir != FALSE) {
-            file_put_contents(realpath($outputDir) . DIRECTORY_SEPARATOR . __CLASS__ . '.json', $sessionEventJson);
-        }
+        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $sessionEventJson, __CLASS__);
 
 		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $sessionEventJson);
 	}

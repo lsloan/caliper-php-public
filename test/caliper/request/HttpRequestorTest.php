@@ -1,26 +1,27 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once 'Caliper/actions/Action.php';
-require_once 'Caliper/entities/lis/Role.php';
-require_once 'Caliper/events/MediaEvent.php';
+require_once 'Caliper/entities/reading/EPubVolume.php';
+require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/lis/LISPerson.php';
 require_once 'Caliper/entities/lis/LISCourseSection.php';
 require_once 'Caliper/entities/lis/Group.php';
 require_once 'Caliper/entities/lis/Membership.php';
 require_once 'Caliper/entities/SoftwareApplication.php';
-require_once 'Caliper/entities/media/MediaLocation.php';
-require_once 'Caliper/entities/media/VideoObject.php';
-require_once 'Caliper/entities/LearningObjective.php';
+require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/lis/LISOrganization.php';
+require_once 'Caliper/events/NavigationEvent.php';
+require_once 'Caliper/entities/schemadotorg/WebPage.php';
+require_once 'Caliper/entities/lis/Role.php';
 require_once realpath(CALIPER_LIB_PATH . '/../test/util/TestUtilities.php');
 
-class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
-	private $mediaEvent;
+class HttpRequestorTest extends PHPUnit_Framework_TestCase {
+	private $testObject;
 	
-	function setUp() {
+    function  setUp() {
         $createdTime = new DateTime('2015-08-01T06:00:00.000Z');
         $modifiedTime = new DateTime('2015-09-02T11:30:00.000Z');
 
-        $startedAtTime = new DateTime('2015-09-15T10:15:00.000Z');
+        $navigationStartTime = new DateTime('2015-09-15T10:15:00.000Z');
 
         $testPersonId = 'https://some-university.edu/user/554433';
         $testRole = Role::LEARNER;
@@ -51,10 +52,27 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
         $testPerson->setDateCreated($createdTime);
         $testPerson->setDateModified($modifiedTime);
 
-        $application = new SoftwareApplication('https://com.sat/super-media-tool');
-		$application->setName('Super Media Tool');
-		$application->setDateCreated($createdTime);
-		$application->setDateModified($modifiedTime);
+		$edApp = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
+        $edApp->setName('Readium');
+        $edApp->setDateCreated($createdTime);
+        $edApp->setDateModified($modifiedTime);
+
+		$object = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
+		$object->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)');
+        $object->setDateCreated($createdTime);
+        $object->setDateModified($modifiedTime);
+        $object->setVersion('2nd ed.');
+
+        // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
+        $target = new EPubSubChapter('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
+        // TODO remove this setType.  caliper-php doesn't implement Frame, but test fixture requires this value
+        $target->setType('http://purl.imsglobal.org/caliper/v1/Frame');
+        $target->setName('Key Figures: George Washington');
+        $target->setDateCreated($createdTime);
+        $target->setDateModified($modifiedTime);
+        $target->setIsPartOf($object);
+        $target->setVersion('2nd ed.');
+        $target->setIndex(1);
 
         $courseOffering = new CourseOffering($courseOrganizationUrl);
         $courseOffering->setCourseNumber('POL101');
@@ -78,52 +96,40 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
         $group->setSubOrganizationOf($courseSection);
         $group->setDateCreated($createdTime);
 
-        /*
-        $organization = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
-		$organization->setAcademicSession('Spring-2014');
-		$organization->setCourseNumber('AmRev-101');
-		$organization->setName('American Revolution 101');
-		$organization->setDateCreated($createdTime);
-		$organization->setDateModified($modifiedTime);
-        */
+        $fromResource = new WebPage('https://some-university.edu/politicalScience/2015/american-revolution-101/index.html');
+        $fromResource->setName('American Revolution 101 Landing Page');
+        $fromResource->setDateCreated($createdTime);
+        $fromResource->setDateModified($modifiedTime);
+        $fromResource->setVersion('1.0');
 
-		$alignedLearningObjective = new LearningObjective('http://americanrevolution.com/personalities/learn');
-		$alignedLearningObjective->setDateCreated($createdTime);
+        $navigationEvent = new NavigationEvent();
+		$navigationEvent->setActor($testPerson);
+		$navigationEvent->setObject($object);
+		$navigationEvent->setNavigatedFrom($fromResource);
+		$navigationEvent->setEdApp($edApp);
+        $navigationEvent->setTarget($target);
+		$navigationEvent->setGroup($group);
+        $navigationEvent->setStartedAtTime($navigationStartTime);
 
-		$eventObj = new VideoObject('https://com.sat/super-media-tool/video/video1');
-		$eventObj->setName('American Revolution - Key Figures Video');
-		$eventObj->setAlignedLearningObjectives([$alignedLearningObjective]);
-		$eventObj->setDateCreated($createdTime);
-		$eventObj->setDateModified($modifiedTime);
-		$eventObj->setDuration(1420);
-        $eventObj->setVersion('1.0');
+        $envelope = new Envelope();
+        $envelope
+            ->setData($navigationEvent)
+            ->setSensor('http://learning-app.some-university.edu/sensor')
+            ->setSendTime(new DateTime('2015-09-15T11:05:01.000Z'));
 
-		$targetObj = new MediaLocation('https://com.sat/super-media-tool/video/video1');
-		$targetObj->setDateCreated($createdTime);
-		$targetObj->setCurrentTime(710);
-        $targetObj->setVersion('1.0');
-
-		$mediaEvent = new MediaEvent();
-		$mediaEvent->setActor($testPerson);
-		$mediaEvent->setAction(Action::PAUSED);
-		$mediaEvent->setObject($eventObj);
-		$mediaEvent->setTarget($targetObj);
-		$mediaEvent->setEdApp($application);
-		$mediaEvent->setGroup($group);
-		$mediaEvent->setStartedAtTime($startedAtTime);
-
-		$this->mediaEvent = $mediaEvent;
-	}
+        $this->testObject = $envelope;
+    }
 
     /**
      * @group passes
      */
-	function testSessionEventSerializesToJSON() {
-        $mediaEventJson = json_encode($this->mediaEvent, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-		$testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperMediaEvent.json');
+    function testEnvelopeSerializesToJSON(){
+        $testJson = json_encode($this->testObject, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        $testFixtureFilePath = realpath(CALIPER_LIB_PATH .
+            '/../../caliper-common-fixtures/src/test/resources/fixtures/eventStorePayload.json');
 
-        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $mediaEventJson, __CLASS__);
+        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $testJson, __CLASS__);
 
-		$this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $mediaEventJson);
-	}
+        $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $testJson);
+    }
 }

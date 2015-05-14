@@ -8,38 +8,56 @@ require_once 'Caliper/actions/Action.php';
 
 class NavigationEvent extends CaliperEvent {
 
-	public function __construct() {
-		parent::__construct();
+    /**
+     * Describes the resource from which the navigation starts
+     */
+    private $navigatedFrom;
 
-		$this->setContext(CaliperEventContexts::NAVIGATION);
-		$this->setType(CaliperEventTypes::NAVIGATION);
-		$this->setAction(Action::NAVIGATED_TO);
-	}
+    public function __construct() {
+        parent::__construct();
 
-	/**
-	 * Describes the resource from which the navigation starts
-	 */	
-	private $fromResource;
-
-	/**
-	 * @return the fromResource
-	 */
-	public function getFromResource() {
-		return $this->fromResource;
-	}
-
-	/**
-	 * @param fromResource
-	 * the fromResource to set
-	 */
-	public function setFromResource($fromResource) {
-		$this->fromResource = $fromResource;
-	}
+        $this->setContext(CaliperEventContexts::NAVIGATION);
+        $this->setType(CaliperEventTypes::NAVIGATION);
+        $this->setAction(Action::NAVIGATED_TO);
+    }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'navigatedFrom' => $this->getFromResource(),
+            'navigatedFrom' => $this->getNavigatedFrom(),
         ]);
+    }
+
+    /**
+     * @return the navigatedFrom
+     */
+    public function getNavigatedFrom() {
+        return $this->navigatedFrom;
+    }
+
+    /**
+     * @param $navigatedFrom
+     * the navigatedFrom to set
+     */
+    public function setNavigatedFrom($navigatedFrom) {
+        $this->navigatedFrom = $navigatedFrom;
+        return $this;
+    }
+
+    /**
+     * @return the fromResource
+     * @deprecated
+     */
+    public function getFromResource() {
+        return $this->getNavigatedFrom();
+    }
+
+    /**
+     * @param fromResource
+     * the fromResource to set
+     * @deprecated
+     */
+    public function setFromResource($fromResource) {
+        return $this->setNavigatedFrom($fromResource);
     }
 
 }
