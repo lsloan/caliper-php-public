@@ -1,9 +1,9 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/MediaObject.php';
 
-class MediaObject extends CaliperDigitalResource implements schemadotorg\MediaObject {
+class MediaObject extends DigitalResource implements schemadotorg\MediaObject {
     private $duration;
 
     public function __construct($id) {

@@ -1,6 +1,6 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 require_once 'Caliper/entities/Targetable.php';
 
@@ -23,7 +23,7 @@ require_once 'Caliper/entities/Targetable.php';
  *         as Scheme and Lisp
  *
  */
-class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targetable {
+class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     private $objectTypes = [];
     private $alignedLearningObjectives = [];
@@ -131,7 +131,7 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
 
     /**
      * @param mixed $version
-     * @return CaliperDigitalResource
+     * @return DigitalResource
      */
     public function setVersion($version) {
         $this->version = $version;

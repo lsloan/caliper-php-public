@@ -1,7 +1,7 @@
 <?php
 require_once 'util/TimestampUtil.php';
 
-class CaliperEvent implements JsonSerializable {
+class Event implements JsonSerializable {
     private $context;
     private $type;
     private $actor;

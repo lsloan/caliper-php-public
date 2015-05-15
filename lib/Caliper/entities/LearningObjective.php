@@ -1,8 +1,8 @@
 <?php
-require_once 'CaliperEntity.php';
+require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 
-class LearningObjective extends CaliperEntity {
+class LearningObjective extends Entity {
 
     public function __construct($id) {
         parent::__construct($id);

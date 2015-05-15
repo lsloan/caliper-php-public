@@ -2,7 +2,7 @@
 require_once 'Caliper/entities/w3c/Organization.php';
 require_once 'Caliper/entities/EntityType.php';
 
-class Group extends CaliperEntity implements w3c\Organization {
+class Group extends Entity implements w3c\Organization {
     private $membership = [];
     private $subOrganizationOf;
 

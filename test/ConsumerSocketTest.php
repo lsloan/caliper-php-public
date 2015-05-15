@@ -18,7 +18,7 @@ class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
     $this->client = new Caliper_Client("testApiKey",
                                           array("consumer" => "socket"));
     
-    $this->caliperEntity = new CaliperEntity();
+    $this->caliperEntity = new Entity();
     $this->caliperEntity->setId("course-1234");
     $this->caliperEntity->setType("course");
     $this->caliperEntity->setProperties(array(
@@ -90,7 +90,7 @@ class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
       $large_message_body .= "a";
     }
     
-    $ce = new CaliperEntity();
+    $ce = new Entity();
     $ce->setId("course-1234");
     $ce->setType("course");
     $ce->setProperties(array(

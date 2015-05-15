@@ -1,7 +1,7 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
-require_once 'Caliper/entities/lis/LISPerson.php';
+require_once 'Caliper/entities/agent/Person.php';
 require_once 'Caliper/entities/ActivityContext.php';
 
 class CaliperEventTest extends PHPUnit_Framework_TestCase {
@@ -12,11 +12,11 @@ class CaliperEventTest extends PHPUnit_Framework_TestCase {
 	public function setUp()  {
         $theTime = new DateTime('2015-09-02T11:30:00.000Z');
 
-		$caliperEvent = new CaliperEvent();
+		$caliperEvent = new Event();
 		$caliperEvent->setContext("http://purl.imsglobal.org/ctx/caliper/v1/NavigationEvent");		
 		$caliperEvent->setAction("navigate_to");
 		
-		$actor = new LISPerson("uri:/someEdu/user/42");
+		$actor = new Person("uri:/someEdu/user/42");
 		$caliperEvent->setActor($actor);
 		
 		$activityContext = new ActivityContext();
@@ -37,6 +37,6 @@ class CaliperEventTest extends PHPUnit_Framework_TestCase {
 
 	public function testcaliperEventSerializesToJSON(){
 
-		 $this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/CaliperEvent.json',json_encode($this->caliperEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+		 $this->assertJsonStringEqualsJsonFile(dirname(dirname(__FILE__)).'/../resources/fixtures/Event.json',json_encode($this->caliperEvent,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
 	}
 }

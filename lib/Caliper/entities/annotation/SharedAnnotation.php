@@ -4,7 +4,7 @@ require_once 'AnnotationType.php';
 
 class SharedAnnotation extends Annotation implements JsonSerializable {
 
-    // TODO - this should be a list of LISGroup or LISPerson/s
+    // TODO - this should be a list of LISGroup or Person/s
     public $withAgents = array();
 
     public function __construct($id) {

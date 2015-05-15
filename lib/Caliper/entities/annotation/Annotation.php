@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../CaliperEntity.php';
+require_once dirname(__FILE__) . '/../Entity.php';
 require_once dirname(__FILE__) . '/../schemadotorg/Thing.php';
 require_once 'Caliper/entities/EntityType.php';
 
@@ -11,7 +11,7 @@ require_once 'Caliper/entities/EntityType.php';
  *         which are specified in the Caliper Annotation Metric Profile
  *
  */
-class Annotation extends CaliperEntity implements Thing, JsonSerializable {
+class Annotation extends Entity implements Thing, JsonSerializable {
 
     private $target;
 

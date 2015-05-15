@@ -1,8 +1,8 @@
 <?php
-require_once dirname(__FILE__) . '/../CaliperEntity.php';
+require_once dirname(__FILE__) . '/../Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 
-class Attempt extends CaliperEntity implements JsonSerializable {
+class Attempt extends Entity implements JsonSerializable {
 
     private $assignable;
     private $actor;

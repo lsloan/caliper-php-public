@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'CourseOffering.php';
 require_once 'Caliper/entities/EntityType.php';
 
-class LISCourseSection extends CourseOffering {
+class CourseSection extends CourseOffering {
     private $category;
     private $academicSession;
 

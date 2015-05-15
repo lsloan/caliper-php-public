@@ -2,7 +2,7 @@
 require_once 'Caliper/entities/lis/Course.php';
 require_once 'Caliper/entities/EntityType.php';
 
-class CourseOffering extends CaliperEntity implements Course {
+class CourseOffering extends Entity implements Course {
     private $courseNumber;
     private $academicSession;
     private $membership = [];

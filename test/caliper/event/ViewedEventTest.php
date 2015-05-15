@@ -1,14 +1,14 @@
 <?php
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
-require_once 'Caliper/entities/lis/LISCourseSection.php';
-require_once 'Caliper/entities/lis/LISOrganization.php';
-require_once 'Caliper/entities/lis/LISPerson.php';
-require_once 'Caliper/entities/SoftwareApplication.php';
+require_once 'Caliper/entities/lis/CourseSection.php';
+require_once 'Caliper/entities/agent/Organization.php';
+require_once 'Caliper/entities/agent/Person.php';
+require_once 'Caliper/entities/agent/SoftwareApplication.php';
 require_once 'Caliper/events/ViewedEvent.php';
-require_once 'Caliper/entities/schemadotorg/WebPage.php';
+require_once 'Caliper/entities/reading/WebPage.php';
 
 class ViewedEventTest extends PHPUnit_Framework_TestCase {
 
@@ -17,14 +17,14 @@ class ViewedEventTest extends PHPUnit_Framework_TestCase {
     function  setUp() {
         $now = new DateTime('2015-09-02T11:30:00.000Z');
 
-        $americanHistoryCourse = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
+        $americanHistoryCourse = new CourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101');
         $americanHistoryCourse->setCourseNumber('AmRev-101')
             ->setDateModified($now);
 
         $readium = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
         $readium->setDateModified($now);
 
-        $alice = new LISPerson('https://some-university.edu/students/jones-alice-554433');
+        $alice = new Person('https://some-university.edu/students/jones-alice-554433');
         $alice->setDateModified($now);
 
         $readiumReading = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');

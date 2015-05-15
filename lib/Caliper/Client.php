@@ -3,8 +3,8 @@ require_once __DIR__ . '/Consumer.php';
 require_once __DIR__ . '/QueueConsumer.php';
 require_once 'Caliper/request/Envelope.php';
 require_once __DIR__ . '/Consumer/Socket.php';
-require_once __DIR__ . '/events/CaliperEvent.php';
-require_once __DIR__ . '/entities/CaliperEntity.php';
+require_once __DIR__ . '/events/Event.php';
+require_once __DIR__ . '/entities/Entity.php';
 
 class Caliper_Client {
 
@@ -37,7 +37,7 @@ class Caliper_Client {
 
     /**
      * Send learning events
-     * @param  CaliperEvent $caliperEvent A Caliper event object
+     * @param  Event $caliperEvent A Caliper event object
      * @return boolean success
      */
     public function send($caliperEvent) {
@@ -46,7 +46,7 @@ class Caliper_Client {
 
     /**
      * Describe an entity
-     * @param  CaliperEntity $caliperEntity The Caliper Entity we are describing
+     * @param  Entity $caliperEntity The Caliper Entity we are describing
      * @return boolean whether the describe call succeeded
      */
     public function describe($caliperEntity) {
