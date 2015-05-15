@@ -19,11 +19,15 @@ class Person extends Agent implements foaf\Agent {
         ]);
     }
 
-    public function  getRoles() {
+    public function getRoles() {
         return $this->roles;
     }
 
-    public function  setRoles($roles) {
+    public function setRoles($roles) {
+        if (! is_array($roles)) {
+            $roles = [$roles];
+        }
+
         $this->roles = $roles;
         return $this;
     }

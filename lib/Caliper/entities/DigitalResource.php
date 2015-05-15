@@ -56,6 +56,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param mixed $objectTypes
+     * @return object
      */
     public function setObjectTypes($objectTypes) {
         $this->objectType = $objectTypes;
@@ -71,6 +72,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param alignedLearningObjectives object alignedLearningObjectives to set
+     * @return object
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
         $this->alignedLearningObjectives = $alignedLearningObjectives;
@@ -86,6 +88,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param keywords string the keywords to set
+     * @return object
      */
     public function setKeywords($keywords) {
         $this->keywords = $keywords;
@@ -101,6 +104,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param isPartOf object isPartOf to set
+     * @return object
      */
     public function setIsPartOf($isPartOf) {
         $this->isPartOf = $isPartOf;
@@ -116,6 +120,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param datePublished DateTime datePublished to set
+     * @return object
      */
     public function setDatePublished($datePublished) {
         $this->datePublished = $datePublished;
@@ -131,7 +136,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param mixed $version
-     * @return DigitalResource
+     * @return object
      */
     public function setVersion($version) {
         $this->version = $version;
