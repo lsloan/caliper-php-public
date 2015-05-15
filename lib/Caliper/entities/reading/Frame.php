@@ -25,7 +25,7 @@ class Frame extends DigitalResource implements Targetable {
 
     /**
      * @param mixed $index
-     * @return Frame
+     * @return object
      */
     public function setIndex($index) {
         $this->index = $index;
