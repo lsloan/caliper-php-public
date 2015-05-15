@@ -1,7 +1,7 @@
 <?php
 require_once 'util/BasicEnum.php';
 
-class CaliperEventTypes extends \BasicEnum {
+class EventType extends \BasicEnum {
 
     const
         __default = "",
@@ -9,11 +9,11 @@ class CaliperEventTypes extends \BasicEnum {
         ASSESSMENT = "http://purl.imsglobal.org/caliper/v1/AssessmentEvent",
         ASSESSMENT_ITEM = "http://purl.imsglobal.org/caliper/v1/AssessmentItemEvent",
         ASSIGNABLE = "http://purl.imsglobal.org/caliper/v1/AssignableEvent",
-        CALIPER_EVENT = "http://purl.imsglobal.org/caliper/v1/CaliperEvent",
+        EVENT = "http://purl.imsglobal.org/caliper/v1/Event",
         MEDIA = "http://purl.imsglobal.org/caliper/v1/MediaEvent",
         NAVIGATION = "http://purl.imsglobal.org/caliper/v1/NavigationEvent",
         OUTCOME = "http://purl.imsglobal.org/caliper/v1/OutcomeEvent",
         SESSION = "http://purl.imsglobal.org/caliper/v1/SessionEvent",
-        VIEWED = "http://purl.imsglobal.org/caliper/v1/ViewedEvent";
+        VIEW = "http://purl.imsglobal.org/caliper/v1/ViewEvent";
 }
 

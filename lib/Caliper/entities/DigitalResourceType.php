@@ -1,7 +1,7 @@
 <?php
 require_once 'util/BasicEnum.php';
 
-class CaliperDigitalResourceTypes extends BasicEnum {
+class DigitalResourceType extends BasicEnum {
     const
         __default = '',
         ASSIGNABLE_DIGITAL_RESOURCE = 'http://purl.imsglobal.org/caliper/v1/AssignableDigitalResource',

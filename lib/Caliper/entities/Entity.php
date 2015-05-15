@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/schemadotorg/Thing.php';
 require_once 'util/TimestampUtil.php';
 
-class CaliperEntity implements JsonSerializable, Thing {
+class Entity implements JsonSerializable, Thing {
 
     public $type;
     public $name;

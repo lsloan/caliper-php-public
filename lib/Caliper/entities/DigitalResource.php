@@ -23,7 +23,7 @@ require_once 'Caliper/entities/Targetable.php';
  *         as Scheme and Lisp
  *
  */
-class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targetable {
+class DigitalResource extends CaliperEntity implements CreativeWork, Targetable {
 
     private $objectTypes = [];
     private $alignedLearningObjectives = [];
@@ -131,7 +131,7 @@ class CaliperDigitalResource extends CaliperEntity implements CreativeWork, Targ
 
     /**
      * @param mixed $version
-     * @return CaliperDigitalResource
+     * @return DigitalResource
      */
     public function setVersion($version) {
         $this->version = $version;

@@ -1,9 +1,9 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/foaf/Agent.php';
 
-class LISOrganization extends CaliperEntity implements Agent {
+class Organization extends Entity implements foaf\Agent {
 	/**
 	 * 
 	 * @param string $id

@@ -1,12 +1,12 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 require_once 'Caliper/entities/Targetable.php';
 require_once 'util/TimestampUtil.php';
 
-class Session extends CaliperEntity implements Generatable, Targetable {
+class Session extends Entity implements Generatable, Targetable {
     private $actor;
     private $startedAtTime;
     private $endedAtTime;
