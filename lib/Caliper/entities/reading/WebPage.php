@@ -1,7 +1,7 @@
 <?php
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';
-require_once 'CreativeWork.php';
+require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
 class WebPage extends DigitalResource implements CreativeWork {
 

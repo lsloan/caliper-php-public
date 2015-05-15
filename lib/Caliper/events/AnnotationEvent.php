@@ -1,16 +1,16 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/events/CaliperEvent.php';
-require_once 'Caliper/events/CaliperEventContexts.php';
-require_once 'Caliper/events/CaliperEventTypes.php';
+require_once 'Caliper/events/Event.php';
+require_once 'Caliper/events/EventContext.php';
+require_once 'Caliper/events/EventType.php';
 require_once 'Caliper/actions/Action.php';
 
-class AnnotationEvent extends CaliperEvent {
+class AnnotationEvent extends Event {
 	
 	public function __construct(){
 
-        $this->setContext(CaliperEventContexts::ANNOTATION);
-        $this->setType(CaliperEventTypes::ANNOTATION);
+        $this->setContext(EventContext::ANNOTATION);
+        $this->setType(EventType::ANNOTATION);
 
 	}
 

@@ -2,9 +2,9 @@
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
-require_once 'Caliper/entities/lis/LISPerson.php';
-require_once 'Caliper/entities/lis/LISCourseSection.php';
-require_once 'Caliper/entities/SoftwareApplication.php';
+require_once 'Caliper/entities/agent/Person.php';
+require_once 'Caliper/entities/lis/CourseSection.php';
+require_once 'Caliper/entities/agent/SoftwareApplication.php';
 require_once 'Caliper/entities/annotation/HighlightedAnnotation.php';
 require_once 'Caliper/entities/annotation/BookmarkAnnotation.php';
 require_once 'Caliper/entities/annotation/SharedAnnotation.php';
@@ -25,7 +25,7 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
         $modifiedTime = new DateTime('2015-09-02T11:30:00.000Z');
 		$now=1401216031920;
 		
-		$americanHistoryCourse = new LISCourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101',null);
+		$americanHistoryCourse = new CourseSection('https://some-university.edu/politicalScience/2014/american-revolution-101',null);
 		$americanHistoryCourse->setCourseNumber("AmRev-101");
         $americanHistoryCourse->setCategory("American Revolution 101");
         $americanHistoryCourse->setAcademicSession("Spring-2014");
@@ -42,7 +42,7 @@ class AnnotationEventTest extends PHPUnit_Framework_TestCase {
 		$courseSmart->setDateModified($modifiedTime);
 		
 		// Student - performs interaction with reading activities
-		$alice = new LISPerson("https://some-university.edu/students/jones-alice-554433");
+		$alice = new Person("https://some-university.edu/students/jones-alice-554433");
 		$alice->setDateModified($modifiedTime);
 		
 		

@@ -1,9 +1,9 @@
 <?php
 
-require_once '/CaliperDigitalResource.php';
-require_once '/CaliperDigitalResourceTypes.php';
+require_once '/DigitalResource.php';
+require_once '/DigitalResourceType.php';
 
-class AssignableDigitalResource extends CaliperDigitalResource implements JsonSerializable {
+class AssignableDigitalResource extends DigitalResource implements JsonSerializable {
 
     private $dateCreated;
     private $datePublished;
@@ -17,7 +17,7 @@ class AssignableDigitalResource extends CaliperDigitalResource implements JsonSe
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(CaliperDigitalResourceTypes::ASSIGNABLE_DIGITAL_RESOURCE);
+        $this->setType(DigitalResourceType::ASSIGNABLE_DIGITAL_RESOURCE);
     }
 
     public function jsonSerialize() {

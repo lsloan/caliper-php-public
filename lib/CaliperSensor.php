@@ -13,8 +13,8 @@ define('CALIPER_LIB_PATH', realpath(dirname(__FILE__)));
 set_include_path(get_include_path() . PATH_SEPARATOR . CALIPER_LIB_PATH);
 
 require_once 'Caliper/Client.php';
-require_once 'Caliper/events/CaliperEvent.php';
-require_once 'Caliper/entities/CaliperEntity.php';
+require_once 'Caliper/events/Event.php';
+require_once 'Caliper/entities/Entity.php';
 
 class Caliper {
 
@@ -36,7 +36,7 @@ class Caliper {
 
     /**
      * Send learning events
-     * @param  CaliperEvent $caliperEvent The Caliper Event
+     * @param  Event $caliperEvent The Caliper Event
      * @return boolean success
      */
     public static function send($caliperEvent) {
@@ -46,7 +46,7 @@ class Caliper {
 
     /**
      * Describe an entity
-     * @param  CaliperEntity $caliperEntity The Caliper Entity we are describing
+     * @param  Entity $caliperEntity The Caliper Entity we are describing
      * @return boolean            whether the describe call succeeded
      */
     public static function describe($caliperEntity) {

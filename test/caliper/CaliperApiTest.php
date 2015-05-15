@@ -1,14 +1,7 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
-
 require_once(dirname(__FILE__) . "/../../lib/CaliperSensor.php");
-require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/CaliperEntity.php");
-require_once(dirname(__FILE__) . "/../../lib/Caliper/events/CaliperEvent.php");
+require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/Entity.php");
+require_once(dirname(__FILE__) . "/../../lib/Caliper/events/Event.php");
 
 class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
 
@@ -22,7 +15,7 @@ class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
      * @group caliper
      */
     function testDescribe() {
-        $caliperEntity = new CaliperEntity();
+        $caliperEntity = new Entity();
         $caliperEntity->setId("course-1234");
         $caliperEntity->setType("course");
         $caliperEntity->setProperties(array(
@@ -38,7 +31,7 @@ class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
      * @group caliper
      */
     function testSend() {
-        $caliperEvent = new CaliperEvent();
+        $caliperEvent = new Event();
         $caliperEvent->setAction("HILIGHT");
         $caliperEvent->setLearningContext(array(
             "courseId" => "course-1234",

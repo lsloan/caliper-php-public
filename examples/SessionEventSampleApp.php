@@ -3,12 +3,12 @@ require_once realpath(dirname(__FILE__) . '/../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/reading/Frame.php';
-require_once 'Caliper/entities/lis/LISPerson.php';
-require_once 'Caliper/entities/SoftwareApplication.php';
-require_once 'Caliper/entities/Session.php';
+require_once 'Caliper/entities/agent/Person.php';
+require_once 'Caliper/entities/agent/SoftwareApplication.php';
+require_once 'Caliper/entities/session/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/actions/Action.php';
-require_once 'Caliper/entities/CaliperEntityTypes.php';
+require_once 'Caliper/entities/EntityType.php';
 
 class SessionEventSampleApp {
     private $sessionEvent;
@@ -25,7 +25,7 @@ class SessionEventSampleApp {
         $modifiedTime = new DateTime('2015-02-02T11:30:00.000Z');
         $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
 
-        $actor = new LISPerson('https://some-university.edu/user/554433');
+        $actor = new Person('https://some-university.edu/user/554433');
         $actor->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
 

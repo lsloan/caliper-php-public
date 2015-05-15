@@ -1,8 +1,8 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
-require_once 'Caliper/entities/CaliperDigitalResourceTypes.php';
+require_once 'Caliper/entities/DigitalResourceType.php';
 
 /**
  *         Representation of an EPUB 3 Volume
@@ -11,10 +11,10 @@ require_once 'Caliper/entities/CaliperDigitalResourceTypes.php';
  *         http://www.idpf.org/epub/vocab/structure/#volume
  *
  */
-class EPubVolume extends CaliperDigitalResource implements CreativeWork {
+class EPubVolume extends DigitalResource implements CreativeWork {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(CaliperDigitalResourceTypes::EPUB_VOLUME);
+        $this->setType(DigitalResourceType::EPUB_VOLUME);
     }
 }

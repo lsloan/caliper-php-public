@@ -1,13 +1,13 @@
 <?php
-require_once 'Caliper/entities/CaliperDigitalResource.php';
-require_once 'Caliper/entities/CaliperDigitalResourceTypes.php';
+require_once 'Caliper/entities/DigitalResource.php';
+require_once 'Caliper/entities/DigitalResourceType.php';
 
-class Frame extends CaliperDigitalResource implements Targetable {
+class Frame extends DigitalResource implements Targetable {
     private $index;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(CaliperDigitalResourceTypes::FRAME);
+        $this->setType(DigitalResourceType::FRAME);
     }
 
     public function jsonSerialize() {

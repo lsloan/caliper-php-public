@@ -2,12 +2,12 @@
 require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
-require_once 'Caliper/entities/lis/LISPerson.php';
-require_once 'Caliper/entities/lis/LISCourseSection.php';
+require_once 'Caliper/entities/agent/Person.php';
+require_once 'Caliper/entities/lis/CourseSection.php';
 require_once 'Caliper/entities/lis/Group.php';
 require_once 'Caliper/entities/lis/Membership.php';
-require_once 'Caliper/entities/SoftwareApplication.php';
-require_once 'Caliper/entities/Session.php';
+require_once 'Caliper/entities/agent/SoftwareApplication.php';
+require_once 'Caliper/entities/session/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/entities/lis/Role.php';
 require_once 'Caliper/actions/Action.php';
@@ -48,7 +48,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
             ->setRoles([$testRole])
             ->setDateCreated($createdTime);
 
-        $testPerson = new LISPerson($testPersonId);
+        $testPerson = new Person($testPersonId);
         $testPerson->setRoles([Role::LEARNER])
 		    ->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime);
@@ -79,7 +79,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
 
-        $courseSection = new LISCourseSection($sectionOrganizationUrl);
+        $courseSection = new CourseSection($sectionOrganizationUrl);
         $courseSection->setCourseNumber('POL101')
             ->setName('American Revolution 101')
             ->setAcademicSession('Fall-2015')

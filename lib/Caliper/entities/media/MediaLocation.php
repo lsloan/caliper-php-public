@@ -1,10 +1,10 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/media/MediaObjectType.php';
 require_once 'Caliper/entities/Targetable.php';
 
-class MediaLocation extends CaliperDigitalResource implements Targetable {
+class MediaLocation extends DigitalResource implements Targetable {
     private $currentTime;
 
     public function __construct($id) {

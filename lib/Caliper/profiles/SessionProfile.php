@@ -3,7 +3,7 @@ namespace profiles;
 
 require_once 'CaliperSensor.php';
 require_once 'util/BasicEnum.php';
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 
 class Actions extends \BasicEnum {

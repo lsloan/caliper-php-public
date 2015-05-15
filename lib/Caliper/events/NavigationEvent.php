@@ -1,12 +1,12 @@
 <?php
 require_once 'CaliperSensor.php';
-require_once 'Caliper/events/CaliperEvent.php';
-require_once 'Caliper/events/CaliperEventContexts.php';
-require_once 'Caliper/events/CaliperEventTypes.php';
-require_once 'Caliper/entities/CaliperDigitalResource.php';
+require_once 'Caliper/events/Event.php';
+require_once 'Caliper/events/EventContext.php';
+require_once 'Caliper/events/EventType.php';
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/actions/Action.php';
 
-class NavigationEvent extends CaliperEvent {
+class NavigationEvent extends Event {
 
     /**
      * Describes the resource from which the navigation starts
@@ -16,8 +16,8 @@ class NavigationEvent extends CaliperEvent {
     public function __construct() {
         parent::__construct();
 
-        $this->setContext(CaliperEventContexts::NAVIGATION);
-        $this->setType(CaliperEventTypes::NAVIGATION);
+        $this->setContext(EventContext::NAVIGATION);
+        $this->setType(EventType::NAVIGATION);
         $this->setAction(Action::NAVIGATED_TO);
     }
 
