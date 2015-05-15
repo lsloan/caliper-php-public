@@ -7,7 +7,7 @@ require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/actions/Action.php';
 
 
-class ViewedEvent extends Event {
+class ViewEvent extends Event {
 
 	public function __construct(){
 		parent::__construct();
