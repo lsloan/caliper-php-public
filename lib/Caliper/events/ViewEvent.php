@@ -12,8 +12,8 @@ class ViewEvent extends Event {
 	public function __construct(){
 		parent::__construct();
 
-        $this->setContext(EventContext::VIEWED);
-        $this->setType(EventType::VIEWED);
+        $this->setContext(EventContext::VIEW);
+        $this->setType(EventType::VIEW);
         $this->setAction(Action::VIEWED);
 	}
 }

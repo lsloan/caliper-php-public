@@ -14,6 +14,6 @@ class EventContext extends \BasicEnum {
         OUTCOME = 'http://purl.imsglobal.org/ctx/caliper/v1/OutcomeEvent',
         READING = 'http://purl.imsglobal.org/ctx/caliper/v1/ReadingEvent',
         SESSION = 'http://purl.imsglobal.org/ctx/caliper/v1/SessionEvent',
-        VIEWED = 'http://purl.imsglobal.org/ctx/caliper/v1/ViewedEvent';
+        VIEW = 'http://purl.imsglobal.org/ctx/caliper/v1/ViewEvent';
 }
 
