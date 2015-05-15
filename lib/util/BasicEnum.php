@@ -1,6 +1,15 @@
 <?php
 abstract class BasicEnum {
     private static $constCacheArray = NULL;
+    private $value;
+
+    public function __construct($value = null) {
+        $this->value = $value;
+    }
+
+    public function getValue() {
+        return $this->value;
+    }
 
     private static function getConstants() {
         if (self::$constCacheArray == NULL) {
