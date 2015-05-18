@@ -36,9 +36,17 @@ class ViewedEventTest extends PHPUnit_Framework_TestCase {
         $personId = 'https://some-university.edu/user/554433';
         $personRole = Role::LEARNER;
         $person = new Person($personId);
-        $person->setRoles($personRole)
-            ->setDateCreated($createdTime)
+        $person->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
+
+        $membership = new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433');
+        $membership
+            ->setDateCreated($createdTime)
+            ->setDescription('Roster entry')
+            ->setMember($personId)
+            ->setName('American Revolution 101')
+            ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
+            ->setRoles($personRole);
 
         $courseOrganizationUrl = 'https://some-university.edu/politicalScience/2015/american-revolution-101';
         $courseMembership = new Membership('https://some-university.edu/membership/001');
@@ -99,6 +107,7 @@ class ViewedEventTest extends PHPUnit_Framework_TestCase {
 
         $viewedEvent = new ViewEvent();
         $viewedEvent->setActor($person)
+            ->setMembership($membership)
             ->setObject($reading)
             ->setTarget($frame)
             ->setEdApp($application)
