@@ -1,10 +1,8 @@
 <?php
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResource.php';
 require_once dirname(__FILE__) . '/../assignable/AssignableDigitalResourceType.php';
-require_once dirname(__FILE__) . '/../qti/QTIAssessmentItem.php';
 
-
-class AssessmentItem extends AssignableDigitalResource implements QTIAssessmentItem, JsonSerializable {
+class AssessmentItem extends AssignableDigitalResource {
 
     public function __construct($id) {
         parent::__construct($id);

@@ -1,10 +1,10 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/assignable/Assignable.php';
+require_once 'Caliper/entities/DigitalResource.php';
+require_once 'Caliper/entities/DigitalResourceType.php';
 
-require_once '/DigitalResource.php';
-require_once '/DigitalResourceType.php';
-
-class AssignableDigitalResource extends DigitalResource implements JsonSerializable {
-
+class AssignableDigitalResource extends DigitalResource implements Assignable {
     private $dateCreated;
     private $datePublished;
     private $dateToActivate;
@@ -21,15 +21,7 @@ class AssignableDigitalResource extends DigitalResource implements JsonSerializa
     }
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'name' => $this->getName(),
-            'objectType' => $this->getObjectType(),
-            'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
-            'keyword' => $this->getKeywords(),
-            'partOf' => $this->getParentRef(),
-            'lastModifiedTime' => $this->getLastModifiedAt(),
+        return array_merge(parent::jsonSerialize(), [
             'dateCreated' => $this->getDateCreated(),
             'datePublished' => $this->getDatePublished(),
             'dateToActivate' => $this->getDateToActivate(),
@@ -37,8 +29,9 @@ class AssignableDigitalResource extends DigitalResource implements JsonSerializa
             'dateToStartOn' => $this->getDateToStartOn(),
             'dateToSubmit' => $this->getDateToSubmit(),
             'maxAttempts' => $this->getMaxAttempts(),
+            'maxSubmits' => $this->getMaxSubmits(),
             'maxScore' => $this->getMaxScore(),
-        ];
+        ]);
     }
 
     /**
@@ -149,21 +142,6 @@ class AssignableDigitalResource extends DigitalResource implements JsonSerializa
     /**
      * @return mixed
      */
-    public function getMaxScore() {
-        return $this->maxScore;
-    }
-
-    /**
-     * @param mixed $maxScore
-     */
-    public function setMaxScore($maxScore) {
-        $this->maxScore = $maxScore;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getMaxSubmits() {
         return $this->maxSubmits;
     }
@@ -173,6 +151,21 @@ class AssignableDigitalResource extends DigitalResource implements JsonSerializa
      */
     public function setMaxSubmits($maxSubmits) {
         $this->maxSubmits = $maxSubmits;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxScore() {
+        return $this->maxScore;
+    }
+
+    /**
+     * @param mixed $maxScore
+     */
+    public function setMaxScore($maxScore) {
+        $this->maxScore = $maxScore;
         return $this;
     }
 } 

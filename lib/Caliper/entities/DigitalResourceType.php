@@ -1,7 +1,9 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/Type.php';
 require_once 'util/BasicEnum.php';
 
-class DigitalResourceType extends BasicEnum {
+class DigitalResourceType extends BasicEnum implements Type {
     const
         __default = '',
         ASSIGNABLE_DIGITAL_RESOURCE = 'http://purl.imsglobal.org/caliper/v1/AssignableDigitalResource',
@@ -13,4 +15,3 @@ class DigitalResourceType extends BasicEnum {
         READING = 'http://www.idpf.org/epub/vocab/structure',
         WEB_PAGE = 'http://purl.imsglobal.org/caliper/v1/WebPage';
 }
-

@@ -1,7 +1,9 @@
 <?php
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/Type.php';
 require_once 'util/BasicEnum.php';
 
-class MediaObjectType extends BasicEnum {
+class MediaObjectType extends BasicEnum implements Type {
     const
         __default = '',
         AUDIO_OBJECT = 'http://purl.imsglobal.org/caliper/v1/AudioObject',
