@@ -5,6 +5,9 @@ require_once 'Caliper/entities/response/ResponseType.php';
 require_once 'util/BasicEnum.php';
 
 class FillinBlankResponse extends Response {
+    /**
+     * @var array
+     */
     private $values;
 
     public function __construct($id) {
@@ -14,12 +17,12 @@ class FillinBlankResponse extends Response {
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'values' => getValues(),
+            'values' => $this->getValues(),
         ]);
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function getValues() {
         return $this->values;
@@ -30,10 +33,10 @@ class FillinBlankResponse extends Response {
      * @return object
      */
     public function setValues($values) {
-        if (! is_array($values)) {
+        if (!is_array($values)) {
             $values = [$values];
         }
-        
+
         $this->values = $values;
         return $this;
     }
