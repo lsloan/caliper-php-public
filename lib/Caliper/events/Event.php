@@ -13,6 +13,7 @@ class Event implements JsonSerializable {
     private $edApp;
     private $group;
     private $generated;
+    private $membership;
     /**
      * @var int Duration in seconds
      */
@@ -47,6 +48,7 @@ class Event implements JsonSerializable {
             'duration' => $this->getDurationFormatted(),
             'edApp' => $this->getEdApp(),
             'group' => $this->getGroup(),
+            'membership' => $this->getMembership(),
         ];
     }
 
@@ -240,6 +242,22 @@ class Event implements JsonSerializable {
      */
     public function setGroup($group) {
         $this->group = $group;
+        return $this;
+    }
+
+    /**
+     * @return Membership
+     */
+    public function getMembership() {
+        return $this->membership;
+    }
+
+    /**
+     * @param Membership $membership
+     * @return object
+     */
+    public function setMembership($membership) {
+        $this->membership = $membership;
         return $this;
     }
 }
