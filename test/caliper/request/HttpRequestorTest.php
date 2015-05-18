@@ -49,9 +49,17 @@ class HttpRequestorTest extends PHPUnit_Framework_TestCase {
             ->setDateCreated($createdTime);
 
         $testPerson = new Person($testPersonId);
-        $testPerson->setRoles([$testRole])
-            ->setDateCreated($createdTime)
+        $testPerson->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
+
+        $membership = new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433');
+        $membership
+            ->setDateCreated($createdTime)
+            ->setDescription('Roster entry')
+            ->setMember($testPersonId)
+            ->setName('American Revolution 101')
+            ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
+            ->setRoles($testRole);
 
         $edApp = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
         $edApp->setName('Readium')
@@ -102,6 +110,7 @@ class HttpRequestorTest extends PHPUnit_Framework_TestCase {
 
         $navigationEvent = new NavigationEvent();
         $navigationEvent->setActor($testPerson)
+            ->setMembership($membership)
             ->setObject($object)
             ->setNavigatedFrom($fromResource)
             ->setEdApp($edApp)
