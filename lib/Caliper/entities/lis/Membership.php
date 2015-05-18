@@ -1,12 +1,13 @@
 <?php
 require_once 'Caliper/entities/w3c/Membership.php';
 require_once 'Caliper/entities/EntityType.php';
+require_once 'Caliper/entities/lis/Status.php';
 
 class Membership extends Entity implements w3c\Membership {
     private $member;
     private $organization;
     private $roles = [];
-    private $status = 'http://purl.imsglobal.org/vocab/lis/v2/status#Active';
+    private $status = Status::ACTIVE;
 
     public function __construct($id) {
         $this->setId($id);
@@ -63,6 +64,10 @@ class Membership extends Entity implements w3c\Membership {
      * @param array $roles
      */
     public function setRoles($roles) {
+        if (! is_array($roles)) {
+            $roles = [$roles];
+        }
+
         $this->roles = $roles;
         return $this;
     }

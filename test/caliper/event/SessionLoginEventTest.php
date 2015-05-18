@@ -48,11 +48,19 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
             ->setDateCreated($createdTime);
 
         $testPerson = new Person($testPersonId);
-        $testPerson->setRoles([$testRole])
-		    ->setDateCreated($createdTime)
+        $testPerson->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime);
 
-		$eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
+        $membership = new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433');
+        $membership
+            ->setDateCreated($createdTime)
+            ->setDescription('Roster entry')
+            ->setMember($testPersonId)
+            ->setName('American Revolution 101')
+            ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
+            ->setRoles($testRole);
+
+        $eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
 		$eventObj->setName('Readium')
 		    ->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime);
@@ -103,6 +111,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
 
 		$sessionEvent = new SessionEvent();	
 		$sessionEvent->setActor($testPerson)
+            ->setMembership($membership)
 		    ->setAction(Action::LOGGED_IN)
 		    ->setObject($eventObj)
 		    ->setTarget($targetObj)

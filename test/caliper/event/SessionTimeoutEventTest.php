@@ -49,8 +49,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
             ->setDateCreated($createdTime);
 
         $testPerson = new Person($testPersonId);
-        $testPerson->setRoles([Role::LEARNER])
-		    ->setDateCreated($createdTime)
+        $testPerson->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime);
 
 		$eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
@@ -63,8 +62,8 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
 		    ->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime);
 
-		$targetObj = new Session('https://github.com/readium/session-123456789');
-		$targetObj->setName('session-123456789')
+		$session = new Session('https://github.com/readium/session-123456789');
+		$session->setName('session-123456789')
 		    ->setDateCreated($createdTime)
 		    ->setDateModified($modifiedTime)
 		    ->setActor($testPerson)
@@ -97,8 +96,7 @@ class SessionTimeoutEventTest extends PHPUnit_Framework_TestCase {
         $sessionEvent = new SessionEvent();
 		$sessionEvent->setActor($eventObj)
 		    ->setAction(Action::TIMED_OUT)
-		    ->setObject($eventObj)
-		    ->setTarget($targetObj)
+            ->setObject($session)
 		    ->setEdApp($eventObj)
 		    ->setGroup($group)
 		    ->setStartedAtTime($sessionStartTime)
