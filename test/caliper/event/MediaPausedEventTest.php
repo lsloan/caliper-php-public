@@ -47,9 +47,17 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
             ->setDateCreated($createdTime);
 
         $testPerson = new Person($testPersonId);
-        $testPerson->setRoles([$testRole])
-            ->setDateCreated($createdTime)
+        $testPerson->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
+
+        $membership = new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433');
+        $membership
+            ->setDateCreated($createdTime)
+            ->setDescription('Roster entry')
+            ->setMember($testPersonId)
+            ->setName('American Revolution 101')
+            ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
+            ->setRoles($testRole);
 
         $application = new SoftwareApplication('https://com.sat/super-media-tool');
 		$application->setName('Super Media Tool')
@@ -96,6 +104,7 @@ class MediaPausedEventTest extends PHPUnit_Framework_TestCase {
 
 		$mediaEvent = new MediaEvent();
 		$mediaEvent->setActor($testPerson)
+            ->setMembership($membership)
 		    ->setAction(Action::PAUSED)
 		    ->setObject($eventObj)
 		    ->setTarget($targetObj)
