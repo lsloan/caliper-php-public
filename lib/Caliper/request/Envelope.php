@@ -63,6 +63,7 @@ class Envelope implements JsonSerializable {
 
     /**
      * @param mixed $sendTime
+     * @return $this|Envelope
      */
     public function setSendTime($sendTime) {
         $this->sendTime = $sendTime;
