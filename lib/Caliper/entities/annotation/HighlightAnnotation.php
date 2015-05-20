@@ -5,7 +5,6 @@ require_once 'AnnotationType.php';
 require_once 'TextPositionSelector.php';
 
 class HighlightAnnotation extends Annotation implements JsonSerializable {
-
     private $selection;
     private $selectionText;
 
@@ -16,15 +15,10 @@ class HighlightAnnotation extends Annotation implements JsonSerializable {
     }
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'lastModifiedTime' => $this->getDateModified(),
-            'properties' => (object) $this->getExtensions(),
-            'target' => $this->getTarget(),
-            'selection' => $this->getSelection(),
+        return array_merge(parent::jsonSerialize(), [
+            'selection' => (object) $this->getSelection(),
             'selectionText' => $this->getSelectionText()
-        ];
+        ]);
     }
 
     /**
