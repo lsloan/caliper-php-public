@@ -3,8 +3,8 @@ require_once 'Annotation.php';
 require_once 'AnnotationType.php';
 
 class TagAnnotation extends Annotation {
-
-    public $tags = array();
+    /** @var array */
+    public $tags = [];
 
     public function __construct($id) {
         parent::__construct($id);
@@ -12,28 +12,25 @@ class TagAnnotation extends Annotation {
     }
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'lastModifiedTime' => $this->getDateModified(),
-            'properties' => (object) $this->getExtensions(),
-            'target' => $this->getTarget(),
+        return array_merge(parent::jsonSerialize(), [
             'tags' => $this->getTags(),
-        ];
+        ]);
     }
 
-    /**
-     * @return the tags
-     */
+    /** @return array tags */
     public function getTags() {
         return $this->tags;
     }
 
     /**
-     * @param tags
-     *            the tags to set
+     * @param array $tags
+     * @return $this|TagAnnotation
      */
     public function setTags($tags) {
+        if (!is_array($tags)) {
+            $tags = [$tags];
+        }
+
         $this->tags = $tags;
         return $this;
     }

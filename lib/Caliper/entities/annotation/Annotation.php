@@ -1,8 +1,8 @@
 <?php
-
-require_once dirname(__FILE__) . '/../Entity.php';
-require_once dirname(__FILE__) . '/../schemadotorg/Thing.php';
+require_once 'CaliperSensor.php';
+require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
+require_once 'Caliper/entities/Generatable.php';
 
 /**
  *         The super-class of all Annotation types.
@@ -11,9 +11,8 @@ require_once 'Caliper/entities/EntityType.php';
  *         which are specified in the Caliper Annotation Metric Profile
  *
  */
-class Annotation extends Entity implements Thing, JsonSerializable {
-
-    private $target;
+class Annotation extends Entity implements Generatable {
+    private $annotated;
 
     public function  __construct($id) {
         $this->setId($id);
@@ -21,28 +20,24 @@ class Annotation extends Entity implements Thing, JsonSerializable {
     }
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'lastModifiedTime' => $this->getLastModifiedAt(),
-            'properties' => (object) $this->getProperties(),
-            'target' => $this->getTarget(),
-        ];
+        return array_merge(parent::jsonSerialize(), [
+            'annotated' => $this->getAnnotated(),
+        ]);
     }
 
     /**
-     * @return the target
+     * @return the annotated
      */
-    public function  getTarget() {
-        return $this->target;
+    public function  getAnnotated() {
+        return $this->annotated;
     }
 
     /**
-     * @param target
-     *            the target to set
+     * @param $annotated
+     *            the annotated to set
      */
-    public function setTarget($target) {
-        $this->target = $target;
+    public function setAnnotated($annotated) {
+        $this->annotated = $annotated;
         return $this;
     }
 }

@@ -2,9 +2,8 @@
 require_once 'Annotation.php';
 require_once 'AnnotationType.php';
 
-
-class BookmarkAnnotation extends Annotation implements JsonSerializable {
-
+class BookmarkAnnotation extends Annotation {
+    /** @var string */
     private $bookmarkNotes;
 
     public function __construct($id) {
@@ -13,26 +12,21 @@ class BookmarkAnnotation extends Annotation implements JsonSerializable {
     }
 
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'lastModifiedTime' => $this->getDateModified(),
-            'properties' => (object) $this->getExtensions(),
-            'target' => $this->getTarget(),
+        return array_merge(parent::jsonSerialize(), [
             'bookmarkNotes' => $this->getBookmarkNotes(),
-        ];
+        ]);
     }
 
     /**
-     * @return the bookmarkNotes
+     * @return string
      */
     public function  getBookmarkNotes() {
         return $this->bookmarkNotes;
     }
 
     /**
-     * @param bookmarkNotes
-     *            the bookmarkNotes to set
+     * @param string bookmarkNotes
+     * @return $this|BookmarkAnnotation
      */
     public function  setBookmarkNotes($bookmarkNotes) {
         $this->bookmarkNotes = $bookmarkNotes;
