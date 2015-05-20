@@ -18,16 +18,16 @@ class HttpRequestorTest extends PHPUnit_Framework_TestCase {
                 ->setMembership(TestLisEntities::makeMembership())
                 ->setObject(TestReadingEntities::makeEPubVolume())
                 ->setNavigatedFrom(TestReadingEntities::makeWebPage())
-                ->setEdApp(TestAgentEntities::makeSoftwareApplication())
+                ->setEdApp(TestAgentEntities::makeReadingApplication())
                 ->setTarget(TestReadingEntities::makeFrame())
                 ->setGroup(TestLisEntities::makeGroup())
-                ->setStartedAtTime(TestTimes::navigationStartTime()));
+                ->setStartedAtTime(TestTimes::startedTime()));
     }
 
     /**
      * @group passes
      */
-    function testEnvelopeSerializesToJSON() {
+    function testObjectSerializesToJson() {
         $testJson = json_encode($this->testObject, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $testFixtureFilePath = realpath(CALIPER_LIB_PATH .
             '/../../caliper-common-fixtures/src/test/resources/fixtures/eventStorePayload.json');
