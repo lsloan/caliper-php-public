@@ -18,7 +18,7 @@ class NavigationEventTest extends PHPUnit_Framework_TestCase {
             ->setObject(TestReadingEntities::makeEPubVolume())
             ->setNavigatedFrom(TestReadingEntities::makeWebPage())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
-            ->setTarget(TestReadingEntities::makeFrame())
+            ->setTarget(TestReadingEntities::makeFrame1())
             ->setGroup(TestLisEntities::makeGroup())
             ->setStartedAtTime(TestTimes::startedTime());
     }
