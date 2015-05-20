@@ -9,7 +9,14 @@ class TestAgentEntities {
             ->setDateModified(TestTimes::modifiedTime());
     }
 
-    public static function makeSoftwareApplication() {
+    public static function makeMediaApplication() {
+        return (new SoftwareApplication('https://com.sat/super-media-tool'))
+            ->setName('Super Media Tool')
+            ->setDateCreated(TestTimes::createdTime())
+            ->setDateModified(TestTimes::modifiedTime());
+    }
+
+    public static function makeReadingApplication() {
         return (new SoftwareApplication('https://github.com/readium/readium-js-viewer'))
             ->setName('Readium')
             ->setDateCreated(TestTimes::createdTime())

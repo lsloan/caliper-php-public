@@ -9,7 +9,15 @@ class TestTimes {
         return new DateTime('2015-09-02T11:30:00.000Z');
     }
 
-    public static function navigationStartTime() {
+    public static function durationSeconds() {
+        return TestTimes::endedTime()->getTimestamp() - TestTimes::startedTime()->getTimestamp();
+    }
+
+    public static function endedTime() {
+        return new DateTime('2015-09-15T11:05:00.000Z');
+    }
+
+    public static function startedTime() {
         return new DateTime('2015-09-15T10:15:00.000Z');
     }
 
