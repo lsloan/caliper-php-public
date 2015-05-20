@@ -18,7 +18,7 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
             ->setMembership(TestLisEntities::makeMembership())
             ->setAction(Action::LOGGED_IN)
             ->setObject(TestAgentEntities::makeReadingApplication())
-            ->setTarget(TestReadingEntities::makeFrame())
+            ->setTarget(TestReadingEntities::makeFrame1())
             ->setGenerated(TestSessionEntities::makeSession())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
