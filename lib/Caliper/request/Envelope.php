@@ -33,6 +33,7 @@ class Envelope implements JsonSerializable {
 
     /**
      * @param mixed $context
+     * @return $this|Envelope
      */
     public function setContext($context) {
         $this->context = $context;
@@ -48,6 +49,7 @@ class Envelope implements JsonSerializable {
 
     /**
      * @param mixed $sensor
+     * @return $this|Envelope
      */
     public function setSensor($sensor) {
         $this->sensor = $sensor;
@@ -79,6 +81,7 @@ class Envelope implements JsonSerializable {
 
     /**
      * @param mixed $data
+     * @return $this|Envelope
      */
     public function setData($data) {
         $this->data = $data;
