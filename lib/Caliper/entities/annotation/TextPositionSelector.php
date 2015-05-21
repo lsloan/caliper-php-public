@@ -1,13 +1,12 @@
 <?php
-
 /**
- * An Selector which describes a range of text based on its start and end positions
+ * A Selector which describes a range of text based on its start and end positions
  * Defined by: http://www.w3.org/ns/oa#d4e667
- *
  */
 class TextPositionSelector implements JsonSerializable {
-
+    /** @var string */
     private $start;
+    /** @var string */
     private $end;
 
     public function jsonSerialize() {
@@ -17,32 +16,28 @@ class TextPositionSelector implements JsonSerializable {
         ];
     }
 
-    /**
-     * @return the start
-     */
+    /** @return string start */
     public function getStart() {
         return $this->start;
     }
 
     /**
-     * @param start
-     *            the start to set
+     * @param string $start
+     * @return $this|TextPositionSelector
      */
-    public function  setStart($start) {
+    public function setStart($start) {
         $this->start = $start;
         return $this;
     }
 
-    /**
-     * @return the end
-     */
-    public function  getEnd() {
+    /** @return string end */
+    public function getEnd() {
         return $this->end;
     }
 
     /**
-     * @param end
-     *            the end to set
+     * @param string $end
+     * @return $this|TextPositionSelector
      */
     public function setEnd($end) {
         $this->end = $end;

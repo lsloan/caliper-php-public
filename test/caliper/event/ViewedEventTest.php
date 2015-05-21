@@ -16,7 +16,7 @@ class ViewedEventTest extends PHPUnit_Framework_TestCase {
             ->setActor(TestAgentEntities::makePerson())
             ->setMembership(TestLisEntities::makeMembership())
             ->setObject(TestReadingEntities::makeEPubVolume())
-            ->setTarget(TestReadingEntities::makeFrame())
+            ->setTarget(TestReadingEntities::makeFrame1())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
             ->setStartedAtTime(TestTimes::startedTime());

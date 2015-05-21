@@ -75,6 +75,10 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @return object
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
+        if (!is_array($alignedLearningObjectives)) {
+            $alignedLearningObjectives = [$alignedLearningObjectives];
+        }
+
         $this->alignedLearningObjectives = $alignedLearningObjectives;
         return $this;
     }

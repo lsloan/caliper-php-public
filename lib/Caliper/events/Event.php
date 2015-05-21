@@ -254,7 +254,7 @@ class Event implements JsonSerializable {
 
     /**
      * @param Membership|object $membership
-     * @return object
+     * @return $this|Event
      */
     public function setMembership($membership) {
         $this->membership = $membership;

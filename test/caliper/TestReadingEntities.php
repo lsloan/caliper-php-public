@@ -4,6 +4,7 @@ require_once 'Caliper/entities/reading/Frame.php';
 require_once 'Caliper/entities/reading/WebPage.php';
 
 class TestReadingEntities {
+    /** @return EPubVolume */
     public static function makeEPubVolume() {
         return (new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)'))
             ->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)')
@@ -12,7 +13,8 @@ class TestReadingEntities {
             ->setVersion('2nd ed.');
     }
 
-    public static function makeFrame() {
+    /** @return Frame */
+    public static function makeFrame1() {
         return (new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)'))
             ->setName('Key Figures: George Washington')
             ->setDateCreated(TestTimes::createdTime())
@@ -22,6 +24,40 @@ class TestReadingEntities {
             ->setIndex(1);
     }
 
+    /** @return Frame */
+    public static function makeFrame2() {
+        return (new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/2)'))
+            ->setName('Key Figures: Lord North')
+            ->setDateCreated(TestTimes::createdTime())
+            ->setDateModified(TestTimes::modifiedTime())
+            ->setIsPartOf(TestReadingEntities::makeEPubVolume())
+            ->setVersion('2nd ed.')
+            ->setIndex(2);
+    }
+
+    /** @return Frame */
+    public static function makeFrame3() {
+        return (new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/3)'))
+            ->setName('Key Figures: John Adams')
+            ->setDateCreated(TestTimes::createdTime())
+            ->setDateModified(TestTimes::modifiedTime())
+            ->setIsPartOf(TestReadingEntities::makeEPubVolume())
+            ->setVersion('2nd ed.')
+            ->setIndex(3);
+    }
+
+    /** @return Frame */
+    public static function makeFrame4() {
+        return (new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/4)'))
+            ->setName('The Stamp Act Crisis')
+            ->setDateCreated(TestTimes::createdTime())
+            ->setDateModified(TestTimes::modifiedTime())
+            ->setIsPartOf(TestReadingEntities::makeEPubVolume())
+            ->setVersion('2nd ed.')
+            ->setIndex(4);
+    }
+
+    /** @return WebPage */
     public static function makeWebPage() {
         return (new WebPage('https://some-university.edu/politicalScience/2015/american-revolution-101/index.html'))
             ->setName('American Revolution 101 Landing Page')

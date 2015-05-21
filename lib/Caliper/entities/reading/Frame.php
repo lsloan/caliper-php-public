@@ -3,6 +3,7 @@ require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';
 
 class Frame extends DigitalResource implements Targetable {
+    /** @var int */
     private $index;
 
     public function __construct($id) {
@@ -16,16 +17,14 @@ class Frame extends DigitalResource implements Targetable {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return int */
     public function getIndex() {
         return $this->index;
     }
 
     /**
-     * @param mixed $index
-     * @return object
+     * @param int $index
+     * @return $this|Frame
      */
     public function setIndex($index) {
         $this->index = $index;

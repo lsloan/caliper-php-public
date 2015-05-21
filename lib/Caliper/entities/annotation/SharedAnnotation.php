@@ -2,41 +2,32 @@
 require_once 'Annotation.php';
 require_once 'AnnotationType.php';
 
-class SharedAnnotation extends Annotation implements JsonSerializable {
-
-    // TODO - this should be a list of LISGroup or Person/s
-    public $withAgents = array();
+class SharedAnnotation extends Annotation {
+    /** @var array */
+    public $withAgents = [];
 
     public function __construct($id) {
         parent::__construct($id);
         $this->setType(AnnotationType::SHARED_ANNOTATION);
     }
 
-    /**
-     * @param users
-     *            the users to set
-     */
-    public function setUsers($users) {
-        $this->withAgents = $users;
-        return $this;
-    }
-
     public function jsonSerialize() {
-        return [
-            '@id' => $this->getId(),
-            '@type' => $this->getType(),
-            'lastModifiedTime' => $this->getDateModified(),
-            'properties' => (object) $this->getExtensions(),
-            'target' => $this->getTarget(),
-            'users' => $this->getUsers(),
-        ];
+        return array_merge(parent::jsonSerialize(), [
+            'withAgents' => $this->getWithAgents(),
+        ]);
     }
 
-    /**
-     * @return the users
-     */
-    public function getUsers() {
+    /** @return array withAgents */
+    public function getWithAgents() {
         return $this->withAgents;
     }
 
+    /**
+     * @param array $withAgents
+     * @return $this|SharedAnnotation
+     */
+    public function setWithAgents($withAgents) {
+        $this->withAgents = $withAgents;
+        return $this;
+    }
 }
