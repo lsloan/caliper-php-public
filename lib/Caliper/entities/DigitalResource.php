@@ -3,6 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 require_once 'Caliper/entities/Targetable.php';
+require_once 'util/TimestampUtil.php';
 
 /**
  *         Caliper representation of a CreativeWork
@@ -24,12 +25,12 @@ require_once 'Caliper/entities/Targetable.php';
  *
  */
 class DigitalResource extends Entity implements CreativeWork, Targetable {
-
     private $objectTypes = [];
     private $alignedLearningObjectives = [];
     private $keywords = [];
     private $isPartOf;
     private $datePublished;
+    /** @var string */
     private $version;
 
     public function __construct($id) {
@@ -42,7 +43,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
             'alignedLearningObjective' => $this->getAlignedLearningObjectives(),
             'keywords' => $this->getKeywords(),
             'isPartOf' => $this->getIsPartOf(),
-            'datePublished' => $this->getDatePublished(),
+            'datePublished' => TimestampUtil::formatTimeISO8601MillisUTC($this->getDatePublished()),
             'version' => $this->getVersion(),
         ]);
     }
@@ -140,7 +141,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
     /**
      * @param mixed $version
-     * @return object
+     * @return $this|DigitalResource
      */
     public function setVersion($version) {
         $this->version = $version;
