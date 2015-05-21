@@ -45,7 +45,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $assignable
-     * @return object
+     * @return $this|Result
      */
     public function setAssignable($assignable) {
         $this->assignable = $assignable;
@@ -61,7 +61,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $actor
-     * @return object
+     * @return $this|Result
      */
     public function setActor($actor) {
         $this->actor = $actor;
@@ -77,7 +77,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $normalScore
-     * @return object
+     * @return $this|Result
      */
     public function setNormalScore($normalScore) {
         $this->normalScore = $normalScore;
@@ -93,7 +93,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $penaltyScore
-     * @return object
+     * @return $this|Result
      */
     public function setPenaltyScore($penaltyScore) {
         $this->penaltyScore = $penaltyScore;
@@ -109,7 +109,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $extraCreditScore
-     * @return object
+     * @return $this|Result
      */
     public function setExtraCreditScore($extraCreditScore) {
         $this->extraCreditScore = $extraCreditScore;
@@ -125,7 +125,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $totalScore
-     * @return object
+     * @return $this|Result
      */
     public function setTotalScore($totalScore) {
         $this->totalScore = $totalScore;
@@ -141,7 +141,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $curvedTotalScore
-     * @return object
+     * @return $this|Result
      */
     public function setCurvedTotalScore($curvedTotalScore) {
         $this->curvedTotalScore = $curvedTotalScore;
@@ -157,7 +157,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $curveFactor
-     * @return object
+     * @return $this|Result
      */
     public function setCurveFactor($curveFactor) {
         $this->curveFactor = $curveFactor;
@@ -173,7 +173,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $comment
-     * @return object
+     * @return $this|Result
      */
     public function setComment($comment) {
         $this->comment = $comment;
@@ -189,7 +189,7 @@ class Result extends Entity implements Generatable {
 
     /**
      * @param mixed $scoredBy
-     * @return object
+     * @return $this|Result
      */
     public function setScoredBy($scoredBy) {
         $this->scoredBy = $scoredBy;
