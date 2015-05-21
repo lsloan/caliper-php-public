@@ -16,9 +16,7 @@ class TextPositionSelector implements JsonSerializable {
         ];
     }
 
-    /**
-     * @return string start
-     */
+    /** @return string start */
     public function getStart() {
         return $this->start;
     }
@@ -32,9 +30,7 @@ class TextPositionSelector implements JsonSerializable {
         return $this;
     }
 
-    /**
-     * @return string end
-     */
+    /** @return string end */
     public function getEnd() {
         return $this->end;
     }
