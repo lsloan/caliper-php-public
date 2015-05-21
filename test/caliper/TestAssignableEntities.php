@@ -3,11 +3,21 @@ require_once 'Caliper/entities/assignable/Attempt.php';
 require_once 'Caliper/entities/outcome/Result.php';
 
 class TestAssignableEntities {
-    public static function makeAttempt() {
+    public static function makeAssessmentAttempt() {
         /** @return Attempt */
         return (new Attempt('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/attempt1'))
             ->setDateCreated(TestTimes::createdTime())
             ->setActor(TestAgentEntities::makePerson()->getId())
+            ->setCount(1)
+            ->setStartedAtTime(TestTimes::startedTime());
+    }
+
+    public static function makeItemAttempt() {
+        /** @return Attempt */
+        return (new Attempt('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/item1/attempt1'))
+            ->setDateCreated(TestTimes::createdTime())
+            ->setActor(TestAgentEntities::makePerson()->getId())
+            ->setAssignable(TestAssessmentEntities::makeAssessment()->getId())
             ->setCount(1)
             ->setStartedAtTime(TestTimes::startedTime());
     }

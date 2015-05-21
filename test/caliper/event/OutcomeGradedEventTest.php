@@ -16,7 +16,7 @@ class OutcomeGradedEventTest extends PHPUnit_Framework_TestCase {
         $this->testObject = (new OutcomeEvent())
             ->setActor(TestAgentEntities::makePerson())
             ->setAction(Action::GRADED)
-            ->setObject(TestAssignableEntities::makeAttempt()
+            ->setObject(TestAssignableEntities::makeAssessmentAttempt()
                 ->setAssignable(TestAssessmentEntities::makeAssessment()->getId()))
             ->setGenerated(TestAssignableEntities::makeResult())
             ->setStartedAtTime(TestTimes::startedTime())

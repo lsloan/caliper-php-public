@@ -17,7 +17,7 @@ class AssignableActivatedEventTest extends PHPUnit_Framework_TestCase {
             ->setActor(TestAgentEntities::makePerson())
             ->setAction(Action::ACTIVATED)
             ->setObject(TestAssessmentEntities::makeAssessment())
-            ->setGenerated(TestAssignableEntities::makeAttempt()
+            ->setGenerated(TestAssignableEntities::makeAssessmentAttempt()
                 ->setAssignable(TestAssessmentEntities::makeAssessment()->getId()))
             ->setStartedAtTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())
