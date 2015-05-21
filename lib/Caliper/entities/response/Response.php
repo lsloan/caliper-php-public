@@ -2,6 +2,7 @@
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'util/BasicEnum.php';
+require_once 'util/TimestampUtil.php';
 
 class Response extends Entity implements Generatable {
     private $assignable;
@@ -18,12 +19,12 @@ class Response extends Entity implements Generatable {
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'actor' => getActor(),
-            'assignable' => getAssignable(),
-            'attempt' => getAttempt(),
-            'duration' => getDuration(),
-            'endedAtTime' => getEndedAtTime(),
-            'startedAtTime' => getStartedAtTime(),
+            'actor' => $this->getActor(),
+            'assignable' => $this->getAssignable(),
+            'attempt' => $this->getAttempt(),
+            'duration' => $this->getDuration(),
+            'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
+            'startedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getStartedAtTime()),
         ]);
     }
 
@@ -36,7 +37,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $assignable
-     * @return object
+     * @return $this|Response
      */
     public function setAssignable($assignable) {
         $this->assignable = $assignable;
@@ -52,7 +53,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $actor
-     * @return object
+     * @return $this|Response
      */
     public function setActor($actor) {
         $this->actor = $actor;
@@ -68,7 +69,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $attempt
-     * @return object
+     * @return $this|Response
      */
     public function setAttempt($attempt) {
         $this->attempt = $attempt;
@@ -84,7 +85,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $startedAtTime
-     * @return object
+     * @return $this|Response
      */
     public function setStartedAtTime($startedAtTime) {
         $this->startedAtTime = $startedAtTime;
@@ -100,7 +101,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $endedAtTime
-     * @return object
+     * @return $this|Response
      */
     public function setEndedAtTime($endedAtTime) {
         $this->endedAtTime = $endedAtTime;
@@ -116,7 +117,7 @@ class Response extends Entity implements Generatable {
 
     /**
      * @param mixed $duration
-     * @return object
+     * @return $this|Response
      */
     public function setDuration($duration) {
         $this->duration = $duration;
