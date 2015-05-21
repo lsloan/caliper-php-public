@@ -4,6 +4,12 @@ require_once 'Caliper/entities/agent/SoftwareApplication.php';
 
 class TestAgentEntities {
     /** @return SoftwareApplication */
+    public static function makeAssessmentApplication() {
+        return (new SoftwareApplication('https://com.sat/super-assessment-tool'))
+            ->setName('Super Assessment Tool')
+            ->setDateCreated(TestTimes::createdTime());
+    }
+
     public static function makeMediaApplication() {
         return (new SoftwareApplication('https://com.sat/super-media-tool'))
             ->setName('Super Media Tool')

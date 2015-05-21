@@ -30,7 +30,7 @@ class Entity implements JsonSerializable, Thing {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getId() {
         return $this->id;

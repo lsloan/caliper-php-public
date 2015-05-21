@@ -24,4 +24,24 @@ class TestTimes {
     public static function sendTime() {
         return new DateTime('2015-09-15T11:05:01.000Z');
     }
+
+    public static function publishedTime() {
+        return new DateTime('2015-08-15T09:30:00.000Z');
+    }
+
+    public static function activateTime() {
+        return new DateTime('2015-08-16T05:00:00.000Z');
+    }
+
+    public static function showTime() {
+        return new DateTime('2015-08-16T05:00:00.000Z');
+    }
+
+    public static function startOnTime() {
+        return new DateTime('2015-08-16T05:00:00.000Z');
+    }
+
+    public static function submitTime() {
+        return new DateTime('2015-09-28T11:59:59.000Z');
+    }
 }
