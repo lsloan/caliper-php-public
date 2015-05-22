@@ -5,9 +5,7 @@ require_once 'Caliper/entities/response/ResponseType.php';
 require_once 'util/BasicEnum.php';
 
 class SelectTextResponse extends Response {
-    /**
-     * @var array
-     */
+    /** @var string[] */
     private $values;
 
     public function __construct($id) {
@@ -21,16 +19,14 @@ class SelectTextResponse extends Response {
         ]);
     }
 
-    /**
-     * @return array
-     */
+    /** @return string[] values */
     public function getValues() {
         return $this->values;
     }
 
     /**
-     * @param mixed $values
-     * @return object
+     * @param string[] $values
+     * @return $this|SelectTextResponse
      */
     public function setValues($values) {
         if (!is_array($values)) {

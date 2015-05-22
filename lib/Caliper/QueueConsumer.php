@@ -1,6 +1,6 @@
 <?php
 abstract class Caliper_QueueConsumer extends Caliper_Consumer {
-    protected $type = "QueueConsumer";
+    protected $type = 'QueueConsumer';
 
     /**
     * Store  apiKey and options as part of this consumer
@@ -17,7 +17,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
 
   /**
    * Describe an entity 
-   * @return boolean whether the track call succeeded
+   * @return boolean true
    */
   public function describe($caliperEntity) {
       $this->flushSingleDescribe($caliperEntity);
@@ -26,7 +26,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
 
   /**
    * Send learning events
-   * @return boolean success
+   * @return boolean true
    */
   public function send($caliperEvent) {
       $this->flushSingleSend($caliperEvent, $this->apiKey, $this->options['sensorId']);

@@ -5,6 +5,7 @@ require_once 'Caliper/entities/media/MediaObjectType.php';
 require_once 'Caliper/entities/Targetable.php';
 
 class MediaLocation extends DigitalResource implements Targetable {
+    /** @var int (seconds) */
     private $currentTime;
 
     public function __construct($id) {
@@ -18,19 +19,17 @@ class MediaLocation extends DigitalResource implements Targetable {
         ]);
     }
 
-    /**
-     * @return int Current time in seconds
-     */
+    /** @return int currentTime (seconds) */
     public function getCurrentTime() {
         return $this->currentTime;
     }
 
     /**
-     * @param int $currentTimeSeconds
-     * @return $this
+     * @param int $currentTime (seconds)
+     * @return $this|MediaLocation
      */
-    public function setCurrentTime($currentTimeSeconds) {
-        $this->currentTime = $currentTimeSeconds;
+    public function setCurrentTime($currentTime) {
+        $this->currentTime = $currentTime;
         return $this;
     }
 }

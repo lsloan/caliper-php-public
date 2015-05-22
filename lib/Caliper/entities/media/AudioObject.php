@@ -5,21 +5,13 @@ require_once 'Caliper/entities/media/MediaObjectType.php';
 require_once 'Caliper/entities/schemadotorg/AudioObject.php';
 
 class AudioObject extends MediaObject implements schemadotorg\AudioObject {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $volumeMin;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $volumeMax;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $volumeLevel;
-    /**
-     * @var boolean
-     */
+    /** @var boolean */
     private $muted;
 
     public function __construct($id) {
@@ -36,69 +28,59 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
         ]);
     }
 
-    /**
-     * @return string
-     */
+    /** @return string volumeMin */
     public function getVolumeMin() {
         return $this->volumeMin;
     }
 
     /**
      * @param string $volumeMin
-     * @return object
+     * @return $this|AudioObject
      */
     public function setVolumeMin($volumeMin) {
         $this->volumeMin = $volumeMin;
         return $this;
     }
 
-    /**
-     * @return string
-     */
+    /** @return string volumeMax */
     public function getVolumeMax() {
         return $this->volumeMax;
     }
 
     /**
      * @param string $volumeMax
-     * @return object
+     * @return $this|AudioObject
      */
     public function setVolumeMax($volumeMax) {
         $this->volumeMax = $volumeMax;
         return $this;
     }
 
-    /**
-     * @return string
-     */
+    /** @return string volumeLevel */
     public function getVolumeLevel() {
         return $this->volumeLevel;
     }
 
     /**
      * @param string $volumeLevel
-     * @return object
+     * @return $this|AudioObject
      */
     public function setVolumeLevel($volumeLevel) {
         $this->volumeLevel = $volumeLevel;
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isMuted() {
+    /** @return boolean muted */
+    public function getMuted() {
         return $this->muted;
     }
 
     /**
      * @param boolean $muted
-     * @return object
+     * @return $this|AudioObject
      */
     public function setMuted($muted) {
         $this->muted = $muted;
         return $this;
     }
-
-
 }

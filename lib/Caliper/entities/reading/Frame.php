@@ -17,7 +17,7 @@ class Frame extends DigitalResource implements Targetable {
         ]);
     }
 
-    /** @return int */
+    /** @return int index */
     public function getIndex() {
         return $this->index;
     }

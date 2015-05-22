@@ -5,9 +5,7 @@ require_once 'Caliper/entities/response/ResponseType.php';
 require_once 'util/BasicEnum.php';
 
 class TrueFalseResponse extends Response {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $value;
 
     public function __construct($id) {
@@ -21,16 +19,14 @@ class TrueFalseResponse extends Response {
         ]);
     }
 
-    /**
-     * @return string
-     */
+    /** @return string value */
     public function getValue() {
         return $this->value;
     }
 
     /**
      * @param string $value
-     * @return object
+     * @return $this|TrueFalseResponse
      */
     public function setValue($value) {
         $this->value = $value;

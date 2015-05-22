@@ -4,12 +4,18 @@ require_once 'Caliper/entities/EntityType.php';
 require_once 'util/BasicEnum.php';
 require_once 'util/TimestampUtil.php';
 
-class Response extends Entity implements Generatable {
+abstract class Response extends Entity implements Generatable {
+    /** @var Assignable */
     private $assignable;
+    /** @var Agent */
     private $actor;
+    /** @var Attempt */
     private $attempt;
+    /** @var DateTime */
     private $startedAtTime;
+    /** @var DateTime */
     private $endedAtTime;
+    /** @var int */
     private $duration;
 
     public function __construct($id) {
@@ -28,15 +34,13 @@ class Response extends Entity implements Generatable {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Assignable assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param mixed $assignable
+     * @param Assignable $assignable
      * @return $this|Response
      */
     public function setAssignable($assignable) {
@@ -44,15 +48,13 @@ class Response extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param mixed $actor
+     * @param Agent $actor
      * @return $this|Response
      */
     public function setActor($actor) {
@@ -60,15 +62,13 @@ class Response extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Attempt attempt */
     public function getAttempt() {
         return $this->attempt;
     }
 
     /**
-     * @param mixed $attempt
+     * @param Attempt $attempt
      * @return $this|Response
      */
     public function setAttempt($attempt) {
@@ -76,15 +76,13 @@ class Response extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return DateTime startedAtTime */
     public function getStartedAtTime() {
         return $this->startedAtTime;
     }
 
     /**
-     * @param mixed $startedAtTime
+     * @param DateTime $startedAtTime
      * @return $this|Response
      */
     public function setStartedAtTime($startedAtTime) {
@@ -92,15 +90,13 @@ class Response extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return DateTime endedAtTime */
     public function getEndedAtTime() {
         return $this->endedAtTime;
     }
 
     /**
-     * @param mixed $endedAtTime
+     * @param DateTime $endedAtTime
      * @return $this|Response
      */
     public function setEndedAtTime($endedAtTime) {
@@ -108,15 +104,13 @@ class Response extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return int duration */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param mixed $duration
+     * @param int $duration
      * @return $this|Response
      */
     public function setDuration($duration) {

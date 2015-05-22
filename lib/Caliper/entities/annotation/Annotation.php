@@ -11,7 +11,8 @@ require_once 'Caliper/entities/Generatable.php';
  *         which are specified in the Caliper Annotation Metric Profile
  *
  */
-class Annotation extends Entity implements Generatable {
+abstract class Annotation extends Entity implements Generatable {
+    /** @var DigitalResource */
     private $annotated;
 
     public function  __construct($id) {
@@ -25,16 +26,14 @@ class Annotation extends Entity implements Generatable {
         ]);
     }
 
-    /**
-     * @return the annotated
-     */
+    /** @return DigitalResource annotated */
     public function  getAnnotated() {
         return $this->annotated;
     }
 
     /**
-     * @param $annotated
-     *            the annotated to set
+     * @param DigitalResource $annotated
+     * @return $this|Annotation
      */
     public function setAnnotated($annotated) {
         $this->annotated = $annotated;

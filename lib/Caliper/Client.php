@@ -7,7 +7,6 @@ require_once __DIR__ . '/events/Event.php';
 require_once __DIR__ . '/entities/Entity.php';
 
 class Caliper_Client {
-
     private $consumer;
 
     /**
@@ -15,7 +14,6 @@ class Caliper_Client {
      *
      * @param string $apiKey
      * @param array $options array of consumer options [optional]
-     * @param string Consumer constructor to use, socket by default.
      */
     public function __construct($apiKey, $options = array()) {
 
@@ -50,6 +48,6 @@ class Caliper_Client {
      * @return boolean whether the describe call succeeded
      */
     public function describe($caliperEntity) {
-       return $this->consumer->describe($caliperEntity);
+        return $this->consumer->describe($caliperEntity);
     }
 }

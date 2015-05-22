@@ -1,37 +1,35 @@
 <?php
 require_once 'util/TimestampUtil.php';
 
-class Event implements JsonSerializable {
+abstract class Event implements JsonSerializable {
+    /** @var EventContext */
     private $context;
+    /** @var EventType */
     private $type;
+    /** @var Agent */
     private $actor;
+    /** @var Action */
     private $action;
+    /** @var object */
     private $object;
+    /** @var Targetable */
     private $target;
-    private $startedAtTime;
-    private $endedAtTime;
-    private $edApp;
-    private $group;
+    /** @var Generatable */
     private $generated;
-    private $membership;
-    /**
-     * @var int Duration in seconds
-     */
+    /** @var DateTime */
+    private $startedAtTime;
+    /** @var DateTime */
+    private $endedAtTime;
+    /** @var string */
     private $duration;
+    /** @var SoftwareApplication */
+    private $edApp;
+    /** @var Organization */
+    private $group;
+    /** @var Membership */
+    private $membership;
 
     public function __construct() {
-    }
-
-    private static function getLocalizedAction($action) {
-        $actionStrings = parse_ini_file(CALIPER_LIB_PATH . DIRECTORY_SEPARATOR . 'actions_en_US.ini');
-
-        if (array_key_exists($action, $actionStrings)) {
-            $localizedAction = $actionStrings[$action];
-        } else {
-            $localizedAction = $action;
-        }
-
-        return $localizedAction;
     }
 
     public function jsonSerialize() {
@@ -52,145 +50,133 @@ class Event implements JsonSerializable {
         ];
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return EventContext context */
     public function getContext() {
         return $this->context;
     }
 
     /**
-     * @param mixed $context
+     * @param EventContext $context
+     * @return $this|Event
      */
     public function setContext($context) {
         $this->context = $context;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return EventType type */
     public function getType() {
         return $this->type;
     }
 
     /**
-     * @param mixed $type
+     * @param EventType $type
+     * @return $this|Event
      */
     public function setType($type) {
         $this->type = $type;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param mixed $actor
+     * @param Agent $actor
+     * @return $this|Event
      */
     public function setActor($actor) {
         $this->actor = $actor;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Action action */
     public function getAction() {
         return $this->action;
     }
 
     /**
-     * @param mixed $action
+     * @param Action $action
+     * @return $this|Event
      */
     public function setAction($action) {
         $this->action = $action;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return object object */
     public function getObject() {
         return $this->object;
     }
 
     /**
-     * @param mixed $object
+     * @param object $object
+     * @return $this|Event
      */
     public function setObject($object) {
         $this->object = $object;
         return $this;
     }
 
-    /**
-     *
-     */
+    /** @return Targetable target */
     public function getTarget() {
         return $this->target;
     }
 
     /**
-     * @param mixed $target
+     * @param Targetable $target
+     * @return $this|Event
      */
     public function setTarget($target) {
         $this->target = $target;
         return $this;
     }
 
-    /**
-     * @return the generated
-     */
+    /** @return Generatable generated */
     public function  getGenerated() {
         return $this->generated;
     }
 
     /**
-     * @param generated
-     *            the generated to set
+     * @param Generatable $generated
+     * @return $this|Event
      */
-    public function  setGenerated($generated) {
+    public function setGenerated($generated) {
         $this->generated = $generated;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return DateTime startedAtTime */
     public function getStartedAtTime() {
         return $this->startedAtTime;
     }
 
     /**
-     * @param mixed $startedAt
+     * @param DateTime $startedAtTime
+     * @return $this|Event
      */
     public function setStartedAtTime($startedAtTime) {
         $this->startedAtTime = $startedAtTime;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return DateTime endedAtTime */
     public function getEndedAtTime() {
         return $this->endedAtTime;
     }
 
     /**
-     * @param mixed $startedAt
+     * @param DateTime $endedAtTime
+     * @return $this|Event
      */
     public function setEndedAtTime($endedAtTime) {
         $this->endedAtTime = $endedAtTime;
         return $this;
     }
 
-    /**
-     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
-     */
+    /** @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS") */
     public function getDurationFormatted() {
         if ($this->getDuration() === null) {
             return null;
@@ -199,55 +185,49 @@ class Event implements JsonSerializable {
         return 'PT' . $this->getDuration() . 'S';
     }
 
-    /**
-     * @return int Duration in seconds
-     */
+    /** @return int duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $durationSeconds
-     * @return $this
+     * @param int $duration
+     * @return $this|Event
      */
-    public function setDuration($durationSeconds) {
-        $this->duration = $durationSeconds;
+    public function setDuration($duration) {
+        $this->duration = $duration;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return SoftwareApplication edApp */
     public function getEdApp() {
         return $this->edApp;
     }
 
     /**
-     * @param mixed $edApp
+     * @param SoftwareApplication $edApp
+     * @return $this|Event
      */
     public function setEdApp($edApp) {
         $this->edApp = $edApp;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Organization group */
     public function getGroup() {
         return $this->group;
     }
 
     /**
-     * @param mixed $lisOrganization
+     * @param Organization $group
+     * @return $this|Event
      */
     public function setGroup($group) {
         $this->group = $group;
         return $this;
     }
 
-    /**
-     * @return Membership
-     */
+    /** @return Membership membership */
     public function getMembership() {
         return $this->membership;
     }
