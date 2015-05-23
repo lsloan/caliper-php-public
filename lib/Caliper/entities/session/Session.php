@@ -7,12 +7,13 @@ require_once 'Caliper/entities/Targetable.php';
 require_once 'util/TimestampUtil.php';
 
 class Session extends Entity implements Generatable, Targetable {
+    /** @var Agent */
     private $actor;
+    /** @var DateTime */
     private $startedAtTime;
+    /** @var DateTime */
     private $endedAtTime;
-    /**
-     * @var int Duration in seconds
-     */
+    /** @var int (seconds) */
     private $duration;
 
     public function __construct($id) {
@@ -29,36 +30,49 @@ class Session extends Entity implements Generatable, Targetable {
         ]);
     }
 
+    /** @return Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
-    public function setActor($value) {
-        $this->actor = $value;
+    /**
+     * @param Agent $actor
+     * @return $this|Session
+     */
+    public function setActor($actor) {
+        $this->actor = $actor;
         return $this;
     }
 
+    /** @return DateTime startedAtTime */
     public function getStartedAtTime() {
         return $this->startedAtTime;
     }
 
-    public function setStartedAtTime($value) {
-        $this->startedAtTime = $value;
+    /**
+     * @param DateTime $startedAtTime
+     * @return $this|Session
+     */
+    public function setStartedAtTime($startedAtTime) {
+        $this->startedAtTime = $startedAtTime;
         return $this;
     }
 
+    /** @return DateTime endedAtTime */
     public function getEndedAtTime() {
         return $this->endedAtTime;
     }
 
-    public function setEndedAtTime($value) {
-        $this->endedAtTime = $value;
+    /**
+     * @param DateTime $endedAtTime
+     * @return $this|Session
+     */
+    public function setEndedAtTime($endedAtTime) {
+        $this->endedAtTime = $endedAtTime;
         return $this;
     }
 
-    /**
-     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
-     */
+    /** @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS") */
     public function getDurationFormatted() {
         if ($this->getDuration() === null) {
             return null;
@@ -67,19 +81,17 @@ class Session extends Entity implements Generatable, Targetable {
         return 'PT' . $this->getDuration() . 'S';
     }
 
-    /**
-     * @return int Duration in seconds
-     */
+    /** @return int duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $durationSeconds
-     * @return $this
+     * @param int $duration (seconds)
+     * @return $this|Session
      */
-    public function setDuration($durationSeconds) {
-        $this->duration = $durationSeconds;
+    public function setDuration($duration) {
+        $this->duration = $duration;
         return $this;
     }
 }

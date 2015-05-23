@@ -4,6 +4,7 @@ require_once 'Caliper/entities/lis/CourseSection.php';
 require_once 'Caliper/entities/lis/Group.php';
 require_once 'Caliper/entities/lis/Membership.php';
 require_once 'Caliper/entities/lis/Role.php';
+require_once 'Caliper/entities/lis/Status.php';
 
 class TestLisEntities {
     public static function groupId() {
@@ -13,10 +14,8 @@ class TestLisEntities {
     public static function makeGroup() {
         return (new Group(TestLisEntities::groupId()))
             ->setName('Discussion Group 001')
-            ->setMembership(TestLisEntities::makeGroupMembership())
             ->setSubOrganizationOf(TestLisEntities::makeCourseSection())
             ->setDateCreated(TestTimes::createdTime());
-
     }
 
     public static function makeGroupMembership() {
@@ -27,22 +26,11 @@ class TestLisEntities {
             ->setDateCreated(TestTimes::createdTime());
     }
 
-    /*
-    public static function makeCourseMembership() {
-        return (new Membership('https://some-university.edu/membership/001'))
-            ->setMember(TestAgentEntities::makePerson()->getId())
-            ->setOrganization(TestLisEntities::makeCourseOffering()->getId())
-            ->setRoles(TestLisEntities::makeMembership()->getRoles())
-            ->setDateCreated(TestTimes::createdTime());
-    }
-    */
-
     public static function makeCourseSection() {
         return (new CourseSection(TestLisEntities::courseSectionId()))
             ->setCourseNumber('POL101')
             ->setName('American Revolution 101')
             ->setAcademicSession('Fall-2015')
-            ->setMembership(TestLisEntities::makeSectionMembership())
             ->setSubOrganizationOf(TestLisEntities::makeCourseOffering())
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime());
@@ -68,7 +56,8 @@ class TestLisEntities {
             ->setMember(TestAgentEntities::makePerson()->getId())
             ->setName('American Revolution 101')
             ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
-            ->setRoles(Role::LEARNER);
+            ->setRoles(Role::LEARNER)
+            ->setStatus(Status::ACTIVE);
     }
 
     public static function makeCourseOffering() {

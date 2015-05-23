@@ -3,7 +3,8 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/MediaObject.php';
 
-class MediaObject extends DigitalResource implements schemadotorg\MediaObject {
+abstract class MediaObject extends DigitalResource implements schemadotorg\MediaObject {
+    /** @var int (seconds) */
     private $duration;
 
     public function __construct($id) {
@@ -16,19 +17,17 @@ class MediaObject extends DigitalResource implements schemadotorg\MediaObject {
         ]);
     }
 
-    /**
-     * @return int Duration in seconds
-     */
+    /** @return int duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $durationSeconds
-     * @return $this
+     * @param int $duration (seconds)
+     * @return $this|MediaObject
      */
-    public function setDuration($durationSeconds) {
-        $this->duration = $durationSeconds;
+    public function setDuration($duration) {
+        $this->duration = $duration;
         return $this;
     }
 }

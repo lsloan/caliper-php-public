@@ -3,9 +3,11 @@ require_once 'Caliper/entities/lis/Course.php';
 require_once 'Caliper/entities/EntityType.php';
 
 class CourseOffering extends Entity implements Course {
+    /** @var string */
     private $courseNumber;
+    /** @var string */
     private $academicSession;
-    private $membership = [];
+    /** @var Organization */
     private $subOrganizationOf;
 
     public function __construct($id) {
@@ -21,63 +23,45 @@ class CourseOffering extends Entity implements Course {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string courseNumber */
     public function getCourseNumber() {
         return $this->courseNumber;
     }
 
     /**
-     * @param mixed $courseNumber
+     * @param string $courseNumber
+     * @return $this|CourseOffering
      */
     public function setCourseNumber($courseNumber) {
         $this->courseNumber = $courseNumber;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string academicSession */
     public function getAcademicSession() {
         return $this->academicSession;
     }
 
     /**
-     * @param mixed $academicSession
+     * @param string $academicSession
+     * @return $this|CourseOffering
      */
     public function setAcademicSession($academicSession) {
         $this->academicSession = $academicSession;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Organization subOrganizationOf */
     public function getSubOrganizationOf() {
         return $this->subOrganizationOf;
     }
 
     /**
-     * @param mixed $subOrganizationOf
+     * @param Organization $subOrganizationOf
+     * @return $this|CourseOffering
      */
     public function setSubOrganizationOf($subOrganizationOf) {
         $this->subOrganizationOf = $subOrganizationOf;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMembership() {
-        return $this->membership;
-    }
-
-    /**
-     * @param array $membership
-     */
-    public function setMembership($membership) {
-        $this->membership = $membership;
         return $this;
     }
 }

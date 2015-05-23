@@ -5,15 +5,25 @@ require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 
 class Result extends Entity implements Generatable {
+    /** @var Assignable */
     private $assignable;
+    /** @var Agent */
     private $actor;
+    /** @var float */
     private $normalScore;
+    /** @var float */
     private $penaltyScore;
+    /** @var float */
     private $extraCreditScore;
+    /** @var float */
     private $totalScore;
+    /** @var float */
     private $curvedTotalScore;
+    /** @var float */
     private $curveFactor;
+    /** @var string */
     private $comment;
+    /** @var Agent */
     private $scoredBy;
 
     public function __construct($id) {
@@ -36,15 +46,13 @@ class Result extends Entity implements Generatable {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Assignable assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param mixed $assignable
+     * @param Assignable $assignable
      * @return $this|Result
      */
     public function setAssignable($assignable) {
@@ -52,15 +60,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param mixed $actor
+     * @param Agent $actor
      * @return $this|Result
      */
     public function setActor($actor) {
@@ -68,15 +74,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float normalScore */
     public function getNormalScore() {
         return $this->normalScore;
     }
 
     /**
-     * @param mixed $normalScore
+     * @param float $normalScore
      * @return $this|Result
      */
     public function setNormalScore($normalScore) {
@@ -84,15 +88,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float penaltyScore */
     public function getPenaltyScore() {
         return $this->penaltyScore;
     }
 
     /**
-     * @param mixed $penaltyScore
+     * @param float $penaltyScore
      * @return $this|Result
      */
     public function setPenaltyScore($penaltyScore) {
@@ -100,15 +102,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float extraCreditScore */
     public function getExtraCreditScore() {
         return $this->extraCreditScore;
     }
 
     /**
-     * @param mixed $extraCreditScore
+     * @param float $extraCreditScore
      * @return $this|Result
      */
     public function setExtraCreditScore($extraCreditScore) {
@@ -116,15 +116,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float totalScore */
     public function getTotalScore() {
         return $this->totalScore;
     }
 
     /**
-     * @param mixed $totalScore
+     * @param float $totalScore
      * @return $this|Result
      */
     public function setTotalScore($totalScore) {
@@ -132,15 +130,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float curvedTotalScore */
     public function getCurvedTotalScore() {
         return $this->curvedTotalScore;
     }
 
     /**
-     * @param mixed $curvedTotalScore
+     * @param float $curvedTotalScore
      * @return $this|Result
      */
     public function setCurvedTotalScore($curvedTotalScore) {
@@ -148,15 +144,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return float curveFactor */
     public function getCurveFactor() {
         return $this->curveFactor;
     }
 
     /**
-     * @param mixed $curveFactor
+     * @param float $curveFactor
      * @return $this|Result
      */
     public function setCurveFactor($curveFactor) {
@@ -164,15 +158,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string comment */
     public function getComment() {
         return $this->comment;
     }
 
     /**
-     * @param mixed $comment
+     * @param string $comment
      * @return $this|Result
      */
     public function setComment($comment) {
@@ -180,15 +172,13 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Agent scoredBy */
     public function getScoredBy() {
         return $this->scoredBy;
     }
 
     /**
-     * @param mixed $scoredBy
+     * @param Agent $scoredBy
      * @return $this|Result
      */
     public function setScoredBy($scoredBy) {
@@ -196,3 +186,4 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 }
+
