@@ -4,8 +4,8 @@ require_once 'CourseOffering.php';
 require_once 'Caliper/entities/EntityType.php';
 
 class CourseSection extends CourseOffering {
+    /** @var string */
     private $category;
-    private $academicSession;
 
     public function __construct($id) {
         parent::__construct($id);
@@ -14,42 +14,21 @@ class CourseSection extends CourseOffering {
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'academicSession' => $this->getAcademicSession(),
             'category' => $this->getCategory(),
         ]);
     }
 
-    /**
-     * @return string the academicSession
-     */
-    public function getAcademicSession() {
-        return $this->academicSession;
-    }
-
-    /**
-     * @param academicSession string
-     *            the academicSession to set
-     */
-    public function setAcademicSession($academicSession) {
-        $this->academicSession = $academicSession;
-        return $this;
-    }
-
-    /**
-     * @return string the category
-     */
+    /** @return string category */
     public function getCategory() {
         return $this->category;
     }
 
     /**
-     * @param category string
-     *            the category to set
+     * @param string $category
+     * @return $this|CourseSection
      */
     public function setCategory($category) {
         $this->category = $category;
         return $this;
     }
-
 }
-

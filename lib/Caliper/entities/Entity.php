@@ -3,14 +3,20 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/schemadotorg/Thing.php';
 require_once 'util/TimestampUtil.php';
 
-class Entity implements JsonSerializable, Thing {
-
-    public $type;
-    public $name;
+abstract class Entity implements JsonSerializable, Thing {
+    /** @var string */
     protected $id;
+    /** @var Type */
+    public $type;
+    /** @var string */
+    public $name;
+    /** @var string */
     private $description;
+    /** @var string[] */
     private $extensions;
+    /** @var DateTime */
     private $dateCreated;
+    /** @var DateTime */
     private $dateModified;
 
     function __construct($id) {
@@ -29,109 +35,102 @@ class Entity implements JsonSerializable, Thing {
         ];
     }
 
-    /**
-     * @return string
-     */
+    /** @return string id */
     public function getId() {
         return $this->id;
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
+     * @return $this|Entity
      */
     public function setId($id) {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Type type */
     public function getType() {
         return $this->type;
     }
 
     /**
-     * @param mixed $type
+     * @param Type $type
+     * @return $this|Entity
      */
     public function setType($type) {
         $this->type = $type;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string name */
     public function getName() {
         return $this->name;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
+     * @return $this|Entity
      */
     public function setName($name) {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return string
-     */
+    /** @return string description */
     public function getDescription() {
         return $this->description;
     }
 
     /**
-     * @param mixed $description
-     * @return $this
+     * @param string $description
+     * @return $this|Entity
      */
     public function setDescription($description) {
         $this->description = $description;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string[] extensions */
     public function getExtensions() {
         return $this->extensions;
     }
 
     /**
-     * @param mixed $extensions
+     * @param string[] $extensions
+     * @return $this|Entity
      */
     public function setExtensions($extensions) {
         $this->extensions = $extensions;
         return $this;
     }
 
-    /**
-     * @return DateTime
-     */
+    /** @return DateTime dateCreated */
     public function getDateCreated() {
         return $this->dateCreated;
     }
 
     /**
      * @param DateTime $dateCreated
+     * @return $this|Entity
      */
     public function setDateCreated($dateCreated) {
         $this->dateCreated = $dateCreated;
         return $this;
     }
 
-    /**
-     * @return DateTime
-     */
+    /** @return DateTime dateModified */
     public function getDateModified() {
         return $this->dateModified;
     }
 
     /**
      * @param DateTime $dateModified
+     * @return $this|Entity
      */
     public function setDateModified($dateModified) {
         $this->dateModified = $dateModified;
         return $this;
     }
-} 
+}
+

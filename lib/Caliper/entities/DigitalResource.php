@@ -25,10 +25,15 @@ require_once 'util/TimestampUtil.php';
  *
  */
 class DigitalResource extends Entity implements CreativeWork, Targetable {
+    /** @var string[] */
     private $objectTypes = [];
+    /** @var LearningObjective[]  */
     private $alignedLearningObjectives = [];
+    /** @var string[] */
     private $keywords = [];
+    /** @var CreativeWork */
     private $isPartOf;
+    /** @var DateTime */
     private $datePublished;
     /** @var string */
     private $version;
@@ -48,32 +53,28 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string[] objectTypes */
     public function getObjectTypes() {
         return $this->objectTypes;
     }
 
     /**
-     * @param mixed $objectTypes
-     * @return object
+     * @param string[] $objectTypes
+     * @return $this|DigitalResource
      */
     public function setObjectTypes($objectTypes) {
         $this->objectType = $objectTypes;
         return $this;
     }
 
-    /**
-     * @return object alignedLearningObjectives
-     */
+    /** @return LearningObjective[] alignedLearningObjectives */
     public function  getAlignedLearningObjectives() {
         return $this->alignedLearningObjectives;
     }
 
     /**
-     * @param alignedLearningObjectives object alignedLearningObjectives to set
-     * @return object
+     * @param LearningObjective[] $alignedLearningObjectives
+     * @return $this|DigitalResource
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
         if (!is_array($alignedLearningObjectives)) {
@@ -84,32 +85,28 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
         return $this;
     }
 
-    /**
-     * @return string the keywords
-     */
+    /** @return string[] keywords */
     public function  getKeywords() {
         return $this->keywords;
     }
 
     /**
-     * @param keywords string the keywords to set
-     * @return object
+     * @param string[] $keywords
+     * @return $this|DigitalResource
      */
     public function setKeywords($keywords) {
         $this->keywords = $keywords;
         return $this;
     }
 
-    /**
-     * @return object isPartOf
-     */
+    /** @return CreativeWork isPartOf */
     public function getIsPartOf() {
         return $this->isPartOf;
     }
 
     /**
-     * @param isPartOf object isPartOf to set
-     * @return object
+     * @param CreativeWork $isPartOf
+     * @return $this|DigitalResource
      */
     public function setIsPartOf($isPartOf) {
         $this->isPartOf = $isPartOf;
@@ -124,23 +121,21 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param datePublished DateTime datePublished to set
-     * @return object
+     * @param DateTime $datePublished
+     * @return $this|DigitalResource
      */
     public function setDatePublished($datePublished) {
         $this->datePublished = $datePublished;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string version */
     public function getVersion() {
         return $this->version;
     }
 
     /**
-     * @param mixed $version
+     * @param string $version
      * @return $this|DigitalResource
      */
     public function setVersion($version) {

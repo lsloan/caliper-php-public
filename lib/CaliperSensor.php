@@ -47,7 +47,7 @@ class Caliper {
     /**
      * Describe an entity
      * @param  Entity $caliperEntity The Caliper Entity we are describing
-     * @return boolean            whether the describe call succeeded
+     * @return boolean success
      */
     public static function describe($caliperEntity) {
         self::check_client();

@@ -7,10 +7,7 @@ require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/actions/Action.php';
 
 class NavigationEvent extends Event {
-
-    /**
-     * Describes the resource from which the navigation starts
-     */
+    /** @var DigitalResource */
     private $navigatedFrom;
 
     public function __construct() {
@@ -27,16 +24,14 @@ class NavigationEvent extends Event {
         ]);
     }
 
-    /**
-     * @return the navigatedFrom
-     */
+    /** @return DigitalResource navigatedFrom */
     public function getNavigatedFrom() {
         return $this->navigatedFrom;
     }
 
     /**
-     * @param $navigatedFrom
-     * the navigatedFrom to set
+     * @param DigitalResource $navigatedFrom
+     * @return $this|NavigationEvent
      */
     public function setNavigatedFrom($navigatedFrom) {
         $this->navigatedFrom = $navigatedFrom;
@@ -44,20 +39,20 @@ class NavigationEvent extends Event {
     }
 
     /**
-     * @return the fromResource
      * @deprecated
+     * @return DigitalResource navigatedFrom
      */
     public function getFromResource() {
         return $this->getNavigatedFrom();
     }
 
     /**
-     * @param fromResource
-     * the fromResource to set
      * @deprecated
+     * @param DigitalResource $fromResource
+     * @return $this|NavigationEvent
      */
     public function setFromResource($fromResource) {
         return $this->setNavigatedFrom($fromResource);
     }
-
 }
+

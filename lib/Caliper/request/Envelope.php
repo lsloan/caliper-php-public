@@ -3,9 +3,13 @@ require_once 'Caliper/request/EnvelopeContext.php';
 require_once 'util/TimestampUtil.php';
 
 class Envelope implements JsonSerializable {
+    /** @var EventContext */
     private $context;
+    /** @var string */
     private $sensor;
+    /** @var DateTime */
     private $sendTime;
+    /** @var object[] */
     private $data;
 
     public function __construct($sensor = null, $data = null) {
@@ -20,19 +24,17 @@ class Envelope implements JsonSerializable {
             '@context' => $this->getContext(),
             'sensor' => $this->getSensor(),
             'sendTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getSendTime()),
-            'data' => [$this->getData()],
+            'data' => $this->getData(),
         ];
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return EventContext context */
     public function getContext() {
         return $this->context;
     }
 
     /**
-     * @param mixed $context
+     * @param EventContext $context
      * @return $this|Envelope
      */
     public function setContext($context) {
@@ -40,15 +42,13 @@ class Envelope implements JsonSerializable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return string sensor */
     public function getSensor() {
         return $this->sensor;
     }
 
     /**
-     * @param mixed $sensor
+     * @param string $sensor
      * @return $this|Envelope
      */
     public function setSensor($sensor) {
@@ -56,15 +56,13 @@ class Envelope implements JsonSerializable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return DateTime sendTime */
     public function getSendTime() {
         return $this->sendTime;
     }
 
     /**
-     * @param mixed $sendTime
+     * @param DateTime $sendTime
      * @return $this|Envelope
      */
     public function setSendTime($sendTime) {
@@ -72,19 +70,22 @@ class Envelope implements JsonSerializable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return object[] data */
     public function getData() {
         return $this->data;
     }
 
     /**
-     * @param mixed $data
+     * @param object[] $data
      * @return $this|Envelope
      */
     public function setData($data) {
+        if (!is_array($data)) {
+            $data = [$data];
+        }
+
         $this->data = $data;
         return $this;
     }
 }
+

@@ -1,60 +1,61 @@
 <?php
 
 class LearningContext {
+    /** @var SoftwareApplication */
     public $edApp;
-    public $lisOrganization;
-    protected $agent;
+    /** @var Organization */
+    public $group;
+    /** @var Membership */
+    protected $membership;
 
     public function jsonSerialize() {
         return [
             'edApp' => $this->getEdApp(),
-            'lisOrganization' => $this->getLisOrganization(),
-            'agent' => $this->getAgent(),
+            'group' => $this->getGroup(),
+            'membership' => $this->getMembership(),
         ];
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return SoftwareApplication edApp */
     public function getEdApp() {
         return $this->edApp;
     }
 
     /**
-     * @param mixed $edApp
+     * @param SoftwareApplication $edApp
+     * @return $this|LearningContext
      */
     public function setEdApp($edApp) {
         $this->edApp = $edApp;
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getLisOrganization() {
-        return $this->lisOrganization;
+    
+    /** @return Organization group */
+    public function getGroup() {
+        return $this->group;
     }
 
     /**
-     * @param mixed $lisOrganization
+     * @param Organization $group
+     * @return $this|LearningContext
      */
-    public function setLisOrganization($lisOrganization) {
-        $this->lisOrganization = $lisOrganization;
+    public function setGroup($group) {
+        $this->group = $group;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAgent() {
-        return $this->agent;
+    /** @return Membership membership */
+    public function getMembership() {
+        return $this->membership;
     }
 
     /**
-     * @param mixed $agent
+     * @param Membership $membership
+     * @return $this|LearningContext
      */
-    public function setAgent($agent) {
-        $this->agent = $agent;
+    public function setMembership($membership) {
+        $this->membership = $membership;
         return $this;
     }
 }
+

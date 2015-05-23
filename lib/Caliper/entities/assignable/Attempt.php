@@ -7,7 +7,7 @@ require_once 'util/TimestampUtil.php';
 class Attempt extends Entity implements Generatable {
     /** @var Assignable */
     private $assignable;
-    /** @var Person */
+    /** @var Agent */
     private $actor;
     /** @var int */
     private $count;
@@ -34,13 +34,13 @@ class Attempt extends Entity implements Generatable {
         ]);
     }
 
-    /** @return Assignable */
+    /** @return Assignable assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param $assignable
+     * @param Assignable $assignable
      * @return $this|Attempt
      */
     public function setAssignable($assignable) {
@@ -48,13 +48,13 @@ class Attempt extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return Person */
+    /** @return Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param $actor
+     * @param Agent $actor
      * @return $this|Attempt
      */
     public function setActor($actor) {
@@ -68,7 +68,7 @@ class Attempt extends Entity implements Generatable {
     }
 
     /**
-     * @param $count
+     * @param int $count
      * @return $this|Attempt
      */
     public function setCount($count) {
@@ -76,7 +76,7 @@ class Attempt extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return DateTime */
+    /** @return DateTime startedAtTime */
     public function getStartedAtTime() {
         return $this->startedAtTime;
     }
@@ -90,7 +90,7 @@ class Attempt extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return DateTime */
+    /** @return DateTime endedAtTime */
     public function getEndedAtTime() {
         return $this->endedAtTime;
     }
@@ -104,7 +104,16 @@ class Attempt extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return string */
+    /** @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS") */
+    public function getDurationFormatted() {
+        if ($this->getDuration() === null) {
+            return null;
+        }
+
+        return 'PT' . $this->getDuration() . 'S';
+    }
+
+    /** @return string duration */
     public function getDuration() {
         return $this->duration;
     }
@@ -116,16 +125,5 @@ class Attempt extends Entity implements Generatable {
     public function setDuration($duration) {
         $this->duration = $duration;
         return $this;
-    }
-
-    /**
-     * @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS")
-     */
-    public function getDurationFormatted() {
-        if ($this->getDuration() === null) {
-            return null;
-        }
-
-        return 'PT' . $this->getDuration() . 'S';
     }
 }

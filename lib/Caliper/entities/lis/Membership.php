@@ -4,10 +4,14 @@ require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/lis/Status.php';
 
 class Membership extends Entity implements w3c\Membership {
+    /** @var Person */
     private $member;
+    /** @var Organization */
     private $organization;
+    /** @var \w3c\Role[] */
     private $roles = [];
-    private $status = Status::ACTIVE;
+    /** @var \w3c\Status */
+    private $status;
 
     public function __construct($id) {
         $this->setId($id);
@@ -23,48 +27,45 @@ class Membership extends Entity implements w3c\Membership {
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Person member */
     public function getMember() {
         return $this->member;
     }
 
     /**
-     * @param mixed $member
+     * @param Person $member
+     * @return $this|Membership
      */
     public function setMember($member) {
         $this->member = $member;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return Organization organization */
     public function getOrganization() {
         return $this->organization;
     }
 
     /**
-     * @param mixed $organization
+     * @param Organization $organization
+     * @return $this|Membership
      */
     public function setOrganization($organization) {
         $this->organization = $organization;
         return $this;
     }
 
-    /**
-     * @return array
-     */
+    /** @return \w3c\Role[] roles */
     public function getRoles() {
         return $this->roles;
     }
 
     /**
-     * @param array $roles
+     * @param \w3c\Role[] $roles
+     * @return $this|Membership
      */
     public function setRoles($roles) {
-        if (! is_array($roles)) {
+        if (!is_array($roles)) {
             $roles = [$roles];
         }
 
@@ -72,15 +73,14 @@ class Membership extends Entity implements w3c\Membership {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
+    /** @return \w3c\Status status */
     public function getStatus() {
         return $this->status;
     }
 
     /**
-     * @param mixed $status
+     * @param \w3c\Status $status
+     * @return $this|Membership
      */
     public function setStatus($status) {
         $this->status = $status;

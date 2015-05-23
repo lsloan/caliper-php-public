@@ -17,15 +17,13 @@ class BookmarkAnnotation extends Annotation {
         ]);
     }
 
-    /**
-     * @return string
-     */
+    /** @return string bookmarkNotes */
     public function  getBookmarkNotes() {
         return $this->bookmarkNotes;
     }
 
     /**
-     * @param string bookmarkNotes
+     * @param string $bookmarkNotes
      * @return $this|BookmarkAnnotation
      */
     public function  setBookmarkNotes($bookmarkNotes) {

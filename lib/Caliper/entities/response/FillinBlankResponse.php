@@ -19,7 +19,7 @@ class FillinBlankResponse extends Response {
         ]);
     }
 
-    /** @return array */
+    /** @return array values */
     public function getValues() {
         return $this->values;
     }
