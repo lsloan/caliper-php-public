@@ -9,6 +9,9 @@ require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestLisEntities.php')
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestReadingEntities.php');
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestTimes.php');
 
+/**
+ * @requires PHP 5.4
+ */
 class AnnotationHighlightEventTest extends PHPUnit_Framework_TestCase {
 	private $testObject;
 

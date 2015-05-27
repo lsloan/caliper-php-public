@@ -1,13 +1,9 @@
 <?php
-
-/**
- *  author: Prashant Nayak
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
-
 require_once(dirname(__FILE__) . "/../lib/Caliper/Client.php");
 
+/**
+ * @requires PHP 5.4
+ */
 class ConsumerSocketTest extends PHPUnit_Framework_TestCase {
 
   private $client;
