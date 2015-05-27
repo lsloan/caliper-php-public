@@ -3,6 +3,9 @@ require_once(dirname(__FILE__) . "/../../lib/CaliperSensor.php");
 require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/Entity.php");
 require_once(dirname(__FILE__) . "/../../lib/Caliper/events/Event.php");
 
+/**
+ * @requires PHP 5.4
+ */
 class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
 
     function setUp() {

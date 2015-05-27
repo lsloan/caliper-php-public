@@ -8,6 +8,9 @@ require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestReadingEntities.p
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestRequests.php');
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestTimes.php');
 
+/**
+ * @requires PHP 5.4
+ */
 class HttpRequestorTest extends PHPUnit_Framework_TestCase {
     private $testObject;
 

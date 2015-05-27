@@ -13,6 +13,7 @@ Access to this draft code is reserved for IMS Contributing Members who are activ
 
 ### Pre-requisites for development:  
 
+* PHP 5.4 required (PHP 5.6 recommended)
 * Ensure you have php5 and php5-json installed:  ```sudo apt-get install php5 php5-json```
 * Install Composer (for dependency management):  ```curl -sS https://getcomposer.org/installer | php```
 * Install dependencies:  ```php composer.phar install```
