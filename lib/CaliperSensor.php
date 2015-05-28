@@ -1,12 +1,12 @@
 <?php
+define ('CALIPER_REQUIRED_PHP_VERSION', '5.4.0');
+if (version_compare(PHP_VERSION, CALIPER_REQUIRED_PHP_VERSION, '<')) {
+    throw new UnexpectedValueException('Caliper requires PHP ' .
+        CALIPER_REQUIRED_PHP_VERSION . ' or greater.  This is version: ' . PHP_VERSION);
+}
 
-/**
- *  ©2013 IMS Global Learning Consortium, Inc.  All Rights Reserved.
- *  For license information contact, info@imsglobal.org
- */
-
-if (!function_exists('json_encode')) {
-    throw new Exception('Caliper needs the JSON PHP extension.');
+if (!extension_loaded('json')) {
+    throw new Exception('Caliper requires the PHP JSON extension.');
 }
 
 define('CALIPER_LIB_PATH', realpath(dirname(__FILE__)));
