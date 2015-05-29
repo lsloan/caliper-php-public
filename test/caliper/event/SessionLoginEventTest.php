@@ -1,22 +1,18 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
-require_once 'Caliper/actions/Action.php';
+require_once realpath(dirname(__FILE__) . '/../CaliperTestCase.php');
 require_once 'Caliper/events/SessionEvent.php';
-require_once realpath(CALIPER_LIB_PATH . '/../test/util/TestUtilities.php');
-require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestAgentEntities.php');
-require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestLisEntities.php');
-require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestReadingEntities.php');
-require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestSessionEntities.php');
-require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestTimes.php');
+require_once 'Caliper/actions/Action.php';
 
 /**
  * @requires PHP 5.4
  */
-class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
-    private $testObject;
-
+class SessionLoginEventTest extends CaliperTestCase {
     function setUp() {
-        $this->testObject = (new SessionEvent())
+        parent::setUp();
+
+        $this->setFixtureFilename('/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLoginEvent.json');
+
+        $this->setTestObject((new SessionEvent())
             ->setActor(TestAgentEntities::makePerson())
             ->setMembership(TestLisEntities::makeMembership())
             ->setAction(Action::LOGGED_IN)
@@ -25,18 +21,6 @@ class SessionLoginEventTest extends PHPUnit_Framework_TestCase {
             ->setGenerated(TestSessionEntities::makeSession())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime());
-    }
-
-    /**
-     * @group passes
-     */
-    function testObjectSerializesToJson() {
-        $testJson = json_encode($this->testObject, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        $testFixtureFilePath = realpath(CALIPER_LIB_PATH . '/../../caliper-common-fixtures/src/test/resources/fixtures/caliperSessionLoginEvent.json');
-
-        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $testJson, __CLASS__);
-
-        $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $testJson);
+            ->setStartedAtTime(TestTimes::startedTime()));
     }
 }
