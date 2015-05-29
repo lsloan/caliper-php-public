@@ -11,11 +11,17 @@ require_once 'Caliper/actions/Action.php';
 require_once 'Caliper/entities/EntityType.php';
 
 class SessionEventSampleApp {
+    /** @var SessionEvent */
     private $sessionEvent;
+    /** @var Person */
+    private $personEntity;
 
-    /**
-     * @return mixed
-     */
+    /** @return Person */
+    public function getPersonEntity() {
+        return $this->personEntity;
+    }
+
+    /** @return SessionEvent */
     public function getSessionEvent() {
         return $this->sessionEvent;
     }
@@ -25,9 +31,10 @@ class SessionEventSampleApp {
         $modifiedTime = new DateTime('2015-02-02T11:30:00.000Z');
         $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
 
-        $actor = new Person('https://some-university.edu/user/554433');
-        $actor->setDateCreated($createdTime)
+        $person = new Person('https://some-university.edu/user/554433');
+        $person->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
+        $this->personEntity = $person;
 
         $eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
         $eventObj->setName('Readium')
@@ -51,12 +58,12 @@ class SessionEventSampleApp {
         $generatedObj->setName('session-123456789')
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime)
-            ->setActor($actor)
+            ->setActor($person)
             ->setStartedAtTime($sessionStartTime);
 
         $sessionEvent = new SessionEvent();
         $sessionEvent->setAction(Action::LOGGED_IN)
-            ->setActor($actor)
+            ->setActor($person)
             ->setObject($eventObj)
             ->setTarget($targetObj)
             ->setGenerated($generatedObj)
@@ -76,4 +83,5 @@ Caliper::init('org.imsglobal.caliper.php.apikey', [
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
 
-Caliper::send($sessionTest->getSessionEvent());
+//Caliper::send($sessionTest->getSessionEvent());
+Caliper::describe($sessionTest->getPersonEntity());
