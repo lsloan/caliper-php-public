@@ -1,14 +1,15 @@
 <?php
-require_once(dirname(__FILE__) . "/../../lib/CaliperSensor.php");
-require_once(dirname(__FILE__) . "/../../lib/Caliper/entities/Entity.php");
-require_once(dirname(__FILE__) . "/../../lib/Caliper/events/Event.php");
+require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once 'Caliper/entities/Entity.php';
+require_once 'Caliper/events/Event.php';
 
 /**
  * @requires PHP 5.4
  */
-class CaliperCaliperTest extends PHPUnit_Framework_TestCase {
+class ApiTest extends PHPUnit_Framework_TestCase {
 
     function setUp() {
+        date_default_timezone_set('UTC');
         $this->markTestSkipped('Fix these tests to use a readily available server or setup/mock their own server');
         // $options["host"] = "localhost:8000";
         // Caliper::init("testapiKey", $options);
