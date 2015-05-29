@@ -76,7 +76,7 @@ class Envelope implements JsonSerializable {
     }
 
     /**
-     * @param object[] $data
+     * @param object[]|object $data
      * @return $this|Envelope
      */
     public function setData($data) {
