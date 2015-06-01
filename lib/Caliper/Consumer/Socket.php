@@ -28,6 +28,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
         if (!isset($this->options['sendURI']))
             $this->options['sendURI'] = '/v1/send';
 
+        if (!isset($this->options['sensorId']))
+            $this->options['sensorId'] = null;
+
         if (!isset($this->options['jsonEncodeOptions']))
             $this->options['jsonEncodeOptions'] = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES;
 

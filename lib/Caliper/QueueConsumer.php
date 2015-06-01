@@ -20,7 +20,7 @@ abstract class Caliper_QueueConsumer extends Caliper_Consumer {
    * @return boolean true
    */
   public function describe($caliperEntity) {
-      $this->flushSingleDescribe($caliperEntity);
+      $this->flushSingleDescribe($caliperEntity, $this->apiKey, $this->options['sensorId']);
       return true;
   }
 
