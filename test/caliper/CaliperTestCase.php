@@ -57,7 +57,7 @@ class CaliperTestCase extends PHPUnit_Framework_TestCase {
         $testJson = json_encode($this->getTestObject(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         $testFixtureFilePath = realpath(CALIPER_LIB_PATH . $this->getFixtureFilename());
 
-        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $testJson, __CLASS__);
+        TestUtilities::saveFormattedFixtureAndOutputJson($testFixtureFilePath, $testJson, get_called_class());
 
         $this->assertJsonStringEqualsJsonFile($testFixtureFilePath, $testJson);
     }

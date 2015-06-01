@@ -1,8 +1,9 @@
 <?php
+require_once 'Caliper/context/Context.php';
 require_once 'util/TimestampUtil.php';
 
 abstract class Event implements JsonSerializable {
-    /** @var EventContext */
+    /** @var Context */
     private $context;
     /** @var EventType */
     private $type;
@@ -28,8 +29,11 @@ abstract class Event implements JsonSerializable {
     private $group;
     /** @var Membership */
     private $membership;
+    /** @var Session */
+    private $federatedSession;
 
     public function __construct() {
+        $this->setContext(Context::CONTEXT);
     }
 
     public function jsonSerialize() {
@@ -47,16 +51,17 @@ abstract class Event implements JsonSerializable {
             'edApp' => $this->getEdApp(),
             'group' => $this->getGroup(),
             'membership' => $this->getMembership(),
+            'federatedSession' => $this->getFederatedSession(),
         ];
     }
 
-    /** @return EventContext context */
+    /** @return Context context */
     public function getContext() {
         return $this->context;
     }
 
     /**
-     * @param EventContext $context
+     * @param Context $context
      * @return $this|Event
      */
     public function setContext($context) {
@@ -238,6 +243,20 @@ abstract class Event implements JsonSerializable {
      */
     public function setMembership($membership) {
         $this->membership = $membership;
+        return $this;
+    }
+
+    /** @return Session */
+    public function getFederatedSession() {
+        return $this->federatedSession;
+    }
+
+    /**
+     * @param Session $federatedSession
+     * @return $this|Event
+     */
+    public function setFederatedSession($federatedSession) {
+        $this->federatedSession = $federatedSession;
         return $this;
     }
 }
