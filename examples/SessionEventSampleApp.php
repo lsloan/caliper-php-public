@@ -78,10 +78,11 @@ Caliper::init('org.imsglobal.caliper.php.apikey', [
     'host' => 'localhost',
     'port' => 8000,
     'sendURI' => '/',
+    'sensorId' => 'sensorId',
 ]);
 
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
 
-//Caliper::send($sessionTest->getSessionEvent());
+Caliper::send($sessionTest->getSessionEvent());
 Caliper::describe($sessionTest->getPersonEntity());
