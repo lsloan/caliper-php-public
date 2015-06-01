@@ -1,7 +1,7 @@
 <?php
 require_once 'util/BasicEnum.php';
 
-class EventContext extends \BasicEnum {
+class Context extends \BasicEnum {
     const
         __default = '',
         ANNOTATION = 'http://purl.imsglobal.org/ctx/caliper/v1/AnnotationEvent',
