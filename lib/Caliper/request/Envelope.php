@@ -1,9 +1,9 @@
 <?php
-require_once 'Caliper/request/EnvelopeContext.php';
+require_once 'Caliper/context/Context.php';
 require_once 'util/TimestampUtil.php';
 
 class Envelope implements JsonSerializable {
-    /** @var EventContext */
+    /** @var Context */
     private $context;
     /** @var string */
     private $sensor;
@@ -13,7 +13,7 @@ class Envelope implements JsonSerializable {
     private $data;
 
     public function __construct($sensor = null, $data = null) {
-        $this->setContext(EnvelopeContext::CONTEXT)
+        $this->setContext(Context::CONTEXT)
             ->setSensor($sensor)
             ->setSendTime(new DateTime())
             ->setData($data);
@@ -28,13 +28,13 @@ class Envelope implements JsonSerializable {
         ];
     }
 
-    /** @return EventContext context */
+    /** @return Context context */
     public function getContext() {
         return $this->context;
     }
 
     /**
-     * @param EventContext $context
+     * @param Context $context
      * @return $this|Envelope
      */
     public function setContext($context) {
