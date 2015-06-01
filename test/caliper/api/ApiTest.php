@@ -44,10 +44,6 @@ class ApiTest extends PHPUnit_Framework_TestCase {
             "courseId" => "course-1234",
             "userId" => "user-1234",
         ));
-        $caliperEvent->setActivityContext(array(
-            "activityId" => "reading-1234",
-            "pageId" => "page-1234",
-        ));
 
         $sent = Caliper::send($caliperEvent);
         $this->assertTrue($sent);
