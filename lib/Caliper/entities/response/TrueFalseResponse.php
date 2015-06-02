@@ -10,7 +10,7 @@ class TrueFalseResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::TRUEFALSE);
+        $this->setType(new ResponseType(ResponseType::TRUEFALSE));
     }
 
     public function jsonSerialize() {

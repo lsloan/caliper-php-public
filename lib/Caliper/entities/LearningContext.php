@@ -25,7 +25,7 @@ class LearningContext {
      * @param SoftwareApplication $edApp
      * @return $this|LearningContext
      */
-    public function setEdApp($edApp) {
+    public function setEdApp(SoftwareApplication $edApp) {
         $this->edApp = $edApp;
         return $this;
     }
@@ -39,7 +39,7 @@ class LearningContext {
      * @param Organization $group
      * @return $this|LearningContext
      */
-    public function setGroup($group) {
+    public function setGroup(Organization $group) {
         $this->group = $group;
         return $this;
     }
@@ -53,7 +53,7 @@ class LearningContext {
      * @param Membership $membership
      * @return $this|LearningContext
      */
-    public function setMembership($membership) {
+    public function setMembership(Membership $membership) {
         $this->membership = $membership;
         return $this;
     }

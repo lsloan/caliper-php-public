@@ -8,7 +8,7 @@ class AssessmentItem extends AssignableDigitalResource {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(AssignableDigitalResourceType::ASSESSMENT_ITEM);
+        $this->setType(new AssignableDigitalResourceType(AssignableDigitalResourceType::ASSESSMENT_ITEM));
     }
 
     public function jsonSerialize() {

@@ -9,7 +9,7 @@ class CourseSection extends CourseOffering {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::COURSE_SECTION);
+        $this->setType(new EntityType(EntityType::COURSE_SECTION));
     }
 
     public function jsonSerialize() {

@@ -17,12 +17,14 @@ abstract class Annotation extends Entity implements Generatable {
 
     public function  __construct($id) {
         $this->setId($id);
-        $this->setType(EntityType::ANNOTATION);
+        $this->setType(new EntityType(EntityType::ANNOTATION));
     }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'annotated' => $this->getAnnotated(),
+            'annotated' => (!is_null($this->getAnnotated()))
+                ? $this->getAnnotated()->getId()
+                : null,
         ]);
     }
 
@@ -35,7 +37,7 @@ abstract class Annotation extends Entity implements Generatable {
      * @param DigitalResource $annotated
      * @return $this|Annotation
      */
-    public function setAnnotated($annotated) {
+    public function setAnnotated(DigitalResource $annotated) {
         $this->annotated = $annotated;
         return $this;
     }

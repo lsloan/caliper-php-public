@@ -14,6 +14,6 @@ require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 class EPubChapter extends DigitalResource implements CreativeWork {
 	public function __construct($id) {
 		parent::__construct($id);
-		$this->setType(DigitalResourceType::EPUB_CHAPTER);
+		$this->setType(new DigitalResourceType(DigitalResourceType::EPUB_CHAPTER));
 	}
 }

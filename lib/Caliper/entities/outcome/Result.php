@@ -5,7 +5,7 @@ require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 
 class Result extends Entity implements Generatable {
-    /** @var Assignable */
+    /** @var DigitalResource */
     private $assignable;
     /** @var Agent */
     private $actor;
@@ -23,18 +23,22 @@ class Result extends Entity implements Generatable {
     private $curveFactor;
     /** @var string */
     private $comment;
-    /** @var Agent */
+    /** @var \foaf\Agent */
     private $scoredBy;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::RESULT);
+        $this->setType(new EntityType(EntityType::RESULT));
     }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'assignable' => $this->getAssignable(),
-            'actor' => $this->getActor(),
+            'assignable' => (!is_null($this->getAssignable()))
+                ? $this->getAssignable()->getId()
+                : null,
+            'actor' => (!is_null($this->getActor()))
+                ? $this->getActor()->getId()
+                : null,
             'normalScore' => $this->getNormalScore(),
             'penaltyScore' => $this->getPenaltyScore(),
             'extraCreditScore' => $this->getExtraCreditScore(),
@@ -46,16 +50,16 @@ class Result extends Entity implements Generatable {
         ]);
     }
 
-    /** @return Assignable assignable */
+    /** @return DigitalResource assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param Assignable $assignable
+     * @param DigitalResource $assignable
      * @return $this|Result
      */
-    public function setAssignable($assignable) {
+    public function setAssignable(DigitalResource $assignable) {
         $this->assignable = $assignable;
         return $this;
     }
@@ -69,7 +73,7 @@ class Result extends Entity implements Generatable {
      * @param Agent $actor
      * @return $this|Result
      */
-    public function setActor($actor) {
+    public function setActor(Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
@@ -172,16 +176,16 @@ class Result extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return Agent scoredBy */
+    /** @return \foaf\Agent scoredBy */
     public function getScoredBy() {
         return $this->scoredBy;
     }
 
     /**
-     * @param Agent $scoredBy
+     * @param \foaf\Agent $scoredBy
      * @return $this|Result
      */
-    public function setScoredBy($scoredBy) {
+    public function setScoredBy(\foaf\Agent $scoredBy) {
         $this->scoredBy = $scoredBy;
         return $this;
     }

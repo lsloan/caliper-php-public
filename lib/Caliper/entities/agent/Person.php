@@ -7,7 +7,7 @@ require_once 'Caliper/entities/foaf/Agent.php';
 
 class Person extends Agent implements foaf\Agent {
     public function __construct($id) {
-        $this->setId($id);
-        $this->setType(EntityType::PERSON);
+        parent::__construct($id);
+        $this->setType(new EntityType(EntityType::PERSON));
     }
 }

@@ -10,7 +10,7 @@ class MediaLocation extends DigitalResource implements Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(MediaObjectType::MEDIA_LOCATION);
+        $this->setType(new MediaObjectType(MediaObjectType::MEDIA_LOCATION));
     }
 
     public function jsonSerialize() {

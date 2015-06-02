@@ -5,8 +5,7 @@ require_once 'Caliper/entities/assignable/AssignableDigitalResourceType.php';
 class Assessment extends AssignableDigitalResource {
     public function __construct($id) {
         parent::__construct($id);
-        $this
-            ->setId($id)
-            ->setType(AssignableDigitalResourceType::ASSESSMENT);
+        $this->setId($id)
+            ->setType(new AssignableDigitalResourceType(AssignableDigitalResourceType::ASSESSMENT));
     }
 }

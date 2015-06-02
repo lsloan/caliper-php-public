@@ -10,7 +10,7 @@ class MultipleChoiceResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::MULTIPLECHOICE);
+        $this->setType(new ResponseType(ResponseType::MULTIPLECHOICE));
     }
 
     public function jsonSerialize() {

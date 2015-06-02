@@ -8,6 +8,6 @@ require_once 'Caliper/entities/schemadotorg/SoftwareApplication.php';
 class SoftwareApplication extends Entity implements foaf\Agent, schemadotorg\SoftwareApplication {
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::SOFTWARE_APPLICATION);
+        $this->setType(new EntityType(EntityType::SOFTWARE_APPLICATION));
     }
 }

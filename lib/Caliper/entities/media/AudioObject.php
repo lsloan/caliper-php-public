@@ -16,7 +16,7 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(MediaObjectType::AUDIO_OBJECT);
+        $this->setType(new MediaObjectType(MediaObjectType::AUDIO_OBJECT));
     }
 
     public function jsonSerialize() {

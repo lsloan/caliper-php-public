@@ -7,12 +7,12 @@ class CourseOffering extends Entity implements Course {
     private $courseNumber;
     /** @var string */
     private $academicSession;
-    /** @var Organization */
+    /** @var \w3c\Organization */
     private $subOrganizationOf;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::COURSE_OFFERING);
+        $this->setType(new EntityType(EntityType::COURSE_OFFERING));
     }
 
     public function jsonSerialize() {
@@ -51,16 +51,16 @@ class CourseOffering extends Entity implements Course {
         return $this;
     }
 
-    /** @return Organization subOrganizationOf */
+    /** @return \w3c\Organization subOrganizationOf */
     public function getSubOrganizationOf() {
         return $this->subOrganizationOf;
     }
 
     /**
-     * @param Organization $subOrganizationOf
+     * @param \w3c\Organization $subOrganizationOf
      * @return $this|CourseOffering
      */
-    public function setSubOrganizationOf($subOrganizationOf) {
+    public function setSubOrganizationOf(\w3c\Organization $subOrganizationOf) {
         $this->subOrganizationOf = $subOrganizationOf;
         return $this;
     }

@@ -10,7 +10,7 @@ class MultipleResponseResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::MULTIPLERESPONSE);
+        $this->setType(new ResponseType(ResponseType::MULTIPLERESPONSE));
     }
 
     public function jsonSerialize() {

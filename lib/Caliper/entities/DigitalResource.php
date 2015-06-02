@@ -63,6 +63,10 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @return $this|DigitalResource
      */
     public function setObjectTypes($objectTypes) {
+        if (!is_array($objectTypes)) {
+            $objectTypes = [$objectTypes];
+        }
+
         $this->objectType = $objectTypes;
         return $this;
     }
@@ -95,6 +99,10 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @return $this|DigitalResource
      */
     public function setKeywords($keywords) {
+        if (!is_array($keywords)) {
+            $keywords = [$keywords];
+        }
+
         $this->keywords = $keywords;
         return $this;
     }
@@ -108,7 +116,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @param CreativeWork $isPartOf
      * @return $this|DigitalResource
      */
-    public function setIsPartOf($isPartOf) {
+    public function setIsPartOf(CreativeWork $isPartOf) {
         $this->isPartOf = $isPartOf;
         return $this;
     }
@@ -124,7 +132,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @param DateTime $datePublished
      * @return $this|DigitalResource
      */
-    public function setDatePublished($datePublished) {
+    public function setDatePublished(DateTime $datePublished) {
         $this->datePublished = $datePublished;
         return $this;
     }

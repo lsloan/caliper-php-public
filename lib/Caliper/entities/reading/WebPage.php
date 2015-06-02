@@ -7,6 +7,6 @@ class WebPage extends DigitalResource implements CreativeWork {
 
     public function  __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::WEB_PAGE);
+        $this->setType(new DigitalResourceType(DigitalResourceType::WEB_PAGE));
     }
 }

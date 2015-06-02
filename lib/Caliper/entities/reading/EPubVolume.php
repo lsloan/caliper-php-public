@@ -15,6 +15,6 @@ class EPubVolume extends DigitalResource implements CreativeWork {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::EPUB_VOLUME);
+        $this->setType(new DigitalResourceType(DigitalResourceType::EPUB_VOLUME));
     }
 }

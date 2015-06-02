@@ -8,7 +8,7 @@ class Frame extends DigitalResource implements Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::FRAME);
+        $this->setType(new DigitalResourceType(DigitalResourceType::FRAME));
     }
 
     public function jsonSerialize() {

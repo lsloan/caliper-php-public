@@ -3,12 +3,12 @@ require_once 'Annotation.php';
 require_once 'AnnotationType.php';
 
 class SharedAnnotation extends Annotation {
-    /** @var array */
+    /** @var Agent[] */
     public $withAgents = [];
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(AnnotationType::SHARED_ANNOTATION);
+        $this->setType(new AnnotationType(AnnotationType::SHARED_ANNOTATION));
     }
 
     public function jsonSerialize() {
@@ -17,16 +17,20 @@ class SharedAnnotation extends Annotation {
         ]);
     }
 
-    /** @return array withAgents */
+    /** @return Agent[] withAgents */
     public function getWithAgents() {
         return $this->withAgents;
     }
 
     /**
-     * @param array $withAgents
+     * @param Agent[] $withAgents
      * @return $this|SharedAnnotation
      */
     public function setWithAgents($withAgents) {
+        if (!is_array($withAgents)) {
+            $withAgents = [$withAgents];
+        }
+
         $this->withAgents = $withAgents;
         return $this;
     }

@@ -10,7 +10,7 @@ class SelectTextResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::SELECTTEXT);
+        $this->setType(new ResponseType(ResponseType::SELECTTEXT));
     }
 
     public function jsonSerialize() {

@@ -5,9 +5,9 @@ require_once 'util/BasicEnum.php';
 require_once 'util/TimestampUtil.php';
 
 abstract class Response extends Entity implements Generatable {
-    /** @var Assignable */
+    /** @var DigitalResource */
     private $assignable;
-    /** @var Agent */
+    /** @var \foaf\Agent */
     private $actor;
     /** @var Attempt */
     private $attempt;
@@ -15,18 +15,22 @@ abstract class Response extends Entity implements Generatable {
     private $startedAtTime;
     /** @var DateTime */
     private $endedAtTime;
-    /** @var int */
+    /** @var string */
     private $duration;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::RESPONSE);
+        $this->setType(new EntityType(EntityType::RESPONSE));
     }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'actor' => $this->getActor(),
-            'assignable' => $this->getAssignable(),
+            'actor' => (!is_null($this->getActor()))
+                ? $this->getActor()->getId()
+                : null,
+            'assignable' => (!is_null($this->getAssignable()))
+                ? $this->getAssignable()->getId()
+                : null,
             'attempt' => $this->getAttempt(),
             'duration' => $this->getDuration(),
             'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
@@ -34,30 +38,30 @@ abstract class Response extends Entity implements Generatable {
         ]);
     }
 
-    /** @return Assignable assignable */
+    /** @return DigitalResource assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param Assignable $assignable
+     * @param DigitalResource $assignable
      * @return $this|Response
      */
-    public function setAssignable($assignable) {
+    public function setAssignable(DigitalResource $assignable) {
         $this->assignable = $assignable;
         return $this;
     }
 
-    /** @return Agent actor */
+    /** @return \foaf\Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param Agent $actor
+     * @param \foaf\Agent $actor
      * @return $this|Response
      */
-    public function setActor($actor) {
+    public function setActor(\foaf\Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
@@ -71,7 +75,7 @@ abstract class Response extends Entity implements Generatable {
      * @param Attempt $attempt
      * @return $this|Response
      */
-    public function setAttempt($attempt) {
+    public function setAttempt(Attempt $attempt) {
         $this->attempt = $attempt;
         return $this;
     }
@@ -85,7 +89,7 @@ abstract class Response extends Entity implements Generatable {
      * @param DateTime $startedAtTime
      * @return $this|Response
      */
-    public function setStartedAtTime($startedAtTime) {
+    public function setStartedAtTime(DateTime $startedAtTime) {
         $this->startedAtTime = $startedAtTime;
         return $this;
     }
@@ -99,18 +103,18 @@ abstract class Response extends Entity implements Generatable {
      * @param DateTime $endedAtTime
      * @return $this|Response
      */
-    public function setEndedAtTime($endedAtTime) {
+    public function setEndedAtTime(DateTime $endedAtTime) {
         $this->endedAtTime = $endedAtTime;
         return $this;
     }
 
-    /** @return int duration */
+    /** @return string duration */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $duration
+     * @param string $duration
      * @return $this|Response
      */
     public function setDuration($duration) {

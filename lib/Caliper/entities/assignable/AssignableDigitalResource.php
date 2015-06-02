@@ -23,7 +23,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::ASSIGNABLE_DIGITAL_RESOURCE);
+        $this->setType(new DigitalResourceType(DigitalResourceType::ASSIGNABLE_DIGITAL_RESOURCE));
     }
 
     public function jsonSerialize() {
@@ -47,7 +47,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToActivate
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToActivate($dateToActivate) {
+    public function setDateToActivate(DateTime $dateToActivate) {
         $this->dateToActivate = $dateToActivate;
         return $this;
     }
@@ -61,7 +61,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToShow
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToShow($dateToShow) {
+    public function setDateToShow(DateTime $dateToShow) {
         $this->dateToShow = $dateToShow;
         return $this;
     }
@@ -75,7 +75,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToStartOn
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToStartOn($dateToStartOn) {
+    public function setDateToStartOn(DateTime $dateToStartOn) {
         $this->dateToStartOn = $dateToStartOn;
         return $this;
     }
@@ -89,7 +89,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToSubmit
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToSubmit($dateToSubmit) {
+    public function setDateToSubmit(DateTime $dateToSubmit) {
         $this->dateToSubmit = $dateToSubmit;
         return $this;
     }

@@ -10,7 +10,7 @@ class FillinBlankResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::FILLINBLANK);
+        $this->setType(new ResponseType(ResponseType::FILLINBLANK));
     }
 
     public function jsonSerialize() {

@@ -58,7 +58,7 @@ abstract class Entity implements JsonSerializable, Thing {
      * @param Type $type
      * @return $this|Entity
      */
-    public function setType($type) {
+    public function setType(Type $type) {
         $this->type = $type;
         return $this;
     }
@@ -114,7 +114,7 @@ abstract class Entity implements JsonSerializable, Thing {
      * @param DateTime $dateCreated
      * @return $this|Entity
      */
-    public function setDateCreated($dateCreated) {
+    public function setDateCreated(DateTime $dateCreated) {
         $this->dateCreated = $dateCreated;
         return $this;
     }
@@ -128,7 +128,7 @@ abstract class Entity implements JsonSerializable, Thing {
      * @param DateTime $dateModified
      * @return $this|Entity
      */
-    public function setDateModified($dateModified) {
+    public function setDateModified(DateTime $dateModified) {
         $this->dateModified = $dateModified;
         return $this;
     }
