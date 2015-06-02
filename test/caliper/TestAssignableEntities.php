@@ -7,7 +7,7 @@ class TestAssignableEntities {
         /** @return Attempt */
         return (new Attempt('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/attempt1'))
             ->setDateCreated(TestTimes::createdTime())
-            ->setActor(TestAgentEntities::makePerson()->getId())
+            ->setActor(TestAgentEntities::makePerson())
             ->setCount(1)
             ->setStartedAtTime(TestTimes::startedTime());
     }
@@ -16,8 +16,8 @@ class TestAssignableEntities {
         /** @return Attempt */
         return (new Attempt('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/item1/attempt1'))
             ->setDateCreated(TestTimes::createdTime())
-            ->setActor(TestAgentEntities::makePerson()->getId())
-            ->setAssignable(TestAssessmentEntities::makeAssessment()->getId())
+            ->setActor(TestAgentEntities::makePerson())
+            ->setAssignable(TestAssessmentEntities::makeAssessment())
             ->setCount(1)
             ->setStartedAtTime(TestTimes::startedTime());
     }
@@ -26,8 +26,8 @@ class TestAssignableEntities {
         /** @return Result */
         return (new Result('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/attempt1/result'))
             ->setDateCreated(TestTimes::createdTime())
-            ->setAssignable(TestAssessmentEntities::makeAssessment()->getId())
-            ->setActor(TestAgentEntities::makePerson()->getId())
+            ->setAssignable(TestAssessmentEntities::makeAssessment())
+            ->setActor(TestAgentEntities::makePerson())
             ->setNormalScore(3)
             ->setPenaltyScore(0)
             ->setExtraCreditScore(0)
