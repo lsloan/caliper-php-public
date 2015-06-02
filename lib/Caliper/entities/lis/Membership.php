@@ -65,7 +65,7 @@ class Membership extends Entity implements w3c\Membership {
     }
 
     /**
-     * @param \w3c\Role[] $roles
+     * @param \w3c\Role|\w3c\Role[] $roles
      * @return $this|Membership
      */
     public function setRoles($roles) {

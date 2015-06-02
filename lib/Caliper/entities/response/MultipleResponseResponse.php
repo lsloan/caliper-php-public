@@ -25,7 +25,7 @@ class MultipleResponseResponse extends Response {
     }
 
     /**
-     * @param string[] $values
+     * @param string|string[] $values
      * @return $this|MultipleResponseResponse
      */
     public function setValues($values) {

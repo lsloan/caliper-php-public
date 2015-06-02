@@ -25,7 +25,7 @@ class SelectTextResponse extends Response {
     }
 
     /**
-     * @param string[] $values
+     * @param string|string[] $values
      * @return $this|SelectTextResponse
      */
     public function setValues($values) {

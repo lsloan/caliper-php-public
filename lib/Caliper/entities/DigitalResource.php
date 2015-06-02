@@ -59,7 +59,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param string[] $objectTypes
+     * @param string|string[] $objectTypes
      * @return $this|DigitalResource
      */
     public function setObjectTypes($objectTypes) {
@@ -83,7 +83,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param LearningObjective[] $alignedLearningObjectives
+     * @param LearningObjective|LearningObjective[] $alignedLearningObjectives
      * @return $this|DigitalResource
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
@@ -107,7 +107,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param string[] $keywords
+     * @param string|string[] $keywords
      * @return $this|DigitalResource
      */
     public function setKeywords($keywords) {

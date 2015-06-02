@@ -23,7 +23,7 @@ class TagAnnotation extends Annotation {
     }
 
     /**
-     * @param string[] $tags
+     * @param string|string[] $tags
      * @return $this|TagAnnotation
      */
     public function setTags($tags) {

@@ -109,7 +109,7 @@ abstract class Entity implements JsonSerializable, Thing {
     }
 
     /**
-     * @param string[] $extensions
+     * @param string|string[] $extensions
      * @return $this|Entity
      */
     public function setExtensions($extensions) {

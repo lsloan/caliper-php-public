@@ -23,7 +23,7 @@ class SharedAnnotation extends Annotation {
     }
 
     /**
-     * @param \foaf\Agent[] $withAgents
+     * @param \foaf\Agent|\foaf\Agent[] $withAgents
      * @return $this|SharedAnnotation
      */
     public function setWithAgents($withAgents) {
