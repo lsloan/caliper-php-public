@@ -28,12 +28,12 @@ class TestAssignableEntities {
             ->setDateCreated(TestTimes::createdTime())
             ->setAssignable(TestAssessmentEntities::makeAssessment())
             ->setActor(TestAgentEntities::makePerson())
-            ->setNormalScore(3)
-            ->setPenaltyScore(0)
-            ->setExtraCreditScore(0)
-            ->setTotalScore(3)
-            ->setCurvedTotalScore(3)
-            ->setCurveFactor(0)
+            ->setNormalScore(3.0)
+            ->setPenaltyScore(0.0)
+            ->setExtraCreditScore(0.0)
+            ->setTotalScore(3.0)
+            ->setCurvedTotalScore(3.0)
+            ->setCurveFactor(0.0)
             ->setComment('Well done.')
             ->setScoredBy(TestAgentEntities::makeAssessmentApplication());
     }

@@ -9,8 +9,9 @@ class TestTimes {
         return new DateTime('2015-09-02T11:30:00.000Z');
     }
 
+    /** @return string */
     public static function durationSeconds() {
-        return TestTimes::endedTime()->getTimestamp() - TestTimes::startedTime()->getTimestamp();
+        return strval(TestTimes::endedTime()->getTimestamp() - TestTimes::startedTime()->getTimestamp());
     }
 
     public static function endedTime() {
