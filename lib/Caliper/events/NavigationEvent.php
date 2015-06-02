@@ -11,8 +11,8 @@ class NavigationEvent extends Event {
 
     public function __construct() {
         parent::__construct();
-        $this->setType(EventType::NAVIGATION)
-            ->setAction(Action::NAVIGATED_TO);
+        $this->setType(new EventType(EventType::NAVIGATION))
+            ->setAction(new Action(Action::NAVIGATED_TO));
     }
 
     public function jsonSerialize() {
@@ -30,7 +30,7 @@ class NavigationEvent extends Event {
      * @param DigitalResource $navigatedFrom
      * @return $this|NavigationEvent
      */
-    public function setNavigatedFrom($navigatedFrom) {
+    public function setNavigatedFrom(DigitalResource $navigatedFrom) {
         $this->navigatedFrom = $navigatedFrom;
         return $this;
     }
@@ -48,7 +48,7 @@ class NavigationEvent extends Event {
      * @param DigitalResource $fromResource
      * @return $this|NavigationEvent
      */
-    public function setFromResource($fromResource) {
+    public function setFromResource(DigitalResource $fromResource) {
         return $this->setNavigatedFrom($fromResource);
     }
 }

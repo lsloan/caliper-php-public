@@ -7,7 +7,7 @@ require_once 'Caliper/actions/Action.php';
 class OutcomeEvent extends Event {
     public function __construct() {
         parent::__construct();
-        $this->setType(EventType::OUTCOME)
-            ->setAction(Action::GRADED);
+        $this->setType(new EventType(EventType::OUTCOME))
+            ->setAction(new Action(Action::GRADED));
     }
 }

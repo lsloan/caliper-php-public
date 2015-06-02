@@ -7,7 +7,7 @@ abstract class Event implements JsonSerializable {
     private $context;
     /** @var EventType */
     private $type;
-    /** @var Agent */
+    /** @var \foaf\Agent */
     private $actor;
     /** @var Action */
     private $action;
@@ -33,7 +33,7 @@ abstract class Event implements JsonSerializable {
     private $federatedSession;
 
     public function __construct() {
-        $this->setContext(Context::CONTEXT);
+        $this->setContext(new Context(Context::CONTEXT));
     }
 
     public function jsonSerialize() {
@@ -51,7 +51,9 @@ abstract class Event implements JsonSerializable {
             'edApp' => $this->getEdApp(),
             'group' => $this->getGroup(),
             'membership' => $this->getMembership(),
-            'federatedSession' => $this->getFederatedSession(),
+            'federatedSession' => (!is_null($this->getFederatedSession()))
+                ? $this->getFederatedSession()->getId()
+                : null,
         ];
     }
 
@@ -64,7 +66,7 @@ abstract class Event implements JsonSerializable {
      * @param Context $context
      * @return $this|Event
      */
-    public function setContext($context) {
+    public function setContext(Context $context) {
         $this->context = $context;
         return $this;
     }
@@ -78,21 +80,21 @@ abstract class Event implements JsonSerializable {
      * @param EventType $type
      * @return $this|Event
      */
-    public function setType($type) {
+    public function setType(EventType $type) {
         $this->type = $type;
         return $this;
     }
 
-    /** @return Agent actor */
+    /** @return \foaf\Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param Agent $actor
+     * @param \foaf\Agent $actor
      * @return $this|Event
      */
-    public function setActor($actor) {
+    public function setActor(\foaf\Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
@@ -106,7 +108,7 @@ abstract class Event implements JsonSerializable {
      * @param Action $action
      * @return $this|Event
      */
-    public function setAction($action) {
+    public function setAction(Action $action) {
         $this->action = $action;
         return $this;
     }
@@ -134,7 +136,7 @@ abstract class Event implements JsonSerializable {
      * @param Targetable $target
      * @return $this|Event
      */
-    public function setTarget($target) {
+    public function setTarget(Targetable $target) {
         $this->target = $target;
         return $this;
     }
@@ -148,7 +150,7 @@ abstract class Event implements JsonSerializable {
      * @param Generatable $generated
      * @return $this|Event
      */
-    public function setGenerated($generated) {
+    public function setGenerated(Generatable $generated) {
         $this->generated = $generated;
         return $this;
     }
@@ -162,7 +164,7 @@ abstract class Event implements JsonSerializable {
      * @param DateTime $startedAtTime
      * @return $this|Event
      */
-    public function setStartedAtTime($startedAtTime) {
+    public function setStartedAtTime(DateTime $startedAtTime) {
         $this->startedAtTime = $startedAtTime;
         return $this;
     }
@@ -176,7 +178,7 @@ abstract class Event implements JsonSerializable {
      * @param DateTime $endedAtTime
      * @return $this|Event
      */
-    public function setEndedAtTime($endedAtTime) {
+    public function setEndedAtTime(DateTime $endedAtTime) {
         $this->endedAtTime = $endedAtTime;
         return $this;
     }
@@ -190,13 +192,13 @@ abstract class Event implements JsonSerializable {
         return 'PT' . $this->getDuration() . 'S';
     }
 
-    /** @return int duration (seconds) */
+    /** @return string duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $duration
+     * @param string $duration
      * @return $this|Event
      */
     public function setDuration($duration) {
@@ -213,7 +215,7 @@ abstract class Event implements JsonSerializable {
      * @param SoftwareApplication $edApp
      * @return $this|Event
      */
-    public function setEdApp($edApp) {
+    public function setEdApp(SoftwareApplication $edApp) {
         $this->edApp = $edApp;
         return $this;
     }
@@ -227,7 +229,7 @@ abstract class Event implements JsonSerializable {
      * @param Organization $group
      * @return $this|Event
      */
-    public function setGroup($group) {
+    public function setGroup(\w3c\Organization $group) {
         $this->group = $group;
         return $this;
     }
@@ -241,7 +243,7 @@ abstract class Event implements JsonSerializable {
      * @param Membership|object $membership
      * @return $this|Event
      */
-    public function setMembership($membership) {
+    public function setMembership(Membership $membership) {
         $this->membership = $membership;
         return $this;
     }
@@ -255,7 +257,7 @@ abstract class Event implements JsonSerializable {
      * @param Session $federatedSession
      * @return $this|Event
      */
-    public function setFederatedSession($federatedSession) {
+    public function setFederatedSession(Session $federatedSession) {
         $this->federatedSession = $federatedSession;
         return $this;
     }

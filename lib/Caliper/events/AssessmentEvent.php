@@ -6,6 +6,6 @@ require_once 'Caliper/events/EventType.php';
 class AssessmentEvent extends Event {
     public function __construct() {
         parent::__construct();
-        $this->setType(EventType::ASSESSMENT);
+        $this->setType(new EventType(EventType::ASSESSMENT));
     }
 }
