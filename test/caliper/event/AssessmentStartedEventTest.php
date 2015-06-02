@@ -14,10 +14,10 @@ class AssessmentStartedEventTest extends CaliperTestCase {
 
         $this->setTestObject((new AssessmentEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::STARTED)
+            ->setAction(new Action(Action::STARTED))
             ->setObject(TestAssessmentEntities::makeAssessment())
             ->setGenerated(TestAssignableEntities::makeAssessmentAttempt()
-                ->setAssignable(TestAssessmentEntities::makeAssessment()->getId()))
+                ->setAssignable(TestAssessmentEntities::makeAssessment()))
             ->setStartedAtTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())
             ->setGroup(TestLisEntities::makeGroup())

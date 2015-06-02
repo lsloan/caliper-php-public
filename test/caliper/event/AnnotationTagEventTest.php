@@ -14,7 +14,7 @@ class AnnotationTagEventTest extends CaliperTestCase {
 
         $this->setTestObject((new AnnotationEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::TAGGED)
+            ->setAction(new Action(Action::TAGGED))
             ->setObject(TestReadingEntities::makeFrame4())
             ->setGenerated(TestAnnotationEntities::makeTagAnnotation())
             ->setStartedAtTime(TestTimes::startedTime())

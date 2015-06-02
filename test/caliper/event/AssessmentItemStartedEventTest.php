@@ -14,7 +14,7 @@ class AssessmentItemStartedEventTest extends CaliperTestCase {
 
         $this->setTestObject((new AssessmentItemEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::STARTED)
+            ->setAction(new Action(Action::STARTED))
             ->setObject(TestAssessmentEntities::makeAssessmentItem())
             ->setGenerated(TestAssignableEntities::makeItemAttempt())
             ->setStartedAtTime(TestTimes::startedTime())

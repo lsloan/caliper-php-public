@@ -15,7 +15,7 @@ class SessionLoginEventTest extends CaliperTestCase {
         $this->setTestObject((new SessionEvent())
             ->setActor(TestAgentEntities::makePerson())
             ->setMembership(TestLisEntities::makeMembership())
-            ->setAction(Action::LOGGED_IN)
+            ->setAction(new Action(Action::LOGGED_IN))
             ->setObject(TestAgentEntities::makeReadingApplication())
             ->setTarget(TestReadingEntities::makeFrame1())
             ->setGenerated(TestSessionEntities::makeSession())

@@ -14,7 +14,7 @@ class SessionTimeoutEventTest extends CaliperTestCase {
 
         $this->setTestObject((new SessionEvent())
             ->setActor(TestAgentEntities::makeReadingApplication())
-            ->setAction(Action::TIMED_OUT)
+            ->setAction(new Action(Action::TIMED_OUT))
             ->setObject(TestSessionEntities::makeSession()
                 ->setEndedAtTime(TestTimes::endedTime())
                 ->setDuration(TestTimes::durationSeconds()))

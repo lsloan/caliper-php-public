@@ -15,7 +15,7 @@ class SessionLogoutEventTest extends CaliperTestCase{
         $this->setTestObject((new SessionEvent())
             ->setActor(TestAgentEntities::makePerson())
             ->setMembership(TestLisEntities::makeMembership())
-            ->setAction(Action::LOGGED_OUT)
+            ->setAction(new Action(Action::LOGGED_OUT))
             ->setObject(TestAgentEntities::makeReadingApplication())
             ->setTarget(TestSessionEntities::makeSession()
                 ->setEndedAtTime(TestTimes::endedTime())

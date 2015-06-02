@@ -14,7 +14,7 @@ class AssessmentItemCompletedEventTest extends CaliperTestCase {
 
         $this->setTestObject((new AssessmentItemEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::COMPLETED)
+            ->setAction(new Action(Action::COMPLETED))
             ->setObject(TestAssessmentEntities::makeAssessmentItem())
             ->setGenerated(TestResponseEntities::makeFillinBlankResponse()
                 ->setAttempt(TestAssignableEntities::makeItemAttempt())

@@ -14,7 +14,7 @@ class AnnotationBookmarkedEventTest extends CaliperTestCase {
 
         $this->setTestObject((new AnnotationEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::BOOKMARKED)
+            ->setAction(new Action(Action::BOOKMARKED))
             ->setObject(TestReadingEntities::makeFrame2())
             ->setGenerated(TestAnnotationEntities::makeBookmarkAnnotation())
             ->setStartedAtTime(TestTimes::startedTime())

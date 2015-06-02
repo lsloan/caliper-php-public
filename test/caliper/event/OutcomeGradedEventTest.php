@@ -14,9 +14,9 @@ class OutcomeGradedEventTest extends CaliperTestCase {
 
         $this->setTestObject((new OutcomeEvent())
             ->setActor(TestAgentEntities::makePerson())
-            ->setAction(Action::GRADED)
+            ->setAction(new Action(Action::GRADED))
             ->setObject(TestAssignableEntities::makeAssessmentAttempt()
-                ->setAssignable(TestAssessmentEntities::makeAssessment()->getId()))
+                ->setAssignable(TestAssessmentEntities::makeAssessment()))
             ->setGenerated(TestAssignableEntities::makeResult())
             ->setStartedAtTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())

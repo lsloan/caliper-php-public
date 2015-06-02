@@ -15,7 +15,7 @@ class MediaPausedEventTest extends CaliperTestCase {
         $this->setTestObject((new MediaEvent())
             ->setActor(TestAgentEntities::makePerson())
             ->setMembership(TestLisEntities::makeMembership())
-            ->setAction(Action::PAUSED)
+            ->setAction(new Action(Action::PAUSED))
             ->setObject(TestMediaEntities::makeVideoObject())
             ->setTarget(TestMediaEntities::makeMediaLocation())
             ->setEdApp(TestAgentEntities::makeMediaApplication())
