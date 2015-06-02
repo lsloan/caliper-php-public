@@ -7,6 +7,9 @@ class TestResponseEntities {
         return (new FillinBlankResponse('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/item1/response1'))
             ->setDateCreated(TestTimes::createdTime())
             ->setAssignable(TestAssessmentEntities::makeAssessment())
-            ->setActor(TestAgentEntities::makePerson());
+            ->setActor(TestAgentEntities::makePerson())
+            ->setAttempt(TestAssignableEntities::makeItemAttempt())
+            ->setStartedAtTime(TestTimes::startedTime())
+            ->setValues('2 July 1776');
     }
 }
