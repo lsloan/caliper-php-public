@@ -16,7 +16,7 @@ abstract class Annotation extends Entity implements Generatable {
     private $annotated;
 
     public function  __construct($id) {
-        $this->setId($id);
+        parent::__construct($id);
         $this->setType(new EntityType(EntityType::ANNOTATION));
     }
 

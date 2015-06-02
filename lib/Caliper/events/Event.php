@@ -123,6 +123,10 @@ abstract class Event implements JsonSerializable {
      * @return $this|Event
      */
     public function setObject($object) {
+        if (!is_object($object)) {
+            throw new InvalidArgumentException(__METHOD__ . ': object expected');
+        }
+
         $this->object = $object;
         return $this;
     }
@@ -202,6 +206,10 @@ abstract class Event implements JsonSerializable {
      * @return $this|Event
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

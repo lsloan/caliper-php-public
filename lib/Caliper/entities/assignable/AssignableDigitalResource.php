@@ -18,7 +18,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
     private $maxAttempts;
     /** @var  int */
     private $maxSubmits;
-    /** @var  float */
+    /** @var  double */
     private $maxScore;
 
     public function __construct($id) {
@@ -104,6 +104,10 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @return $this|AssignableDigitalResource
      */
     public function setMaxAttempts($maxAttempts) {
+        if (!is_int($maxAttempts)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->maxAttempts = $maxAttempts;
         return $this;
     }
@@ -118,20 +122,28 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @return $this|AssignableDigitalResource
      */
     public function setMaxSubmits($maxSubmits) {
+        if (!is_int($maxSubmits)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->maxSubmits = $maxSubmits;
         return $this;
     }
 
-    /** @return float maxScore */
+    /** @return double maxScore */
     public function getMaxScore() {
         return $this->maxScore;
     }
 
     /**
-     * @param float $maxScore
+     * @param double $maxScore
      * @return $this|AssignableDigitalResource
      */
     public function setMaxScore($maxScore) {
+        if (!is_double($maxScore)) {
+            throw new InvalidArgumentException(__METHOD__ . ': double expected');
+        }
+
         $this->maxScore = $maxScore;
         return $this;
     }

@@ -7,7 +7,7 @@ class Group extends Entity implements w3c\Organization {
     private $subOrganizationOf;
 
     public function __construct($id) {
-        $this->setId($id);
+        parent::__construct($id);
         $this->setType(new EntityType(EntityType::GROUP));
     }
 

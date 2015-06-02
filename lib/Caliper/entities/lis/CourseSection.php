@@ -28,6 +28,10 @@ class CourseSection extends CourseOffering {
      * @return $this|CourseSection
      */
     public function setCategory($category) {
+        if (!is_string($category)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->category = $category;
         return $this;
     }

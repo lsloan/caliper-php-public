@@ -3,7 +3,7 @@ require_once 'Annotation.php';
 require_once 'AnnotationType.php';
 
 class SharedAnnotation extends Annotation {
-    /** @var Agent[] */
+    /** @var \foaf\Agent[] */
     public $withAgents = [];
 
     public function __construct($id) {
@@ -17,18 +17,24 @@ class SharedAnnotation extends Annotation {
         ]);
     }
 
-    /** @return Agent[] withAgents */
+    /** @return \foaf\Agent[] withAgents */
     public function getWithAgents() {
         return $this->withAgents;
     }
 
     /**
-     * @param Agent[] $withAgents
+     * @param \foaf\Agent[] $withAgents
      * @return $this|SharedAnnotation
      */
     public function setWithAgents($withAgents) {
         if (!is_array($withAgents)) {
             $withAgents = [$withAgents];
+        }
+
+        foreach ($withAgents as $aWithAgents) {
+            if (!is_a($aWithAgents, \foaf\Agent::class)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . \foaf\Agent::class . ' expected');
+            }
         }
 
         $this->withAgents = $withAgents;

@@ -31,6 +31,12 @@ class TagAnnotation extends Annotation {
             $tags = [$tags];
         }
 
+        foreach ($tags as $aTags) {
+            if (!is_string($aTags)) {
+                throw new InvalidArgumentException(__METHOD__ . ': string expected');
+            }
+        }
+
         $this->tags = $tags;
         return $this;
     }

@@ -118,6 +118,10 @@ abstract class Response extends Entity implements Generatable {
      * @return $this|Response
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

@@ -27,6 +27,10 @@ class Frame extends DigitalResource implements Targetable {
      * @return $this|Frame
      */
     public function setIndex($index) {
+        if (!is_int($index)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->index = $index;
         return $this;
     }

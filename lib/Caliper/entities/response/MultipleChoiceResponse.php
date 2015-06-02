@@ -29,6 +29,10 @@ class MultipleChoiceResponse extends Response {
      * @return $this|MultipleChoiceResponse
      */
     public function setValue($value) {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->value = $value;
         return $this;
     }

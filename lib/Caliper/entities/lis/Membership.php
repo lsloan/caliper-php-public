@@ -73,6 +73,12 @@ class Membership extends Entity implements w3c\Membership {
             $roles = [$roles];
         }
 
+        foreach ($roles as $aRoles) {
+            if (!is_a($aRoles, \w3c\Role::class)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . \w3c\Role::class . ' expected');
+            }
+        }
+
         $this->roles = $roles;
         return $this;
     }

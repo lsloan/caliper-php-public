@@ -13,7 +13,7 @@ class Session extends Entity implements Generatable, Targetable {
     private $startedAtTime;
     /** @var DateTime */
     private $endedAtTime;
-    /** @var int (seconds) */
+    /** @var string (seconds) */
     private $duration;
 
     public function __construct($id) {
@@ -81,16 +81,20 @@ class Session extends Entity implements Generatable, Targetable {
         return 'PT' . $this->getDuration() . 'S';
     }
 
-    /** @return int duration (seconds) */
+    /** @return string duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $duration (seconds)
+     * @param string $duration (seconds)
      * @return $this|Session
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

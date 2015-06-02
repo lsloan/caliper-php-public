@@ -27,7 +27,7 @@ require_once 'util/TimestampUtil.php';
 class DigitalResource extends Entity implements CreativeWork, Targetable {
     /** @var string[] */
     private $objectTypes = [];
-    /** @var LearningObjective[]  */
+    /** @var LearningObjective[] */
     private $alignedLearningObjectives = [];
     /** @var string[] */
     private $keywords = [];
@@ -67,6 +67,12 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
             $objectTypes = [$objectTypes];
         }
 
+        foreach ($objectTypes as $anObjectType) {
+            if (!is_string($anObjectType)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
+        }
+
         $this->objectType = $objectTypes;
         return $this;
     }
@@ -85,6 +91,12 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
             $alignedLearningObjectives = [$alignedLearningObjectives];
         }
 
+        foreach ($alignedLearningObjectives as $anAlignedLearningObjective) {
+            if (!is_a($anAlignedLearningObjective, LearningObjective::class)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . LearningObjective::class . ' expected');
+            }
+        }
+
         $this->alignedLearningObjectives = $alignedLearningObjectives;
         return $this;
     }
@@ -101,6 +113,12 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     public function setKeywords($keywords) {
         if (!is_array($keywords)) {
             $keywords = [$keywords];
+        }
+
+        foreach ($keywords as $aKeyword) {
+            if (!is_string($aKeyword)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
         }
 
         $this->keywords = $keywords;
@@ -147,6 +165,10 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @return $this|DigitalResource
      */
     public function setVersion($version) {
+        if (!is_string($version)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->version = $version;
         return $this;
     }

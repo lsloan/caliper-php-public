@@ -33,6 +33,10 @@ class CourseOffering extends Entity implements Course {
      * @return $this|CourseOffering
      */
     public function setCourseNumber($courseNumber) {
+        if (!is_string($courseNumber)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->courseNumber = $courseNumber;
         return $this;
     }
@@ -47,6 +51,10 @@ class CourseOffering extends Entity implements Course {
      * @return $this|CourseOffering
      */
     public function setAcademicSession($academicSession) {
+        if (!is_string($academicSession)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->academicSession = $academicSession;
         return $this;
     }

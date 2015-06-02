@@ -29,6 +29,10 @@ class TrueFalseResponse extends Response {
      * @return $this|TrueFalseResponse
      */
     public function setValue($value) {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->value = $value;
         return $this;
     }

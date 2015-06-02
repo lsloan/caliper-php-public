@@ -19,7 +19,7 @@ class Attempt extends Entity implements Generatable {
     private $duration;
 
     public function  __construct($id) {
-        $this->setId($id);
+        parent::__construct($id);
         $this->setType(new EntityType(EntityType::ATTEMPT));
     }
 
@@ -76,6 +76,10 @@ class Attempt extends Entity implements Generatable {
      * @return $this|Attempt
      */
     public function setCount($count) {
+        if (!is_int($count)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->count = $count;
         return $this;
     }
@@ -127,6 +131,10 @@ class Attempt extends Entity implements Generatable {
      * @return $this|Attempt
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

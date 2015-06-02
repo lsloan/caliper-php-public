@@ -51,6 +51,10 @@ class HighlightAnnotation extends Annotation {
      * @return $this|HighlightAnnotation
      */
     public function setSelectionText($selectionText) {
+        if (!is_string($selectionText)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->selectionText = $selectionText;
         return $this;
     }

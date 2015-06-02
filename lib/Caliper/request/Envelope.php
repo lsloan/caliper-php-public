@@ -13,10 +13,8 @@ class Envelope implements JsonSerializable {
     private $data;
 
     public function __construct($sensor = null, $data = null) {
-        $this->setContext(Context::CONTEXT)
-            ->setSensor($sensor)
-            ->setSendTime(new DateTime())
-            ->setData($data);
+        $this->setContext(new Context(Context::CONTEXT))
+            ->setSendTime(new DateTime());
     }
 
     public function jsonSerialize() {
@@ -37,7 +35,7 @@ class Envelope implements JsonSerializable {
      * @param Context $context
      * @return $this|Envelope
      */
-    public function setContext($context) {
+    public function setContext(Context $context) {
         $this->context = $context;
         return $this;
     }
@@ -52,6 +50,10 @@ class Envelope implements JsonSerializable {
      * @return $this|Envelope
      */
     public function setSensor($sensor) {
+        if (!is_string($sensor)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->sensor = $sensor;
         return $this;
     }
@@ -65,7 +67,7 @@ class Envelope implements JsonSerializable {
      * @param DateTime $sendTime
      * @return $this|Envelope
      */
-    public function setSendTime($sendTime) {
+    public function setSendTime(DateTime $sendTime) {
         $this->sendTime = $sendTime;
         return $this;
     }
@@ -76,12 +78,18 @@ class Envelope implements JsonSerializable {
     }
 
     /**
-     * @param object[]|object $data
+     * @param object|object[] $data
      * @return $this|Envelope
      */
     public function setData($data) {
         if (!is_array($data)) {
             $data = [$data];
+        }
+
+        foreach ($data as $aData) {
+            if (!is_object($aData)) {
+                throw new InvalidArgumentException(__METHOD__ . ': object expected');
+            }
         }
 
         $this->data = $data;

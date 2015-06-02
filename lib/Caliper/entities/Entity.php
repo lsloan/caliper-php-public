@@ -45,6 +45,10 @@ abstract class Entity implements JsonSerializable, Thing {
      * @return $this|Entity
      */
     public function setId($id) {
+        if (!is_string($id)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->id = $id;
         return $this;
     }
@@ -73,6 +77,10 @@ abstract class Entity implements JsonSerializable, Thing {
      * @return $this|Entity
      */
     public function setName($name) {
+        if (!is_string($name)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->name = $name;
         return $this;
     }
@@ -87,6 +95,10 @@ abstract class Entity implements JsonSerializable, Thing {
      * @return $this|Entity
      */
     public function setDescription($description) {
+        if (!is_string($description)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->description = $description;
         return $this;
     }
@@ -101,6 +113,16 @@ abstract class Entity implements JsonSerializable, Thing {
      * @return $this|Entity
      */
     public function setExtensions($extensions) {
+        if (!is_array($extensions)) {
+            $extensions = [$extensions];
+        }
+
+        foreach ($extensions as $anExtension) {
+            if (!is_string($anExtension)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of strings expected');
+            }
+        }
+
         $this->extensions = $extensions;
         return $this;
     }

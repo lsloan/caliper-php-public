@@ -33,6 +33,12 @@ class MultipleResponseResponse extends Response {
             $values = [$values];
         }
 
+        foreach ($values as $aValue) {
+            if (!is_string($aValue)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
+        }
+
         $this->values = $values;
         return $this;
     }

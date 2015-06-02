@@ -5,7 +5,7 @@ require_once 'Caliper/entities/response/ResponseType.php';
 require_once 'util/BasicEnum.php';
 
 class FillinBlankResponse extends Response {
-    /** @var array */
+    /** @var string[] */
     private $values;
 
     public function __construct($id) {
@@ -19,18 +19,24 @@ class FillinBlankResponse extends Response {
         ]);
     }
 
-    /** @return array values */
+    /** @return string[] values */
     public function getValues() {
         return $this->values;
     }
 
     /**
-     * @param array $values
+     * @param string|string[] $values
      * @return $this|FillinBlankResponse
      */
     public function setValues($values) {
         if (!is_array($values)) {
             $values = [$values];
+        }
+
+        foreach ($values as $aValue) {
+            if (!is_string($aValue)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
         }
 
         $this->values = $values;
