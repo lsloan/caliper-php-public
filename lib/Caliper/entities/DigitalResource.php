@@ -92,7 +92,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
         }
 
         foreach ($alignedLearningObjectives as $anAlignedLearningObjective) {
-            if (!is_a($anAlignedLearningObjective, LearningObjective::class)) {
+            if (!($anAlignedLearningObjective instanceof LearningObjective)) {
                 throw new InvalidArgumentException(__METHOD__ . ': array of ' . LearningObjective::class . ' expected');
             }
         }
