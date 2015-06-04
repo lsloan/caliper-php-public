@@ -62,7 +62,7 @@ class SessionEventSampleApp {
             ->setStartedAtTime($sessionStartTime);
 
         $sessionEvent = new SessionEvent();
-        $sessionEvent->setAction(Action::LOGGED_IN)
+        $sessionEvent->setAction(new Action(Action::LOGGED_IN))
             ->setActor($person)
             ->setObject($eventObj)
             ->setTarget($targetObj)
