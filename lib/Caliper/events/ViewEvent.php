@@ -10,7 +10,7 @@ class ViewEvent extends Event {
 
 	public function __construct(){
 		parent::__construct();
-        $this->setType(EventType::VIEW)
-            ->setAction(Action::VIEWED);
+        $this->setType(new EventType(EventType::VIEW))
+            ->setAction(new Action(Action::VIEWED));
 	}
 }

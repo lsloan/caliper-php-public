@@ -8,7 +8,7 @@ class BookmarkAnnotation extends Annotation {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(AnnotationType::BOOKMARK_ANNOTATION);
+        $this->setType(new AnnotationType(AnnotationType::BOOKMARK_ANNOTATION));
     }
 
     public function jsonSerialize() {

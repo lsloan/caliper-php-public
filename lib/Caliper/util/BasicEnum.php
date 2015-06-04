@@ -1,10 +1,14 @@
 <?php
-abstract class BasicEnum {
+abstract class BasicEnum implements JsonSerializable {
     private static $constCacheArray = NULL;
     private $value;
 
     public function __construct($value = null) {
         $this->value = $value;
+    }
+
+    function jsonSerialize() {
+        return $this->getValue();
     }
 
     public function getValue() {

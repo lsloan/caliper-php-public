@@ -14,7 +14,7 @@ class TestAssessmentEntities {
             ->setDateToStartOn(TestTimes::startOnTime())
             ->setDateToSubmit(TestTimes::submitTime())
             ->setMaxAttempts(2)
-            ->setMaxScore(3)
+            ->setMaxScore(3.0)
             ->setMaxSubmits(2)
             ->setName('American Revolution - Key Figures Assessment')
             ->setVersion('1.0');
@@ -28,7 +28,7 @@ class TestAssessmentEntities {
             ->setVersion('1.0')
             ->setMaxAttempts(2)
             ->setMaxSubmits(2)
-            ->setMaxScore(1)
+            ->setMaxScore(1.0)
             ->setIsTimeDependent(false);
     }
 }

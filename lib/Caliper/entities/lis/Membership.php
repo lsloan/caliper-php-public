@@ -6,7 +6,7 @@ require_once 'Caliper/entities/lis/Status.php';
 class Membership extends Entity implements w3c\Membership {
     /** @var Person */
     private $member;
-    /** @var Organization */
+    /** @var \w3c\Organization */
     private $organization;
     /** @var \w3c\Role[] */
     private $roles = [];
@@ -14,14 +14,18 @@ class Membership extends Entity implements w3c\Membership {
     private $status;
 
     public function __construct($id) {
-        $this->setId($id);
-        $this->setType(EntityType::MEMBERSHIP);
+        parent::__construct($id);
+        $this->setType(new EntityType(EntityType::MEMBERSHIP));
     }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'member' => $this->getMember(),
-            'organization' => $this->getOrganization(),
+            'member' => (!is_null($this->getMember()))
+                ? $this->getMember()->getId()
+                : null,
+            'organization' => (!is_null($this->getOrganization()))
+                ? $this->getOrganization()->getId()
+                : null,
             'roles' => $this->getRoles(),
             'status' => $this->getStatus(),
         ]);
@@ -36,21 +40,21 @@ class Membership extends Entity implements w3c\Membership {
      * @param Person $member
      * @return $this|Membership
      */
-    public function setMember($member) {
+    public function setMember(Person $member) {
         $this->member = $member;
         return $this;
     }
 
-    /** @return Organization organization */
+    /** @return \w3c\Organization  organization */
     public function getOrganization() {
         return $this->organization;
     }
 
     /**
-     * @param Organization $organization
+     * @param \w3c\Organization $organization
      * @return $this|Membership
      */
-    public function setOrganization($organization) {
+    public function setOrganization(\w3c\Organization $organization) {
         $this->organization = $organization;
         return $this;
     }
@@ -61,12 +65,18 @@ class Membership extends Entity implements w3c\Membership {
     }
 
     /**
-     * @param \w3c\Role[] $roles
+     * @param \w3c\Role|\w3c\Role[] $roles
      * @return $this|Membership
      */
     public function setRoles($roles) {
         if (!is_array($roles)) {
             $roles = [$roles];
+        }
+
+        foreach ($roles as $aRoles) {
+            if (!($aRoles instanceof \w3c\Role)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . \w3c\Role::class . ' expected');
+            }
         }
 
         $this->roles = $roles;
@@ -82,7 +92,7 @@ class Membership extends Entity implements w3c\Membership {
      * @param \w3c\Status $status
      * @return $this|Membership
      */
-    public function setStatus($status) {
+    public function setStatus(\w3c\Status $status) {
         $this->status = $status;
         return $this;
     }

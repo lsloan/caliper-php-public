@@ -2,10 +2,10 @@
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class Attempt extends Entity implements Generatable {
-    /** @var Assignable */
+    /** @var DigitalResource */
     private $assignable;
     /** @var Agent */
     private $actor;
@@ -19,14 +19,18 @@ class Attempt extends Entity implements Generatable {
     private $duration;
 
     public function  __construct($id) {
-        $this->setId($id);
-        $this->setType(EntityType::ATTEMPT);
+        parent::__construct($id);
+        $this->setType(new EntityType(EntityType::ATTEMPT));
     }
 
     public function jsonSerialize() {
         return array_merge(parent::jsonSerialize(), [
-            'assignable' => $this->getAssignable(),
-            'actor' => $this->getActor(),
+            'assignable' => (!is_null($this->getAssignable()))
+                ? $this->getAssignable()->getId()
+                : null,
+            'actor' => (!is_null($this->getActor()))
+                ? $this->getActor()->getId()
+                : null,
             'count' => $this->getCount(),
             'startedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getStartedAtTime()),
             'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
@@ -34,16 +38,16 @@ class Attempt extends Entity implements Generatable {
         ]);
     }
 
-    /** @return Assignable assignable */
+    /** @return DigitalResource assignable */
     public function getAssignable() {
         return $this->assignable;
     }
 
     /**
-     * @param Assignable $assignable
+     * @param DigitalResource $assignable
      * @return $this|Attempt
      */
-    public function setAssignable($assignable) {
+    public function setAssignable(DigitalResource $assignable) {
         $this->assignable = $assignable;
         return $this;
     }
@@ -57,7 +61,7 @@ class Attempt extends Entity implements Generatable {
      * @param Agent $actor
      * @return $this|Attempt
      */
-    public function setActor($actor) {
+    public function setActor(Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
@@ -72,6 +76,10 @@ class Attempt extends Entity implements Generatable {
      * @return $this|Attempt
      */
     public function setCount($count) {
+        if (!is_int($count)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->count = $count;
         return $this;
     }
@@ -85,7 +93,7 @@ class Attempt extends Entity implements Generatable {
      * @param DateTime $startedAtTime
      * @return $this|Attempt
      */
-    public function setStartedAtTime($startedAtTime) {
+    public function setStartedAtTime(DateTime $startedAtTime) {
         $this->startedAtTime = $startedAtTime;
         return $this;
     }
@@ -99,7 +107,7 @@ class Attempt extends Entity implements Generatable {
      * @param DateTime $endedAtTime
      * @return $this|Attempt
      */
-    public function setEndedAtTime($endedAtTime) {
+    public function setEndedAtTime(DateTime $endedAtTime) {
         $this->endedAtTime = $endedAtTime;
         return $this;
     }
@@ -123,6 +131,10 @@ class Attempt extends Entity implements Generatable {
      * @return $this|Attempt
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

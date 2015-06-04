@@ -2,7 +2,7 @@
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/response/Response.php';
 require_once 'Caliper/entities/response/ResponseType.php';
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class SelectTextResponse extends Response {
     /** @var string[] */
@@ -10,7 +10,7 @@ class SelectTextResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::SELECTTEXT);
+        $this->setType(new ResponseType(ResponseType::SELECTTEXT));
     }
 
     public function jsonSerialize() {
@@ -25,12 +25,18 @@ class SelectTextResponse extends Response {
     }
 
     /**
-     * @param string[] $values
+     * @param string|string[] $values
      * @return $this|SelectTextResponse
      */
     public function setValues($values) {
         if (!is_array($values)) {
             $values = [$values];
+        }
+
+        foreach ($values as $aValue) {
+            if (!is_string($aValue)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
         }
 
         $this->values = $values;

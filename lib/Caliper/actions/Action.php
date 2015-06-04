@@ -1,5 +1,5 @@
 <?php
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class Action extends BasicEnum {
     const

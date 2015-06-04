@@ -7,6 +7,6 @@ require_once 'Caliper/entities/DigitalResource.php';
 class MediaEvent extends Event {
 	public function __construct(){
 		parent::__construct();
-		$this->setType(EventType::MEDIA);
+		$this->setType(new EventType(EventType::MEDIA));
 	}
 }

@@ -20,7 +20,7 @@ class TestLisEntities {
 
     public static function makeGroupMembership() {
         return (new Membership('https://some-university.edu/membership/003'))
-            ->setMember(TestAgentEntities::makePerson()->getId())
+            ->setMember(TestAgentEntities::makePerson())
             ->setOrganization(TestLisEntities::groupId())
             ->setRoles(TestLisEntities::makeMembership()->getRoles())
             ->setDateCreated(TestTimes::createdTime());
@@ -42,7 +42,7 @@ class TestLisEntities {
 
     public static function makeSectionMembership() {
         return (new Membership('https://some-university.edu/membership/002'))
-            ->setMember(TestAgentEntities::makePerson()->getId())
+            ->setMember(TestAgentEntities::makePerson())
             ->setOrganization(TestLisEntities::courseSectionId())
             ->setRoles(TestLisEntities::makeMembership()->getRoles())
             ->setDateCreated(TestTimes::createdTime());
@@ -53,11 +53,11 @@ class TestLisEntities {
         return (new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDescription('Roster entry')
-            ->setMember(TestAgentEntities::makePerson()->getId())
+            ->setMember(TestAgentEntities::makePerson())
             ->setName('American Revolution 101')
-            ->setOrganization('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001')
-            ->setRoles(Role::LEARNER)
-            ->setStatus(Status::ACTIVE);
+            ->setOrganization(new Group('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001'))
+            ->setRoles(new Role(Role::LEARNER))
+            ->setStatus(new Status(Status::ACTIVE));
     }
 
     public static function makeCourseOffering() {

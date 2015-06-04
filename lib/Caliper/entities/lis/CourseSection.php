@@ -9,7 +9,7 @@ class CourseSection extends CourseOffering {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::COURSE_SECTION);
+        $this->setType(new EntityType(EntityType::COURSE_SECTION));
     }
 
     public function jsonSerialize() {
@@ -28,6 +28,10 @@ class CourseSection extends CourseOffering {
      * @return $this|CourseSection
      */
     public function setCategory($category) {
+        if (!is_string($category)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->category = $category;
         return $this;
     }

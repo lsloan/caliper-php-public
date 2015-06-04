@@ -4,7 +4,7 @@ require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 require_once 'Caliper/entities/Targetable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class Session extends Entity implements Generatable, Targetable {
     /** @var Agent */
@@ -13,12 +13,12 @@ class Session extends Entity implements Generatable, Targetable {
     private $startedAtTime;
     /** @var DateTime */
     private $endedAtTime;
-    /** @var int (seconds) */
+    /** @var string (seconds) */
     private $duration;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(EntityType::SESSION);
+        $this->setType(new EntityType(EntityType::SESSION));
     }
 
     public function jsonSerialize() {
@@ -39,7 +39,7 @@ class Session extends Entity implements Generatable, Targetable {
      * @param Agent $actor
      * @return $this|Session
      */
-    public function setActor($actor) {
+    public function setActor(Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
@@ -53,7 +53,7 @@ class Session extends Entity implements Generatable, Targetable {
      * @param DateTime $startedAtTime
      * @return $this|Session
      */
-    public function setStartedAtTime($startedAtTime) {
+    public function setStartedAtTime(DateTime $startedAtTime) {
         $this->startedAtTime = $startedAtTime;
         return $this;
     }
@@ -67,7 +67,7 @@ class Session extends Entity implements Generatable, Targetable {
      * @param DateTime $endedAtTime
      * @return $this|Session
      */
-    public function setEndedAtTime($endedAtTime) {
+    public function setEndedAtTime(DateTime $endedAtTime) {
         $this->endedAtTime = $endedAtTime;
         return $this;
     }
@@ -81,16 +81,20 @@ class Session extends Entity implements Generatable, Targetable {
         return 'PT' . $this->getDuration() . 'S';
     }
 
-    /** @return int duration (seconds) */
+    /** @return string duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $duration (seconds)
+     * @param string $duration (seconds)
      * @return $this|Session
      */
     public function setDuration($duration) {
+        if (!is_string($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }

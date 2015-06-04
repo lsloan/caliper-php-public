@@ -12,8 +12,8 @@ class HighlightAnnotation extends Annotation {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(AnnotationType::HIGHLIGHT_ANNOTATION);
-        $selection = new TextPositionSelector();
+        $this->setType(new AnnotationType(AnnotationType::HIGHLIGHT_ANNOTATION));
+        $this->selection = new TextPositionSelector();
     }
 
     public function jsonSerialize() {
@@ -34,7 +34,7 @@ class HighlightAnnotation extends Annotation {
      * @param TextPositionSelector $selection
      * @return $this|HighlightAnnotation
      */
-    public function  setSelection($selection) {
+    public function  setSelection(TextPositionSelector $selection) {
         $this->selection = $selection;
         return $this;
     }
@@ -51,6 +51,10 @@ class HighlightAnnotation extends Annotation {
      * @return $this|HighlightAnnotation
      */
     public function setSelectionText($selectionText) {
+        if (!is_string($selectionText)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->selectionText = $selectionText;
         return $this;
     }

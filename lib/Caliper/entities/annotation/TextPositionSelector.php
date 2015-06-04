@@ -26,6 +26,10 @@ class TextPositionSelector implements JsonSerializable {
      * @return $this|TextPositionSelector
      */
     public function setStart($start) {
+        if (!is_string($start)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->start = $start;
         return $this;
     }
@@ -40,6 +44,10 @@ class TextPositionSelector implements JsonSerializable {
      * @return $this|TextPositionSelector
      */
     public function setEnd($end) {
+        if (!is_string($end)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->end = $end;
         return $this;
     }

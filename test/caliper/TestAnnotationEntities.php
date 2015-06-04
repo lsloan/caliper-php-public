@@ -11,7 +11,7 @@ class TestAnnotationEntities {
         return (new BookmarkAnnotation('https://someEduApp.edu/bookmarks/00001'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
-            ->setAnnotated(TestReadingEntities::makeFrame2()->getId())
+            ->setAnnotated(TestReadingEntities::makeFrame2())
             ->setBookmarkNotes('The Intolerable Acts (1774)--bad idea Lord North');
     }
 
@@ -20,7 +20,7 @@ class TestAnnotationEntities {
         return (new HighlightAnnotation('https://someEduApp.edu/highlights/12345'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
-            ->setAnnotated(TestReadingEntities::makeFrame1()->getId())
+            ->setAnnotated(TestReadingEntities::makeFrame1())
             ->setSelection((new TextPositionSelector())
                 ->setStart('455')
                 ->setEnd('489'))
@@ -32,7 +32,7 @@ class TestAnnotationEntities {
         return (new SharedAnnotation('https://someEduApp.edu/shared/9999'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
-            ->setAnnotated(TestReadingEntities::makeFrame3()->getId())
+            ->setAnnotated(TestReadingEntities::makeFrame3())
             ->setWithAgents(TestAgentEntities::makeWithAgents());
     }
 
@@ -41,7 +41,7 @@ class TestAnnotationEntities {
         return (new TagAnnotation('https://someEduApp.edu/tags/7654'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
-            ->setAnnotated(TestReadingEntities::makeFrame4()->getId())
+            ->setAnnotated(TestReadingEntities::makeFrame4())
             ->setTags(["to-read", "1765", "shared-with-project-team"]);
     }
 }

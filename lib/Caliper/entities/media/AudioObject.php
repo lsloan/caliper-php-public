@@ -11,12 +11,12 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
     private $volumeMax;
     /** @var string */
     private $volumeLevel;
-    /** @var boolean */
+    /** @var bool */
     private $muted;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(MediaObjectType::AUDIO_OBJECT);
+        $this->setType(new MediaObjectType(MediaObjectType::AUDIO_OBJECT));
     }
 
     public function jsonSerialize() {
@@ -38,6 +38,10 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
      * @return $this|AudioObject
      */
     public function setVolumeMin($volumeMin) {
+        if (!is_string($volumeMin)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->volumeMin = $volumeMin;
         return $this;
     }
@@ -52,6 +56,10 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
      * @return $this|AudioObject
      */
     public function setVolumeMax($volumeMax) {
+        if (!is_string($volumeMax)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->volumeMax = $volumeMax;
         return $this;
     }
@@ -66,20 +74,28 @@ class AudioObject extends MediaObject implements schemadotorg\AudioObject {
      * @return $this|AudioObject
      */
     public function setVolumeLevel($volumeLevel) {
+        if (!is_string($volumeLevel)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->volumeLevel = $volumeLevel;
         return $this;
     }
 
-    /** @return boolean muted */
+    /** @return bool muted */
     public function getMuted() {
         return $this->muted;
     }
 
     /**
-     * @param boolean $muted
+     * @param bool $muted
      * @return $this|AudioObject
      */
     public function setMuted($muted) {
+        if (!is_bool($muted)) {
+            throw new InvalidArgumentException(__METHOD__ . ': bool expected');
+        }
+
         $this->muted = $muted;
         return $this;
     }

@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 require_once 'Caliper/entities/Targetable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 /**
  *         Caliper representation of a CreativeWork
@@ -27,7 +27,7 @@ require_once 'util/TimestampUtil.php';
 class DigitalResource extends Entity implements CreativeWork, Targetable {
     /** @var string[] */
     private $objectTypes = [];
-    /** @var LearningObjective[]  */
+    /** @var LearningObjective[] */
     private $alignedLearningObjectives = [];
     /** @var string[] */
     private $keywords = [];
@@ -59,10 +59,20 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param string[] $objectTypes
+     * @param string|string[] $objectTypes
      * @return $this|DigitalResource
      */
     public function setObjectTypes($objectTypes) {
+        if (!is_array($objectTypes)) {
+            $objectTypes = [$objectTypes];
+        }
+
+        foreach ($objectTypes as $anObjectType) {
+            if (!is_string($anObjectType)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
+        }
+
         $this->objectType = $objectTypes;
         return $this;
     }
@@ -73,12 +83,18 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param LearningObjective[] $alignedLearningObjectives
+     * @param LearningObjective|LearningObjective[] $alignedLearningObjectives
      * @return $this|DigitalResource
      */
     public function setAlignedLearningObjectives($alignedLearningObjectives) {
         if (!is_array($alignedLearningObjectives)) {
             $alignedLearningObjectives = [$alignedLearningObjectives];
+        }
+
+        foreach ($alignedLearningObjectives as $anAlignedLearningObjective) {
+            if (!($anAlignedLearningObjective instanceof LearningObjective)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . LearningObjective::class . ' expected');
+            }
         }
 
         $this->alignedLearningObjectives = $alignedLearningObjectives;
@@ -91,10 +107,20 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
     }
 
     /**
-     * @param string[] $keywords
+     * @param string|string[] $keywords
      * @return $this|DigitalResource
      */
     public function setKeywords($keywords) {
+        if (!is_array($keywords)) {
+            $keywords = [$keywords];
+        }
+
+        foreach ($keywords as $aKeyword) {
+            if (!is_string($aKeyword)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of string expected');
+            }
+        }
+
         $this->keywords = $keywords;
         return $this;
     }
@@ -108,7 +134,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @param CreativeWork $isPartOf
      * @return $this|DigitalResource
      */
-    public function setIsPartOf($isPartOf) {
+    public function setIsPartOf(CreativeWork $isPartOf) {
         $this->isPartOf = $isPartOf;
         return $this;
     }
@@ -124,7 +150,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @param DateTime $datePublished
      * @return $this|DigitalResource
      */
-    public function setDatePublished($datePublished) {
+    public function setDatePublished(DateTime $datePublished) {
         $this->datePublished = $datePublished;
         return $this;
     }
@@ -139,6 +165,10 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
      * @return $this|DigitalResource
      */
     public function setVersion($version) {
+        if (!is_string($version)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->version = $version;
         return $this;
     }

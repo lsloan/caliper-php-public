@@ -8,6 +8,6 @@ class VideoObject extends MediaObject implements schemadotorg\VideoObject {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(MediaObjectType::VIDEO_OBJECT);
+        $this->setType(new MediaObjectType(MediaObjectType::VIDEO_OBJECT));
     }
 }

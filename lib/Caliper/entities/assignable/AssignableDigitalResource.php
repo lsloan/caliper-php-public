@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/assignable/Assignable.php';
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class AssignableDigitalResource extends DigitalResource implements Assignable {
     /** @var  DateTime */
@@ -18,12 +18,12 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
     private $maxAttempts;
     /** @var  int */
     private $maxSubmits;
-    /** @var  float */
+    /** @var  double */
     private $maxScore;
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::ASSIGNABLE_DIGITAL_RESOURCE);
+        $this->setType(new DigitalResourceType(DigitalResourceType::ASSIGNABLE_DIGITAL_RESOURCE));
     }
 
     public function jsonSerialize() {
@@ -47,7 +47,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToActivate
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToActivate($dateToActivate) {
+    public function setDateToActivate(DateTime $dateToActivate) {
         $this->dateToActivate = $dateToActivate;
         return $this;
     }
@@ -61,7 +61,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToShow
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToShow($dateToShow) {
+    public function setDateToShow(DateTime $dateToShow) {
         $this->dateToShow = $dateToShow;
         return $this;
     }
@@ -75,7 +75,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToStartOn
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToStartOn($dateToStartOn) {
+    public function setDateToStartOn(DateTime $dateToStartOn) {
         $this->dateToStartOn = $dateToStartOn;
         return $this;
     }
@@ -89,7 +89,7 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @param DateTime $dateToSubmit
      * @return $this|AssignableDigitalResource
      */
-    public function setDateToSubmit($dateToSubmit) {
+    public function setDateToSubmit(DateTime $dateToSubmit) {
         $this->dateToSubmit = $dateToSubmit;
         return $this;
     }
@@ -104,6 +104,10 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @return $this|AssignableDigitalResource
      */
     public function setMaxAttempts($maxAttempts) {
+        if (!is_int($maxAttempts)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->maxAttempts = $maxAttempts;
         return $this;
     }
@@ -118,20 +122,28 @@ class AssignableDigitalResource extends DigitalResource implements Assignable {
      * @return $this|AssignableDigitalResource
      */
     public function setMaxSubmits($maxSubmits) {
+        if (!is_int($maxSubmits)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->maxSubmits = $maxSubmits;
         return $this;
     }
 
-    /** @return float maxScore */
+    /** @return double maxScore */
     public function getMaxScore() {
         return $this->maxScore;
     }
 
     /**
-     * @param float $maxScore
+     * @param double $maxScore
      * @return $this|AssignableDigitalResource
      */
     public function setMaxScore($maxScore) {
+        if (!is_double($maxScore)) {
+            throw new InvalidArgumentException(__METHOD__ . ': double expected');
+        }
+
         $this->maxScore = $maxScore;
         return $this;
     }

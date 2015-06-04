@@ -7,8 +7,8 @@ class Group extends Entity implements w3c\Organization {
     private $subOrganizationOf;
 
     public function __construct($id) {
-        $this->setId($id);
-        $this->setType(EntityType::GROUP);
+        parent::__construct($id);
+        $this->setType(new EntityType(EntityType::GROUP));
     }
 
     public function jsonSerialize() {
@@ -26,7 +26,7 @@ class Group extends Entity implements w3c\Organization {
      * @param Course $subOrganizationOf
      * @return $this|Group
      */
-    public function setSubOrganizationOf($subOrganizationOf) {
+    public function setSubOrganizationOf(Course $subOrganizationOf) {
         $this->subOrganizationOf = $subOrganizationOf;
         return $this;
     }

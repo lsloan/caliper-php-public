@@ -43,7 +43,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
         if (!$socket)
             return;
 
-        $envelope = new Envelope($sensor, $item);
+        $envelope = (new Envelope())
+            ->setSensor($sensor)
+            ->setData($item);
 
         $payload = json_encode($envelope, $this->options['jsonEncodeOptions']);
 
@@ -207,7 +209,9 @@ class Caliper_Consumer_Socket extends Caliper_QueueConsumer {
         if (!$socket)
             return;
 
-        $envelope = new Envelope($sensor, $item);
+        $envelope = (new Envelope())
+            ->setSensor($sensor)
+            ->setData($item);
 
         $payload = json_encode($envelope, $this->options['jsonEncodeOptions']);
 

@@ -8,6 +8,6 @@ class ImageObject extends MediaObject implements schemadotorg\ImageObject {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(MediaObjectType::IMAGE_OBJECT);
+        $this->setType(new MediaObjectType(MediaObjectType::IMAGE_OBJECT));
     }
 }

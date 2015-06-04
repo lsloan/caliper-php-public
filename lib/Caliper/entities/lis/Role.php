@@ -1,6 +1,6 @@
 <?php
 require_once 'Caliper/entities/w3c/Role.php';
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class Role extends BasicEnum implements w3c\Role {
     const

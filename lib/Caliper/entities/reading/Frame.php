@@ -8,7 +8,7 @@ class Frame extends DigitalResource implements Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(DigitalResourceType::FRAME);
+        $this->setType(new DigitalResourceType(DigitalResourceType::FRAME));
     }
 
     public function jsonSerialize() {
@@ -27,6 +27,10 @@ class Frame extends DigitalResource implements Targetable {
      * @return $this|Frame
      */
     public function setIndex($index) {
+        if (!is_int($index)) {
+            throw new InvalidArgumentException(__METHOD__ . ': int expected');
+        }
+
         $this->index = $index;
         return $this;
     }

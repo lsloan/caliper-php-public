@@ -2,7 +2,7 @@
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/response/Response.php';
 require_once 'Caliper/entities/response/ResponseType.php';
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class TrueFalseResponse extends Response {
     /** @var string */
@@ -10,7 +10,7 @@ class TrueFalseResponse extends Response {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(ResponseType::TRUEFALSE);
+        $this->setType(new ResponseType(ResponseType::TRUEFALSE));
     }
 
     public function jsonSerialize() {
@@ -29,6 +29,10 @@ class TrueFalseResponse extends Response {
      * @return $this|TrueFalseResponse
      */
     public function setValue($value) {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->value = $value;
         return $this;
     }

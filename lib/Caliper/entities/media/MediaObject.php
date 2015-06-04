@@ -4,7 +4,7 @@ require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/schemadotorg/MediaObject.php';
 
 abstract class MediaObject extends DigitalResource implements schemadotorg\MediaObject {
-    /** @var int (seconds) */
+    /** @var long (seconds) */
     private $duration;
 
     public function __construct($id) {
@@ -17,16 +17,20 @@ abstract class MediaObject extends DigitalResource implements schemadotorg\Media
         ]);
     }
 
-    /** @return int duration (seconds) */
+    /** @return long duration (seconds) */
     public function getDuration() {
         return $this->duration;
     }
 
     /**
-     * @param int $duration (seconds)
+     * @param long $duration (seconds)
      * @return $this|MediaObject
      */
     public function setDuration($duration) {
+        if (!is_long($duration)) {
+            throw new InvalidArgumentException(__METHOD__ . ': long expected');
+        }
+
         $this->duration = $duration;
         return $this;
     }
