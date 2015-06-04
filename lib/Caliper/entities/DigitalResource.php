@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
 require_once 'Caliper/entities/Targetable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 /**
  *         Caliper representation of a CreativeWork

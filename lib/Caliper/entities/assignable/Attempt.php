@@ -2,7 +2,7 @@
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class Attempt extends Entity implements Generatable {
     /** @var DigitalResource */

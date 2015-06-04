@@ -3,7 +3,7 @@ require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/assignable/Assignable.php';
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class AssignableDigitalResource extends DigitalResource implements Assignable {
     /** @var  DateTime */

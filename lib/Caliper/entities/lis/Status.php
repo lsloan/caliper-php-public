@@ -1,6 +1,6 @@
 <?php
 require_once 'Caliper/entities/w3c/Status.php';
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class Status extends BasicEnum implements w3c\Status {
     const

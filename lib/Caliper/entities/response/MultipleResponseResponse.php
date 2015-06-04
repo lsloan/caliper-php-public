@@ -2,7 +2,7 @@
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/response/Response.php';
 require_once 'Caliper/entities/response/ResponseType.php';
-require_once 'util/BasicEnum.php';
+require_once 'Caliper/util/BasicEnum.php';
 
 class MultipleResponseResponse extends Response {
     /** @var string[] */

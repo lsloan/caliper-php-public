@@ -1,6 +1,6 @@
 <?php
 require_once 'Caliper/context/Context.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 abstract class Event implements JsonSerializable {
     /** @var Context */

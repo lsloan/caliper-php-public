@@ -4,7 +4,7 @@ require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 require_once 'Caliper/entities/Targetable.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 class Session extends Entity implements Generatable, Targetable {
     /** @var Agent */

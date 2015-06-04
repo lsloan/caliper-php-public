@@ -1,8 +1,8 @@
 <?php
 require_once 'CaliperSensor.php';
 require_once 'Caliper/entities/EntityType.php';
-require_once 'util/BasicEnum.php';
-require_once 'util/TimestampUtil.php';
+require_once 'Caliper/util/BasicEnum.php';
+require_once 'Caliper/util/TimestampUtil.php';
 
 abstract class Response extends Entity implements Generatable {
     /** @var DigitalResource */
