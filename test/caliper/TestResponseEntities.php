@@ -4,7 +4,7 @@ require_once 'Caliper/entities/response/FillinBlankResponse.php';
 class TestResponseEntities {
     /** @return FillinBlankResponse */
     public static function makeFillinBlankResponse() {
-        return (new FillinBlankResponse('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/item1/response1'))
+        return (new FillinBlankResponse('https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001/response/001'))
             ->setDateCreated(TestTimes::createdTime())
             ->setAssignable(TestAssessmentEntities::makeAssessment())
             ->setActor(TestAgentEntities::makePerson())

@@ -6,10 +6,12 @@ require_once 'Caliper/util/TimestampUtil.php';
 abstract class Entity implements JsonSerializable, Thing {
     /** @var string */
     protected $id;
+    /** @var Context */
+    protected $context;
     /** @var Type */
-    public $type;
+    private $type;
     /** @var string */
-    public $name;
+    private $name;
     /** @var string */
     private $description;
     /** @var string[] */
@@ -20,12 +22,14 @@ abstract class Entity implements JsonSerializable, Thing {
     private $dateModified;
 
     function __construct($id) {
-        $this->setId($id);
+        $this->setId($id)
+            ->setContext(new Context(Context::CONTEXT));
     }
 
     public function jsonSerialize() {
         return [
             '@id' => $this->getId(),
+            '@context' => $this->getContext(),
             '@type' => $this->getType(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
@@ -50,6 +54,20 @@ abstract class Entity implements JsonSerializable, Thing {
         }
 
         $this->id = $id;
+        return $this;
+    }
+
+    /** @return Context */
+    public function getContext() {
+        return $this->context;
+    }
+
+    /**
+     * @param Context $context
+     * @return $this|Entity
+     */
+    public function setContext(Context $context) {
+        $this->context = $context;
         return $this;
     }
 

@@ -8,7 +8,7 @@ require_once 'Caliper/entities/annotation/TextPositionSelector.php';
 class TestAnnotationEntities {
     /** @return BookmarkAnnotation */
     public static function makeBookmarkAnnotation() {
-        return (new BookmarkAnnotation('https://someEduApp.edu/bookmarks/00001'))
+        return (new BookmarkAnnotation('https://example.edu/bookmarks/00001'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
             ->setAnnotated(TestReadingEntities::makeFrame2())
@@ -17,7 +17,7 @@ class TestAnnotationEntities {
 
     /** @return HighlightAnnotation */
     public static function makeHighlightAnnotation() {
-        return (new HighlightAnnotation('https://someEduApp.edu/highlights/12345'))
+        return (new HighlightAnnotation('https://example.edu/highlights/12345'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
             ->setAnnotated(TestReadingEntities::makeFrame1())
@@ -29,7 +29,7 @@ class TestAnnotationEntities {
 
     /** @return SharedAnnotation */
     public static function makeSharedAnnotation() {
-        return (new SharedAnnotation('https://someEduApp.edu/shared/9999'))
+        return (new SharedAnnotation('https://example.edu/shared/9999'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
             ->setAnnotated(TestReadingEntities::makeFrame3())
@@ -38,7 +38,7 @@ class TestAnnotationEntities {
 
     /** @return TagAnnotation */
     public static function makeTagAnnotation() {
-        return (new TagAnnotation('https://someEduApp.edu/tags/7654'))
+        return (new TagAnnotation('https://example.edu/tags/7654'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
             ->setAnnotated(TestReadingEntities::makeFrame4())

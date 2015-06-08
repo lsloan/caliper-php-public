@@ -5,13 +5,13 @@ require_once 'Caliper/entities/agent/SoftwareApplication.php';
 class TestAgentEntities {
     /** @return SoftwareApplication */
     public static function makeAssessmentApplication() {
-        return (new SoftwareApplication('https://com.sat/super-assessment-tool'))
+        return (new SoftwareApplication('https://example.com/super-assessment-tool'))
             ->setName('Super Assessment Tool')
             ->setDateCreated(TestTimes::createdTime());
     }
 
     public static function makeMediaApplication() {
-        return (new SoftwareApplication('https://com.sat/super-media-tool'))
+        return (new SoftwareApplication('https://example.com/super-media-tool'))
             ->setName('Super Media Tool')
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime());
@@ -19,15 +19,15 @@ class TestAgentEntities {
 
     /** @return Person */
     public static function makePerson() {
-        return (new Person('https://some-university.edu/user/554433'))
+        return (new Person('https://example.edu/user/554433'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime());
     }
 
     /** @return SoftwareApplication */
     public static function makeReadingApplication() {
-        return (new SoftwareApplication('https://github.com/readium/readium-js-viewer'))
-            ->setName('Readium')
+        return (new SoftwareApplication('https://example.com/viewer'))
+            ->setName('ePub')
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime());
     }
@@ -35,10 +35,10 @@ class TestAgentEntities {
     /** @return array */
     public static function makeWithAgents() {
         return [
-            (new Person('https://some-university.edu/students/657585'))
+            (new Person('https://example.edu/user/657585'))
                 ->setDateCreated(TestTimes::createdTime())
                 ->setDateModified(TestTimes::modifiedTime()),
-            (new Person('https://some-university.edu/students/667788'))
+            (new Person('https://example.edu/user/667788'))
                 ->setDateCreated(TestTimes::createdTime())
                 ->setDateModified(TestTimes::modifiedTime())
         ];

@@ -8,7 +8,7 @@ require_once 'Caliper/entities/lis/Status.php';
 
 class TestLisEntities {
     public static function groupId() {
-        return 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001/group/001';
+        return 'https://example.edu/politicalScience/2015/american-revolution-101/section/001/group/001';
     }
 
     public static function makeGroup() {
@@ -19,7 +19,7 @@ class TestLisEntities {
     }
 
     public static function makeGroupMembership() {
-        return (new Membership('https://some-university.edu/membership/003'))
+        return (new Membership('https://example.edu/membership/003'))
             ->setMember(TestAgentEntities::makePerson())
             ->setOrganization(TestLisEntities::groupId())
             ->setRoles(TestLisEntities::makeMembership()->getRoles())
@@ -37,11 +37,11 @@ class TestLisEntities {
     }
 
     public static function courseSectionId() {
-        return 'https://some-university.edu/politicalScience/2015/american-revolution-101/section/001';
+        return 'https://example.edu/politicalScience/2015/american-revolution-101/section/001';
     }
 
     public static function makeSectionMembership() {
-        return (new Membership('https://some-university.edu/membership/002'))
+        return (new Membership('https://example.edu/membership/002'))
             ->setMember(TestAgentEntities::makePerson())
             ->setOrganization(TestLisEntities::courseSectionId())
             ->setRoles(TestLisEntities::makeMembership()->getRoles())
@@ -50,18 +50,18 @@ class TestLisEntities {
     }
 
     public static function makeMembership() {
-        return (new Membership('https://some-university.edu/politicalScience/2015/american-revolution-101/roster/554433'))
+        return (new Membership('https://example.edu/politicalScience/2015/american-revolution-101/roster/554433'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDescription('Roster entry')
             ->setMember(TestAgentEntities::makePerson())
             ->setName('American Revolution 101')
-            ->setOrganization(new Group('https://some-university.edu/politicalScience/2015/american-revolution-101/section/001'))
+            ->setOrganization(new Group('https://example.edu/politicalScience/2015/american-revolution-101/section/001'))
             ->setRoles(new Role(Role::LEARNER))
             ->setStatus(new Status(Status::ACTIVE));
     }
 
     public static function makeCourseOffering() {
-        return (new CourseOffering('https://some-university.edu/politicalScience/2015/american-revolution-101'))
+        return (new CourseOffering('https://example.edu/politicalScience/2015/american-revolution-101'))
             ->setCourseNumber('POL101')
             ->setName('Political Science 101: The American Revolution')
             ->setAcademicSession('Fall-2015')
