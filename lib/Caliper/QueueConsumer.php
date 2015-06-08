@@ -1,49 +1,39 @@
 <?php
-abstract class Caliper_QueueConsumer extends Caliper_Consumer {
+
+abstract class QueueConsumer extends Consumer {
     protected $type = 'QueueConsumer';
 
     /**
-    * Store  apiKey and options as part of this consumer
-    * @param string $apiKey
-    * @param array  $options
-    */
-    public function __construct($apiKey, $options = array()) {
+     * Store apiKey and options as part of this consumer
+     * @param string $apiKey
+     * @param array $options
+     */
+    public function __construct($apiKey, $options = []) {
         parent::__construct($apiKey, $options);
     }
 
-  public function __destruct() {
-    # Nothing to do at this tim on destruction
-  }
+    /**
+     * Send events
+     * @param Event $event
+     * @return bool success
+     */
+    public function send(Event $event) {
+        return $this->flushSingleItem($event);
+    }
 
-  /**
-   * Describe an entity 
-   * @return boolean true
-   */
-  public function describe($caliperEntity) {
-      $this->flushSingleDescribe($caliperEntity, $this->apiKey, $this->options['sensorId']);
-      return true;
-  }
+    /**
+     * Describe entities
+     * @param Entity $entity
+     * @return bool success
+     */
+    public function describe(Entity $entity) {
+        return $this->flushSingleItem($entity);
+    }
 
-  /**
-   * Send learning events
-   * @return boolean true
-   */
-  public function send($caliperEvent) {
-      $this->flushSingleSend($caliperEvent, $this->apiKey, $this->options['sensorId']);
-      return true;
-  }
-
-  /**
-   * Flushes a single describe
-   * @param  [type] $item  [description]
-   * @return [type]        [description]
-   */
-  abstract function flushSingleDescribe($item, $apiKey, $sensor);
-
-  /**
-   * Flushes a single send
-   * @param  [type] $item  [description]
-   * @return [type]        [description]
-   */
-  abstract function flushSingleSend($item, $apiKey, $sensor);
+    /**
+     * Flush a single item
+     * @param  Entity|Event $item
+     * @return bool success
+     */
+    abstract function flushSingleItem($item);
 }
