@@ -3,8 +3,6 @@ require_once 'Caliper/context/Context.php';
 require_once 'Caliper/util/TimestampUtil.php';
 
 class Envelope implements JsonSerializable {
-    /** @var Context */
-    private $context;
     /** @var string */
     private $sensor;
     /** @var DateTime */
@@ -13,31 +11,15 @@ class Envelope implements JsonSerializable {
     private $data;
 
     public function __construct() {
-        $this->setContext(new Context(Context::CONTEXT))
-            ->setSendTime(new DateTime());
+        $this->setSendTime(new DateTime());
     }
 
     public function jsonSerialize() {
         return [
-            '@context' => $this->getContext(),
             'sensor' => $this->getSensor(),
             'sendTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getSendTime()),
             'data' => $this->getData(),
         ];
-    }
-
-    /** @return Context context */
-    public function getContext() {
-        return $this->context;
-    }
-
-    /**
-     * @param Context $context
-     * @return $this|Envelope
-     */
-    public function setContext(Context $context) {
-        $this->context = $context;
-        return $this;
     }
 
     /** @return string sensor */
