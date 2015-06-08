@@ -2,7 +2,7 @@
 require_once __DIR__ . '/Consumer.php';
 require_once __DIR__ . '/QueueConsumer.php';
 require_once 'Caliper/request/Envelope.php';
-require_once __DIR__ . '/Consumer/Socket.php';
+require_once __DIR__ . '/Consumer/SocketConsumer.php';
 require_once __DIR__ . '/events/Event.php';
 require_once __DIR__ . '/entities/Entity.php';
 
@@ -18,7 +18,7 @@ class Caliper_Client {
     public function __construct($apiKey, $options = array()) {
 
         $consumers = array(
-            "socket" => "Caliper_Consumer_Socket"
+            "socket" => "SocketConsumer"
         );
 
         # Use our socket consumer by default, add other consumers as needed above
@@ -27,10 +27,6 @@ class Caliper_Client {
         $Consumer = $consumers[$consumer_type];
 
         $this->consumer = new $Consumer($apiKey, $options);
-    }
-
-    public function __destruct() {
-        $this->consumer->__destruct();
     }
 
     /**
