@@ -75,14 +75,13 @@ class SessionEventSampleApp {
 
 Caliper::init('org.imsglobal.caliper.php.apikey', [
     'debug' => true,
-    'host' => 'localhost',
-    'port' => 8000,
-    'sendURI' => '/',
+    'host' => 'http://localhost:8000/',
     'sensorId' => 'sensorId',
 ]);
 
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
 
-Caliper::send($sessionTest->getSessionEvent());
-Caliper::describe($sessionTest->getPersonEntity());
+//Caliper::send($sessionTest->getSessionEvent());
+echo 'send: ' . (Caliper::send($sessionTest->getSessionEvent()) ? 'success' : 'failure') . "\n";
+echo 'describe: ' . (Caliper::describe($sessionTest->getPersonEntity()) ? 'success' : 'failure') . "\n";
