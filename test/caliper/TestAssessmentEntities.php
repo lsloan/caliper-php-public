@@ -5,7 +5,7 @@ require_once 'Caliper/entities/assessment/AssessmentItem.php';
 class TestAssessmentEntities {
     /** @return Assessment */
     public static function makeAssessment() {
-        return (new Assessment('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1'))
+        return (new Assessment('https://example.edu/politicalScience/2015/american-revolution-101/assessment/001'))
             ->setDateCreated(TestTimes::createdTime())
             ->setDateModified(TestTimes::modifiedTime())
             ->setDatePublished(TestTimes::publishedTime())
@@ -22,7 +22,7 @@ class TestAssessmentEntities {
 
     /** @return AssessmentItem */
     public static function makeAssessmentItem() {
-        return (new AssessmentItem('https://some-university.edu/politicalScience/2015/american-revolution-101/assessment1/item1'))
+        return (new AssessmentItem('https://example.edu/politicalScience/2015/american-revolution-101/assessment/001/item/001'))
             ->setName('Assessment Item 1')
             ->setIsPartOf(TestAssessmentEntities::makeAssessment())
             ->setVersion('1.0')
