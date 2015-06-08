@@ -5,8 +5,12 @@ if (version_compare(PHP_VERSION, CALIPER_REQUIRED_PHP_VERSION, '<')) {
         CALIPER_REQUIRED_PHP_VERSION . ' or greater.  This is version: ' . PHP_VERSION);
 }
 
+if (!extension_loaded('http')) {
+    throw new Exception('Caliper requires the PHP "http" extension.');
+}
+
 if (!extension_loaded('json')) {
-    throw new Exception('Caliper requires the PHP JSON extension.');
+    throw new Exception('Caliper requires the PHP "json" extension.');
 }
 
 define('CALIPER_LIB_PATH', realpath(dirname(__FILE__)));
