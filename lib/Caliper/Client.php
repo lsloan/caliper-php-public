@@ -35,11 +35,21 @@ class Client {
     /**
      * Send application events
      * @param Sensor $sensor
-     * @param Event $event
+     * @param Event|Event[] $events
      */
-    public function send(Sensor $sensor, $event) {
+    public function send(Sensor $sensor, $events) {
+        if (!is_array($events)) {
+            $events = [$events];
+        }
+
+        foreach ($events as $anEvent) {
+            if (!($anEvent instanceof Event)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Event::class . ' expected');
+            }
+        }
+
         (new HttpRequestor($this->getOptions()))
-            ->send($sensor, $event);
+            ->send($sensor, $events);
     }
 
     /** @return Options options */
@@ -57,12 +67,22 @@ class Client {
     }
 
     /**
-     * Describe an entity
+     * Describe an entities
      * @param Sensor $sensor
-     * @param Entity $entity
+     * @param Entity|Entity[] $entities
      */
-    public function describe($sensor, $entity) {
+    public function describe($sensor, $entities) {
+        if (!is_array($entities)) {
+            $entities = [$entities];
+        }
+
+        foreach ($entities as $anEntity) {
+            if (!($anEntity instanceof Entity)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Entity::class . ' expected');
+            }
+        }
+
         (new HttpRequestor($this->getOptions()))
-            ->send($sensor, $entity);
+            ->send($sensor, $entities);
     }
 }

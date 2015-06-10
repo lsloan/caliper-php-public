@@ -26,7 +26,12 @@ class Sensor {
     /** @var string */
     private $id;
 
+    /** @param string $id */
     public function __construct($id) {
+        if (!is_string($id)) {
+            throw new InvalidArgumentException(__METHOD__ . ': string expected');
+        }
+
         $this->setId($id);
     }
 
@@ -78,13 +83,23 @@ class Sensor {
     /**
      * Send learning events
      * @param Sensor $sensor
-     * @param Event $event
+     * @param Event|Event[] $events
      */
-    public function send(Sensor $sensor, Event $event) {
+    public function send(Sensor $sensor, $events) {
         $this->checkClients();
 
+        if (!is_array($events)) {
+            $events = [$events];
+        }
+
+        foreach ($events as $anEvent) {
+            if (!($anEvent instanceof Event)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Event::class . ' expected');
+            }
+        }
+
         foreach ($this->clients as $client) {
-            $client->send($sensor, $event);
+            $client->send($sensor, $events);
         }
     }
 
@@ -100,15 +115,25 @@ class Sensor {
     }
 
     /**
-     * Describe an entity
+     * Describe entities
      * @param Sensor $sensor
-     * @param Entity $entity
+     * @param Entity|Entity[] $entities
      */
-    public function describe(Sensor $sensor, Entity $entity) {
+    public function describe(Sensor $sensor, $entities) {
         $this->checkClients();
 
+        if (!is_array($entities)) {
+            $entities = [$entities];
+        }
+
+        foreach ($entities as $anEntity) {
+            if (!($anEntity instanceof Entity)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Entity::class . ' expected');
+            }
+        }
+
         foreach ($this->clients as $client) {
-            $client->describe($sensor, $entity);
+            $client->describe($sensor, $entities);
         }
     }
 }

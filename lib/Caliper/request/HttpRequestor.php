@@ -25,19 +25,26 @@ class HttpRequestor extends EventStoreRequestor {
     }
 
     /**
-     * @param Entity|Event $item
+     * @param Entity|Event|Entity[]|Event[] $items
      * @return bool success
      */
-    public function send($sensorId, $item) {
+    public function send($sensorId, $items) {
         $status = false;
 
-        if (!(($item instanceof Entity) || ($item instanceof Event))) {
-            throw new InvalidArgumentException(__METHOD__ . ': Entity or Event object expected');
+        if (!is_array($items)) {
+            $items = [$items];
+        }
+
+        foreach ($items as $aItem) {
+            if (!(($aItem instanceof Entity) || ($aItem instanceof Event))) {
+                throw new InvalidArgumentException(__METHOD__ .
+                    ': array of ' . Entity::class . ' or ' . Event::class . ' expected');
+            }
         }
 
         $envelope = (new Envelope())
             ->setSensorId($sensorId)
-            ->setData($item);
+            ->setData($items);
 
         $payload = json_encode($envelope, $this->getOptions()->getJsonEncodeOptions());
 
