@@ -33,7 +33,7 @@ class SharedAnnotation extends Annotation {
 
         foreach ($withAgents as $aWithAgents) {
             if (!($aWithAgents instanceof \foaf\Agent)) {
-                throw new InvalidArgumentException(__METHOD__ . ': array of ' . \foaf\Agent::class . ' expected');
+                throw new InvalidArgumentException(__METHOD__ . ': array of \foaf\Agent expected');
             }
         }
 
