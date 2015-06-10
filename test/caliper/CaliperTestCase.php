@@ -1,5 +1,5 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../../lib/CaliperSensor.php');
+require_once realpath(dirname(__FILE__) . '/../../lib/Sensor.php');
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestAgentEntities.php');
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestAnnotationEntities.php');
 require_once realpath(CALIPER_LIB_PATH . '/../test/caliper/TestAssessmentEntities.php');

@@ -1,5 +1,5 @@
 <?php
-require_once 'CaliperSensor.php';
+require_once 'Sensor.php';
 require_once 'Caliper/entities/media/MediaObject.php';
 require_once 'Caliper/entities/media/MediaObjectType.php';
 require_once 'Caliper/entities/schemadotorg/ImageObject.php';
