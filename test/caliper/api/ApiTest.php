@@ -1,5 +1,5 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../../../lib/CaliperSensor.php');
+require_once realpath(dirname(__FILE__) . '/../../../lib/Sensor.php');
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/events/Event.php';
 
@@ -11,9 +11,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
     function setUp() {
         date_default_timezone_set('UTC');
         $this->markTestSkipped('Fix these tests to use a readily available server or setup/mock their own server');
-        // $options["host"] = "localhost:8000";
-        // Caliper::init("testapiKey", $options);
-        Caliper::init("testapiKey");
+        Sensor::init("testapiKey");
     }
 
     /**
@@ -29,7 +27,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
             "start-date" => time(),
         ));
 
-        $described = Caliper::describe($caliperEntity);
+        $described = Sensor::describe($caliperEntity);
         $this->assertTrue($described);
     }
 
@@ -45,7 +43,7 @@ class ApiTest extends PHPUnit_Framework_TestCase {
             "userId" => "user-1234",
         ));
 
-        $sent = Caliper::send($caliperEvent);
+        $sent = Sensor::send($caliperEvent);
         $this->assertTrue($sent);
     }
 }
