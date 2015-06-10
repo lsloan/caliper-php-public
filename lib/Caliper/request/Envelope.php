@@ -4,7 +4,7 @@ require_once 'Caliper/util/TimestampUtil.php';
 
 class Envelope implements JsonSerializable {
     /** @var string */
-    private $sensor;
+    private $sensorId;
     /** @var DateTime */
     private $sendTime;
     /** @var object[] */
@@ -16,27 +16,23 @@ class Envelope implements JsonSerializable {
 
     public function jsonSerialize() {
         return [
-            'sensor' => $this->getSensor(),
+            'sensor' => $this->getSensorId(),
             'sendTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getSendTime()),
             'data' => $this->getData(),
         ];
     }
 
-    /** @return string sensor */
-    public function getSensor() {
-        return $this->sensor;
+    /** @return string id */
+    public function getSensorId() {
+        return $this->sensorId;
     }
 
     /**
-     * @param string $sensor
+     * @param Sensor $sensor
      * @return $this|Envelope
      */
-    public function setSensor($sensor) {
-        if (!is_string($sensor)) {
-            throw new InvalidArgumentException(__METHOD__ . ': string expected');
-        }
-
-        $this->sensor = $sensor;
+    public function setSensorId(Sensor $sensor) {
+        $this->sensorId = $sensor->getId();
         return $this;
     }
 
