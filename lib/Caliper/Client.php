@@ -1,49 +1,68 @@
 <?php
-require_once __DIR__ . '/Consumer.php';
-require_once __DIR__ . '/QueueConsumer.php';
-require_once 'Caliper/request/Envelope.php';
-require_once __DIR__ . '/Consumer/SocketConsumer.php';
-require_once __DIR__ . '/events/Event.php';
-require_once __DIR__ . '/entities/Entity.php';
+require_once 'Caliper/events/Event.php';
+require_once 'Caliper/entities/Entity.php';
+require_once 'Caliper/request/HttpRequestor.php';
 
-class Caliper_Client {
-    private $consumer;
+class Client {
+    /** @var string */
+    private $id;
+    /** @var Options */
+    private $options;
 
     /**
-     * Create a new client object
-     *
-     * @param string $apiKey
-     * @param array $options array of consumer options [optional]
+     * @param string $id
+     * @param Options $options
      */
-    public function __construct($apiKey, $options = array()) {
+    public function __construct($id, Options $options) {
+        $this->setId($id)
+            ->setOptions($options);
+    }
 
-        $consumers = array(
-            "socket" => "SocketConsumer"
-        );
-
-        # Use our socket consumer by default, add other consumers as needed above
-        $consumer_type = isset($options["consumer"]) ? $options["consumer"] :
-            "socket";
-        $Consumer = $consumers[$consumer_type];
-
-        $this->consumer = new $Consumer($apiKey, $options);
+    /** @return string id */
+    public function getId() {
+        return $this->id;
     }
 
     /**
-     * Send learning events
-     * @param  Event $caliperEvent A Caliper event object
-     * @return boolean success
+     * @param string $id
+     * @return $this|Client
      */
-    public function send($caliperEvent) {
-        return $this->consumer->send($caliperEvent);
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Send application events
+     * @param Sensor $sensor
+     * @param Event $event
+     */
+    public function send(Sensor $sensor, $event) {
+        (new HttpRequestor($this->getOptions()))
+            ->send($sensor, $event);
+    }
+
+    /** @return Options options */
+    public function getOptions() {
+        return $this->options;
+    }
+
+    /**
+     * @param Options $options
+     * @return $this|Client
+     */
+    public function setOptions($options) {
+        $this->options = $options;
+        return $this;
     }
 
     /**
      * Describe an entity
-     * @param  Entity $caliperEntity The Caliper Entity we are describing
-     * @return boolean whether the describe call succeeded
+     * @param Sensor $sensor
+     * @param Entity $entity
      */
-    public function describe($caliperEntity) {
-        return $this->consumer->describe($caliperEntity);
+    public function describe($sensor, $entity) {
+        (new HttpRequestor($this->getOptions()))
+            ->send($sensor, $entity);
     }
 }
