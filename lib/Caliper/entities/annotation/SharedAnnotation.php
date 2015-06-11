@@ -33,6 +33,7 @@ class SharedAnnotation extends Annotation {
 
         foreach ($withAgents as $aWithAgents) {
             if (!($aWithAgents instanceof \foaf\Agent)) {
+                // FIXME: After PHP 5.5 is a requirement, change "\foaf\Agent" string to "::class".
                 throw new InvalidArgumentException(__METHOD__ . ': array of \foaf\Agent expected');
             }
         }

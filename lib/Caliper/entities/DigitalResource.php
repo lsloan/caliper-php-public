@@ -93,6 +93,7 @@ class DigitalResource extends Entity implements CreativeWork, Targetable {
 
         foreach ($alignedLearningObjectives as $anAlignedLearningObjective) {
             if (!($anAlignedLearningObjective instanceof LearningObjective)) {
+                // FIXME: After PHP 5.5 is a requirement, change "LearningObjective" string to "::class".
                 throw new InvalidArgumentException(__METHOD__ . ': array of LearningObjective expected');
             }
         }

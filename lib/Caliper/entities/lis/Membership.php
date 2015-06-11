@@ -75,6 +75,7 @@ class Membership extends Entity implements w3c\Membership {
 
         foreach ($roles as $aRoles) {
             if (!($aRoles instanceof \w3c\Role)) {
+                // FIXME: After PHP 5.5 is a requirement, change "\w3c\Role" string to "::class".
                 throw new InvalidArgumentException(__METHOD__ . ': array of \w3c\Role expected');
             }
         }
