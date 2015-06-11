@@ -1,5 +1,5 @@
 <?php
-require_once 'CaliperSensor.php';
+require_once 'Sensor.php';
 require_once 'Caliper/entities/assignable/Assignable.php';
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';

@@ -1,53 +1,88 @@
 <?php
-require_once __DIR__ . '/Consumer.php';
-require_once __DIR__ . '/QueueConsumer.php';
-require_once 'Caliper/request/Envelope.php';
-require_once __DIR__ . '/Consumer/Socket.php';
-require_once __DIR__ . '/events/Event.php';
-require_once __DIR__ . '/entities/Entity.php';
+require_once 'Caliper/events/Event.php';
+require_once 'Caliper/entities/Entity.php';
+require_once 'Caliper/request/HttpRequestor.php';
 
-class Caliper_Client {
-    private $consumer;
+class Client {
+    /** @var string */
+    private $id;
+    /** @var Options */
+    private $options;
 
     /**
-     * Create a new client object
-     *
-     * @param string $apiKey
-     * @param array $options array of consumer options [optional]
+     * @param string $id
+     * @param Options $options
      */
-    public function __construct($apiKey, $options = array()) {
-
-        $consumers = array(
-            "socket" => "Caliper_Consumer_Socket"
-        );
-
-        # Use our socket consumer by default, add other consumers as needed above
-        $consumer_type = isset($options["consumer"]) ? $options["consumer"] :
-            "socket";
-        $Consumer = $consumers[$consumer_type];
-
-        $this->consumer = new $Consumer($apiKey, $options);
+    public function __construct($id, Options $options) {
+        $this->setId($id)
+            ->setOptions($options);
     }
 
-    public function __destruct() {
-        $this->consumer->__destruct();
+    /** @return string id */
+    public function getId() {
+        return $this->id;
     }
 
     /**
-     * Send learning events
-     * @param  Event $caliperEvent A Caliper event object
-     * @return boolean success
+     * @param string $id
+     * @return $this|Client
      */
-    public function send($caliperEvent) {
-        return $this->consumer->send($caliperEvent);
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     /**
-     * Describe an entity
-     * @param  Entity $caliperEntity The Caliper Entity we are describing
-     * @return boolean whether the describe call succeeded
+     * Send application events
+     * @param Sensor $sensor
+     * @param Event|Event[] $events
      */
-    public function describe($caliperEntity) {
-        return $this->consumer->describe($caliperEntity);
+    public function send(Sensor $sensor, $events) {
+        if (!is_array($events)) {
+            $events = [$events];
+        }
+
+        foreach ($events as $anEvent) {
+            if (!($anEvent instanceof Event)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Event::class . ' expected');
+            }
+        }
+
+        (new HttpRequestor($this->getOptions()))
+            ->send($sensor, $events);
+    }
+
+    /** @return Options options */
+    public function getOptions() {
+        return $this->options;
+    }
+
+    /**
+     * @param Options $options
+     * @return $this|Client
+     */
+    public function setOptions($options) {
+        $this->options = $options;
+        return $this;
+    }
+
+    /**
+     * Describe an entities
+     * @param Sensor $sensor
+     * @param Entity|Entity[] $entities
+     */
+    public function describe($sensor, $entities) {
+        if (!is_array($entities)) {
+            $entities = [$entities];
+        }
+
+        foreach ($entities as $anEntity) {
+            if (!($anEntity instanceof Entity)) {
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Entity::class . ' expected');
+            }
+        }
+
+        (new HttpRequestor($this->getOptions()))
+            ->send($sensor, $entities);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../lib/CaliperSensor.php');
+require_once realpath(dirname(__FILE__) . '/../lib/Sensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/reading/Frame.php';
@@ -9,6 +9,7 @@ require_once 'Caliper/entities/session/Session.php';
 require_once 'Caliper/events/SessionEvent.php';
 require_once 'Caliper/actions/Action.php';
 require_once 'Caliper/entities/EntityType.php';
+require_once 'Caliper/Options.php';
 
 class SessionEventSampleApp {
     /** @var SessionEvent */
@@ -73,16 +74,23 @@ class SessionEventSampleApp {
     }
 }
 
-Caliper::init('org.imsglobal.caliper.php.apikey', [
-    'debug' => true,
-    'host' => 'localhost',
-    'port' => 8000,
-    'sendURI' => '/',
-    'sensorId' => 'sensorId',
-]);
+//Sensor::init('id');
+$sensor = new Sensor('id');
+
+$options = (new Options())
+    ->setApiKey('org.imsglobal.caliper.php.apikey')
+    ->setDebug(true)
+    ->setHost('http://localhost:8000/');
+
+$sensor->registerClient('http', new Client('clientId', $options));
 
 $sessionTest = new SessionEventSampleApp();
 $sessionTest->setUp();
 
-Caliper::send($sessionTest->getSessionEvent());
-Caliper::describe($sessionTest->getPersonEntity());
+echo "sending...\r";
+$sensor->send($sensor, $sessionTest->getSessionEvent());
+echo "send() done\n";
+
+echo "describing...\r";
+$sensor->describe($sensor, $sessionTest->getPersonEntity());
+echo "describe() done\n";

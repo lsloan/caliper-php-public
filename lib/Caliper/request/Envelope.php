@@ -4,7 +4,7 @@ require_once 'Caliper/util/TimestampUtil.php';
 
 class Envelope implements JsonSerializable {
     /** @var string */
-    private $sensor;
+    private $sensorId;
     /** @var DateTime */
     private $sendTime;
     /** @var object[] */
@@ -16,27 +16,23 @@ class Envelope implements JsonSerializable {
 
     public function jsonSerialize() {
         return [
-            'sensor' => $this->getSensor(),
+            'sensor' => $this->getSensorId(),
             'sendTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getSendTime()),
             'data' => $this->getData(),
         ];
     }
 
-    /** @return string sensor */
-    public function getSensor() {
-        return $this->sensor;
+    /** @return string id */
+    public function getSensorId() {
+        return $this->sensorId;
     }
 
     /**
-     * @param string $sensor
+     * @param Sensor $sensor
      * @return $this|Envelope
      */
-    public function setSensor($sensor) {
-        if (!is_string($sensor)) {
-            throw new InvalidArgumentException(__METHOD__ . ': string expected');
-        }
-
-        $this->sensor = $sensor;
+    public function setSensorId(Sensor $sensor) {
+        $this->sensorId = $sensor->getId();
         return $this;
     }
 
@@ -54,18 +50,25 @@ class Envelope implements JsonSerializable {
         return $this;
     }
 
-    /** @return object[] data */
+    /** @return Entity[]|Event[] data */
     public function getData() {
         return $this->data;
     }
 
     /**
-     * @param object|object[] $data
+     * @param Entity|Event|Entity[]|Event[] $data
      * @return $this|Envelope
      */
     public function setData($data) {
         if (!is_array($data)) {
             $data = [$data];
+        }
+
+        foreach ($data as $dataItem) {
+            if (!(($dataItem instanceof Entity) || ($dataItem instanceof Event))) {
+                throw new InvalidArgumentException(__METHOD__ .
+                    ': array of ' . Entity::class . ' or ' . Event::class . ' expected');
+            }
         }
 
         foreach ($data as $aData) {

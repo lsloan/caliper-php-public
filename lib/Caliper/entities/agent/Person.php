@@ -1,5 +1,5 @@
 <?php
-require_once 'CaliperSensor.php';
+require_once 'Sensor.php';
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/agent/Agent.php';
