@@ -44,7 +44,7 @@ class Client {
 
         foreach ($events as $anEvent) {
             if (!($anEvent instanceof Event)) {
-                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Event::class . ' expected');
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Event::className() . ' expected');
             }
         }
 
@@ -78,7 +78,7 @@ class Client {
 
         foreach ($entities as $anEntity) {
             if (!($anEntity instanceof Entity)) {
-                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Entity::class . ' expected');
+                throw new InvalidArgumentException(__METHOD__ . ': array of ' . Entity::className() . ' expected');
             }
         }
 
