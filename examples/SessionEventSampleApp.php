@@ -47,7 +47,6 @@ class SessionEventSampleApp {
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
 
-        // TODO Implement Frame.  JS test uses Frame.  PHP library doesn't have it.
 		$targetObj = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
         $targetObj->setName('Key Figures: George Washington')
             ->setDateCreated($createdTime)

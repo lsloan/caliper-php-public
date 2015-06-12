@@ -16,7 +16,7 @@ class Options {
     private $debug;
 
     public function __construct() {
-        $this->setHost('http://localhost/')
+        $this->setHost('http://example.org/')
             ->setJsonEncodeOptions(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
             ->setDebug(false)
             ->setConnectionTimeout(10000);

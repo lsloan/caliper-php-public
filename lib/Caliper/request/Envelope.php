@@ -7,7 +7,7 @@ class Envelope implements JsonSerializable {
     private $sensorId;
     /** @var DateTime */
     private $sendTime;
-    /** @var object[] */
+    /** @var Entity[]|Event[] */
     private $data;
 
     public function __construct() {

@@ -13,6 +13,7 @@ class DigitalResourceType extends BasicEnum implements Type {
         EPUB_VOLUME = 'http://www.idpf.org/epub/vocab/structure/#volume',
         FRAME = 'http://purl.imsglobal.org/caliper/v1/Frame',
         MEDIA_OBJECT = 'http://purl.imsglobal.org/caliper/v1/MediaObject',
-        READING = 'http://www.idpf.org/epub/vocab/structure',
+        MEDIA_LOCATION = 'http://purl.imsglobal.org/caliper/v1/MediaLocation',
+        READING = 'http://purl.imsglobal.org/caliper/v1/Reading',
         WEB_PAGE = 'http://purl.imsglobal.org/caliper/v1/WebPage';
 }
