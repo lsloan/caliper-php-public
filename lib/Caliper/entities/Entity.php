@@ -1,5 +1,4 @@
 <?php
-require_once 'Sensor.php';
 require_once 'Caliper/entities/schemadotorg/Thing.php';
 require_once 'Caliper/util/ClassUtil.php';
 require_once 'Caliper/util/TimestampUtil.php';

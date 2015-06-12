@@ -1,5 +1,5 @@
 <?php
-require_once realpath(dirname(__FILE__) . '/../lib/Sensor.php');
+require_once realpath(dirname(__FILE__) . '/../lib/Caliper/Sensor.php');
 require_once 'Caliper/entities/reading/EPubVolume.php';
 require_once 'Caliper/entities/reading/EPubSubChapter.php';
 require_once 'Caliper/entities/reading/Frame.php';

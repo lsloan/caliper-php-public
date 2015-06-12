@@ -1,5 +1,4 @@
 <?php
-require_once 'Sensor.php';
 require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/DigitalResourceType.php';
 require_once 'Caliper/entities/schemadotorg/CreativeWork.php';
