@@ -1,7 +1,7 @@
 <?php
 require_once 'Sensor.php';
 require_once 'Caliper/entities/DigitalResource.php';
-require_once 'Caliper/entities/media/MediaObjectType.php';
+require_once 'Caliper/entities/DigitalResourceType.php';
 require_once 'Caliper/entities/Targetable.php';
 
 class MediaLocation extends DigitalResource implements Targetable {
@@ -10,7 +10,7 @@ class MediaLocation extends DigitalResource implements Targetable {
 
     public function __construct($id) {
         parent::__construct($id);
-        $this->setType(new MediaObjectType(MediaObjectType::MEDIA_LOCATION));
+        $this->setType(new DigitalResourceType(DigitalResourceType::MEDIA_LOCATION));
     }
 
     public function jsonSerialize() {

@@ -7,7 +7,7 @@ require_once 'Caliper/entities/Generatable.php';
 /**
  *         The super-class of all Annotation types.
  *
- *         Direct sub-types can include - Hilight, Attachment, etc. - all of
+ *         Direct sub-types can include - Highlight, Attachment, etc. - all of
  *         which are specified in the Caliper Annotation Metric Profile
  *
  */

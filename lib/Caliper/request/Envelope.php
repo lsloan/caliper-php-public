@@ -7,7 +7,7 @@ class Envelope implements JsonSerializable {
     private $sensorId;
     /** @var DateTime */
     private $sendTime;
-    /** @var object[] */
+    /** @var Entity[]|Event[] */
     private $data;
 
     public function __construct() {
@@ -67,7 +67,7 @@ class Envelope implements JsonSerializable {
         foreach ($data as $dataItem) {
             if (!(($dataItem instanceof Entity) || ($dataItem instanceof Event))) {
                 throw new InvalidArgumentException(__METHOD__ .
-                    ': array of ' . Entity::class . ' or ' . Event::class . ' expected');
+                    ': array of ' . Entity::className() . ' or ' . Event::className() . ' expected');
             }
         }
 
