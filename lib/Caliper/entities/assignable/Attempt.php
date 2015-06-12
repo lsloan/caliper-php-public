@@ -1,13 +1,15 @@
 <?php
+require_once 'Caliper/entities/DigitalResource.php';
 require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
+require_once 'Caliper/entities/foaf/Agent.php';
 require_once 'Caliper/util/TimestampUtil.php';
 
 class Attempt extends Entity implements Generatable {
     /** @var DigitalResource */
     private $assignable;
-    /** @var Agent */
+    /** @var \foaf\Agent */
     private $actor;
     /** @var int */
     private $count;
@@ -52,16 +54,16 @@ class Attempt extends Entity implements Generatable {
         return $this;
     }
 
-    /** @return Agent actor */
+    /** @return \foaf\Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param Agent $actor
+     * @param \foaf\Agent $actor
      * @return $this|Attempt
      */
-    public function setActor(Agent $actor) {
+    public function setActor(\foaf\Agent $actor) {
         $this->actor = $actor;
         return $this;
     }

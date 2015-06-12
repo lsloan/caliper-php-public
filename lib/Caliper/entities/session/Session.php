@@ -4,10 +4,11 @@ require_once 'Caliper/entities/Entity.php';
 require_once 'Caliper/entities/EntityType.php';
 require_once 'Caliper/entities/Generatable.php';
 require_once 'Caliper/entities/Targetable.php';
+require_once 'Caliper/entities/foaf/Agent.php';
 require_once 'Caliper/util/TimestampUtil.php';
 
 class Session extends Entity implements Generatable, Targetable {
-    /** @var Agent */
+    /** @var \foaf\Agent */
     private $actor;
     /** @var DateTime */
     private $startedAtTime;
@@ -30,16 +31,16 @@ class Session extends Entity implements Generatable, Targetable {
         ]);
     }
 
-    /** @return Agent actor */
+    /** @return \foaf\Agent actor */
     public function getActor() {
         return $this->actor;
     }
 
     /**
-     * @param Agent $actor
+     * @param \foaf\Agent $actor
      * @return $this|Session
      */
-    public function setActor(Agent $actor) {
+    public function setActor(\foaf\Agent $actor) {
         $this->actor = $actor;
         return $this;
     }
