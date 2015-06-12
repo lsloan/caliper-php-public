@@ -1,7 +1,7 @@
 <?php
 require_once 'Sensor.php';
 require_once 'Caliper/entities/DigitalResource.php';
-require_once 'Caliper/entities/media/DigitalResourceType.php';
+require_once 'Caliper/entities/DigitalResourceType.php';
 require_once 'Caliper/entities/Targetable.php';
 
 class MediaLocation extends DigitalResource implements Targetable {
