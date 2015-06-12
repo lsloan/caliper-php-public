@@ -1,5 +1,4 @@
 <?php
-require_once 'Sensor.php';
 require_once 'Caliper/events/Event.php';
 require_once 'Caliper/events/EventType.php';
 require_once 'Caliper/entities/DigitalResource.php';

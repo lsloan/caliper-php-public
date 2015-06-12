@@ -13,7 +13,7 @@ if (!extension_loaded('json')) {
     throw new Exception('Sensor requires the PHP "json" extension.');
 }
 
-define('CALIPER_LIB_PATH', realpath(dirname(__FILE__)));
+define('CALIPER_LIB_PATH', realpath(dirname(__FILE__) . '/..'));
 set_include_path(get_include_path() . PATH_SEPARATOR . CALIPER_LIB_PATH);
 
 require_once 'Caliper/Client.php';

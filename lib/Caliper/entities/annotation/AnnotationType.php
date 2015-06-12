@@ -1,5 +1,4 @@
 <?php
-require_once 'Sensor.php';
 require_once 'Caliper/entities/Type.php';
 require_once 'Caliper/util/BasicEnum.php';
 
