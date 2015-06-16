@@ -1,16 +1,12 @@
 <?php
 define ('CALIPER_REQUIRED_PHP_VERSION', '5.4.0');
 if (version_compare(PHP_VERSION, CALIPER_REQUIRED_PHP_VERSION, '<')) {
-    throw new UnexpectedValueException('Sensor requires PHP ' .
+    throw new UnexpectedValueException('Caliper requires PHP ' .
         CALIPER_REQUIRED_PHP_VERSION . ' or greater.  This is version: ' . PHP_VERSION);
 }
 
-if (!extension_loaded('http')) {
-    throw new Exception('Sensor requires the PHP "http" extension.');
-}
-
 if (!extension_loaded('json')) {
-    throw new Exception('Sensor requires the PHP "json" extension.');
+    throw new Exception('Caliper requires the PHP "json" extension.');
 }
 
 define('CALIPER_LIB_PATH', realpath(dirname(__FILE__) . '/..'));
