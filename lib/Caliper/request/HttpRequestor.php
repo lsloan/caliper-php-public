@@ -7,6 +7,10 @@ class HttpRequestor extends EventStoreRequestor {
 
     /** @param Options $options */
     public function __construct(Options $options) {
+        if (!extension_loaded('http')) {
+            throw new Exception('Caliper ' . __CLASS__ . ' requires the PHP "http" extension.');
+        }
+
         $this->setOptions($options);
     }
 
