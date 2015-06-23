@@ -73,7 +73,6 @@ class SessionEventSampleApp {
     }
 }
 
-//Sensor::init('id');
 $sensor = new Sensor('id');
 
 $options = (new Options())
