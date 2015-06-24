@@ -28,34 +28,36 @@ class SessionEventSampleApp {
     }
 
     function setUp() {
-        $createdTime = new DateTime('2015-01-01T06:00:00.000Z');
-        $modifiedTime = new DateTime('2015-02-02T11:30:00.000Z');
-        $sessionStartTime = new DateTime('2015-02-15T10:15:00.000Z');
+        $createdTime = new DateTime('1977-05-25T17:00:00.000Z');
+        $modifiedTime = new DateTime('2015-06-24T19:38:00.000Z');
+        $sessionStartTime = new DateTime('now');
 
-        $person = new Person('https://some-university.edu/user/554433');
+        $person = new Person('https://example.edu/user/poe_dameron');
         $person->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
         $this->personEntity = $person;
 
-        $eventObj = new SoftwareApplication('https://github.com/readium/readium-js-viewer');
-        $eventObj->setName('Readium')
+        $eventObj = new SoftwareApplication('https://example.com/viewer');
+        $eventObj->setName('Holocron v7')
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime);
 
-        $ePubVolume = new EPubVolume('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3)');
-        $ePubVolume->setName('The Glorious Cause: The American Revolution, 1763-1789 (Oxford History of the United States)')
+        $ePubVolume = new EPubVolume('https://example.com/viewer/book/1138#epubcfi(/4/3)');
+        $ePubVolume->setName('Star Wars: The Magic of Myth')
             ->setDateCreated($createdTime)
-            ->setDateModified($modifiedTime);
+            ->setDateModified($modifiedTime)
+            ->setVersion('1st ed.');
 
-		$targetObj = new Frame('https://github.com/readium/readium-js-viewer/book/34843#epubcfi(/4/3/1)');
-        $targetObj->setName('Key Figures: George Washington')
+		$targetObj = new Frame('https://example.com/viewer/book/1138#epubcfi(/4/3/1)');
+        $targetObj->setName('The Resurgence of Evil')
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime)
             ->setIsPartOf($ePubVolume)
-            ->setIndex(1);
+            ->setIndex(1)
+            ->setVersion('1st ed.');
 
-        $generatedObj = new Session('https://github.com/readium/session-123456789');
-        $generatedObj->setName('session-123456789')
+        $generatedObj = new Session('https://example.com/viewer/session-19440514');
+        $generatedObj->setName('session-19440514')
             ->setDateCreated($createdTime)
             ->setDateModified($modifiedTime)
             ->setActor($person)
