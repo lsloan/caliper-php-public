@@ -1,4 +1,6 @@
 <?php
+require_once 'Caliper/Defaults.php';
+
 class Options {
     /** @var string */
     private $host;
@@ -16,10 +18,10 @@ class Options {
     private $debug;
 
     public function __construct() {
-        $this->setHost('http://example.org/')
-            ->setJsonEncodeOptions(JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
-            ->setDebug(false)
-            ->setConnectionTimeout(10000);
+        $this->setHost(Defaults::HOST)
+            ->setJsonEncodeOptions(Defaults::JSON_ENCODE_OPTIONS)
+            ->setDebug(Defaults::DEBUG)
+            ->setConnectionTimeout(Defaults::CONNECTION_TIMEOUT);
     }
 
     /** @return string host Complete URL for event store server */
@@ -111,7 +113,7 @@ class Options {
 
     /**
      * Not used in caliper-php, but included to align with caliper-java's API.
-     * 
+     *
      * @param int $connectionRequestTimeout timeout in milliseconds
      * @return $this|Options
      */
