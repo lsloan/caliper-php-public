@@ -29,8 +29,8 @@ class SessionEventSampleApp {
 
     function setUp() {
         $createdTime = new DateTime('1977-05-25T17:00:00.000Z');
-        $modifiedTime = new DateTime('2015-06-24T19:38:00.000Z');
-        $sessionStartTime = new DateTime('now');
+        $modifiedTime = new DateTime('2015-06-24T19:48:00.000Z');
+        $sessionStartTime = new DateTime('2015-12-18T11:38:00.000Z');
 
         $person = new Person('https://example.edu/user/poe_dameron');
         $person->setDateCreated($createdTime)
