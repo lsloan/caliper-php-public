@@ -18,7 +18,7 @@ class AssignableActivatedEventTest extends CaliperTestCase {
             ->setObject(TestAssessmentEntities::makeAssessment())
             ->setGenerated(TestAssignableEntities::makeAssessmentAttempt()
                 ->setAssignable(TestAssessmentEntities::makeAssessment()))
-            ->setStartedAtTime(TestTimes::startedTime())
+            ->setEventTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())
             ->setGroup(TestLisEntities::makeGroup())
             ->setMembership(TestLisEntities::makeMembership()));

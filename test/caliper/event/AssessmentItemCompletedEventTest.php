@@ -17,7 +17,7 @@ class AssessmentItemCompletedEventTest extends CaliperTestCase {
             ->setAction(new Action(Action::COMPLETED))
             ->setObject(TestAssessmentEntities::makeAssessmentItem())
             ->setGenerated(TestResponseEntities::makeFillinBlankResponse())
-            ->setStartedAtTime(TestTimes::startedTime())
+            ->setEventTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())
             ->setGroup(TestLisEntities::makeGroup())
             ->setMembership(TestLisEntities::makeMembership()));

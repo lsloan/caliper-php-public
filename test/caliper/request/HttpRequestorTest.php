@@ -20,7 +20,7 @@ class HttpRequestorTest extends CaliperTestCase {
                 ->setEdApp(TestAgentEntities::makeReadingApplication())
                 ->setTarget(TestReadingEntities::makeFrame1())
                 ->setGroup(TestLisEntities::makeGroup())
-                ->setStartedAtTime(TestTimes::startedTime())
+                ->setEventTime(TestTimes::startedTime())
                 ->setFederatedSession(new Session('https://example.edu/lms/federatedSession/123456789'))));
     }
 }

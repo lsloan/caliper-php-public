@@ -19,6 +19,6 @@ class NavigationEventTest extends CaliperTestCase {
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setTarget(TestReadingEntities::makeFrame1())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime()));
+            ->setEventTime(TestTimes::startedTime()));
     }
 }

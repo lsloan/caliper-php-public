@@ -22,8 +22,6 @@ class SessionLogoutEventTest extends CaliperTestCase{
                 ->setDuration(TestTimes::durationSeconds()))
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime())
-            ->setEndedAtTime(TestTimes::endedTime())
-            ->setDuration(TestTimes::durationSeconds()));
+            ->setEventTime(TestTimes::startedTime()));
     }
 }

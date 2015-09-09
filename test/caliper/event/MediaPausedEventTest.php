@@ -20,6 +20,6 @@ class MediaPausedEventTest extends CaliperTestCase {
             ->setTarget(TestMediaEntities::makeMediaLocation())
             ->setEdApp(TestAgentEntities::makeMediaApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime()));
+            ->setEventTime(TestTimes::startedTime()));
 	}
 }

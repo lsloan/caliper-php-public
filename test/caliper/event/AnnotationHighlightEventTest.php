@@ -7,7 +7,7 @@ require_once 'Caliper/actions/Action.php';
  * @requires PHP 5.4
  */
 class AnnotationHighlightEventTest extends CaliperTestCase {
-	function setUp() {
+    function setUp() {
         parent::setUp();
 
         $this->setFixtureFilename('/../../caliper-common-fixtures/src/test/resources/fixtures/caliperHighlightAnnotationEvent.json');
@@ -17,9 +17,9 @@ class AnnotationHighlightEventTest extends CaliperTestCase {
             ->setAction(new Action(Action::HIGHLIGHTED))
             ->setObject(TestReadingEntities::makeFrame1())
             ->setGenerated(TestAnnotationEntities::makeHighlightAnnotation())
-            ->setStartedAtTime(TestTimes::startedTime())
+            ->setEventTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setMembership(TestLisEntities::makeMembership())) ;
-	}
+            ->setMembership(TestLisEntities::makeMembership()));
+    }
 }

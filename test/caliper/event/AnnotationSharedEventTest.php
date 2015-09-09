@@ -17,7 +17,7 @@ class AnnotationSharedEventTest extends CaliperTestCase {
             ->setAction(new Action(Action::SHARED))
             ->setObject(TestReadingEntities::makeFrame3())
             ->setGenerated(TestAnnotationEntities::makeSharedAnnotation())
-            ->setStartedAtTime(TestTimes::startedTime())
+            ->setEventTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
             ->setMembership(TestLisEntities::makeMembership()));
