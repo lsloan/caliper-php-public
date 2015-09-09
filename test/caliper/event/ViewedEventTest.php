@@ -19,6 +19,6 @@ class ViewedEventTest extends CaliperTestCase {
             ->setTarget(TestReadingEntities::makeFrame1())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime()));
+            ->setEventTime(TestTimes::startedTime()));
     }
 }

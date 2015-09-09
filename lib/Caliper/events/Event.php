@@ -19,11 +19,7 @@ abstract class Event extends ClassUtil implements JsonSerializable {
     /** @var Generatable */
     private $generated;
     /** @var DateTime */
-    private $startedAtTime;
-    /** @var DateTime */
-    private $endedAtTime;
-    /** @var string */
-    private $duration;
+    private $eventTime;
     /** @var SoftwareApplication */
     private $edApp;
     /** @var Organization */
@@ -46,9 +42,7 @@ abstract class Event extends ClassUtil implements JsonSerializable {
             'object' => $this->getObject(),
             'target' => $this->getTarget(),
             'generated' => $this->getGenerated(),
-            'startedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getStartedAtTime()),
-            'endedAtTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEndedAtTime()),
-            'duration' => $this->getDurationFormatted(),
+            'eventTime' => TimestampUtil::formatTimeISO8601MillisUTC($this->getEventTime()),
             'edApp' => $this->getEdApp(),
             'group' => $this->getGroup(),
             'membership' => $this->getMembership(),
@@ -160,58 +154,17 @@ abstract class Event extends ClassUtil implements JsonSerializable {
         return $this;
     }
 
-    /** @return DateTime startedAtTime */
-    public function getStartedAtTime() {
-        return $this->startedAtTime;
+    /** @return DateTime eventTime */
+    public function getEventTime() {
+        return $this->eventTime;
     }
 
     /**
-     * @param DateTime $startedAtTime
+     * @param DateTime $eventTime
      * @return $this|Event
      */
-    public function setStartedAtTime(DateTime $startedAtTime) {
-        $this->startedAtTime = $startedAtTime;
-        return $this;
-    }
-
-    /** @return DateTime endedAtTime */
-    public function getEndedAtTime() {
-        return $this->endedAtTime;
-    }
-
-    /**
-     * @param DateTime $endedAtTime
-     * @return $this|Event
-     */
-    public function setEndedAtTime(DateTime $endedAtTime) {
-        $this->endedAtTime = $endedAtTime;
-        return $this;
-    }
-
-    /** @return null|string Duration in seconds formatted according to ISO 8601 ("PTnnnnS") */
-    public function getDurationFormatted() {
-        if ($this->getDuration() === null) {
-            return null;
-        }
-
-        return 'PT' . $this->getDuration() . 'S';
-    }
-
-    /** @return string duration (seconds) */
-    public function getDuration() {
-        return $this->duration;
-    }
-
-    /**
-     * @param string $duration
-     * @return $this|Event
-     */
-    public function setDuration($duration) {
-        if (!is_string($duration)) {
-            throw new InvalidArgumentException(__METHOD__ . ': string expected');
-        }
-
-        $this->duration = $duration;
+    public function setEventTime(DateTime $eventTime) {
+        $this->eventTime = $eventTime;
         return $this;
     }
 

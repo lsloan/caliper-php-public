@@ -17,7 +17,7 @@ class AssessmentItemStartedEventTest extends CaliperTestCase {
             ->setAction(new Action(Action::STARTED))
             ->setObject(TestAssessmentEntities::makeAssessmentItem())
             ->setGenerated(TestAssignableEntities::makeItemAttempt())
-            ->setStartedAtTime(TestTimes::startedTime())
+            ->setEventTime(TestTimes::startedTime())
             ->setEdApp(TestAgentEntities::makeAssessmentApplication())
             ->setGroup(TestLisEntities::makeGroup())
             ->setMembership(TestLisEntities::makeMembership()));

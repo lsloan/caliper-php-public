@@ -21,6 +21,6 @@ class SessionLoginEventTest extends CaliperTestCase {
             ->setGenerated(TestSessionEntities::makeSession())
             ->setEdApp(TestAgentEntities::makeReadingApplication())
             ->setGroup(TestLisEntities::makeGroup())
-            ->setStartedAtTime(TestTimes::startedTime()));
+            ->setEventTime(TestTimes::startedTime()));
     }
 }
