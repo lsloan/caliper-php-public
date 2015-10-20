@@ -3,11 +3,6 @@ caliper-php
 
 caliper-php is a php client for [Caliper](http://www.imsglobal.org) that provides an implementation of the Caliper SensorAPI™.
 
-## Documentation
-
-## IMPORTANT INFORMATION:
-Access to this draft code is reserved for IMS Contributing Members who are active participants of the IMS Learning Analytics Task Force.  Dissemination of this code to outside parties is strictly prohibited. By accessing these materials you agree to abide by these rules. This code is in draft format and will change substantially. 
-
 ## Getting Started
 
 ### Pre-requisites for development:  
@@ -61,6 +56,9 @@ examples/tools/testListener.sh [optional_port]
 ```
 
 That will start a simple PHP web server (on port 8000 by default) that listens for POST requests and dumps the raw contents to the terminal.  If you run this in one terminal window and the example program in another terminal window, you will see the request received in the first window.
+
+## Documentation
+Documentation is available at [http://www.imsglobal.org/caliper](https://www.imsglobal.org/caliper).
 
 ## Credits
 
