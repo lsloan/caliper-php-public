@@ -4,6 +4,8 @@ require_once 'Caliper/Defaults.php';
 class Options {
     /** @var string */
     private $host;
+    /** @var string[] */
+    private $httpHeaders;
     /** @var string */
     private $apiKey;
     /** @var int */
@@ -19,6 +21,7 @@ class Options {
 
     public function __construct() {
         $this->setHost(Defaults::HOST)
+            ->setHttpHeaders([])
             ->setJsonEncodeOptions(Defaults::JSON_ENCODE_OPTIONS)
             ->setDebug(Defaults::DEBUG)
             ->setConnectionTimeout(Defaults::CONNECTION_TIMEOUT);
@@ -39,6 +42,26 @@ class Options {
         }
 
         $this->host = $host;
+        return $this;
+    }
+
+    /** @return string[] */
+    public function getHttpHeaders() {
+        return $this->httpHeaders;
+    }
+
+    /**
+     * @param string[] $httpHeaders
+     * @return $this|Options
+     */
+    public function setHttpHeaders($httpHeaders) {
+        if ($httpHeaders == null) {
+            $httpHeaders = [];
+        } elseif (!is_array($httpHeaders)) {
+            $httpHeaders = [$httpHeaders];
+        }
+
+        $this->httpHeaders = $httpHeaders;
         return $this;
     }
 
