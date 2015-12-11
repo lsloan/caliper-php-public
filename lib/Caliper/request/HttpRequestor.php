@@ -46,10 +46,10 @@ class HttpRequestor extends EventStoreRequestor {
 
         $payload = json_encode($envelope, $this->getOptions()->getJsonEncodeOptions());
 
-        $headers = [
+        $headers = array_merge($this->getOptions()->getHttpHeaders(), [
             'Content-Type' => 'application/json',
             'Authorization' => $this->getOptions()->getApiKey(),
-        ];
+        ]);
 
         if (extension_loaded('http')) {
             $message = new \http\Message();
