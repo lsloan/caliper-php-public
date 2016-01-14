@@ -66,8 +66,9 @@ below:
 
             ***NOTE*** - These package and repository values will not work at
             this time with the IMS Global repositories.  The `composer.json`
-            file in caliper-php-public doesn't contain the correct entries.
-            For U-M purposes, substitute the following values for the package
+            file in caliper-php-public doesn't contain the correct entries. This
+            should be corrected with an update in the near future. For U-M
+            purposes, substitute the following values for the package
             and repository, respectively:
 
             ```json
