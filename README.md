@@ -9,7 +9,6 @@ provides an implementation of the Caliper SensorAPI™.
 ### Pre-requisites for development
 
 * PHP 5.4 required (PHP 5.6 recommended)
-* Ensure you have php5 and php5-json installed:  ```sudo apt-get install php5 php5-json```
 * Install Composer (for dependency management):  ```curl -sS https://getcomposer.org/installer | php```
 * Install dependencies:  ```php composer.phar install```
 * Run tests using the Makefile: ```make test-caliper```
